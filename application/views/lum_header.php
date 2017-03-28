@@ -1854,9 +1854,18 @@ a.log-in:hover{
 			<li class="has-sub"><a href="#">SUIT</a>
 			 <ul>
 				<li><a href="<?php echo $bas_ul;?>mens-suits"><div style="display:inline-block;"><img src="<?=base_url() ?>images/relaunch/suit-hover.png" width="25" height="25" alt=""/></div><div style="display:inline-block;position:ralative;top:-5px;vertical-align:top;position:relative;top:7px;left:5px;font-size:12px"> SUITS </div></a></li>
-				<li><a href="<?php echo $bas_ul;?>mens-blazers"><div style="display:inline-block;"><img src="<?=base_url() ?>images/relaunch/suit-hover.png" width="25" height="25" alt=""/></div><div style="display:inline-block;position:ralative;top:-5px;vertical-align:top;position:relative;top:7px;left:5px;font-size:12px"> BLAZERS </div></a></li>
-				<li><a href="<?php echo $bas_ul;?>mens-vests"><div style="display:inline-block;"><img src="<?=base_url() ?>images/relaunch/suit-hover.png" width="25" height="25" alt=""/></div><div style="display:inline-block;position:ralative;top:-5px;vertical-align:top;position:relative;top:7px;left:5px;font-size:12px"> VESTS </div></a></li>
+<li><a href="<?php echo $bas_ul;?>custom-suit"><div style="display:inline-block;"><img src="<?=base_url() ?>images/relaunch/suit-hover.png" width="25" height="25" alt=""/></div><div style="display:inline-block;position:ralative;top:-5px;vertical-align:top;position:relative;top:7px;left:5px;font-size:12px"> Design Your Suit </div></a></li>
 
+
+
+				<li><a href="<?php echo $bas_ul;?>mens-blazers"><div style="display:inline-block;"><img src="<?=base_url() ?>images/relaunch/suit-hover.png" width="25" height="25" alt=""/></div><div style="display:inline-block;position:ralative;top:-5px;vertical-align:top;position:relative;top:7px;left:5px;font-size:12px"> BLAZERS </div></a></li>
+
+<li><a href="<?php echo $bas_ul;?>custom-blazer"><div style="display:inline-block;"><img src="<?=base_url() ?>images/relaunch/suit-hover.png" width="25" height="25" alt=""/></div><div style="display:inline-block;position:ralative;top:-5px;vertical-align:top;position:relative;top:7px;left:5px;font-size:12px"> Design Your Blazer </div></a></li>
+
+
+
+				<li><a href="<?php echo $bas_ul;?>mens-vests"><div style="display:inline-block;"><img src="<?=base_url() ?>images/relaunch/suit-hover.png" width="25" height="25" alt=""/></div><div style="display:inline-block;position:ralative;top:-5px;vertical-align:top;position:relative;top:7px;left:5px;font-size:12px"> VESTS </div></a></li>
+<li><a href="<?php echo $bas_ul;?>custom-vest"><div style="display:inline-block;"><img src="<?=base_url() ?>images/relaunch/suit-hover.png" width="25" height="25" alt=""/></div><div style="display:inline-block;position:ralative;top:-5px;vertical-align:top;position:relative;top:7px;left:5px;font-size:12px">Design Your Vest </div></a></li>
 
 				 </ul>
 			</li>

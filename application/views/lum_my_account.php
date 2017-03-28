@@ -15,6 +15,10 @@ $https_url_large_img="http://www.stylior.com/upload/products1/large/";
 
 $base_url_temp=$bas_ul;
 
+
+$suit_data_options=array("vest_coat"=>"part","inner_lining"=>"part","jacket_style"=>"part","suspender_button"=>"part","body_fit"=>"part","lapel"=>"part","jacket_button"=>"part","vents"=>"part","suit_pocket"=>"pair","chest_pocket"=>"pair","lapel_button_hole"=>"part","cuff_accent_stitching"=>"part","cuff_button_style"=>"part","pleats"=>"part","belt"=>"part","bottom_cuff"=>"part","back_pocket"=>"part","trouser_button"=>"part","measurements");
+
+
 ?>
 
 <style>
@@ -776,6 +780,7 @@ $base_url_temp=$bas_ul;
 	max-width:300px;}
 </style>
 <script>
+
 jQuery(function ($) {
 $(".delete-addr").on("click",function(){
 	var addrId=$(this).attr("data-attr");
@@ -794,6 +799,7 @@ $(".delete-addr").on("click",function(){
 
 })
 });
+
 </script>
 
 		<div class='smsg'>
@@ -1032,15 +1038,53 @@ $(".delete-addr").on("click",function(){
 						<div style="font-size:12px;">Quantity : <?= $value->product_quantity;?></div>
 
 						<div style="font-size:12px;">Options : <?php
-						print_r(str_word_count($value->details3d));
-						if(isset($value->details3d) && str_word_count($value->details3d) >10)
-						{
+						//print_r(str_word_count($value->details3d));
+						
+						if(isset($value->details3d) && str_word_count($value->details3d) >10){
 
 	                    echo "<span class='options'>";
+	                    if(isset($options_data->model)){
 	                    		foreach ($options_data as $key2 => $value_option) {
-								echo $key2.":".$value_option['part']."|";
+								//	print_r($value_option);
+								//	echo $key2;
 
-								}
+								//echo "part value---".$suit_data_options[$key2];
+								//echo "var----".$key2."--end";
+								$get_value=$suit_data_options[$key2];
+										//echo "get value".$get_value."++";
+										if(isset($get_value)){
+											if(isset($value_option->part))
+												echo $key2.":".$value_option->part."|";
+											else if(isset($value_option->pair))
+												echo $key2.":".$value_option->pair."|";
+
+
+										}
+										else if($key2=="measurements"){
+											echo "<h4>".$key2."</h4> >> ";
+											
+											echo implode(",-", $value_option);
+											// foreach($value_option as $key_m=>$m_value){
+           //                                   echo $key_m.":".$m_value."|"; 
+											// // print_r($m_value);
+											// }
+										}
+
+										// print_r($value_option[$get_value]);
+										//	echo $key2.":".$value_option."|";
+
+										
+								}	
+						}
+						else {
+							foreach ($options_data as $key2 => $value_option) {
+									echo $key2.":".$value_option."|";
+								
+								}	
+
+
+
+						}
 						echo "</span>";
 						}else if(isset($value->measureid)){
 						//var start date 15 dec 2016 chnaged for trial shirt measurements
