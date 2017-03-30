@@ -202,7 +202,7 @@ function removeproductnot(id,pid)
 		</div>
 
 		<?php
-	
+
 		if($this->cart->total_items() > 0)
 		{
 				$i = 0;$jj=1;$kk=1;$mm=1;
@@ -215,11 +215,11 @@ function removeproductnot(id,pid)
 				$pid_sty =substr($items['id'], 3);
 				}
 				else{
-				$pid_sty = $items['id'];	
+				$pid_sty = $items['id'];
 				}
-	
+
 				$proditem =  $this->Cart_model->productdetails($items['id']);
-				
+
 				$items['convertedPrice']=  $this->Cart_model->getPriceByID($pid_sty);
 
         $detailsAry = ($items['options']['details'])?json_decode($items['options']['details'],true):array();
@@ -352,7 +352,7 @@ function removeproductnot(id,pid)
 					//echo $items['options']['imagename']."testetset";
 					if (strpos($items['options']['imagename'], 'textronic.online/api_Stylior/v1/img') !== false) {?>
 						<img width="55%" src="<?php echo $items['options']['imagename']; ?>" />
-				<?php }else{			
+				<?php }else{
 				?>
 				<img width="55%" src="<?= base_url() ?>upload/saveprofile/<?php echo $items['options']['imagename']; ?>" />
 				<?php
@@ -373,7 +373,8 @@ function removeproductnot(id,pid)
 						<?php
 							if($shirt3d=="yes"){
 						?>
-						<a href="<? echo $bas_ul?>cart/custommesurements/saved3d/<?php echo $items['options']['saveid']; ?>/<?php echo $cartDetails->id; ?>"><?php echo $items['name']; ?>
+						<!--<a href="<? echo $bas_ul?>cart/custommesurements/saved3d/<?php echo $items['options']['saveid']; ?>/<?php echo $cartDetails->id; ?>"><?php echo $items['name']; ?>-->
+            <a href="#" ><?php echo $items['name']; ?></a>
 						<?php
 						$shirt3d="no";
 						}
@@ -394,7 +395,7 @@ function removeproductnot(id,pid)
 							if($subcatid != 12)
 							{
 							?>
-							<div>MEASUREMENT</div>
+							<div><!--MEASUREMENT--></div>
 							<?php
 							}
 							?>
@@ -512,8 +513,10 @@ function removeproductnot(id,pid)
 						if($sizeVal == '')
 						{
 						?>
-							<a href="<? echo $bas_ul?>cart/custommesurements/saved3d/<?php echo $items['options']['saveid']; ?>/<?php echo $cartDetails->id?>/<?php echo $subcatid; ?>"> Add your measurement</a>
-						<?php
+							<!--<a href="<? echo $bas_ul?>cart/custommesurements/saved3d/<?php echo $items['options']['saveid']; ?>/<?php echo $cartDetails->id?>/<?php echo $subcatid; ?>"> Add your measurement</a>-->
+              <a href="#"> <!--Add your measurement--></a>
+
+            <?php
 					  }
 						else
 							{
@@ -598,10 +601,10 @@ $price_su_t = $price_su_t+$pro_price_lum;
 $i++;
 }
 }
-else 
+else
 { ?>
 <div class="no-items">
-There are no items in the cart 
+There are no items in the cart
 </div>
 <?
 }
@@ -685,7 +688,7 @@ There are no items in the cart
  	              	   $image= $this->Cart_model->getImagename($item_id);
                 	}
 
-    				
+
     				if (ctype_digit($item_id))
     				{
     					 $str_id = $item_id;
@@ -834,35 +837,37 @@ There are no items in the cart
 							<div class="blue_lum">
 							 <?php
 								$detailsAry = ($items['options']['details'])?json_decode($items['options']['details'],true):array();
-								$sizeVal = (isset($detailsAry['standardsize']))?$detailsAry['standardsize']:'';					
+								$sizeVal = (isset($detailsAry['standardsize']))?$detailsAry['standardsize']:'';
 								/*var start for more >>*/
 								$length =(isset($detailsAry['length']))?$detailsAry['length']:'';
 								$fitype =(isset($detailsAry['fitype']))?$detailsAry['fitype']:'';
 								$cartDetails =  $this->Cart_model->getcartDetails($items['id']);
 
 								// echo "Test new data var<pre>";
-								// print_r($detailsAry);							
+								// print_r($detailsAry);
 								 echo "Test this data var <prev>";
 								 print_r($items);
 								/*end var more >>*/
-			
+
 								if(!isset($items['options']['newmid'])||$items['options']['newmid'] == '') {
 
 									$cartDetails =  $this->Cart_model->getcartDetails($items['id']);?>
-									
+
 									<?php if($sizeVal == ''){ ?>
-									<a href="<?php echo $items['rowid'];?>cart/custommesurements/saved3d/<?php echo $items['options']['saveid']; ?>/<?php echo $cartDetails->id; ?>"> Add your measurement</a>
-									<?php } else{
+									<!--<a href="<?php echo $items['rowid'];?>cart/custommesurements/saved3d/<?php echo $items['options']['saveid']; ?>/<?php echo $cartDetails->id; ?>"> Add your measurement</a>-->
+                  <a href="#"> <!--Add your measurement--></a>
+
+                  <?php } else{
 												if($subcatid!=12)
 												{
 													echo 'Size :'.$sizeVal;
 												}
 								}
 								?>
-								<?php } else { 
+								<?php } else {
 									echo "New id chek".$items['options']['newmid'];
 								   $getprofilename =  $this->Cart_model->getprofilename($items['options']['newmid']);
-								   $items['options']['newmid']=""; 
+								   $items['options']['newmid']="";
 									?>
 									<a style="float:left;color:#63beed;" href="#">
 									" <?php echo $getprofilename; ?> "

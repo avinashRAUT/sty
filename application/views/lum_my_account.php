@@ -16,7 +16,21 @@ $https_url_large_img="http://www.stylior.com/upload/products1/large/";
 $base_url_temp=$bas_ul;
 
 
-$suit_data_options=array("vest_coat"=>"part","inner_lining"=>"part","jacket_style"=>"part","suspender_button"=>"part","body_fit"=>"part","lapel"=>"part","jacket_button"=>"part","vents"=>"part","suit_pocket"=>"pair","chest_pocket"=>"pair","lapel_button_hole"=>"part","cuff_accent_stitching"=>"part","cuff_button_style"=>"part","pleats"=>"part","belt"=>"part","bottom_cuff"=>"part","back_pocket"=>"part","trouser_button"=>"part","measurements");
+$suit_data_options= array("vest_coat"=>"part","inner_lining"=>"part","jacket_style"=>"part","suspender_button"=>"part","body_fit"=>"part","lapel"=>"part","jacket_button"=>"part","vents"=>"part","suit_pocket"=>"pair","chest_pocket"=>"pair","lapel_button_hole"=>"part","cuff_accent_stitching"=>"part","cuff_button_style"=>"part","pleats"=>"part","belt"=>"part","bottom_cuff"=>"part","back_pocket"=>"part","trouser_button"=>"part","measurements");
+
+$shirt_data_options= array("model","sleeve","cuff","collar","placket","bottom_hem","button_placket","button_collar","button_cuff","pocket","back_pleat","contrast_cuff","contrast_collar","contrast_placket");
+
+$shirt_measurement_array=array("standardsize","length","fitype","WEIGHTkg","shoulder","neck","shirt_length","chest","waist");
+
+
+
+
+
+
+
+
+
+
 
 
 ?>
@@ -1041,48 +1055,55 @@ $(".delete-addr").on("click",function(){
 						//print_r(str_word_count($value->details3d));
 						
 						if(isset($value->details3d) && str_word_count($value->details3d) >10){
-
 	                    echo "<span class='options'>";
-	                    if(isset($options_data->model)){
-	                    		foreach ($options_data as $key2 => $value_option) {
-								//	print_r($value_option);
-								//	echo $key2;
+	                    
+						// print_r($options_data->model);
+						// print_r($options_data->sleeve);
+						// print_r($options_data);
 
-								//echo "part value---".$suit_data_options[$key2];
-								//echo "var----".$key2."--end";
-								$get_value=$suit_data_options[$key2];
-										//echo "get value".$get_value."++";
-										if(isset($get_value)){
+	                    if(isset($options_data->model) && isset($options_data->suspender_button) && isset($options_data->tie)){
+								
+	                    		foreach ($options_data as $key2 => $value_option) {
+									$get_value=$suit_data_options[$key2];
+									if(isset($get_value)){
 											if(isset($value_option->part))
 												echo $key2.":".$value_option->part."|";
-											else if(isset($value_option->pair))
+										else if(isset($value_option->pair))
 												echo $key2.":".$value_option->pair."|";
 
 
 										}
-										else if($key2=="measurements"){
-											echo "<h4>".$key2."</h4> >> ";
-											
-											echo implode(",-", $value_option);
-											// foreach($value_option as $key_m=>$m_value){
-           //                                   echo $key_m.":".$m_value."|"; 
-											// // print_r($m_value);
-											// }
-										}
+										// if($key2=="measurements"){
+										//   			print_r($value_option->measurements);                    
+										//  //   foreach($value_option->measurements as $key_m  => $value_m) 
+										//  //   {
+										//  //   	print_r($value_option->key_m);
+										// 	// // echo $key_m.":".$value_m.", ";				                                
+										//  //                              }
 
-										// print_r($value_option[$get_value]);
-										//	echo $key2.":".$value_option."|";
+										// }
+
 
 										
-								}	
+								}
+								//print_r($options_data['measurements']);	
 						}
-						else {
-							foreach ($options_data as $key2 => $value_option) {
-									echo $key2.":".$value_option."|";
+						else if(isset($options_data->model) && isset($options_data->sleeve) && isset($options_data->cuff)) {
+					 		foreach ($options_data as $key2 => $value_option) {
+													
+								if(in_array($key2,$shirt_data_options))
+								{
 								
-								}	
+									echo $key2.":".strstr($value_option, '&swatch', true)."| ";	
+								
+								}
+								else if(in_array($key2,$shirt_measurement_array)){
 
-
+									echo $key2.": ".$value_option."| ";	
+								
+								}
+							//$m_value = strstr($$value_option, '&swatch', true);	
+							}	
 
 						}
 						echo "</span>";
