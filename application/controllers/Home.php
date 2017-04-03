@@ -7265,9 +7265,11 @@ function get_tbl_size()
 
 /*page not found 404*/
 function show_test_header(){
+
 	$this->load->view('lum_header_test.php');
-    $this->load->view('page_404.php');
-    $this->load->view('lum_footer.php');
+    $this->load->view('lum_home_test.php');
+    $this->load->view('lum_footer_test.php');
+
 }
 
 
