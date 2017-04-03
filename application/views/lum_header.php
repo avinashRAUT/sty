@@ -1679,7 +1679,7 @@ a.log-in:hover{
 <body>
 <div style="border-bottom:1px solid #ccc;background-color: #ffffff;" class="">
 <div class="globle-tagline hidden-xs hidden-sm"><i class="fa fa-globe" aria-hidden="true"></i> Global Shipping, Incredibly Easy Returns</div>
-<div class="logo"><a href="<?php echo $bas_ul;?>"><img src="<?=base_url() ?>images/relaunch/logo.png" class="img1 new-logo" width="240" alt=""/></a>
+<div class="logo"><a href="<?php echo $bas_ul;?>"><img src="<?=base_url() ?>images/relaunch/logo.png" class="img1 new-logo" width="240" alt="Custom Shirts for Man"/></a>
 </div>
 <div class="top-nav visible-xs">
  <ul>
@@ -1689,9 +1689,9 @@ a.log-in:hover{
  <li class="hidden-xs" onclick="popup('popUpDiv_login')"><a style="position:relative;top:0px;" href="#" >LOGIN</i></a></li>
 
   <?php } else { ?>
-
     <li class="hidden-xs hidden-sm"><a  href="<?= $bas_ul ?>home/lum_my_account">MY ACCOUNT</a></li>
     <li class="hidden-xs hidden-sm"><a  href="<?= $bas_ul ?>hauth/logout">LOG OUT</a></li>
+  
     <?php } ?>
 
  <li onclick="popup('popUpDiv_currency')">

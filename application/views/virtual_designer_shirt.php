@@ -135,14 +135,15 @@ else
 <div class="se-pre-con"  style="background: url(<?=base_url()."images/loading_new.gif";?>) no-repeat center"></div>
 <div class="container-fluid">
 	<div class="col-sm-12 col-xs-12 visible-xs visible-sm">
-	<div class="stylior-logo-mobile">
+	<div class="stylior-logo-mobile back-to-home">
 		<a href="https://www.stylior.com/">
 			<img class="img-responsive"  src="https://www.stylior.com/stylior/site/images/relaunch/logo.png" alt="">
 		</a>
 	</div>
 	</div>
 <div >
-	<div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 left-panel hidden-xs hidden-sm">
+	<div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 left-panel design-left-panel  hidden-xs hidden-sm">
+    
 				<div class="navs-list ">
 			<ul class="main-options">
 				<li class="left-panel-option fabric_icon"  >
@@ -271,6 +272,7 @@ else
 				</li>
 			</ul>
 		</div>
+		</div><!-- end of desing-cloth-leftpane -->
  </div>
 
 	<div class="col-sm-12 col-xs-12 left-panel visible-xs visible-sm">
@@ -573,7 +575,7 @@ else
 
 						<span class="product-color-<?= $key; ?>" > <?= $fabric_color;?></span>
 						<span class="product-pattern-<?= $key; ?>" > <?= $fabric_pattern;?></span>
-						<span class="product-threadcount-<?= $key; ?>" > <?= $threadCount;?></span>
+						<!--<span class="product-threadcount-<?= $key; ?>" > <?= $threadCount;?></span>-->
 				       	<span class="product-id-<?= $key; ?>" > <?= $product_id;?></span>
 
 			       </div>
@@ -1015,7 +1017,7 @@ else
  	</div>
 </div>
 <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
-	<div class="stylior-logo hidden-xs hidden-sm">
+	<div class="stylior-logo hidden-xs hidden-sm back-to-home">
 		<a href="https://www.stylior.com/">
 			<img class="img-responsive"  src="https://www.stylior.com/stylior/site/images/relaunch/logo.png" alt="">
 		</a>
@@ -1028,7 +1030,7 @@ else
            		<li><strong>Fabric :</strong> <span  class="current_fabric" >Egyptian Giza Cotton</span></li>
             	<li ><strong>Pattern :</strong><span class="current_pattern" > Solids</span></li>
             	<li ><strong>Colour :</strong> <span class="current_color">Whites</span></li>
-            	<li ><strong>Thread Count :</strong> <span class="current_threadcount" >120</span></li>
+            	<!--<li ><strong>Thread Count :</strong> <span class="current_threadcount" >120</span></li>-->
             	<li><strong>Price :</strong> <span  class="current_price" ><?= $this->session->userdata('currencycode') .' '.$default_price;?></span></li>
 				<input type="hidden" name="current_product_id" id="current_product_id" value=""/>
 				<input type="hidden" name="current_product_price" id="current_product_price" value=""/>
@@ -1040,7 +1042,7 @@ else
 		  <button type="button"  data-toggle="modal" data-target="#shirtSummary">SUMMARY</button>
 		</div>
 
-		<div class="add-measurement">
+		<div class="add-measurement back-to-home">
 		  <a href="#" onclick="addToCart('<?= $_SESSION['user_id']; ?>');">ADD MEASUREMENT</a>
 		</div>
 	</div>
@@ -1074,7 +1076,7 @@ else
 		          		<li ><h4 class="current_title">A Dream Solid White Shirt</h4></li>
 									<li ><strong>Pattern :</strong><span class="current_pattern" > Solids</span></li>
 		            	<li ><strong>Colour :</strong> <span class="current_color">Whites</span></li>
-									<li ><strong>Thread Count :</strong> <span class="current_threadcount" >120</span></li>
+									<!--<li ><strong>Thread Count :</strong> <span class="current_threadcount" >120</span></li>-->
 									<li ><strong>Sleeves :</strong> <span class="current_sleeves">Full Sleeves</span></li>
 									<li ><strong>Collar :</strong> <span class="current_collar">Regular</span></li>
 
@@ -1433,6 +1435,37 @@ $(".measure-outer").on("click",function()
 
       }
       });
+
+});
+
+$(".back-to-home").on('click', function(){
+
+	var     base_url = '<? echo $bas_ul ?>';
+	var loginUser='<?php echo $_SESSION['user_id']; ?>';
+	if(loginUser)
+	{
+		user = loginUser;
+	}
+	else {
+		user = "guest";
+	}
+	var image = 		$("img.processimage").attr('src');
+	console.log(base_url);
+	//var option = srce.substr(0, srce.indexOf('.')) + "_600x600.jpg";
+				$.ajax({
+				url: base_url+"custom/savedata",
+				type: 'POST',
+				data:
+				{
+					user : user,
+					image :  image,
+					subcatid : 10 ,
+				},
+				success: function(response) {
+						//console.log(response);
+						// window.location.href= base_url;
+				}
+			});
 
 });
 

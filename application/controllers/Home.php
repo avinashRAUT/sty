@@ -701,7 +701,7 @@ public function resetpass(){
 		$this->output->enable_profiler(FALSE);
 
 		$base_url = $this->config->item('base_url_temp');
-		
+
 		if($_SESSION['trailshirtoffline']=="True")
 		{
 		$this->load->view('offline_header');
@@ -1395,11 +1395,11 @@ public function lum_fit_guide()
 
 				{
 
-				$this->load->view('header');
+				$this->load->view('lum_header');
 
 				$this->load->view('login_view');
 
-				$this->load->view('footer');
+				$this->load->view('lum_footer');
 
 
 
@@ -5443,161 +5443,104 @@ public function shopnow($id,$catid,$subcatid)
 		public function lum_my_account()
 
 		{
-      		//echo "hiii";exit;
-			//error_reporting(E_ALL);
-			echo "<div style='display:none;'>";
-//			print_r($_POST['action']);
-			echo "</div>";
 			//ini_set('display_errors', 1);
-			 $id = $_SESSION['user_id'];
-
+			$id = $_SESSION['user_id'];
 			$this->load->library('session');
-
 			$this->load->helper('url');
-
 			$this->output->enable_profiler(FALSE);
-
 			$cartdata = array(
-
-					'styleid'    => $this->session->userdata('saveid'),
-
-					'cqty'      => '1',
-
+			'styleid'    => $this->session->userdata('saveid'),
+			'cqty'      => '1',
 			);
 
-				//print_r($cartdata);die;
-
+			//print_r($cartdata);die;
 			$this->session->set_userdata($cartdata);
-
 			$this->load->view('lum_header');
-
 			$this->data['dashboard'] = $this->User_model->accountpage($id);
-
 			$this->data['addressview'] = $this->User_model->addressview($id);
-
 			$this->data['allcountry'] = $this->User_model->allcountry();
-
 			$this->data['usermeasure'] = $this->User_model->measureview();
-
 			$this->data['jointbl']=$this->User_model->jointbl($id);
-
 			$this->data['savedstyle'] = $this->User_model->savedstyle($id);
-
 			$this->data['mbrandname'] = $this->User_model->mbrandname($id);
-
 			$this->data['mfitname'] = $this->User_model->mfitname($id);
-
 			$this->data['fabricname'] = $this->User_model->fabricname($id);
-
 			$this->data['msizename'] = $this->User_model->msizename($id);
-
 			$this->data['getproname'] = $this->User_model->getproname($id);
-
 			$this->data['bodypartname'] = $this->User_model->bodypartname($id);
-
 			$this->data['order_details'] = $this->User_model->userorder($id);
+
 			//print_r($this->User_model->userorder($id));
 			foreach ($this->User_model->userorder($id) as $key => $value) {
 					if(isset($value->order_id)) {
-
 					$order_id=$value->order_id;
 					$data_order_item=$this->Bilship_model->getciorderitemdetail($order_id);
-
-
 					$data_nor_shirt=json_decode($data_order_item[0]->details3d);
+					
+					//print_r($data_nor_shirt->product_details_page);
+
 					if(isset($data_nor_shirt->product_details_page)){
+					echo "testing from herere22 ";
 					$this->data['order_item_details'][$order_id] = $data_order_item;
 								// print_r($data[0]->product_id);
 								$img_name=$this->getProductImageByPid($data_order_item[0]->product_id);
-								$this->data['image_of_product_nor'][$order_id]=$img_name[0]->image;
 
+								$this->data['image_of_product_nor'][$order_id]=$img_name[0]->image;
 
                         }
 					else if(isset($data_order_item[0]->save3d)){
+					
 						$this->data['order_item_details'][$order_id] = $data_order_item;
 						$save3d=$data_order_item[0]->save3d - 1;
-						/*echo "save3d orginal".$data_order_item[0]->save3d;
-						echo "minus one".$save3d;*/
-					//	print_r($data_order_item[0]->product_id);
-						//echo $data_order_item_nor_shirt->product_details_page;
-
+						
 						$img_data=$this->User_model->savestylebyid($save3d);
 
+						
 						 if(isset($img_data[0]->baseimage)){
+							
 							$this->data['image_of_product'][$order_id]=$img_data[0]->baseimage;
-						}
-
-
-
+					}
 
 					}
 
-					//print_r($data[0]->save3d);
-
 				}
-
 			}
-
-
-
 			$this->data['wallet'] = $this->User_model->userwallet($id);
-
 			$this->data['wishlist']=$this->User_model->wishlist($id);
-
 			$this->data['savedstyle']=$this->User_model->savedstyle($id);
-			//echo "<pre>";
-			//print_r($this->data);die;
 			$this->load->view('lum_my_account',$this->data);
 			$this->load->view('lum_footer');
 
 		}
 
 		public function lum_pop_ups()
-
 		{
 
 			$this->load->library('session');
-
 			$this->load->helper('url');
-
 			$this->output->enable_profiler(FALSE);
-
 			$cartdata = array(
-
 					'styleid'    => $this->session->userdata('saveid'),
-
 					'cqty'      => '1',
-
 			);
 
 				//print_r($cartdata);die;
 
 			$this->session->set_userdata($cartdata);
-
 			$this->load->view('lum_header');
-
 			$this->load->view('lum_pop_ups');
-
-
-
 			//////////////////////
-
 			//var_dump($_SESSION);
-
-	 $this->load->helper('url');
-
-	$this->load->view('header');
-
-	if($this->session->userdata('user_id')=="")
-
-	{
+		$this->load->helper('url');
+		$this->load->view('header');
+		if($this->session->userdata('user_id')=="")
+		{
 
 			redirect($this->config->item('base_url').'home/login');
 
-	}
+		}
 
 		$data = array();
-
 		$data['err_msg'] = '';
 
 		$data['all_address'] = $this->home_model->all_address();
@@ -6468,9 +6411,9 @@ public function shopnow($id,$catid,$subcatid)
 
 		$this->output->enable_profiler(FALSE);
 
-		$metadata['title']='Mens Custom Clothing | Design your Own Shirt | Easy and Affordable ';
-		$metadata['metadescription']='Choose from the finest fabric collections,  Personalize your Shirt Styles, add measurements, its easy and own a tailor made shirt with the perfect fit guarantee only at Stylior.';
-		$metadata['metakeywords']='tailored shirts, buy custom shirts online, custom shirts for men, mens tailor made shirt ';
+		$metadata['title']='Check How Custom Tailored Clothing Works at Stylior Fashion India';
+		$metadata['metadescription']='At Stylior Fashion check how custom tailored clothing will help to complete your look with Style.';
+		$metadata['metakeywords']='Custom Clothing, Tailor Made, Clothing, Fashion, Style, Stylior, India';
 
 		$this->load->view('lum_header',$metadata);
 		//$this->data['c'] = $this->home_model->disclaimer();
@@ -7295,6 +7238,10 @@ public function review(){
 }
 
 
+
+
+
+
 /*
 * Get tbl_size by id
 */
@@ -7314,6 +7261,16 @@ function get_tbl_size()
 	}
 }
 /*end of get tbl_size*/
+
+
+/*page not found 404*/
+function show_test_header(){
+	$this->load->view('lum_header_test.php');
+    $this->load->view('page_404.php');
+    $this->load->view('lum_footer.php');
+}
+
+
 
 
 /*page not found 404*/

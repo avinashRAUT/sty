@@ -18,9 +18,11 @@ $https_url_large_img="http://www.stylior.com/upload/products1/medium/";
 <link rel="stylesheet" type="text/css" href="<?= $https_url ?>site/css/owl.carousel.css">
 <link href="<?= $https_url ?>site/css/bootstrap.css" rel="stylesheet" />
 
-<title>Men's Custom Dress Shirts, Tailor-Made Shirts for you, Great Fabric, Perfect Fit!</title>
-<meta name="description" content="The best online shopping store for luxury custom tailored shirts, suits, blazers, tuxedo, trousers and men accessories  with easy returns & worldwide free shipping."/>
-<meta name="keywords" content="suits, shirts, pants, trousers, tailored shirts, custom shirts online, customized shirts for men, custom chinos, custom trousers, custom pants, shoes, formal shoes, mens shoes, dress shirts, mens suits, suits online, mens shirts, mens pants, tie, bespoke, men shirts, men's accessories,  design your own shirt, formal shirts, mens clothing,tuxedos, cufflinks."/>
+<title> Create and Design your very own Custom Tailored Dress & Shirts at Stylior Fashion, India
+</title>
+<meta name="description" content="At Stylior Fashion, you will get Luxury to make your own shirt or you can create your very own custom shirt with the help of our experts.
+"/>
+<meta name="keywords" content="Custom Shirts, Shirts, Suits, Men Accessories, Trousers, Tailored, Dress, Own Shirts, Design Dress, Shirts for Man, Create, Stylor Fashion, India"/>
 <meta name="msvalidate.01" content="3329622651CA6FCF4425CAF6AD27F8EC" />
 
  <script type="application/ld+json">
@@ -338,13 +340,13 @@ $https_url_large_img="https://www.stylior.com/stylior/upload/products1/large/";
 <div class="carousel-inner">
 <div class="item imgbanner active ">
    <!--<img src="img/slider/Fotolia_30977559_XS.jpg" alt="slide 1">-->
-   <a href="#"><img src="<?= base_url() ?>images/home-banner-bangalore-mobile.jpg" class="visible-xs" alt=""/></a>
-   <a href="#"> <img src="<?= base_url() ?>images/home-banner-bangalore.jpg" class="hidden-xs" alt="Slide1" ></a>
+   <a href="#"><img src="<?= base_url() ?>images/home-banner-bangalore-mobile.jpg" class="visible-xs" alt="Stylior Store Launch in Bangalore, India"/></a>
+   <a href="#"> <img src="<?= base_url() ?>images/home-banner-bangalore.jpg" class="hidden-xs" alt="Stylior Store Launch in Bangalore, India" ></a>
 </div>
 
 <div class="item imgbanner">
-   <a href="<?= $base_url_temp ?>custom-shirt"> <img src="<?= base_url() ?>images/stylior-mobile-banner-inspired.jpg" alt="Slide3"  class="visible-xs"></a>
-   <a href="<?= $base_url_temp ?>custom-shirt"> <img src="<?= base_url() ?>images/web-banner-inspired.jpg" class="hidden-xs" alt="Slide1" ></a>
+   <a href="<?= $base_url_temp ?>mens-ties"> <img src="<?= base_url() ?>images/stylior-mobile-banner-inspired.jpg" alt="Slide3"  class="visible-xs"></a>
+   <a href="<?= $base_url_temp ?>mens-ties"> <img src="<?= base_url() ?>images/web-banner-inspired.jpg" class="hidden-xs" alt="Slide1" ></a>
 </div>
 
 
@@ -352,8 +354,8 @@ $https_url_large_img="https://www.stylior.com/stylior/upload/products1/large/";
 
 
 <div class="item imgbanner">
-   <a href="<?= $base_url_temp ?>custom-shirt"> <img src="<?= base_url() ?>images/shirt-mobile.jpg" alt="Slide3"  class="visible-xs"></a>
-   <a href="<?= $base_url_temp ?>custom-shirt"> <img src="<?= base_url() ?>images/shirt_banner.jpg" class="hidden-xs" alt="Slide1" ></a>
+   <a href="<?= $base_url_temp ?>custom-shirt"> <img src="<?= base_url() ?>images/shirt-mobile.jpg" alt="Customize Shirts"  class="visible-xs"></a>
+   <a href="<?= $base_url_temp ?>custom-shirt"> <img src="<?= base_url() ?>images/shirt_banner.jpg" class="hidden-xs" alt="Customize Shirts" ></a>
 </div>
 
 <? /*<div class="item imgbanner">
@@ -446,7 +448,7 @@ $https_url_large_img="https://www.stylior.com/stylior/upload/products1/large/";
           <div class="carousel-inner">
             <div class="item active">
                 <a href="<?=$bas_url;?>mens-suits" >
-                  <img src="<?=base_url() ?>images/suit.jpg" alt="Slide1">
+                  <img src="<?=base_url() ?>images/suit.jpg" alt="Customize Suites">
                 </a>
               <?/*<div class="container">
 
@@ -476,7 +478,7 @@ $https_url_large_img="https://www.stylior.com/stylior/upload/products1/large/";
         <div class="carousel-inner">
           <div class="item active">
             <a href="<?php echo $bas_ul;?>mens-trousers">
-              <img src="<?= $https_url ?>site/images/trouser-home.jpg" alt="Slide1">
+              <img src="<?= $https_url ?>site/images/trouser-home.jpg" alt="Men's Trouser">
             </a>
           <?/*  <div class="container">
               <div class="carousel-caption small-caption  no2">
@@ -499,26 +501,28 @@ YOUR DESIGN OUR CREAFTSMANSHIP</span></h2>-->
   </div>
 
   <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 pad-L0">
-   <h2 class="text-center  text-uppercase">Design your own shirt </h2>
+   <h1 class="text-center  text-uppercase">Design your own shirt </h1>
   <p class="text-center">Having a custom made outfit is always gives you an edge.</p>
     <div class="carousel slide">
       <div class="carousel-inner">
         <div class="item active">
-          <a href="<?php echo $bas_ul;?>mens-shirts"><img  src="<?= $https_url ?>site/images/shirts.jpg" alt="Slide1"></a>
-          <? /*<div class="container">
-            <div class="carousel-caption small-caption no1 " >
-              <!--<h2><span>Get Fitted Today</span></h2>
-              <p class="caption"><span>Classic Tailoring</span></p>-->
-              <p>
+          <a href="<?php echo $bas_ul;?>mens-shirts"><img  src="<?= $https_url ?>site/images/shirts.jpg" alt="Men's Shirts"></a>
+          <?          /*<div class="container">
+                <div class="carousel-caption small-caption no1 " >
+                  <!--<h2><span>Get Fitted Today</span></h2>
+                  <p class="caption"><span>Classic Tailoring</span></p>-->
+                  <p>
 
-            <a href="<?php echo $bas_ul;?>mens-shirts" class="btn2 btn-1 sm">
-    <svg>
-      <rect x="0" y="0" fill="none" width="100%" height="100%"/>
-    </svg>
- Shop Now
-  </a>
-            </p></div>
-          </div><? */ ?>
+                <a href="<?php echo $bas_ul;?>mens-shirts" class="btn2 btn-1 sm">
+              <svg>
+              <rect x="0" y="0" fill="none" width="100%" height="100%"/>
+              </svg>
+              Shop Now
+              </a>
+                </p></div>
+              </div><? */
+
+           ?>
         </div>
       </div>
     </div>
@@ -536,8 +540,8 @@ YOUR DESIGN OUR CREAFTSMANSHIP</span></h2>-->
   <div class="carousel slide">
         <div class="carousel-inner">
           <div class="item active">
-            <a href="<?= $base_url_temp ?>book-a-home-visit"><img src="<?=base_url() ?>images/travel-stylist.jpg" class="hidden-xs" alt="Slide1"></a>
-            <a href="<?= $base_url_temp ?>book-a-home-visit"><img src="<?=base_url() ?>images/travel-stylist-mobile.jpg" class="visible-xs" alt="Slide1"></a>
+            <a href="<?= $base_url_temp ?>book-a-home-visit"><img src="<?=base_url() ?>images/travel-stylist.jpg" class="hidden-xs" alt="Book now"></a>
+            <a href="<?= $base_url_temp ?>book-a-home-visit"><img src="<?=base_url() ?>images/travel-stylist-mobile.jpg" class="visible-xs" alt="Book now"></a>
             <!--<div class="container">
               <div class="carousel-caption small-caption no3">
 
@@ -577,7 +581,8 @@ YOUR DESIGN OUR CREAFTSMANSHIP</span></h2>-->
 <div class="container-a2">
 <div class="caption-style-2">
 			<span>
-				<img src="<?=base_url() ?>images/relaunch/selectfabric.png" class="img-responsive" style="width:100%;" alt="">
+				<img src="<?=base_url() ?>images/relaunch/selectfabric.png" class="img-responsive" style="width:100%;" alt="Finest Fabric
+">
 				<div class="caption">
 					<div class="blur"></div>
 
@@ -624,7 +629,7 @@ you can select the best for yourself </p>
 <div class="container-a2">
 <div class="caption-style-2">
 			<span>
-				<img src="<?=base_url() ?>images/relaunch/add_measurement.png" class="img-responsive" style="width:100%;" alt="">
+				<img src="<?=base_url() ?>images/relaunch/add_measurement.png" class="img-responsive" style="width:100%;" alt="Perfect Measurement">
 				<div class="caption">
 					<div class="blur"></div>
 
@@ -648,7 +653,7 @@ your perfect shirt. </p>
 <div class="container-a2">
 <div class="caption-style-2">
 			<span>
-				<img src="<?=base_url() ?>images/relaunch/free-globale-delivery.png" class="img-responsive" style="width:100%;" alt="">
+				<img src="<?=base_url() ?>images/relaunch/free-globale-delivery.png" class="img-responsive" style="width:100%;" alt="Stylior Fashion: Free Global Delivery">
 				<div class="caption">
 					<div class="blur"></div>
 

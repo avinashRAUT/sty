@@ -1,4 +1,5 @@
 <?php
+
 if ($_SERVER['HTTPS'] == "on")
 {
 $https_url="https://www.stylior.com/stylior/";
@@ -14,24 +15,9 @@ $https_url_large_img="http://www.stylior.com/upload/products1/large/";
 }
 
 $base_url_temp=$bas_ul;
-
-
 $suit_data_options= array("vest_coat"=>"part","inner_lining"=>"part","jacket_style"=>"part","suspender_button"=>"part","body_fit"=>"part","lapel"=>"part","jacket_button"=>"part","vents"=>"part","suit_pocket"=>"pair","chest_pocket"=>"pair","lapel_button_hole"=>"part","cuff_accent_stitching"=>"part","cuff_button_style"=>"part","pleats"=>"part","belt"=>"part","bottom_cuff"=>"part","back_pocket"=>"part","trouser_button"=>"part","measurements");
-
 $shirt_data_options= array("model","sleeve","cuff","collar","placket","bottom_hem","button_placket","button_collar","button_cuff","pocket","back_pleat","contrast_cuff","contrast_collar","contrast_placket");
-
 $shirt_measurement_array=array("standardsize","length","fitype","WEIGHTkg","shoulder","neck","shirt_length","chest","waist");
-
-
-
-
-
-
-
-
-
-
-
 
 ?>
 
@@ -396,69 +382,69 @@ $shirt_measurement_array=array("standardsize","length","fitype","WEIGHTkg","shou
 				letter-spacing:1px;
 				cursor:pointer;
 			}
-					.lum_my_account_form
-					{
-						padding-left:5%;text-align:left;padding-top:30px;font-size:14px;letter-spacing:1px;font-weight:bold;
-					}
-					.lum_my_account_form>div
-					{
-						padding:10px;
-					}
-					.lum_my_account_form>input
-					{
-						padding:5px;
-					}
-					.lum_cont_small
-					{
-						display:inline-block;
-						width:200px;
-					}
-					.lum_font_for_all
-					{ display:inline-block;text-align:center;font-size:16px;letter-spacing:1px;font-weight:bold; }
-					.lum_small_pad_ac
-					{
-						padding-left:100px;
-					}
-					/*hover*/
-					.class_button_lum
-					{
-						background-color:#1b3359;
-						border:none;
-						width:100px;
-						padding:5px;
-						cursor:pointer;
-						border:1px solid #1b3359;
-						color:#fff;
-						margin-top:5px;
-						text-transform:uppercase
-					}
-					.class_button_lum:hover{
-						background:#fff;
-						color:#1b3359}
-					.class_button_lum1
-					{
-						background-color:#fff;
-						border:none;
-						width:200px;
-						padding:2px;
-						cursor:pointer;
-						border:1px solid #1b3359;
-						text-transform:uppercase
-					}
-					.class_button_big_lum
-					{
-						width:200px;
-						background-color:#ff9933;
-						border:none;
-						padding:4px 2px;
-						cursor:pointer;
-						color:#fff;
-					}
-						.tab_spac_lum
-						{
-							padding:50px;
-							font-family:14px;
-						}
+			.lum_my_account_form
+			{
+				padding-left:5%;text-align:left;padding-top:30px;font-size:14px;letter-spacing:1px;font-weight:bold;
+			}
+			.lum_my_account_form>div
+			{
+				padding:10px;
+			}
+			.lum_my_account_form>input
+			{
+				padding:5px;
+			}
+			.lum_cont_small
+			{
+				display:inline-block;
+				width:200px;
+			}
+			.lum_font_for_all
+			{ display:inline-block;text-align:center;font-size:16px;letter-spacing:1px;font-weight:bold; }
+			.lum_small_pad_ac
+			{
+				padding-left:100px;
+			}
+			/*hover*/
+			.class_button_lum
+			{
+				background-color:#1b3359;
+				border:none;
+				width:100px;
+				padding:5px;
+				cursor:pointer;
+				border:1px solid #1b3359;
+				color:#fff;
+				margin-top:5px;
+				text-transform:uppercase
+			}
+			.class_button_lum:hover{
+				background:#fff;
+				color:#1b3359}
+			.class_button_lum1
+			{
+				background-color:#fff;
+				border:none;
+				width:200px;
+				padding:2px;
+				cursor:pointer;
+				border:1px solid #1b3359;
+				text-transform:uppercase
+			}
+			.class_button_big_lum
+			{
+				width:200px;
+				background-color:#ff9933;
+				border:none;
+				padding:4px 2px;
+				cursor:pointer;
+				color:#fff;
+			}
+				.tab_spac_lum
+				{
+					padding:50px;
+					font-family:14px;
+				}
 		}
 		@media screen and (max-width: 420px) and (min-width: 280px) {
 			.lum_sub_menu
@@ -824,7 +810,9 @@ $(".delete-addr").on("click",function(){
 
 		<div class="lum_cut_menu">
 			<div class="lum_sub_menu">
-				<div id="slideshow_item0" onclick="slideshow_itemer(0)" class="lum_sub_menu_item_active">
+				
+
+			 <div id="slideshow_item0" onclick="slideshow_itemer(0)" class="lum_sub_menu_item_active">
 					<div class="lum_font_for_all">
 					<div class="lum_switch" onclick="your_fit_fun(0)">
 						<div class="lum_avg_words" style="display:none;">
@@ -837,6 +825,7 @@ $(".delete-addr").on("click",function(){
 					<div>MY ACCOUNT</div>
 					</div>
 				</div>
+				
 				<div id="slideshow_item1" onclick="slideshow_itemer(1)" class="lum_sub_menu_item">
 					<div class="lum_font_for_all">
 					<div class="lum_switch" onclick="your_fit_fun(0)">
@@ -850,6 +839,7 @@ $(".delete-addr").on("click",function(){
 					<div>WISH LIST</div>
 					</div>
 				</div>
+				
 				<div onclick="slideshow_itemer(2)" id="slideshow_item2" class="lum_sub_menu_item">
 					<div class="lum_font_for_all">
 					<div class="lum_switch" onclick="your_fit_fun(0)">
@@ -863,6 +853,7 @@ $(".delete-addr").on("click",function(){
 					<div>MY ORDERS</div>
 					</div>
 				</div>
+			
 				<div onclick="slideshow_itemer(3)" id="slideshow_item3" class="lum_sub_menu_item">
 					<div class="lum_font_for_all">
 					<div class="lum_switch" onclick="your_fit_fun(0)">
@@ -876,6 +867,7 @@ $(".delete-addr").on("click",function(){
 					<div>MEASUREMENT</div>
 					</div>
 				</div>
+
 				<div onclick="slideshow_itemer(4)" id="slideshow_item4" class="lum_sub_menu_item">
 					<div class="lum_font_for_all">
 					<div class="lum_switch" onclick="your_fit_fun(0)">
@@ -889,6 +881,7 @@ $(".delete-addr").on("click",function(){
 					<div>ADDRESS</div>
 					</div>
 				</div>
+
 				<!--<div onclick="slideshow_itemer(5)" id="slideshow_item5" class="lum_sub_menu_item">
 					<div class="lum_font_for_all">
 					<div class="lum_switch" onclick="your_fit_fun(0)">
@@ -902,6 +895,7 @@ $(".delete-addr").on("click",function(){
 					<div>SAVED STYLE</div>
 					</div>
 				</div>-->
+			
 			</div>
 			<div id="slideshow">
 				<a href="javascript:void(0);" onclick="lum_snext_item()" class="slideshow-prev" >&laquo;</a>
@@ -1021,31 +1015,26 @@ $(".delete-addr").on("click",function(){
 			<div class="lum_height_content" id="lum_des_content2" style="display:none">
 			<div style="padding:5px;">ORDERS </div>
 			<?php foreach($order_details as $order_list){
-
-
-
 			foreach ($order_item_details[$order_list->order_id] as $key => $value) {
-
-
 			    	$options_data=json_decode($value->details3d);
-
+					//print_r($options_data);
 			    	?>
 					<div class="order1" style="font-size:14px;margin:5px;border:1px solid #eee;line-height:30px;">
 					<div class="order2">
-
 					<?php if($trail_is==1 ||$value->order_item_name=="TRIAL SHIRT"){?>
 						<img src="<?php echo $base_url_temp; ?>stylior/upload/products1/large/14739317861.jpg" width="90%" />
 					<?php }else{?>
 					<?php if(isset($image_of_product[$order_list->order_id])){ ?>
 					 <img src="<?php echo $image_of_product[$order_list->order_id]; ?>" width="90%" />
-
 					<?php }
-					else{?>
+					else {?>
 						<img src="<?php echo $base_url_temp."stylior/upload/products1/large/".$image_of_product_nor[$order_list->order_id]; ?>" width="90%" />
 					<?php }
-				} ?>
+					
+					} ?>
 
 					</div>
+
 					<div class="option_class">
 						<div><span>Order Id :</span><?php echo $order_list->order_id;?></div>
 
@@ -1056,13 +1045,11 @@ $(".delete-addr").on("click",function(){
 						
 						if(isset($value->details3d) && str_word_count($value->details3d) >10){
 	                    echo "<span class='options'>";
-	                    
-						// print_r($options_data->model);
+	                    // print_r($options_data->model);
 						// print_r($options_data->sleeve);
 						// print_r($options_data);
 
-	                    if(isset($options_data->model) && isset($options_data->suspender_button) && isset($options_data->tie)){
-								
+	                    if(isset($options_data->model) && isset($options_data->suspender_button) && isset($options_data->tie)){			
 	                    		foreach ($options_data as $key2 => $value_option) {
 									$get_value=$suit_data_options[$key2];
 									if(isset($get_value)){
@@ -1073,20 +1060,9 @@ $(".delete-addr").on("click",function(){
 
 
 										}
-										// if($key2=="measurements"){
-										//   			print_r($value_option->measurements);                    
-										//  //   foreach($value_option->measurements as $key_m  => $value_m) 
-										//  //   {
-										//  //   	print_r($value_option->key_m);
-										// 	// // echo $key_m.":".$value_m.", ";				                                
-										//  //                              }
-
-										// }
-
-
 										
 								}
-								//print_r($options_data['measurements']);	
+						
 						}
 						else if(isset($options_data->model) && isset($options_data->sleeve) && isset($options_data->cuff)) {
 					 		foreach ($options_data as $key2 => $value_option) {
@@ -1106,24 +1082,72 @@ $(".delete-addr").on("click",function(){
 							}	
 
 						}
+						//get the options value of balzer 
+						else if(isset($options_data->model) && isset($options_data->jacket_style)) {
+
+					 		foreach ($options_data as $key22 => $value_option22) {
+                               if(in_array($key22, $shirt_measurement_array)){
+
+									echo ">>".$key22.":".$options_data->$key22."|";
+                               }
+                               else
+                               {
+                               		echo $key22.":".$value_option22->part."|";
+                               }
+                               //print_r($value_option22->key22);   
+
+						}	
+
+						}
+						else if(isset($options_data->front_bottom) && isset($options_data->jacket_button)) {
+							// print_r($options_data);
+						 	foreach ($options_data as $key22 => $value_option22) {
+
+									if(in_array($key22, $shirt_measurement_array)){
+
+										echo ">>".$key22.":".$options_data->$key22."|";
+									}
+									else
+									{
+										echo $key22.":".$value_option22->part."|";
+									}
+							}
+
+						}
+						else if(isset($options_data->back_pocket) && isset($options_data->trouser_button) && isset($options_data->trouser_fit)) {
+							// print_r($options_data);
+						 	foreach ($options_data as $key22 => $value_option22) {
+
+									if(in_array($key22, $shirt_measurement_array)){
+
+										echo ">>".$key22.":".$options_data->$key22."|";
+									}
+									else
+									{
+										echo $key22.":".$value_option22->part."|";
+									}
+							}
+
+						}
 						echo "</span>";
-						}else if(isset($value->measureid)){
+						}
+						else if(isset($value->measureid)){
 						//var start date 15 dec 2016 chnaged for trial shirt measurements
 						$measurement =  $this->home_model->getmdata($value->measureid);
 						$serdata = $measurement->serializedata;
 						$uns = unserialize($serdata);
 						if($uns != '') {
-						$array1 = $uns[0];
-						$array2 = $uns[1];
-						for($k='0';$k<count($array1);$k++){
-						echo $this->User_model->bodypartname($array1[$k])." => ".$array2[$k].":";
+							$array1 = $uns[0];
+							$array2 = $uns[1];
+							for($k='0';$k<count($array1);$k++){
+								echo $this->User_model->bodypartname($array1[$k])." => ".$array2[$k].":";
+							}
 						}
-						}
-//var end
-
+						//var end
 						}
 						else{
-						echo "no options";
+							echo "no options";
+						
 						}
 						?>
 

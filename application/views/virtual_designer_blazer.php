@@ -63,10 +63,8 @@ if(!isset($_SESSION['currencycode']))
 //print_r($addrDetailsArr);
 /*Get City name by return array*/
 $city = $addrDetailsArr['geoplugin_city'];
-
 /*Get Country name by return array*/
 $country = $addrDetailsArr['geoplugin_countryName'];
-
 $currency = $addrDetailsArr['geoplugin_currencyCode'];
 //geoplugin_currencyCode]
 /*Comment out these line to see all the posible details*/
@@ -85,7 +83,6 @@ if(!$country)
 //echo '<pre>';
 //print_r($_SESSION['currencycode']);
 //die();
-
 if(!($_SESSION['currencycode']))
 {
 	//echo 'hi';
@@ -119,18 +116,13 @@ else
 	<link rel="stylesheet" href="<?= $bas_ul ?>site/css/bootstrap.css">
 	<link rel="stylesheet" href="<?= $bas_ul ?>site/css/swiper.min.css">
 	<link rel="stylesheet" href="<?= $bas_ul ?>/site/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Didact+Gothic" rel="stylesheet">
 	<link rel="stylesheet" href="<?= $bas_ul ?>/site/css/ionicons.min.css">
-	<script src="https://www.stylior.com/site/js/remodal.js"></script>
+<!--	<script src="https://www.stylior.com/site/js/remodal.js"></script>-->
 	<link rel="stylesheet" href="https://www.stylior.com/stylior/site/css/remodal.css">
 	<link rel="stylesheet" href="https://www.stylior.com/stylior/site/css/remodal-default-theme.css">
 	<link rel="stylesheet" href="<?= $bas_ul ?>site/css/3d_page_css.css">
-	
 	<link rel="stylesheet" href="<?= $bas_ul ?>site/css/3d-suit.css">
-
-
-
-
-
 
 
 </head>
@@ -145,15 +137,16 @@ else
 	</a>
 </div>
 </div>
-	<div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 left-panel hidden-xs hidden-sm">
+	<div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 left-panel design-left-panel hidden-xs hidden-sm">
+    	<div class="desing-cloth-leftpanel">
 				<div class="navs-list ">
 			<ul class="main-options">
-				<li class="left-panel-option fabric_icon"  >
+				<li class="left-panel-option fabric_icon active">
 					<div class="row">
-						<div class="col-md-6 left-panel-icon" id="selected_fabric_icon">
+						<div class="col-md-4 left-panel-icon" id="selected_fabric_icon">
 							<img src="<?= $bas_ul ?>stylior/site/images/shirt-icons/fabric.png" alt="">
 						</div>
-						<div class="col-md-6 left-panel-icon-info" id="selected_fabric">
+						<div class="col-md-8 left-panel-icon-info" id="selected_fabric">
 							<h4>Fabric</h4>
 							<span></span>
 						</div>
@@ -161,12 +154,12 @@ else
 				</li>
 				<li class="left-panel-option jacket_style_icon"  >
 					<div class="row">
-						<div class="col-md-6 left-panel-icon" id="selected_jacket_style_icon">
+						<div class="col-md-4 left-panel-icon" id="selected_jacket_style_icon">
 			<img src="<?= $image_url ?>upload/suit/jacket-style/single_button_active.png" alt="">
 
 
 						</div>
-						<div class="col-md-6 left-panel-icon-info" id="selected_jacket_style">
+						<div class="col-md-8 left-panel-icon-info" id="selected_jacket_style">
 							<h4>Jacket Style</h4>
 							<span></span>
 						</div>
@@ -174,11 +167,11 @@ else
 				</li>
 				<li class="left-panel-option lapel_icon" >
 					<div class="row">
-						<div class="col-md-6 left-panel-icon" id="selected_lapel_icon">
+						<div class="col-md-4 left-panel-icon" id="selected_lapel_icon">
 
 					<img  src="<?= $image_url; ?>upload/suit/lapel/notch_active.png">
 						</div>
-						<div class="col-md-6 left-panel-icon-info" id="selected_lapel">
+						<div class="col-md-8 left-panel-icon-info" id="selected_lapel">
 							<h4>Lapel</h4>
 							<span></span>
 						</div>
@@ -186,10 +179,10 @@ else
 				</li>
 				<li class="left-panel-option jacket_button_icon"  >
 					<div class="row">
-						<div class="col-md-6 left-panel-icon" id="selected_jacket_button_icon">
+						<div class="col-md-4 left-panel-icon" id="selected_jacket_button_icon">
 							<img src="<?= $image_url; ?>upload/suit/jacket_button/black_button.png" alt="">
 						</div>
-						<div class="col-md-6 left-panel-icon-info" id="selected_jacket_button">
+						<div class="col-md-8 left-panel-icon-info" id="selected_jacket_button">
 							<h4>Jacket Button</h4>
 							<span></span>
 						</div>
@@ -197,10 +190,10 @@ else
 				</li>
 				<li class="left-panel-option vents_icon" >
 					<div class="row">
-						<div class="col-md-6 left-panel-icon" id="selected_vents_icon" >
+						<div class="col-md-4 left-panel-icon" id="selected_vents_icon" >
 							<img src="<?= $image_url; ?>upload/suit/vents/single_vent_active.png" alt="">
 						</div>
-						<div class="col-md-6 left-panel-icon-info" id="selected_vents">
+						<div class="col-md-8 left-panel-icon-info" id="selected_vents">
 							<h4>Vents</h4>
 							<span> </span>
 						</div>
@@ -208,12 +201,12 @@ else
 				</li>
 				<li class="left-panel-option pocket_icon">
 					<div class="row">
-						<div class="col-md-6 left-panel-icon" id="selected_suit_pocket_icon">
+						<div class="col-md-4 left-panel-icon" id="selected_suit_pocket_icon">
 							<img src="<?= $image_url; ?>upload/suit/suit_pocket/straight_pocket_active.png" alt="">
 
 
 						</div>
-						<div class="col-md-6 left-panel-icon-info" id="selected_suit_pocket">
+						<div class="col-md-8 left-panel-icon-info" id="selected_suit_pocket">
 							<h4>Suit pocket</h4>
 							<span> </span>
 						</div>
@@ -221,12 +214,12 @@ else
 				</li>
 				<li class="left-panel-option chest_pocket_icon" >
 					<div class="row">
-						<div class="col-md-6 left-panel-icon" id="selected_chest_pocket_icon">
+						<div class="col-md-4 left-panel-icon" id="selected_chest_pocket_icon">
 							<img src="<?= $image_url ?>upload/suit/chest_pocket/chest_standard_pocket_active.png" alt="">
 
 
 						</div>
-						<div class="col-md-6 left-panel-icon-info" id="selected_chest_pocket">
+						<div class="col-md-8 left-panel-icon-info" id="selected_chest_pocket">
 							<h4>Chest pocket</h4>
 							<span> </span>
 						</div>
@@ -234,11 +227,11 @@ else
 				</li>
 				<li class="left-panel-option lapel_button_hole_icon" >
 					<div class="row">
-						<div class="col-md-6 left-panel-icon" id="selected_lapel_button_hole_icon">
+						<div class="col-md-4 left-panel-icon" id="selected_lapel_button_hole_icon">
 							<img  src="<?= $image_url; ?>upload/suit/cuff_accent_stitch/accent_stitch_gray_active.png">
 
 						</div>
-						<div class="col-md-6 left-panel-icon-info" id="selected_lapel_button_hole">
+						<div class="col-md-8 left-panel-icon-info" id="selected_lapel_button_hole">
 							<h4>Lapel Button Hole</h4>
 							<span> </span>
 						</div>
@@ -263,10 +256,10 @@ else
  -->
 				<li class="left-panel-option cuff_button_style_icon" >
 					<div class="row">
-						<div class="col-md-6 left-panel-icon" id="selected_cuff_button_style_icon">
+						<div class="col-md-4 left-panel-icon" id="selected_cuff_button_style_icon">
 							<img  src="<?= $image_url; ?>upload/suit/cuff_button_style/show_button_active.png">
 						</div>
-						<div class="col-md-6 left-panel-icon-info" id="selected_cuff_button_style">
+						<div class="col-md-8 left-panel-icon-info" id="selected_cuff_button_style">
 							<h4>Cuff Button Style</h4>
 							<span> </span>
 						</div>
@@ -276,10 +269,10 @@ else
 
 				<li class="left-panel-option selected_inner_lining_icon" >
 					<div class="row">
-						<div class="col-md-6 left-panel-icon" id="selected_inner_lining_icon">
+						<div class="col-md-4 left-panel-icon" id="selected_inner_lining_icon">
 							<img src="<?= $bas_ul ?>stylior/site/images/shirt-icons/button.png" alt="">
 						</div>
-						<div  class="col-md-6 left-panel-icon-info changeLining" id="changeLining selected_inner_lining">
+						<div  class="col-md-8 left-panel-icon-info changeLining" id="changeLining selected_inner_lining">
 							<h4>Inner Lining</h4>
 							<span> </span>
 						</div>
@@ -290,20 +283,20 @@ else
 
 
 			</ul>
-
+			</div>
 		</div>
  </div>
-	<div class="col-xs-12 left-panel visible-xs visible-sm">
+	<div class="col-xs-12 left-panel visible-xs visible-sm virtual-mobile-view">
 		<ul class="main-options">
 		<div class="swiper-container">
 		<div class="swiper-wrapper">
 				<div class="swiper-slide"   >
 					<li class="left-panel-option fabric_icon"  >
 						<div class="row">
-							<div class="col-md-6 left-panel-icon" id="selected_fabric_icon_mobile">
+							<div class="col-xs-12 col-sm-12 left-panel-icon" id="selected_fabric_icon_mobile">
 								<img src="<?= $bas_ul ?>stylior/site/images/shirt-icons/fabric.png" alt="">
 							</div>
-							<div class="col-md-6 left-panel-icon-info" id="selected_fabric">
+							<div class="col-xs-12 col-sm-12 left-panel-icon-info" id="selected_fabric">
 								<h4>Fabric</h4>
 								<span></span>
 							</div>
@@ -313,11 +306,11 @@ else
 				<div class="swiper-slide" >
 					<li class="left-panel-option jacket_style_icon"  >
 						<div class="row">
-							<div class="col-md-6 left-panel-icon" id="selected_jacket_style_icon_mobile">
+							<div class="col-xs-12 col-sm-12 left-panel-icon" id="selected_jacket_style_icon_mobile">
 								<img src="<?= $image_url ?>upload/suit/jacket-style/single_button_active.png" alt="">
 
 							</div>
-							<div class="col-md-6 left-panel-icon-info" id="selected_jacket_style">
+							<div class="col-xs-12 col-sm-12 left-panel-icon-info" id="selected_jacket_style">
 								<h4>Jacket Style</h4>
 								<span></span>
 							</div>
@@ -327,10 +320,10 @@ else
 				<div class="swiper-slide"  >
 					<li class="left-panel-option lapel_icon" >
 						<div class="row">
-							<div class="col-md-6 left-panel-icon" id="selected_lapel_icon_mobile">
+							<div class="col-xs-12 col-sm-12 left-panel-icon" id="selected_lapel_icon_mobile">
 								<img  src="<?= $image_url; ?>upload/suit/lapel/notch_active.png">
 							</div>
-							<div class="col-md-6 left-panel-icon-info" id="selected_lapel">
+							<div class="col-xs-12 col-sm-12 left-panel-icon-info" id="selected_lapel">
 								<h4>Lapel</h4>
 								<span></span>
 							</div>
@@ -340,10 +333,10 @@ else
 			<div class="swiper-slide"  >
 				<li class="left-panel-option jacket_button_icon"  >
 					<div class="row">
-						<div class="col-md-6 left-panel-icon" id="selected_jacket_button_icon_mobile">
+						<div class="col-xs-12 col-sm-12 left-panel-icon" id="selected_jacket_button_icon_mobile">
 						<img src="<?= $image_url; ?>upload/suit/jacket_button/black_button.png" alt="">
 						</div>
-						<div class="col-md-6 left-panel-icon-info" id="selected_jacket_button">
+						<div class="col-xs-12 col-sm-12 left-panel-icon-info" id="selected_jacket_button">
 							<h4>Jacket Button</h4>
 							<span></span>
 						</div>
@@ -354,10 +347,10 @@ else
 				<div class="swiper-slide">
 					<li class="left-panel-option vents_icon" >
 						<div class="row">
-							<div class="col-md-6 left-panel-icon" id="selected_vents_icon_mobile" >
+							<div class="col-xs-12 col-sm-12 left-panel-icon" id="selected_vents_icon_mobile" >
 										<img src="<?= $image_url; ?>upload/suit/vents/single_vent_active.png" alt="">
 							</div>
-							<div class="col-md-6 left-panel-icon-info" id="selected_vents">
+							<div class="col-xs-12 col-sm-12 left-panel-icon-info" id="selected_vents">
 								<h4>Vents</h4>
 								<span> </span>
 							</div>
@@ -367,10 +360,10 @@ else
 				<div class="swiper-slide" >
 					<li class="left-panel-option pocket_icon">
 						<div class="row">
-							<div class="col-md-6 left-panel-icon" id="selected_suit_pocket_icon_mobile">
+							<div class="col-xs-12 col-sm-12 left-panel-icon" id="selected_suit_pocket_icon_mobile">
 								<img src="<?= $image_url; ?>upload/suit/suit_pocket/straight_pocket_active.png" alt="">
 							</div>
-							<div class="col-md-6 left-panel-icon-info" id="selected_suit_pocket">
+							<div class="col-xs-12 col-sm-12 left-panel-icon-info" id="selected_suit_pocket">
 								<h4>Suit pocket</h4>
 								<span> </span>
 							</div>
@@ -380,10 +373,10 @@ else
 				<div class="swiper-slide" >
 				<li class="left-panel-option chest_pocket_icon" >
 					<div class="row">
-						<div class="col-md-6 left-panel-icon" id="selected_chest_pocket_icon_mobile">
+						<div class="col-xs-12 col-sm-12 left-panel-icon" id="selected_chest_pocket_icon_mobile">
 							<img src="<?= $image_url ?>upload/suit/chest_pocket/chest_standard_pocket_active.png" alt="">
 						</div>
-						<div class="col-md-6 left-panel-icon-info" id="selected_chest_pocket">
+						<div class="col-xs-12 col-sm-12 left-panel-icon-info" id="selected_chest_pocket">
 							<h4>Chest pocket</h4>
 							<span> </span>
 						</div>
@@ -393,10 +386,10 @@ else
 			<div class="swiper-slide" >
 				<li class="left-panel-option lapel_button_hole_icon" >
 					<div class="row">
-						<div class="col-md-6 left-panel-icon" id="selected_lapel_button_hole_icon_mobile">
+						<div class="col-xs-12 col-sm-12 left-panel-icon" id="selected_lapel_button_hole_icon_mobile">
 							<img src="<?= $image_url; ?>upload/suit/cuff_accent_stitch/accent_stitch_gray_active.png" alt="">
 						</div>
-						<div class="col-md-6 left-panel-icon-info" id="selected_lapel_button_hole">
+						<div class="col-xs-12 col-sm-12 left-panel-icon-info" id="selected_lapel_button_hole">
 							<h4>Lapel Button Hole</h4>
 							<span> </span>
 						</div>
@@ -419,10 +412,10 @@ else
 			<div class="swiper-slide" >
 				<li class="left-panel-option cuff_button_style_icon" >
 					<div class="row">
-						<div class="col-md-6 left-panel-icon" id="selected_cuff_button_style_icon_mobile">
+						<div class="col-xs-12 col-sm-12 left-panel-icon" id="selected_cuff_button_style_icon_mobile">
 							<img src="<?= $image_url; ?>upload/suit/cuff_button_style/show_button_active.png" alt="">
 						</div>
-						<div class="col-md-6 left-panel-icon-info" id="selected_cuff_button_style">
+						<div class="col-xs-12 col-sm-12 left-panel-icon-info" id="selected_cuff_button_style">
 							<h4>Cuff Button Style</h4>
 							<span> </span>
 						</div>
@@ -433,10 +426,10 @@ else
 			<div class="swiper-slide" >
 				<li class="left-panel-option selected_inner_lining_icon" >
 					<div class="row">
-						<div class="col-md-6 left-panel-icon" id="selected_inner_lining_icon_mobile">
+						<div class="col-xs-12 col-sm-12 left-panel-icon" id="selected_inner_lining_icon_mobile">
 							<img src="<?= $bas_ul ?>stylior/site/images/shirt-icons/button.png" alt="">
 						</div>
-						<div class="col-md-6 left-panel-icon-info" id="selected_inner_lining">
+						<div class="col-xs-12 col-sm-12 left-panel-icon-info" id="selected_inner_lining">
 							<h4>Inner Lining</h4>
 							<span> </span>
 						</div>
@@ -455,9 +448,8 @@ else
 </ul>
 	</div>
  <!-- main option panel end -->
-<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 option-select nopadding ">
-
-
+<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 nopadding ">
+<div class="option-select">
 	<div class="filter-options" id="filter_options" >
 	<div class="" >
 		<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 nopadding">
@@ -587,7 +579,7 @@ else
 		 $fabric_color=$value[0]->colour;
 		 $fabric_pattern=$value[0]->designid;
 	      ?>
-		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 displayfitler" data-color="<?= $fabric_color; ?>" data-pattern="<?= $fabric_pattern; ?>" data-price="<?= $price; ?>">
+		<div class="col-lg-6 col-md-6 col-sm-3 col-xs-6 displayfitler" data-color="<?= $fabric_color; ?>" data-pattern="<?= $fabric_pattern; ?>" data-price="<?= $price; ?>">
 		 	<div class="fabric-details" id="<?= $custom_key;?>" >
 				<a  class="swatchchangeOption" href="#" data-part="<?= $key;?>" data-key="<?= $custom_key;?>">
 					<img class="img-responsive" src="<?= $image_url."".$image;?>">
@@ -648,7 +640,7 @@ else
 
 
 	<div class="jacket-style-options" id="jacket_style_options" style="display: none">
-		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+		<div class="col-lg-6 col-md-6 col-sm-3 col-xs-6">
 			<div class="jacket-style-details" id="JSB">
 					<a class="changeOption" href="#" data="JSB" data-key="jacket_style">
 						<img class="img-responsive default" src="<?= $image_url; ?>upload/suit/jacket-style/single_button_default.png">
@@ -659,7 +651,7 @@ else
 				</a>
 			</div>
 		</div>
-		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+		<div class="col-lg-6 col-md-6 col-sm-3 col-xs-6 ">
 			<div class="jacket-style-details" id="J2BTN">
 					<a class="changeOption" href="#" data="J2BTN" data-key="jacket_style">
 						<img class="img-responsive default" src="<?= $image_url; ?>upload/suit/jacket-style/two_button_default.png">
@@ -670,7 +662,7 @@ else
 				</a>
 			</div>
 		</div>
-		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+		<div class="col-lg-6 col-md-6 col-sm-3 col-xs-6 ">
 			<div class="jacket-style-details" id="J3BTN">
 					<a class="changeOption" href="#" data="J3BTN" data-key="jacket_style">
 						<img class="img-responsive default" src="<?= $image_url; ?>upload/suit/jacket-style/three_button_default.png">
@@ -681,7 +673,7 @@ else
 				</a>
 			</div>
 		</div>
-		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+		<div class="col-lg-6 col-md-6 col-sm-3 col-xs-6 ">
 			<div class="jacket-style-details" id="J4BTNDB">
 					<a class="changeOption" href="#" data="J4BTNDB" data-key="jacket_style">
 						<img class="img-responsive default" src="<?= $image_url; ?>upload/suit/jacket-style/four_button_default.png">
@@ -692,7 +684,7 @@ else
 				</a>
 			</div>
 		</div>
-		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+		<div class="col-lg-6 col-md-6 col-sm-3 col-xs-6 ">
 			<div class="jacket-style-details" id="J6BTNDB">
 					<a class="changeOption" href="#" data="J6BTNDB" data-key="jacket_style">
 						<img class="img-responsive default" src="<?= $image_url; ?>upload/suit/jacket-style/six_button_default.png">
@@ -708,7 +700,7 @@ else
 	<!--Lapel Option Start -->
 
 	<div class="lapel-options" id="lapel_options" style="display: none">
-		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+		<div class="col-lg-6 col-md-6 col-sm-3 col-xs-6 ">
 			<div class="lapel-details" id="JNOTCH">
 					<a class="changeOption" href="#" data="JNOTCH" data-key="lapel">
 						<img class="img-responsive default" src="<?= $image_url; ?>upload/suit/lapel/notch_default.png">
@@ -719,7 +711,7 @@ else
 					</a>
 			</div>
 		</div>
-		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+		<div class="col-lg-6 col-md-6 col-sm-3 col-xs-6 ">
 			<div class="lapel-details" id="JPEAK">
 					<a class="changeOption" href="#" data="JPEAK" data-key="lapel">
 						<img class="img-responsive default" src="<?= $image_url; ?>upload/suit/lapel/peak_default.png">
@@ -730,7 +722,7 @@ else
 				</a>
 			</div>
 		</div>
-		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+		<div class="col-lg-6 col-md-6 col-sm-3 col-xs-6 ">
 			<div class="lapel-details" id="KSHAWL">
 					<a class="changeOption" href="#" data="KSHAWL" data-key="lapel">
 						<img class="img-responsive default" src="<?= $image_url; ?>upload/suit/lapel/shawl_default.png">
@@ -745,7 +737,7 @@ else
 	<!--jacket button Option Start -->
 
 	<div class="jacket-button-options" id="jacket_button_options" style="display: none">
-		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+		<div class="col-lg-6 col-md-6 col-sm-3 col-xs-6 ">
 			<div class="jacket-button-details" id="JBBLACK">
 					<a class="changeOption" href="#" data="JBBLACK" data-key="jacket_button">
 						<img class="img-responsive default" src="<?= $image_url; ?>upload//suit/jacket_button/black_button.png">
@@ -757,7 +749,7 @@ else
 				</a>
 			</div>
 		</div>
-		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+		<div class="col-lg-6 col-md-6 col-sm-3 col-xs-6 ">
 			<div class="jacket-button-details" id="JBBROWN">
 					<a class="changeOption" href="#" data="JBBROWN" data-key="jacket_button">
 						<img class="img-responsive default" src="<?= $image_url; ?>upload//suit/jacket_button/cream_button.png">
@@ -768,7 +760,7 @@ else
 				</a>
 			</div>
 		</div>
-		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+		<div class="col-lg-6 col-md-6 col-sm-3 col-xs-6 ">
 			<div class="jacket-button-details" id="JBGREY">
 					<a class="changeOption" href="#" data="JBGREY" data-key="jacket_button">
 						<img class="img-responsive default" src="<?= $image_url; ?>upload//suit/jacket_button/gray_button.png">
@@ -780,7 +772,7 @@ else
 				</a>
 			</div>
 		</div>
-		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+		<div class="col-lg-6 col-md-6 col-sm-3 col-xs-6 ">
 			<div class="jacket-button-details" id="JBNAVY">
 					<a class="changeOption" href="#" data="JBNAVY" data-key="jacket_button">
 						<img class="img-responsive default" src="<?= $image_url; ?>upload//suit/jacket_button/navy_button.png">
@@ -808,7 +800,7 @@ else
 	<!--Vents Option Start -->
 
 	<div class="vents-options" id="vents_options" style="display: none">
-		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+		<div class="col-lg-6 col-md-6 col-sm-3 col-xs-6 ">
 			<div class="vents-details" id="JSINGLEVENT">
 					<a class="changeOption" href="#" data="JSINGLEVENT" data-key="vents">
 						<img class="img-responsive default" src="<?= $image_url; ?>upload/suit/vents/single_vent_default.png">
@@ -819,7 +811,7 @@ else
 				</a>
 			</div>
 		</div>
-		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+		<div class="col-lg-6 col-md-6 col-sm-3 col-xs-6 ">
 			<div class="vents-details" id="JDOUBLEVENT">
 					<a class="changeOption" href="#" data="JDOUBLEVENT" data-key="vents">
 						<img class="img-responsive default" src="<?= $image_url; ?>upload/suit/vents/double_vent_default.png">
@@ -830,7 +822,7 @@ else
 				</a>
 			</div>
 		</div>
-		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+		<div class="col-lg-6 col-md-6 col-sm-3 col-xs-6 ">
 			<div class="vents-details" id="JNOVENT">
 					<a class="changeOption" href="#" data="JNOVENT" data-key="vents">
 						<img class="img-responsive default" src="<?= $image_url; ?>upload/suit/vents/no_vent_default.png">
@@ -846,7 +838,7 @@ else
 	<!--Suit Pocket Option Start -->
 
 	<div class="suit-pocket-options" id="suit_pocket_options" style="display: none">
-		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+		<div class="col-lg-6 col-md-6 col-sm-3 col-xs-6 ">
 			<div class="suit-pocket-details" id="JSTRAIGHTPOCKET">
 					<a class="changeOption" href="#" data="JSTRAIGHTPOCKET" data-key="suit_pocket">
 						<img class="img-responsive default" src="<?= $image_url; ?>upload/suit/suit_pocket/straight_pocket_default.png">
@@ -857,7 +849,7 @@ else
 				</a>
 			</div>
 		</div>
-		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+		<div class="col-lg-6 col-md-6 col-sm-3 col-xs-6 ">
 			<div class="suit-pocket-details" id="JSTRAIGHTTICKET">
 					<a class="changeOption" href="#" data="JSTRAIGHTTICKET" data-key="suit_pocket">
 						<img class="img-responsive default" src="<?= $image_url; ?>upload/suit/suit_pocket/straight_pocket_with_ticket_default.png">
@@ -868,7 +860,7 @@ else
 				</a>
 			</div>
 		</div>
-		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+		<div class="col-lg-6 col-md-6 col-sm-3 col-xs-6 ">
 			<div class="suit-pocket-details" id="JSTDPOCKET">
 					<a class="changeOption" href="#" data="JSTDPOCKET" data-key="suit_pocket">
 						<img class="img-responsive default" src="<?= $image_url; ?>upload/suit/suit_pocket/standared_pocket_default.png">
@@ -879,7 +871,7 @@ else
 				</a>
 			</div>
 		</div>
-		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+		<div class="col-lg-6 col-md-6 col-sm-3 col-xs-6 ">
 			<div class="suit-pocket-details" id="JSTDTICKET">
 					<a class="changeOption" href="#" data="JSTDTICKET" data-key="suit_pocket">
 						<img class="img-responsive default" src="<?= $image_url; ?>upload/suit/suit_pocket/standared_pocket_with_ticket_default.png">
@@ -890,7 +882,7 @@ else
 				</a>
 			</div>
 		</div>
-		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+		<div class="col-lg-6 col-md-6 col-sm-3 col-xs-6 ">
 			<div class="suit-pocket-details" id="JPATCH">
 					<a class="changeOption" href="#" data="JPATCH" data-key="suit_pocket">
 						<img class="img-responsive default" src="<?= $image_url; ?>upload/suit/suit_pocket/patch_pocket_default.png">
@@ -916,7 +908,7 @@ chest_pocket/chest_standered_pocket_default.png
 chest_standered_pocket_active.png
  -->
 	<div class="chest-pocket-options" id="chest_pocket_options" style="display: none">
-		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+		<div class="col-lg-6 col-md-6 col-sm-3 col-xs-6 ">
 			<div class="chest-pocket-details" id="JCHESTPATCH">
 					<a class="changeOption" href="#" data="JCHESTPATCH" data-key="chest_pocket">
 			<img class="img-responsive default" src="<?= $image_url; ?>upload/suit/chest_pocket/chest_patch_pocket_default.png">
@@ -927,7 +919,7 @@ chest_standered_pocket_active.png
 				</a>
 			</div>
 		</div>
-		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+		<div class="col-lg-6 col-md-6 col-sm-3 col-xs-6 ">
 			<div class="chest-pocket-details" id="JCHESTSTD">
 					<a class="changeOption" href="#" data="JCHESTSTD" data-key="chest_pocket">
 						<img class="img-responsive default" src="<?= $image_url; ?>upload/suit/chest_pocket/chest_standard_pocket_default.png">
@@ -943,7 +935,7 @@ chest_standered_pocket_active.png
 	<!--Lapel button hole Option Start -->
 
 	<div class="lapel-button-hole-options" id="lapel_button_hole_options" style="display: none">
-	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+	<div class="col-lg-6 col-md-6 col-sm-3 col-xs-6 ">
 				<div class="lapel-button-hole-details" id="JLBLACK">
 						<a class="changeOption" href="#" data="JLBLACK" data-key="lapel_button_hole">
 							<img class="img-responsive default" src="<?= $image_url; ?>upload/suit/cuff_accent_stitch/accent_stitch_black_active.png">
@@ -954,7 +946,7 @@ chest_standered_pocket_active.png
 					</a>
 				</div>
 			</div>
-			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+			<div class="col-lg-6 col-md-6 col-sm-3 col-xs-6 ">
 				<div class="lapel-button-hole-details" id="JLBROWN">
 						<a class="changeOption" href="#" data="JLBROWN" data-key="lapel_button_hole">
 							<img class="img-responsive default" src="<?= $image_url; ?>upload/suit/cuff_accent_stitch/accent_stitch_white_active.png">
@@ -965,7 +957,7 @@ chest_standered_pocket_active.png
 					</a>
 				</div>
 			</div>
-			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+			<div class="col-lg-6 col-md-6 col-sm-3 col-xs-6 ">
 				<div class="lapel-button-hole-details" id="JLGREY">
 						<a class="changeOption" href="#" data="JLGREY" data-key="lapel_button_hole">
 							<img class="img-responsive default" src="<?= $image_url; ?>upload/suit/cuff_accent_stitch/accent_stitch_gray_active.png">
@@ -976,7 +968,7 @@ chest_standered_pocket_active.png
 					</a>
 				</div>
 			</div>
-			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+			<div class="col-lg-6 col-md-6 col-sm-3 col-xs-6 ">
 				<div class="lapel-button-hole-details" id="JLNAVY">
 						<a class="changeOption" href="#" data="JLNAVY" data-key="lapel_button_hole">
 							<img class="img-responsive default" src="<?= $image_url; ?>upload/suit/cuff_accent_stitch/accent_stitch_navy_active.png">
@@ -987,7 +979,7 @@ chest_standered_pocket_active.png
 					</a>
 				</div>
 			</div>
-			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+			<div class="col-lg-6 col-md-6 col-sm-3 col-xs-6 ">
 				<div class="lapel-button-hole-details" id="JLWHITE">
 						<a class="changeOption" href="#" data="JLWHITE" data-key="lapel_button_hole">
 							<img class="img-responsive default" src="<?= $image_url; ?>upload/suit/cuff_accent_stitch/accent_stitch_white_active.png">
@@ -1060,7 +1052,7 @@ chest_standered_pocket_active.png
 		<!--cuff accent stitching Option Start -->
 
 		<div class="cuff-accent-stitching-options" id="cuff_accent_stitching_options" style="display: none">
-			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+			<div class="col-lg-6 col-md-6 col-sm-3 col-xs-6 ">
 				<div class="cuff-accent-stitching-details" id="JCABLACK">
 						<a class="changeOption" href="#" data="JCABLACK" data-key="cuff_accent_stitching">
 							<img class="img-responsive default" src="<?= $image_url; ?>upload/suit/cuff_accent_stitch/accent_stitch_black_default.png">
@@ -1071,7 +1063,7 @@ chest_standered_pocket_active.png
 					</a>
 				</div>
 			</div>
-			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+			<div class="col-lg-6 col-md-6 col-sm-3 col-xs-6 ">
 				<div class="cuff-accent-stitching-details" id="JCABROWN">
 						<a class="changeOption" href="#" data="JCABROWN" data-key="cuff_accent_stitching">
 							<img class="img-responsive default" src="<?= $image_url; ?>upload/suit/cuff_accent_stitch/accent_stitch_white_default.png">
@@ -1082,7 +1074,7 @@ chest_standered_pocket_active.png
 					</a>
 				</div>
 			</div>
-			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+			<div class="col-lg-6 col-md-6 col-sm-3 col-xs-6 ">
 				<div class="cuff-accent-stitching-details" id="JCAGREY">
 						<a class="changeOption" href="#" data="JCAGREY" data-key="cuff_accent_stitching">
 							<img class="img-responsive default" src="<?= $image_url; ?>upload/suit/cuff_accent_stitch/accent_stitch_gray_default.png">
@@ -1093,7 +1085,7 @@ chest_standered_pocket_active.png
 					</a>
 				</div>
 			</div>
-			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+			<div class="col-lg-6 col-md-6 col-sm-3 col-xs-6 ">
 				<div class="cuff-accent-stitching-details" id="JCANAVY">
 						<a class="changeOption" href="#" data="JCANAVY" data-key="cuff_accent_stitching">
 							<img class="img-responsive default" src="<?= $image_url; ?>upload/suit/cuff_accent_stitch/accent_stitch_navy_default.png">
@@ -1104,7 +1096,7 @@ chest_standered_pocket_active.png
 					</a>
 				</div>
 			</div>
-			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+			<div class="col-lg-6 col-md-6 col-sm-3 col-xs-6 ">
 				<div class="cuff-accent-stitching-details" id="JCAWHITE">
 						<a class="changeOption" href="#" data="JCAWHITE" data-key="cuff_accent_stitching">
 							<img class="img-responsive default" src="<?= $image_url; ?>upload/suit/cuff_accent_stitch/accent_stitch_white_default.png">
@@ -1122,7 +1114,7 @@ chest_standered_pocket_active.png
 		<div class="cuff-button-style-options" id="cuff_button_style_options" style="display: none">
 
 
-			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+			<div class="col-lg-6 col-md-6 col-sm-3 col-xs-6 ">
 
 			<div class="cuff-button-style-details" id="CF7EA093">
 				<a class="changeOption" href="#" data="JCS" data-key="cuff_button_style">
@@ -1135,7 +1127,7 @@ chest_standered_pocket_active.png
 			</div>
 			</div>
 
-			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+			<div class="col-lg-6 col-md-6 col-sm-3 col-xs-6 ">
 				<div class="cuff-button-style-details" id="7470C5AE">
 						<a class="changeOption" href="#" data="JCK" data-key="cuff_button_style">
 							<img class="img-responsive default" src="<?= $image_url; ?>upload/suit/cuff_button_style/kissing_button_default.png">
@@ -1371,7 +1363,7 @@ chest_standered_pocket_active.png
 
 
 
-			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" >
+			<div class="col-lg-6 col-md-6 col-sm-3 col-xs-6" >
 			<a class="subfabric" href="#" data-part="1A9AFF93" data-key="03800311-07">
 				<img class="img-responsive" src="https://www.stylior.com/stylior/site/upload/fabric_swatch/SGG175031002.jpg">
 
@@ -1381,7 +1373,7 @@ chest_standered_pocket_active.png
 			</div>
 			</div>
 
-			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" >
+			<div class="col-lg-6 col-md-6 col-sm-3 col-xs-6" >
 			<a class="subfabric" href="#" data-part="479D1E2F" data-key="03900016">
 				<img class="img-responsive" src="https://www.stylior.com/stylior/site//upload/fabric_swatch/SGG170239202.jpg">
 
@@ -1392,7 +1384,7 @@ chest_standered_pocket_active.png
 			</div>
 
 
-			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" >
+			<div class="col-lg-6 col-md-6 col-sm-3 col-xs-6" >
 			<a class="subfabric" href="#" data-part="ED543432" data-key="04700032-67">
 				<img class="img-responsive" src="https://www.stylior.com/stylior/site/upload/fabric_swatch/SGG17003252.jpg">
 
@@ -1547,7 +1539,7 @@ chest_standered_pocket_active.png
 
 
  		</div>
-
+		</div>
 		</div>
 <!--Pleats Option Start -->
 <!--Vest Option Start -->
@@ -1651,22 +1643,16 @@ vest/vest_default.png -->
   </div>
 </div>
 
-<div id="suitFabric" class="modal fade" role="dialog">
+<div id="suitFabric" class="modal fade fabricModal" role="dialog">
   <div class="modal-dialog">
 
     <!-- Modal content-->
     <div class="modal-content noradius" >
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-      </div>
-
-      <div class="modal-body" id="suitFabricImage">
-				<img class="img-responsive" src="">
-
-      </div>
-
+        <div class="modal-body" id="suitFabricImage">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <img class="img-responsive" src="">
+        </div>
     </div>
-
   </div>
 </div>
 
@@ -1682,8 +1668,12 @@ vest/vest_default.png -->
 <script src="<?= $bas_ul ?>site/js/bootstrap.min.js"></script>
 <script src="<?= $bas_ul ?>site/js/swiper.min.js"></script>
 <script src="https://www.stylior.com/stylior/site/js/remodal.js"></script>
+<script src="https://www.stylior.com/site/js/remodal.js"></script>
+<script src="https://www.stylior.com/site/js/jquery.slimscroll.js"></script>
 <script src="<?= $bas_ul ?>site/js/blazer_3d_js.php"></script>
 <script src="<?= $bas_ul ?>site/js/3d-blazer.js"></script>
+
+
 <script type="text/javascript">
 
 function showExistingMeasure(measureid){
@@ -1857,12 +1847,13 @@ $("#quick_save").click(function(){
 	base_url = '<?php echo $bas_ul; ?>';
 	// var exact_price = $("#prd_price").val();
 	// var product_id = $("#prd_id").val();
-		var subcatid='16';
+	var subcatid='16';
 	var ordertype;
 	//alert("tyoe"+subcatid);
 	//var fabric_nameshirt = $("#prd_namme").val();
 	var loginUser='<?php echo $_SESSION['user_id']; ?>';
 	console.log(base_url);
+	
 	if(loginUser)
 	{
 		$.ajax({
@@ -1871,12 +1862,14 @@ $("#quick_save").click(function(){
 				data:
 				{
 					details_up : JSON.stringify(blazerMeasure),
-					measureid :  measureid
+					measureid :  measureid,
+					subcatid:16
+					
 						},
 					success: function(response) {
 					
 					console.log("AVR"+response);
-					return false;
+					//return false;
 
 					window.location.href= base_url+"cart/lum_view_cart";
 				}
@@ -1902,10 +1895,10 @@ $("#add-mesurement").click(function(){
 						url:base_url+'cart/new_mvalue' ,
 						method: "POST",
 						data: {'data': $(".mesure-form").serialize(),
-					'subcatid': 17 , },
+							'subcatid': 16 ,
+					 	},
 						success:function(data){
 							console.log("this is data"+data);
-
 							location.href='<? echo $bas_ul."/cart/lum_view_cart"?>';
 
 						}
@@ -1956,6 +1949,16 @@ function getSelectedMeasure(idtype,number){
 
 </script>
 
+<script type="text/javascript">
+    $(document).ready(function(){
+      $('.desing-cloth-leftpanel, .option-select').slimScroll({
+			height: '100vh',
+			color: 'rgb(1, 47, 66)',
+			disableFadeOut: true
+      });
+
+    });
+</script>
 
 
 </html>

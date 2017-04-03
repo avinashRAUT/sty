@@ -48,6 +48,15 @@ function removeproductnot(id,pid)
 }
 </script>
 <style>
+
+
+
+    .measurements{
+		width: 648px; 
+		word-break: break-all;
+    }
+
+
 .container
 {
 	font-family:Century Gothic;
@@ -495,29 +504,41 @@ function removeproductnot(id,pid)
 						$date = new DateTime(date("Y-m-d"));
 						$date->modify('+10 day');
 						$tomorrowDATE = $date->format('d M Y');
-						echo $tomorrowDATE; ?> </div>
+						echo $tomorrowDATE; ?> 
+						</div>
+
 						<div class="blue_lum">
 						<?php
-						$detailsAry = ($items['options']['details'])?json_decode($items['options']['details'],true):array();
+						$detailsAry = ($items['options']['details'])?json_decode($items['options']['details'],true):array();					
+						
 						//echo "<pre>";
-						//print_r($detailsAry);
+						//print_r($_SESSION['subcatid']);
+						//print_r($_SESSION);
+						
+						//print_r($detailsAry['measurements']);
 						$sizeVal = (isset($detailsAry['standardsize']))?$detailsAry['standardsize']:'';
 						$length =(isset($detailsAry['length']))?$detailsAry['length']:'';
 						$fitype =(isset($detailsAry['fitype']))?$detailsAry['fitype']:'';
 						//print_r($items['options']['newmid']);
-						if(!isset($items['options']['newmid'])||$items['options']['newmid'] == '')
+						if($detailsAry['measurements']){
+							echo '<div class="measurements">';
+							foreach ($detailsAry['measurements'] as $key_mm => $value_mm) {				 
+								echo $key_mm." : ".$value_mm;
+							}
+							echo "</div>";
+						}
+						else if(!isset($items['options']['newmid'])||$items['options']['newmid'] == '')
 						{
-						$cartDetails =  $this->Cart_model->getcartDetails($items['id']);
+							$cartDetails =  $this->Cart_model->getcartDetails($items['id']);
 						?>
 						<?php
 						if($sizeVal == '')
 						{
 						?>
-							<!--<a href="<? echo $bas_ul?>cart/custommesurements/saved3d/<?php echo $items['options']['saveid']; ?>/<?php echo $cartDetails->id?>/<?php echo $subcatid; ?>"> Add your measurement</a>-->
-              <a href="#"> <!--Add your measurement--></a>
-
-            <?php
-					  }
+						<!--<a href="<? echo $bas_ul?>cart/custommesurements/saved3d/<?php echo $items['options']['saveid']; ?>/<?php echo $cartDetails->id?>/<?php echo $subcatid; ?>"> Add your measurement</a>-->
+						<a href="#"> <!--Add your measurement--></a>
+						<?php
+					   }
 						else
 							{
 								if($subcatid==10 || $subcatid == 11 )
@@ -528,7 +549,7 @@ function removeproductnot(id,pid)
 					 	}
 						else
 						{
-								$getprofilename =  $this->Cart_model->getprofilename($items['options']['newmid']);
+							$getprofilename =  $this->Cart_model->getprofilename($items['options']['newmid']);
 						?>
 						<a style="float:left;color:#63beed;" href="#"> <?php echo $getprofilename; ?> </a>
 						<?php
@@ -539,6 +560,7 @@ function removeproductnot(id,pid)
 					</div>
 				</div>
 	</div>
+
 	<div style="display:inline-block;width:14.5%;vertical-align:top;padding-top:50px;height:100%:">
 		<?php if($this->session->userdata('currencycode') == 'INR'){ ?>
 		INR
@@ -595,6 +617,7 @@ function removeproductnot(id,pid)
 		</a>
 	</div>
 </div>
+
 <!--Product_lum end -->
 <?php
 $price_su_t = $price_su_t+$pro_price_lum;
@@ -845,19 +868,15 @@ There are no items in the cart
 
 								// echo "Test new data var<pre>";
 								// print_r($detailsAry);
-								 echo "Test this data var <prev>";
-								 print_r($items);
 								/*end var more >>*/
 
 								if(!isset($items['options']['newmid'])||$items['options']['newmid'] == '') {
-
 									$cartDetails =  $this->Cart_model->getcartDetails($items['id']);?>
-
 									<?php if($sizeVal == ''){ ?>
 									<!--<a href="<?php echo $items['rowid'];?>cart/custommesurements/saved3d/<?php echo $items['options']['saveid']; ?>/<?php echo $cartDetails->id; ?>"> Add your measurement</a>-->
-                  <a href="#"> <!--Add your measurement--></a>
+        				          <a href="#"> <!--Add your measurement--></a>
 
-                  <?php } else{
+				                  <?php } else{
 												if($subcatid!=12)
 												{
 													echo 'Size :'.$sizeVal;
@@ -865,7 +884,7 @@ There are no items in the cart
 								}
 								?>
 								<?php } else {
-									echo "New id chek".$items['options']['newmid'];
+									echo $items['options']['newmid'];
 								   $getprofilename =  $this->Cart_model->getprofilename($items['options']['newmid']);
 								   $items['options']['newmid']="";
 									?>

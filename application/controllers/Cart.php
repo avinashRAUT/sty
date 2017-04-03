@@ -653,6 +653,17 @@ class Cart extends CI_Controller {
 	{
 		 $mycartid=$_SESSION['latestcartId'];
 		$lastid=$_SESSION['saveid'];
+	    //if a data of subcatid is comming from ajax request....
+		
+		//var start 31 march 2017..
+		   if(isset($_POST['subcatid'])){
+				$this->session->userdata['selected3dInfo_shirt']['subcatid']=$_POST['subcatid'];
+				$this->session->userdata['subcatid']=$_POST['subcatid'];
+		   }
+
+		//var end here 31 march 2017
+		
+
 
 		//echo "lastt id".$lastid;
 
@@ -741,37 +752,40 @@ class Cart extends CI_Controller {
 
 
 		if($this->session->userdata['subcatid']==10||$this->session->userdata['selected3dInfo_shirt']['subcatid']==10){
-	    	$sss['standardsize']=$josntoadded['standardsize'];
-	    	$sss['WEIGHTkg']=$josntoadded['WEIGHTkg'];
-	    	$sss['fitype']=$josntoadded['fitype'];
-	    	$sss['length']=$josntoadded['length'];
-	    	$sss['shoulder']=$josntoadded['shoulder'];
-	    	$sss['neck']=$josntoadded['neck'];
-	    	$sss['sleeve']=$josntoadded['sleeve'];
-	    	$sss['shirt_length']=$josntoadded['shirt_length'];
-	    	$sss['chest']=$josntoadded['chest'];
-	    	$sss['waist']=$josntoadded['waist'];
+	 
+				$sss['measurements']['standardsize']=$josntoadded['standardsize'];
+				$sss['measurements']['WEIGHTkg']=$josntoadded['WEIGHTkg'];
+				$sss['measurements']['fitype']=$josntoadded['fitype'];
+				$sss['measurements']['length']=$josntoadded['length'];
+				$sss['measurements']['shoulder']=$josntoadded['shoulder'];
+				$sss['measurements']['neck']=$josntoadded['neck'];
+				$sss['measurements']['sleeve']=$josntoadded['sleeve'];
+				$sss['measurements']['shirt_length']=$josntoadded['shirt_length'];
+				$sss['measurements']['chest']=$josntoadded['chest'];
+				$sss['measurements']['waist']=$josntoadded['waist'];
+
 	    }
     	else if($this->session->userdata['subcatid']==11||$this->session->userdata['selected3dInfo_shirt']['subcatid']==11)
     	{
 			//var trouserMeasure={"HEIGHTinch":"","WEIGHTkg":"","pocket":"NO","Monogram":"NO","MonoLocation":"","Monofontstyle":"","Monocolor":"","Monotext":"None","fitype":"NO","standardsize":"NO","length":"NO","waist":"","hip":"","rise":"","bottom":"","knee":"","thigh":""};
-			$sss['HEIGHTinch']=$josntoadded['HEIGHTinch'];
-			$sss['WEIGHTkg']=$josntoadded['WEIGHTkg'];
-			$sss['pocket']=$josntoadded['pocket'];
-			$sss['Monogram']=$josntoadded['Monogram'];
-			$sss['MonoLocation']=$josntoadded['MonoLocation'];
-			$sss['Monofontstyle']=$josntoadded['Monofontstyle'];
-			$sss['Monocolor']=$josntoadded['Monocolor'];
-			$sss['fitype']=$josntoadded['fitype'];
-			$sss['standardsize']=$josntoadded['standardsize'];
-			$sss['waist']=$josntoadded['waist'];
-			$sss['hip']=$josntoadded['hip'];
-			$sss['rise']=$josntoadded['rise'];
-			$sss['bottom']=$josntoadded['bottom'];
-			$sss['knee']=$josntoadded['knee'];
-			$sss['thigh']=$josntoadded['thigh'];
+			
+			$sss['measurements']['HEIGHTinch']=$josntoadded['HEIGHTinch'];
+			$sss['measurements']['WEIGHTkg']=$josntoadded['WEIGHTkg'];
+			$sss['measurements']['pocket']=$josntoadded['pocket'];
+			$sss['measurements']['Monogram']=$josntoadded['Monogram'];
+			$sss['measurements']['MonoLocation']=$josntoadded['MonoLocation'];
+			$sss['measurements']['Monofontstyle']=$josntoadded['Monofontstyle'];
+			$sss['measurements']['Monocolor']=$josntoadded['Monocolor'];
+			$sss['measurements']['fitype']=$josntoadded['fitype'];
+			$sss['measurements']['standardsize']=$josntoadded['standardsize'];
+			$sss['measurements']['waist']=$josntoadded['waist'];
+			$sss['measurements']['hip']=$josntoadded['hip'];
+			$sss['measurements']['rise']=$josntoadded['rise'];
+			$sss['measurements']['bottom']=$josntoadded['bottom'];
+			$sss['measurements']['knee']=$josntoadded['knee'];
+			$sss['measurements']['thigh']=$josntoadded['thigh'];
     	}
-     else if($this->session->userdata['subcatid']==17 ||$this->session->userdata['selected3dInfo_suit']['subcatid']==17)
+     else if($this->session->userdata['subcatid']==17 ||$this->session->userdata['selected3dInfo_pant']['subcatid']==17)
       {
       //var trouserMeasure={"HEIGHTinch":"","WEIGHTkg":"","pocket":"NO","Monogram":"NO","MonoLocation":"","Monofontstyle":"","Monocolor":"","Monotext":"None","fitype":"NO","standardsize":"NO","length":"NO","waist":"","hip":"","rise":"","bottom":"","knee":"","thigh":""}
       $sss['measurements']['standardsize']=$josntoadded['standardsize'];
@@ -800,48 +814,45 @@ class Cart extends CI_Controller {
       else if($this->session->userdata['subcatid']==16 ||$this->session->userdata['selected3dInfo_blazer']['subcatid']==16)
       {
         //var trouserMeasure={"HEIGHTinch":"","WEIGHTkg":"","pocket":"NO","Monogram":"NO","MonoLocation":"","Monofontstyle":"","Monocolor":"","Monotext":"None","fitype":"NO","standardsize":"NO","length":"NO","waist":"","hip":"","rise":"","bottom":"","knee":"","thigh":""};
-        $sss['standardsize']=$josntoadded['standardsize'];
-        $sss['WEIGHTkg']=$josntoadded['WEIGHTkg'];
-        $sss['fitype']=$josntoadded['fitype'];
-        $sss['length']=$josntoadded['length'];
-        $sss['shoulder']=$josntoadded['shoulder'];
+        $sss['measurements']['standardsize']=$josntoadded['standardsize'];
+        $sss['measurements']['WEIGHTkg']=$josntoadded['WEIGHTkg'];
+        $sss['measurements']['fitype']=$josntoadded['fitype'];
+        $sss['measurements']['length']=$josntoadded['length'];
+        $sss['measurements']['shoulder']=$josntoadded['shoulder'];
 
-        $sss['sleeve']=$josntoadded['sleeve'];
-        $sss['backlength']=$josntoadded['backlength'];
-        $sss['chest']=$josntoadded['chest'];
-        $sss['upperwaist']=$josntoadded['upperwaist'];
-        $sss['HEIGHTinch']=$josntoadded['HEIGHTinch'];
+        $sss['measurements']['sleeve']=$josntoadded['sleeve'];
+        $sss['measurements']['backlength']=$josntoadded['backlength'];
+        $sss['measurements']['chest']=$josntoadded['chest'];
+        $sss['measurements']['upperwaist']=$josntoadded['upperwaist'];
+        $sss['measurements']['HEIGHTinch']=$josntoadded['HEIGHTinch'];
 
        }
        else if($this->session->userdata['subcatid']==15 ||$this->session->userdata['selected3dInfo_shirt']['subcatid']==15)
        {
         //var trouserMeasure={"HEIGHTinch":"","WEIGHTkg":"","pocket":"NO","Monogram":"NO","MonoLocation":"","Monofontstyle":"","Monocolor":"","Monotext":"None","fitype":"NO","standardsize":"NO","length":"NO","waist":"","hip":"","rise":"","bottom":"","knee":"","thigh":""};
-        $sss['standardsize']=$josntoadded['standardsize'];
-        $sss['WEIGHTkg']=$josntoadded['WEIGHTkg'];
-        $sss['fitype']=$josntoadded['fitype'];
-        $sss['length']=$josntoadded['length'];
-        $sss['shoulder']=$josntoadded['shoulder'];
-        $sss['backlength']=$josntoadded['backlength'];
-        $sss['chest']=$josntoadded['chest'];
-        $sss['upperwaist']=$josntoadded['upperwaist'];
-        $sss['HEIGHTinch']=$josntoadded['HEIGHTinch'];
+        $sss['measurements']['standardsize']=$josntoadded['standardsize'];
+        $sss['measurements']['WEIGHTkg']=$josntoadded['WEIGHTkg'];
+        $sss['measurements']['fitype']=$josntoadded['fitype'];
+        $sss['measurements']['length']=$josntoadded['length'];
+        $sss['measurements']['shoulder']=$josntoadded['shoulder'];
+        $sss['measurements']['backlength']=$josntoadded['backlength'];
+        $sss['measurements']['chest']=$josntoadded['chest'];
+        $sss['measurements']['upperwaist']=$josntoadded['upperwaist'];
+        $sss['measurements']['HEIGHTinch']=$josntoadded['HEIGHTinch'];
        }
 	else if($this->session->userdata['subcatid']==18 ||$this->session->userdata['selected3dInfo_vest']['subcatid']==18)
       {
-        $sss['standardsize']=$josntoadded['standardsize'];
-        $sss['WEIGHTkg']=$josntoadded['WEIGHTkg'];
-        //$sss['fitype']=$josntoadded['fitype'];
-        $sss['length']=$josntoadded['backlength'];
-        $sss['shoulder']=$josntoadded['shoulder'];
-        $sss['backlength']=$josntoadded['backlength'];
-        $sss['chest']=$josntoadded['chest'];
-        $sss['upperwaist']=$josntoadded['upperwaist'];
-        $sss['HEIGHTinch']=$josntoadded['HEIGHTinch'];
-        $sss['pocket']=$josntoadded['pocket'];
+        $sss['measurements']['standardsize']=$josntoadded['standardsize'];
+        $sss['measurements']['WEIGHTkg']=$josntoadded['WEIGHTkg'];
+        //$sss['measurements']['fitype']=$josntoadded['fitype'];
+        $sss['measurements']['length']=$josntoadded['backlength'];
+        $sss['measurements']['shoulder']=$josntoadded['shoulder'];
+        $sss['measurements']['backlength']=$josntoadded['backlength'];
+        $sss['measurements']['chest']=$josntoadded['chest'];
+        $sss['measurements']['upperwaist']=$josntoadded['upperwaist'];
+        $sss['measurements']['HEIGHTinch']=$josntoadded['HEIGHTinch'];
+        $sss['measurements']['pocket']=$josntoadded['pocket'];
        }
-
-
-
 
 	  $updateddetails=json_encode($josn);
 	  $josnmy['details']=json_encode($sss);
@@ -1111,6 +1122,11 @@ function addToCartTrouser(){
 		[order] => custom
 		)
 		*/
+		unset($_SESSION['save3dInfo_shirt']['subcatid']);
+		$_SESSION['save3dInfo_shirt']['subcatid']  = 11;
+		$_SESSION['save3dInfo_pant']['subcatid']  = 11;
+		$_SESSION['subcatid']  = 11;
+
 		if($_POST['ordertype']=="pant")
 		{
 					$data_p      = $_POST['imagedata_p'];   //keep customized url here/
@@ -1119,7 +1135,7 @@ function addToCartTrouser(){
 					$price_p     = $_POST['price_p'];
 					$productid_p = $_POST['productid_p'];
 					$pname_p     = $_POST['pname_p'];
-					$subcatid_p  = $_POST['subcatid_p'];
+					$subcatid_p  = 11; 
 					$data12['details']  = $details_p;
 					$data12['price']    = $price_p;
 					$data12['productid'] = $productid_p;
@@ -1128,7 +1144,9 @@ function addToCartTrouser(){
 					// $data12['baseimage'] = $timeimage_p.".png";
 					$data12['baseimage'] = $data_p;
 				    //print_r($data12);
+					
 					$saveid_p=$this->Cart_model->addto3dinsert($data12);
+
 					$cartprod_p = array(
 					'id'      => $productid_p,
 					'qty'     => '1',
@@ -1136,6 +1154,7 @@ function addToCartTrouser(){
 					'name'    => $pname_p,
 					'options' => array('details'=>$details_p , 'imagename'=>$data_p.".png", 'is_3d'=>'1' , 'saveid'=> $saveid_p)
 					);
+
 					$this->cart->insert($cartprod_p);
 					$addTocartId_p=$this->Cart_model->insertcartindb($cartprod_p);
 					$this->session->set_userdata('latestcartId',$addTocartId_p);
@@ -1157,13 +1176,15 @@ function addToCartTrouser(){
 					$price_p     = $_SESSION['selected3dInfo_pant']['price'];
 					$productid_p = $_SESSION['selected3dInfo_pant']['productid'];
 					$pname_p     = $_SESSION['selected3dInfo_pant']['pname'];
-					$subcatid_p  = $_SESSION['selected3dInfo_pant']['subcatid'];
+					$subcatid_p  = 11;
+
 
 			}
 			if(!empty($_SESSION['Guestuser_id'])&& $_SESSION['usertype']=="Guest")
 			{
 					$_SESSION['user_id']=$_SESSION['Guestuser_id'];
 			}		
+
 			$newuserdata = array(
 				   'username'  => $_SESSION['username'],
 				   'userid'    => $_SESSION['user_id'],
@@ -1236,8 +1257,6 @@ function addToCartTrouser(){
 ********   Date : 13/03/2017
 ********   Note : Created seperate fucntion from addcart3dcombined()
 *****************/
-
-
 function suitBeforeLogin(){
 	 if($_POST['ordertype']=="suit")
 		{
@@ -3156,9 +3175,10 @@ function addcart3dcombined(){
 			$_SESSION['save3dInfo_pant']['price']     = $_POST['price_pant'];
 			$_SESSION['save3dInfo_pant']['productid'] =  $_POST['productid_pant'];
 			$_SESSION['save3dInfo_pant']['pname']     = $_POST['pname_pant'];
-			$_SESSION['save3dInfo_pant']['subcatid']  = $_POST['subcatid_pant'];
-
-
+			$_SESSION['save3dInfo_pant']['subcatid']  = 11;
+			unset($_SESSION['save3dInfo_shirt']);
+			$_SESSION['save3dInfo_shirt']['subcatid']  = 11;
+			$_SESSION['subcatid']  = 11;
 			$_SESSION['ordertype']='pant';
 
 

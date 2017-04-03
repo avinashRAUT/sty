@@ -7,7 +7,7 @@
 	var base_fabric="B40522A2";
 	//**** Note *** to change shirt fabric, you need to change the swatch for model,collar and placket....
 	//***
-	var shirtFabric='BA344DEE';
+	var shirtFabric='F5F6F549';
 	var liningFabric='6A2AC8B5';
 
 	var Obj3d={

@@ -119,15 +119,12 @@ else
 	<link rel="stylesheet" href="<?= $bas_ul ?>site/css/bootstrap.css">
 	<link rel="stylesheet" href="<?= $bas_ul ?>site/css/swiper.min.css">
 	<link rel="stylesheet" href="<?= $bas_ul ?>/site/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Didact+Gothic" rel="stylesheet">
 	<link rel="stylesheet" href="<?= $bas_ul ?>/site/css/ionicons.min.css">
 	<link rel="stylesheet" href="https://www.stylior.com/stylior/site/css/remodal.css">
 	<link rel="stylesheet" href="https://www.stylior.com/stylior/site/css/remodal-default-theme.css">
 	<link rel="stylesheet" href="<?= $bas_ul ?>site/css/3d-trouser.css">
-
-
-
-
-
+	<link rel="stylesheet" href="<?= $bas_ul ?>site/css/3d-suit.css">
 
 
 
@@ -139,17 +136,23 @@ else
 
 <div class="se-pre-con"  style="background: url(<?=base_url()."images/loading_new.gif";?>) no-repeat center"></div>
 
-<div class="container-fluid">
-<div >
-	<div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 left-panel hidden-xs hidden-sm">
+<div class="col-sm-12 col-xs-12 visible-xs visible-sm">
+<div class="stylior-logo-mobile">
+	<a href="https://www.stylior.com/">
+		<img class="img-responsive"  src="https://www.stylior.com/stylior/site/images/relaunch/logo.png" alt="">
+	</a>
+</div>
+</div>
+	<div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 left-panel design-left-panel hidden-xs hidden-sm">
+		<div class="desing-cloth-leftpanel">
 				<div class="navs-list ">
 			<ul class="main-options">
-				<li class="left-panel-option fabric_icon"  >
-					<div class="row">
-						<div class="col-md-6 left-panel-icon" id="selected_fabric_icon">
+				<li class="left-panel-option fabric_icon active">
+					<div class="">
+						<div class="col-md-4 left-panel-icon" id="selected_fabric_icon">
 							<img src="<?= $bas_ul ?>stylior/site/images/shirt-icons/fabric.png" alt="">
 						</div>
-						<div class="col-md-6 left-panel-icon-info" id="selected_fabric">
+						<div class="col-md-8 left-panel-icon-info" id="selected_fabric">
 							<h4>FABRIC</h4>
 							<span></span>
 						</div>
@@ -157,10 +160,10 @@ else
 				</li>
 				<li class="left-panel-option pleat_icon" >
 					<div class="row">
-						<div class="col-md-6 left-panel-icon" id="selected_pleat_icon">
+						<div class="col-md-4 left-panel-icon" id="selected_pleat_icon">
 							<img src="<?= $image_url; ?>upload/trouser/pleats/single_pleat_active.png" alt="">
 						</div>
-						<div class="col-md-6 left-panel-icon-info" id="selected_pleat">
+						<div class="col-md-8 left-panel-icon-info" id="selected_pleat">
 							<h4>PLEAT</h4>
 							<span></span>
 						</div>
@@ -168,10 +171,10 @@ else
 				</li>
 				<li class="left-panel-option cuffs_icon"  >
 					<div class="row">
-						<div class="col-md-6 left-panel-icon" id="selected_cuff_icon">
+						<div class="col-md-4 left-panel-icon" id="selected_cuff_icon">
 							<img src="<?= $image_url; ?>upload/trouser/cuffs/cuff_active.png" alt="">
 						</div>
-						<div class="col-md-6 left-panel-icon-info" id="selected_cuff">
+						<div class="col-md-8 left-panel-icon-info" id="selected_cuff">
 							<h4>CUFFS</h4>
 							<span></span>
 						</div>
@@ -179,10 +182,10 @@ else
 				</li>
 				<li class="left-panel-option pocket_icon" >
 					<div class="row">
-						<div class="col-md-6 left-panel-icon" id="selected_pocket_icon" >
+						<div class="col-md-4 left-panel-icon" id="selected_pocket_icon" >
 							<img src="<?= $image_url; ?>upload/trouser/pocket/back_single_pocket_active.png" alt="">
 						</div>
-						<div class="col-md-6 left-panel-icon-info" id="selected_pocket">
+						<div class="col-md-8 left-panel-icon-info" id="selected_pocket">
 							<h4>POCKET</h4>
 							<span> </span>
 						</div>
@@ -190,10 +193,10 @@ else
 				</li>
 				<li class="left-panel-option belt_icon">
 					<div class="row">
-						<div class="col-md-6 left-panel-icon" id="selected_belt_icon">
+						<div class="col-md-4 left-panel-icon" id="selected_belt_icon">
 							<img src="<?= $image_url; ?>upload/trouser/belt/belt_loop_active.png" alt="">
 						</div>
-						<div class="col-md-6 left-panel-icon-info" id="selected_belt">
+						<div class="col-md-8 left-panel-icon-info" id="selected_belt">
 							<h4>BELT</h4>
 							<span> </span>
 						</div>
@@ -201,10 +204,10 @@ else
 				</li>
 				<li class="left-panel-option button_icon" >
 					<div class="row">
-						<div class="col-md-6 left-panel-icon" id="selected_button_icon">
+						<div class="col-md-4 left-panel-icon" id="selected_button_icon">
 							<img src="<?= $bas_ul ?>stylior/site/images/shirt-icons/button.png" alt="">
 						</div>
-						<div class="col-md-6 left-panel-icon-info" id="selected_button">
+						<div class="col-md-8 left-panel-icon-info" id="selected_button">
 							<h4>BUTTON</h4>
 							<span> </span>
 						</div>
@@ -214,17 +217,18 @@ else
 			</ul>
 		</div>
  </div>
-	<div class="col-xs-12 left-panel visible-xs visible-sm">
+  </div>
+	<div class="col-xs-12 left-panel visible-xs visible-sm virtual-mobile-view">
 		<ul class="main-options">
 		<div class="swiper-container">
 		<div class="swiper-wrapper">
 				<div class="swiper-slide"   >
 					<li class="left-panel-option fabric_icon"  >
 						<div class="row">
-							<div class="col-md-6 left-panel-icon" id="selected_fabric_icon_mobile">
+							<div class="col-xs-12 col-sm-12 left-panel-icon" id="selected_fabric_icon_mobile">
 								<img src="<?= $bas_ul ?>stylior/site/images/shirt-icons/fabric.png" alt="">
 							</div>
-							<div class="col-md-6 left-panel-icon-info" id="selected_fabric">
+							<div class="col-xs-12 col-sm-12 left-panel-icon-info" id="selected_fabric">
 								<h4>FABRIC</h4>
 								<span></span>
 							</div>
@@ -234,10 +238,10 @@ else
 				<div class="swiper-slide" >
 				<li class="left-panel-option pleat_icon" >
 					<div class="row">
-						<div class="col-md-6 left-panel-icon" id="selected_pleat_icon_mobile">
+						<div class="col-xs-12 col-sm-12 left-panel-icon" id="selected_pleat_icon_mobile">
 							<img src="<?= $image_url; ?>upload/trouser/pleats/single_pleat_active.png" alt="">
 						</div>
-						<div class="col-md-6 left-panel-icon-info" id="selected_pleat">
+						<div class="col-xs-12 col-sm-12 left-panel-icon-info" id="selected_pleat">
 							<h4>PLEAT</h4>
 							<span></span>
 						</div>
@@ -247,10 +251,10 @@ else
 				<div class="swiper-slide"  >
 					<li class="left-panel-option cuffs_icon"  >
 						<div class="row">
-							<div class="col-md-6 left-panel-icon" id="selected_cuff_icon_mobile">
+							<div class="col-xs-12 col-sm-12 left-panel-icon" id="selected_cuff_icon_mobile">
 								<img src="<?= $image_url; ?>upload/trouser/cuffs/cuff_active.png" alt="">
 							</div>
-							<div class="col-md-6 left-panel-icon-info" id="selected_cuff">
+							<div class="col-xs-12 col-sm-12 left-panel-icon-info" id="selected_cuff">
 								<h4>CUFFS</h4>
 								<span></span>
 							</div>
@@ -260,10 +264,10 @@ else
 			<div class="swiper-slide"  >
 			<li class="left-panel-option pocket_icon" >
 				<div class="row">
-					<div class="col-md-6 left-panel-icon" id="selected_pocket_icon_mobile" >
+					<div class="col-xs-12 col-sm-12 left-panel-icon" id="selected_pocket_icon_mobile" >
 						<img src="<?= $image_url; ?>upload/trouser/pocket/back_single_pocket_active.png" alt="">
 					</div>
-					<div class="col-md-6 left-panel-icon-info" id="selected_pocket">
+					<div class="col-xs-12 col-sm-12 left-panel-icon-info" id="selected_pocket">
 						<h4>POCKET</h4>
 						<span> </span>
 					</div>
@@ -273,10 +277,10 @@ else
 				<div class="swiper-slide">
 					<li class="left-panel-option belt_icon">
 						<div class="row">
-							<div class="col-md-6 left-panel-icon" id="selected_belt_icon_mobile">
+							<div class="col-xs-12 col-sm-12 left-panel-icon" id="selected_belt_icon_mobile">
 								<img src="<?= $image_url; ?>upload/trouser/belt/belt_loop_active.png" alt="">
 							</div>
-							<div class="col-md-6 left-panel-icon-info" id="selected_belt">
+							<div class="col-xs-12 col-sm-12 left-panel-icon-info" id="selected_belt">
 								<h4>BELT</h4>
 								<span> </span>
 							</div>
@@ -286,10 +290,10 @@ else
 				<div class="swiper-slide" >
 					<li class="left-panel-option button_icon" >
 						<div class="row">
-							<div class="col-md-6 left-panel-icon" id="selected_button_icon_mobile">
+							<div class="col-xs-12 col-sm-12 left-panel-icon" id="selected_button_icon_mobile">
 								<img src="<?= $bas_ul ?>stylior/site/images/shirt-icons/button.png" alt="">
 							</div>
-							<div class="col-md-6 left-panel-icon-info" id="selected_button">
+							<div class="col-xs-12 col-sm-12 left-panel-icon-info" id="selected_button">
 								<h4>BUTTON</h4>
 								<span> </span>
 							</div>
@@ -306,10 +310,10 @@ else
 </ul>
 	</div>
  <!-- main option panel end -->
-<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 option-select nopadding ">
+<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 nopadding ">
+<div class="option-select">
 
-
-	<div class="filter-options" id="filter_options" style="display:none;" >
+	<div class="filter-options" id="filter_options">
 	<div class="row" >
 		<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 nopadding">
 			<div class="dropdown">
@@ -500,7 +504,7 @@ else
 <!--Pleats Option Start -->
 
 <div class="pleat-options" id="pleat_options" style="display: none">
-	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+	<div class="col-lg-6 col-md-6 col-sm-3 col-xs-6 ">
 		<div class="pleats-details" id="TRNOPLEAT">
 				<a class="changeOption" href="#" data="TRNOPLEAT" data-key="pleats">
 					<img class="img-responsive default" src="<?= $image_url; ?>upload/trouser/pleats/no_pleat_default.png">
@@ -511,7 +515,7 @@ else
 				</div>
 		</div>
 	</div>
-	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+	<div class="col-lg-6 col-md-6 col-sm-3 col-xs-6 ">
 		<div class="pleats-details" id="TRSINGLEPLEAT">
 				<a class="changeOption" href="#" data="TRSINGLEPLEAT" data-key="pleats">
 					<img class="img-responsive default" src="<?= $image_url; ?>upload/trouser/pleats/single_pleat_default.png">
@@ -522,7 +526,7 @@ else
 				</div>
 		</div>
 	</div>
-	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+	<div class="col-lg-6 col-md-6 col-sm-3 col-xs-6 ">
 		<div class="pleats-details" id="TRSOUBLEPLEAT">
 				<a class="changeOption" href="#" data="TRDOUBLEPLEAT" data-key="pleats">
 					<img class="img-responsive default" src="<?= $image_url; ?>upload/trouser/pleats/double_pleat_default.png">
@@ -537,7 +541,7 @@ else
 
 <!-- bottom cuffs start -->
 <div class="cuffs-options" id="cuffs_options" style="display: none">
-	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+	<div class="col-lg-6 col-md-6 col-sm-3 col-xs-6 ">
 		<div class="cuffs-details" id="TRCUFFYES">
 				<a class="changeOption" href="#" data="TRCUFFYES" data-key="bottom_cuff">
 					<img class="img-responsive default" src="<?= $image_url; ?>upload/trouser/cuffs/cuff_default.png">
@@ -548,7 +552,7 @@ else
 				</div>
 		</div>
 	</div>
-	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+	<div class="col-lg-6 col-md-6 col-sm-3 col-xs-6 ">
 		<div class="cuffs-details" id="TRCUFFNO">
 				<a class="changeOption" href="#" data="TRCUFFNO" data-key="bottom_cuff">
 					<img class="img-responsive default" src="<?= $image_url; ?>upload/trouser/cuffs/no_cuff_default.png">
@@ -563,7 +567,7 @@ else
 
 <!-- back pocket -->
 <div class="pocket-options" id="pocket_options" style="display: none">
-	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+	<div class="col-lg-6 col-md-6 col-sm-3 col-xs-6 ">
 		<div class="pocket-details" id="TRNOPOCKET">
 				<a class="changeOption" href="#" data="TRNOPOCKET" data-key="back_pocket">
 					<img class="img-responsive default" src="<?= $image_url; ?>upload/trouser/pocket/back_single_pocket_default.png">
@@ -574,7 +578,7 @@ else
 				</div>
 		</div>
 	</div>
-	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+	<div class="col-lg-6 col-md-6 col-sm-3 col-xs-6 ">
 		<div class="pocket-details" id="TRSINGLEPOCKET">
 				<a class="changeOption" href="#" data="TRSINGLEPOCKET" data-key="back_pocket">
 					<img class="img-responsive default" src="<?= $image_url; ?>upload/trouser/pocket/back_single_pocket_default.png">
@@ -585,7 +589,7 @@ else
 				</div>
 		</div>
 	</div>
-	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+	<div class="col-lg-6 col-md-6 col-sm-3 col-xs-6 ">
 		<div class="pocket-details" id="TRDOUBLEPOCKET">
 				<a class="changeOption" href="#" data="TRDBLPOCKET" data-key="back_pocket">
 					<img class="img-responsive default" src="<?= $image_url; ?>upload/trouser/pocket/Back_double_pocket_default.png">
@@ -602,7 +606,7 @@ else
 <!-- Belt Loop -->
 
 <div class="belt-options" id="belt_options" style="display: none">
-	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+	<div class="col-lg-6 col-md-6 col-sm-3 col-xs-6 ">
 		<div class="belt-details" id="TRWITHLOOP">
 				<a class="changeOption" href="#" data="TRSIDETABWL" data-key="Belt">
 					<img class="img-responsive default" src="<?= $image_url; ?>upload/trouser/belt/belt_loop_default.png">
@@ -614,7 +618,7 @@ else
 		</div>
 	</div>
 
-	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+	<div class="col-lg-6 col-md-6 col-sm-3 col-xs-6 ">
 		<div class="belt-details" id="TRWITHOUTLOOP">
 				<a class="changeOption" href="#" data="TRSIDETAB" data-key="Belt">
 					<img class="img-responsive default" src="<?= $image_url; ?>upload/trouser/belt/belt_no_loop_default.png">
@@ -625,7 +629,7 @@ else
 				</div>
 		</div>
 	</div>
-	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+	<div class="col-lg-6 col-md-6 col-sm-3 col-xs-6 ">
 		<div class="belt-details" id="TRSIDETAB">
 				<a class="changeOption" href="#" data="TRSIDETAB" data-key="Belt">
 					<img class="img-responsive default" src="<?= $image_url; ?>upload/trouser/belt/side_tab_default.png">
@@ -694,7 +698,7 @@ else
 	</div>
 </div>
 </div>
-
+</div>
 <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
 	<div class="rendered-trouser">
 		<img class="img-responsive processimage" src="">
@@ -711,12 +715,13 @@ else
 		</a>
 	</div>
 	<div class="details-trouser">
+<div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 nopadding">
 		<div class="trouser-info">
 			<ul>
           		<li ><h4 class="current_title">Classic Solid Ash Grey Trouser</h4></li>
            		<li><strong>Fabric :</strong> <span  class="current_fabric" >Wool</span></li>
             	<li ><strong>Pattern :</strong><span class="current_pattern" >Solids</span></li>
-            	<li ><strong>Colour :</strong> <span class="current_color">Greys</span></li>
+            	<li ><strong>Colour :</strong> <span class="current_color">Blue</span></li>
             	<li ><strong>Thread Count :</strong> <span class="current_threadcount" >120</span></li>
             <li><strong>Price :</strong> <span  class="current_price" ><?= $this->session->userdata('currencycode') .' '.$default_price;?></span></li>
 				<input type="hidden" name="current_product_id" id="current_product_id" value=""/>
@@ -724,6 +729,7 @@ else
 			</ul>
 
 		</div>
+</div>
 		<div class="summary-button">
 		  <button type="button"  data-toggle="modal" data-target="#trouserSummary">SUMMARY</button>
 		</div>
@@ -775,19 +781,15 @@ else
   </div>
 </div>
 
-<div id="trouserFabric" class="modal fade" role="dialog">
+<div id="trouserFabric" class="modal fade fabricModal" role="dialog">
   <div class="modal-dialog">
 
     <!-- Modal content-->
     <div class="modal-content noradius" >
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-      </div>
-
-      <div class="modal-body" id="trouserFabricImage">
-				<img class="img-responsive" src="">
-
-      </div>
+        <div class="modal-body" id="trouserFabricImage">
+            <img class="img-responsive" src="">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
 
     </div>
 
@@ -802,10 +804,13 @@ else
 		<!--  measurements end -->
 </body>
 
+
 <script src="<?= $bas_ul ?>site/js/jquery-2.1.1.js"></script>
 <script src="<?= $bas_ul ?>site/js/bootstrap.min.js"></script>
 <script src="<?= $bas_ul ?>site/js/swiper.min.js"></script>
 <script src="https://www.stylior.com/stylior/site/js/remodal.js"></script>
+<script src="https://www.stylior.com/site/js/remodal.js"></script>
+<script src="https://www.stylior.com/site/js/jquery.slimscroll.js"></script>
 <script src="<?= $bas_ul ?>site/js/trouser_new_3d_js.php"></script>
 <script src="<?= $bas_ul ?>site/js/3d-trouser.js"></script>
 
@@ -939,7 +944,8 @@ jQuery(document).ready(function($){
 
 
 /*avr measurements functions here.*/
-var trouserMeasure={"HEIGHTinch":"","WEIGHTkg":"","pocket":"NO","Monogram":"NO","MonoLocation":"","Monofontstyle":"","Monocolor":"","Monotext":"None","fitype":"NO","standardsize":"NO","length":"NO","waist":"","hip":"","rise":"","bottom":"","knee":"","thigh":""};
+var trouserMeasure={"HEIGHTinch":"","WEIGHTkg":"","pocket":"NO","fitype":"NO","standardsize":"NO","length":"NO","waist":"","hip":"","rise":"","bottom":"","knee":"","thigh":""};
+
 var trouserDimension={"pleats":"Nil", "cuffs":"Yes", "pocket":"None","beltloop":"Yes","fitype":"None", "standardsize":"None", "length":"None","product_details_page":"<?php echo $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']; ?>"};
 
 
@@ -976,22 +982,13 @@ $("#quick_save").click(function(){
 
       //ajax call to server420
     var result ="imagedata";
-    //var imgData = getBase64Image($('#saveImg').attr('src')));
+  
     var base_url = 'https://www.stylior.com/';
     // var exact_price = $("#prd_price").val();
     // var product_id = $("#prd_id").val();
       var subcatid='11';
     var ordertype;
-  //  alert("tyoe"+subcatid);
-    if(subcatid=="10")
-    {
-     ordertype="shirt";
-    }
-    else if(subcatid=="11")
-    {
-     ordertype="pant";
-    }
-    //var fabric_nameshirt = $("#prd_namme").val();
+      //var fabric_nameshirt = $("#prd_namme").val();
     var loginUser='<?php echo $_SESSION["user_id"]; ?>';
     if(loginUser)
     {
@@ -1001,8 +998,9 @@ $("#quick_save").click(function(){
           data:
           {
             details_up : JSON.stringify(trouserMeasure),
-            measureid :  measureid
-              },
+            measureid :  measureid,
+            subcatid:11
+          },
           success: function(response) {
               console.log("AVR"+response);
               window.location.href=base_url+"cart/lum_view_cart";
@@ -1010,7 +1008,7 @@ $("#quick_save").click(function(){
         });
     }
 
-  });
+});
 
 /** Add Measurement data collect from here.
 *******
@@ -1027,7 +1025,9 @@ $("#add-mesurement").click(function(){
            $.ajax({
             url:base_url+'cart/new_mvalue' ,
             method: "POST",
-            data: {'data': $(".mesure-form").serialize()},
+            data: {
+            	'data': $(".mesure-form").serialize()
+            },
             success:function(data){
               console.log("this is data"+data);
               location.href='https://www.stylior.com//cart/lum_view_cart';
@@ -1124,6 +1124,16 @@ function showExistingMeasure(measureid){
 
 </script>
 
+<script type="text/javascript">
+    $(document).ready(function(){
+      $('.desing-cloth-leftpanel, .option-select').slimScroll({
+			height: '100vh',
+			color: 'rgb(1, 47, 66)',
+			disableFadeOut: true
+      });
+
+    });
+</script>
 
 
 

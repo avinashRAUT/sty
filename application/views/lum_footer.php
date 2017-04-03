@@ -243,3 +243,4 @@ if(!isset($_COOKIE[$cookie_name])) {
  <script src="<?=base_url() ?>js/jquery.mb.YTPlayer.js"></script>
 <script type="text/javascript" src="<?=base_url() ?>js/wow.js"></script>
 <script type="text/javascript" src="<?=base_url() ?>js/script.js"></script>
+<script type="text/javascript" src="<?=base_url() ?>js/bootsnav.js"></script>

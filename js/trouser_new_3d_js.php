@@ -17,7 +17,6 @@ header("Content-type: application/javascript");
 		'belt':{'part':'trsidetabwl','pair':'TRSLIM','swatch':base_fabric},
 		'trouser_button':{'part':'TBBLACK','pair':'trsidetabwl','pairpair':'TRSLIM'},
     };
-
 	/*
 	part=TBBLACK&pair=TRSIDETABWL&pairpair=TRSLIM
 	part= <trouser button value>
@@ -44,7 +43,8 @@ header("Content-type: application/javascript");
 	// 'bottom_hem'
 	// 'stylior_logo'
 	//console.log(Obj3d);
-changeFabricInfo(base_fabric);
+	changeFabricInfo(base_fabric);
+	
 	var make_url="";
 	$(document).ready(function(){
 		console.clear();
@@ -61,12 +61,7 @@ changeFabricInfo(base_fabric);
 
 			}
 			make_url+="/";
-			// console.log("/");
-			// console.log("key value");
-			// console.log(key);
-			// console.log("obj value");
-			// console.log(Obj3d.key);
-
+	
 		}
 
 		$(".processimage").make_url;
@@ -138,10 +133,6 @@ changeFabricInfo(base_fabric);
     			$(".se-pre-con").hide();
 	        });
 
-
-
-
-
 		/******* To change the view of modal-shirt
 		****     toggle button : front and back view
 		****     Shirt-3d page
@@ -170,13 +161,7 @@ changeFabricInfo(base_fabric);
 		});
 	}); /*end of jquery*/
 
-
-
-
-
-
-
-		function changeFabricInfo(c_key){
+	function changeFabricInfo(c_key){
 		  		var  fabric_title=$(".product-title-"+c_key).html();
 		  		var  fabric_price=$(".product-price-"+c_key).html();
 		  		var  fabric_pattern=$(".product-pattern-"+c_key).html();
@@ -187,21 +172,17 @@ changeFabricInfo(base_fabric);
 				//alert($(".current_pattern").html())
 				// $(".current_pattern").text("solid");
 				/*convert pattern number to pattern name and color no to color name*/
-
-
 				var option = $(this).find('a').attr('data-part');
 				var color = ('color_' + $('.product-color-' + option).text()).replace(/\s/g,'');
 				var pattern = ('pattern_' + $('.product-pattern-' + option).text()).replace(/\s/g,'');
 				var color_value = $('#' + color).text();
 				var pattern_value = $('#' + pattern).text();
-				$(".current_pattern ").html(pattern_value);
-				$(".current_color").html(color_value);
-				console.log(color_value);
-				console.log(pattern_value);
-
+				if(color_value!="" && pattern_value!="")
+				{
+					$(".current_pattern ").html(pattern_value);
+					$(".current_color").html(color_value);
+				}
 				/*end color patter*/
-
-
 				// $(".current_pattern").html(fabric_pattern)
 		  		// alert(fabric_title+""+fabric_price+"color"+fabric_color);
 		 		$(".current_title").html(fabric_title);
