@@ -126,8 +126,9 @@ else
 
 <link rel="stylesheet" href="<?= $https_url ?>/site/css/font-awesome.min.css">
 <link rel="stylesheet" href="<?= $https_url ?>/site/css/ionicons.min.css">
-<link href="<?= $https_url ?>/site/css/bootsnav.css" rel="stylesheet">
+
  <link href="<?=$https_url ?>site/css/bootstrap.css" rel="stylesheet" />
+ <link href="<?= $https_url ?>/site/css/bootsnav.css" rel="stylesheet">
 
 <!-- 3d page css  -->
 <?php
@@ -236,19 +237,19 @@ src="https://www.facebook.com/tr?id=1248172288528875&ev=PageView&noscript=1"
 <!-- start header -->
 <header id="header" class="header stylior-header">
 	<div class="top-header">
-    	<div class="container">
+    	<div class="container custom-container">
         	<div class="header-bar">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-6 col-xs-12">
                     	<div class="globle-tagline hidden-xs hidden-sm"><i class="fa fa-globe" aria-hidden="true"></i> Global Shipping, Incredibly Easy Returns</div>
                     </div>
-                    <div class="col-md-6 nav-right">
-                    <div class="pull-right cart">
+                    <div class="col-md-6 col-xs-12 nav-right">
+                    <div class="cart right">
                     	<a href="<?= $bas_ul ?>cart/lum_view_cart">
                         <i class="fa fa-shopping-cart"></i>
                         <span class="badge"><?php echo $this->cart->total_items();?></span></a>
                     </div>
-                    <div class="dropdown pull-right flag-dropdown">
+                    <div class="dropdown right flag-dropdown">
                       <!-- start var flag selection --> 
                     <?php 
                     if($this->session->userdata('currencycode')!="")
@@ -272,7 +273,7 @@ src="https://www.facebook.com/tr?id=1248172288528875&ev=PageView&noscript=1"
                         </ul> 
                     </div>
 
-                      <div class="pull-right">
+                      <div class="right">
         							<ul>
                       <?php if($this->session->userdata('user_id')){  ?>
         							
@@ -298,9 +299,9 @@ src="https://www.facebook.com/tr?id=1248172288528875&ev=PageView&noscript=1"
           
     <!-- Start Navigation -->
 
-<nav class="navbar navbar-default navbar-mobile bootsnav">
+<nav class="navbar navbar-default navbar-mobile navbar-sticky bootsnav">
 
-    <div class="container">      
+    <div class="container custom-container">      
         <!-- Start Header Navigation -->
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
@@ -312,14 +313,14 @@ src="https://www.facebook.com/tr?id=1248172288528875&ev=PageView&noscript=1"
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="navbar-menu">
-            <ul class="nav navbar-nav navbar-right">
+            <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
                 <li><a href="<?php echo $bas_ul;?>">Home</a></li>  
                  <li class="dropdown megamenu-fw">
                  	<a href="#" class="dropdown-toggle" data-toggle="dropdown">Shop</a>
                     <ul class="dropdown-menu megamenu-content" role="menu">
-                    	<li>
+                    	<li class="shop_menu">
                         	<div class="row">
-                            	<div class="col-menu col-md-3 shop_Category">
+                            	<div class="col-menu col-md-3 col-xs-12 shop_Category">
                                 	<h4 class="title">Shop by category</h4>
                                     <div class="content">
                                         <ul class="menu-col">
@@ -331,16 +332,18 @@ src="https://www.facebook.com/tr?id=1248172288528875&ev=PageView&noscript=1"
                                         </ul>
                                     </div>
                                 </div>
-                                <div class="col-md-3 shop_Accessories">
-									<h4>Accessories</h4>
-									<ul>
-                                    	<li><a href="<?php echo $bas_ul;?>mens-ties">ties</a></li>
-                                        <li><a href="<?php echo $bas_ul;?>mens-cuff-links">cuff links</a></li>
-                                        <li class="coming_soon"><a href="javascript:void(0);">Leather<span class="label label-default">coming soon</span></a></li>
-                                    </ul>    
+                                <div class="col-menu col-md-3 col-xs-12 shop_Accessories">
+                                  <h4 class="title">Accessories</h4>
+                                  <div class="content">
+                                      <ul class="menu-col">
+                                            <li><a href="<?php echo $bas_ul;?>mens-ties">ties</a></li>
+                                            <li><a href="<?php echo $bas_ul;?>mens-cuff-links">cuff links</a></li>
+                                            <li class="coming_soon"><a href="javascript:void(0);">Leather<span class="label label-default">coming soon</span></a></li>
+                                      </ul>    
                                 </div>
-                                <div class="col-md-6">
-								<a href=""><img src="<?= $https_url ?>site/images/header/shop-image.jpg" class="img-responsive" alt="shop"></a>
+                                </div>
+                                <div class="col-menu col-md-6 col-xs-12 offer_image">
+                                <img src="<?= $https_url ?>site/images/header/shop-image.jpg" class="img-responsive" alt="shop">
                                 </div>
                             </div>
                         </li>
@@ -351,20 +354,22 @@ src="https://www.facebook.com/tr?id=1248172288528875&ev=PageView&noscript=1"
                     <ul class="dropdown-menu megamenu-content" role="menu">
                     	<li>
                             <div class="row">
-                                    <div class="col-md-4 ">
+                                    <div class="col-menu col-md-4 col-xs-12 nav-offerImage offer_image">
                                         <img src="<?= $https_url ?>site/images/header/nav_studio_1.jpg" class="img-responsive" alt="shop" >
                                     </div>
-                                    <div class="col-md-4 studio-customize">
-										<h4>customise your wardrobe</h4>
-                                        <ul>
-                                        	<li><a href="<?php echo $bas_ul;?>custom-shirt">Shirts</a></li>
-                                            <li><a href="<?php echo $bas_ul;?>custom-suit">suits</a></li>
-                                            <li><a href="<?php echo $bas_ul;?>custom-blazer">blazers</a></li>
-                                            <li><a href="<?php echo $bas_ul;?>custom-trouser">trousers</a></li>
-                                            <li><a href="<?php echo $bas_ul;?>custom-vest">vests</a></li>
-                                        </ul>
+                                    <div class="col-menu col-md-4 col-xs-12 studio-customize">
+										<h5 class="title">customise your wardrobe</h5>
+                                        <div class="content">
+                                            <ul class="menu-col">
+                                                <li><a href="<?php echo $bas_ul;?>custom-shirt">Shirts</a></li>
+                                                <li><a href="<?php echo $bas_ul;?>custom-suit">suits</a></li>
+                                                <li><a href="<?php echo $bas_ul;?>custom-blazer">blazers</a></li>
+                                                <li><a href="<?php echo $bas_ul;?>custom-trouser">trousers</a></li>
+                                                <li><a href="<?php echo $bas_ul;?>custom-vest">vests</a></li>
+                                            </ul>
+                                        </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-menu col-md-4 col-xs-12 nav-offerImage offer_image">
                                     <img src="<?= $https_url ?>site/images/header/nav_studio_2.jpg" class="img-responsive" alt="shop">
                                     </div>
                             </div>
