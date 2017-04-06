@@ -340,22 +340,22 @@ $https_url_large_img="https://www.stylior.com/stylior/upload/products1/large/";
 <div class="carousel-inner">
 <div class="item imgbanner active ">
    <!--<img src="img/slider/Fotolia_30977559_XS.jpg" alt="slide 1">-->
-   <a href="#"><img src="<?= base_url() ?>images/home-banner-bangalore-mobile.jpg" class="visible-xs" alt="Stylior Store Launch in Bangalore, India"/></a>
-   <a href="#"> <img src="<?= base_url() ?>images/home-banner-bangalore.jpg" class="hidden-xs" alt="Stylior Store Launch in Bangalore, India" ></a>
+   <a href="#"><img src="<?= base_url() ?>images/2-slider-mobile.jpg" class="visible-xs" alt="Stylior Store Launch in Bangalore, India"/></a>
+   <a href="#"> <img src="<?= base_url() ?>images/2-slider.jpg" class="hidden-xs" alt="Stylior Store Launch in Bangalore, India" ></a>
 </div>
 
 <div class="item imgbanner">
-   <a href="<?= $base_url_temp ?>mens-ties"> <img src="<?= base_url() ?>images/stylior-mobile-banner-inspired.jpg" alt="Slide3"  class="visible-xs"></a>
-   <a href="<?= $base_url_temp ?>mens-ties"> <img src="<?= base_url() ?>images/web-banner-inspired.jpg" class="hidden-xs" alt="Slide1" ></a>
+   <a href="<?= $base_url_temp ?>custom-suit"> <img src="<?= base_url() ?>images/3-slider-mobile.jpg" alt="Custom Suit"  class="visible-xs"></a>
+   <a href="<?= $base_url_temp ?>custom-suit"> <img src="<?= base_url() ?>images/3-slider.jpg" class="hidden-xs" alt="Custom Suit" ></a>
 </div>
 
-
-
-
-
 <div class="item imgbanner">
-   <a href="<?= $base_url_temp ?>custom-shirt"> <img src="<?= base_url() ?>images/shirt-mobile.jpg" alt="Customize Shirts"  class="visible-xs"></a>
-   <a href="<?= $base_url_temp ?>custom-shirt"> <img src="<?= base_url() ?>images/shirt_banner.jpg" class="hidden-xs" alt="Customize Shirts" ></a>
+   <a href="<?= $base_url_temp ?>custom-shirt"> <img src="<?= base_url() ?>images/1-slider-mobile.jpg" alt="Customize Shirts"  class="visible-xs"></a>
+   <a href="<?= $base_url_temp ?>custom-shirt"> <img src="<?= base_url() ?>images/1-slider.jpg" class="hidden-xs" alt="Customize Shirts" ></a>
+</div>
+<div class="item imgbanner">
+   <a href="<?= $base_url_temp ?>custom-shirt"> <img src="<?= base_url() ?>images/4-slider-mobile.jpg" alt="Customize Shirts"  class="visible-xs"></a>
+   <a href="<?= $base_url_temp ?>custom-shirt"> <img src="<?= base_url() ?>images/4-slider.jpg" class="hidden-xs" alt="Customize Shirts" ></a>
 </div>
 
 <? /*<div class="item imgbanner">
@@ -368,28 +368,22 @@ $https_url_large_img="https://www.stylior.com/stylior/upload/products1/large/";
 </div> */?>
 
 
-
-
-
 </div>
        <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
         <li data-target="#myCarousel" data-slide-to="1"></li>
         <li data-target="#myCarousel" data-slide-to="2"></li>
+        <li data-target="#myCarousel" data-slide-to="3"></li>
 
       </ol>
       <? /*
       <!-- Controls -->
      <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="fa fa-chevron-left fa-2x hidden"></span></a>
       <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="fa fa-chevron-right fa-2x hidden"></span></a>*/?>
-    </div>
-
-
-    <!-- /.carousel -->
-    <!-- /.carousel -->
-     <!-- <div class="video-gap"></div> -->
-
-
+</div>
+<!-- /.carousel -->
+<!-- /.carousel -->
+<!-- <div class="video-gap"></div> -->
 <div class="gap13 hidden-xs hidden-sm "></div>
 <!-- image 1st end -->
  <div class="carousel slide wow fadeIn" data-wow-delay=".3s">
@@ -427,10 +421,9 @@ $https_url_large_img="https://www.stylior.com/stylior/upload/products1/large/";
       </svg>
     UNLOCK YOUR CODE
     </a>
-               </p>
-
-            </div>
-         </div>
+  </p>
+  </div>
+</div>
       </div>
    </div>
 </div>
@@ -442,8 +435,8 @@ $https_url_large_img="https://www.stylior.com/stylior/upload/products1/large/";
   <div class="row">
 
     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 pad-R0">
-       <h2 class="text-center text-uppercase">YOUR DESIGN OUR CRAFTSMANSHIP </h2>
-      <p class="text-center">Try custom made with confidence, classic service modern style </p>
+       <!-- <h2 class="text-center text-uppercase">YOUR DESIGN OUR CRAFTSMANSHIP </h2>
+      <p class="text-center">Try custom made with confidence, classic service modern style </p> -->
         <div class="carousel slide">
           <div class="carousel-inner">
             <div class="item active">
@@ -471,9 +464,9 @@ $https_url_large_img="https://www.stylior.com/stylior/upload/products1/large/";
     </div>
 
    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 pad-R0">
-     <h2 class="text-center text-uppercase">MEN'S TROUSERS
+    <!--  <h2 class="text-center text-uppercase">MEN'S TROUSERS
 </h2>
-    <p class="text-center">Whatever the occasion, our collection of men's trouser offers an array of classy finishing touches.</p>
+    <p class="text-center">Whatever the occasion, our collection of men's trouser offers an array of classy finishing touches.</p> -->
       <div class="carousel slide">
         <div class="carousel-inner">
           <div class="item active">
@@ -501,8 +494,10 @@ YOUR DESIGN OUR CREAFTSMANSHIP</span></h2>-->
   </div>
 
   <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 pad-L0">
-   <h1 class="text-center  text-uppercase">Design your own shirt </h1>
+  <h1 class="text-center  text-uppercase hide">Design your own shirt </h1>
+  <!--  <h1 class="text-center  text-uppercase">Design your own shirt </h1>
   <p class="text-center">Having a custom made outfit is always gives you an edge.</p>
+   --> 
     <div class="carousel slide">
       <div class="carousel-inner">
         <div class="item active">
