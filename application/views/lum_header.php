@@ -278,7 +278,7 @@ src="https://www.facebook.com/tr?id=1248172288528875&ev=PageView&noscript=1"
         							<ul>
                       <?php if($this->session->userdata('user_id')){  ?>
           			      <li><a href="<?= $bas_ul ?>home/lum_my_account" data-toggle=""><i class="fa fa-user"></i>My Account</a></li>
-                      <li class=""><a  href="<?= $bas_ul ?>hauth/logout">Logout</i></a></li>
+                      <li class="hidden-xs"><a  href="<?= $bas_ul ?>hauth/logout">Logout</i></a></li>
 
               				<?php } 
         							else {?>
@@ -286,6 +286,10 @@ src="https://www.facebook.com/tr?id=1248172288528875&ev=PageView&noscript=1"
 
         							<?php  }?>
                     </ul>
+                        </div>
+                        
+                    
+                    
                       </div><!-- end of pull-right < login -->
                     </div> 
                 </div>
@@ -340,7 +344,7 @@ src="https://www.facebook.com/tr?id=1248172288528875&ev=PageView&noscript=1"
                                 </div>
                                 </div>
                                 <div class="col-menu col-md-6 col-xs-12 offer_image">
-                                <img src="<?= $https_url ?>site/images/header/shop-image.jpg" class="img-responsive" alt="shop">
+                                <img src="<?= $https_url ?>site/images/header/offer-image.jpg" class="img-responsive" alt="shop">
                                 </div>
                             </div>
                         </li>
@@ -387,7 +391,9 @@ src="https://www.facebook.com/tr?id=1248172288528875&ev=PageView&noscript=1"
                     </ul>
    
                 </li>
-
+				<?php if($this->session->userdata('user_id')){  ?>
+                <li class="visible-xs"><a  href="<?= $bas_ul ?>hauth/logout">Logout</i></a></li>
+                <?php } ?>
             
             </ul>
         </div><!-- /.navbar-collapse -->
