@@ -115,7 +115,7 @@ else
  <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-
+<meta name="google-site-verification" content="JvthufbKUe07U-38F5bK2koa6vI5FN97PgcgCZ0QVck" />
     <link rel="shortcut icon" href="<?= $bas_ul ?>stylior/site/images/favicon.jpg" sizes="32x32" />
     <!--  non-retina iPhone pre iOS 7 -->
     <link rel="apple-touch-icon" href="<?= $bas_ul ?>stylior/site/images/favicon.jpg" sizes="57x57" />
@@ -154,6 +154,16 @@ if($data[1]=="home" && $data[2]=="new_custom" ||$data[2]=="new_custom_demo"){?>
   <link rel="stylesheet" type="text/css" href="<?=$https_url ?>site/css/owl.carousel.css">
   <link rel="stylesheet" type="text/css" href="<?=$https_url ?>site/css/font-awesome.min.css" />
   <link href="<?=$https_url ?>site/css/simple-lightbox.min.css" rel="stylesheet" />
+  <style>
+     .stylior-header .wrap-sticky nav.navbar.bootsnav {
+      z-index: 10000;
+    
+    }
+    .top-header .nav-right .dropdown-menu {
+        z-index: 10002;
+    }
+  </style>
+  
  <?php }else if($data[1]=="trial-shirt"){?>
 <link href="<?=$https_url ?>site/css/bootstrap.css" rel="stylesheet" />
 <script src=<?= $bas_ul ?>site/js/remodal.js></script>
@@ -170,25 +180,18 @@ if($data[1]=="home" && $data[2]=="new_custom" ||$data[2]=="new_custom_demo"){?>
   <link rel="stylesheet" type="text/css" href="<?= $https_url ?>site/css/owl.carousel.css">
   <link href="<?=$https_url ?>site/css/bootstrap.css" rel="stylesheet" />
 <?php } ?>
-<?php if(isset($title)){?>
+<?php if(isset($title)){ ?>
   <title><?php echo $title;?></title>
 	<meta property="og:url"           content="<?php echo $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']; ?>" />
 	<meta property="og:type"          content="website" />
 	<meta property="og:title"         content="<?php echo $title;?>" />
 	<meta property="og:description"   content="<?php echo $fb_description; ?>" />
 	<meta property="og:image"         content="<?php echo $https_url_large_img."".$fb_image; ?>" />
-
-
-
   <meta name="keywords" content="<?php echo $metakeywords;?>"/>
   <meta name="description" content="<?php echo $metadescription;?>"/>
 <?php } ?>
-
-
 <link href="<?=$https_url ?>site/css/style.css" rel="stylesheet" />
-
- <link href="<?= $https_url ?>/site/css/mega_menu.css" rel="stylesheet">
-
+<link href="<?= $https_url ?>/site/css/mega_menu.css" rel="stylesheet">
 <script type="text/javascript">
 window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
 d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
@@ -343,7 +346,7 @@ src="https://www.facebook.com/tr?id=1248172288528875&ev=PageView&noscript=1"
                                       </ul>    
                                 </div>
                                 </div>
-                                <div class="col-menu col-md-6 col-xs-12 offer_image">
+                                <div class="col-menu col-md-6 col-xs-12 offer_image hide">
                                 <img src="<?= $https_url ?>site/images/header/offer-image.jpg" class="img-responsive" alt="shop">
                                 </div>
                             </div>
@@ -384,6 +387,7 @@ src="https://www.facebook.com/tr?id=1248172288528875&ev=PageView&noscript=1"
                 <li class="dropdown megamenu-fw moreMenu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">MORE</a>
                     <ul class="dropdown-menu megamenu-content" role="menu">
+                    	<li ><a href="<?php echo $bas_ul;?>how-it-works">HOW IT WORKS</a></li>
                    		<li><a href="https://www.stylior.com/fit-guide">FIT GUIDE</a></li>
 	  					<li><a href="https://www.stylior.com/fabric-guide">FABRIC GUIDE</a></li>
 	  					<li><a href="https://www.stylior.com/faq">FAQ</a></li>

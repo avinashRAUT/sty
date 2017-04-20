@@ -18,21 +18,21 @@ session_start();
 // print_r($_SESSION);
 //var start
 function getIPAddress($deep_detect){
-//$ip="86.96.201.72";
+	//$ip="86.96.201.72";
 	 if (filter_var($ip, FILTER_VALIDATE_IP) === FALSE) {
-        $ip = $_SERVER["REMOTE_ADDR"];
+	    $ip = $_SERVER["REMOTE_ADDR"];
 
-        if ($deep_detect) {
-            if (filter_var(@$_SERVER['HTTP_X_FORWARDED_FOR'], FILTER_VALIDATE_IP))
-                $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-            if (filter_var(@$_SERVER['HTTP_CLIENT_IP'], FILTER_VALIDATE_IP))
-                $ip = $_SERVER['HTTP_CLIENT_IP'];
-        }
-    }
+	    if ($deep_detect) {
+	        if (filter_var(@$_SERVER['HTTP_X_FORWARDED_FOR'], FILTER_VALIDATE_IP))
+	            $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+	        if (filter_var(@$_SERVER['HTTP_CLIENT_IP'], FILTER_VALIDATE_IP))
+	            $ip = $_SERVER['HTTP_CLIENT_IP'];
+	    }
+	}
 
-$geopluginURL='http://www.geoplugin.net/php.gp?ip='.$ip;
-$addrDetailsArr = unserialize(file_get_contents($geopluginURL));
-return $addrDetailsArr;
+	$geopluginURL='http://www.geoplugin.net/php.gp?ip='.$ip;
+	$addrDetailsArr = unserialize(file_get_contents($geopluginURL));
+	return $addrDetailsArr;
 
 }
 
@@ -123,7 +123,8 @@ else
 	<link rel="stylesheet" href="<?= $bas_ul ?>/site/css/ionicons.min.css">
 	<link rel="stylesheet" href="https://www.stylior.com/stylior/site/css/remodal.css">
 	<link rel="stylesheet" href="https://www.stylior.com/stylior/site/css/remodal-default-theme.css">
-	<link rel="stylesheet" href="<?= $bas_ul ?>site/css/3d-trouser.css">
+	<link rel="stylesheet" href="<?= $bas_ul ?>site/css/3d_page_css.css">
+<!--	<link rel="stylesheet" href="<?= $bas_ul ?>site/css/3d-trouser.css">-->
 	<link rel="stylesheet" href="<?= $bas_ul ?>site/css/3d-suit.css">
 
 
@@ -148,7 +149,7 @@ else
 				<div class="navs-list ">
 			<ul class="main-options">
 				<li class="left-panel-option fabric_icon active">
-					<div class="">
+					<div class="row">
 						<div class="col-md-4 left-panel-icon" id="selected_fabric_icon">
 							<img src="<?= $bas_ul ?>stylior/site/images/shirt-icons/fabric.png" alt="">
 						</div>
@@ -314,7 +315,7 @@ else
 <div class="option-select">
 
 	<div class="filter-options" id="filter_options">
-	<div class="row" >
+	<div class="" >
 		<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 nopadding">
 			<div class="dropdown">
   				<div class="dropbtn">Color</div>
@@ -443,7 +444,7 @@ else
 	 $fabric_pattern=$value[0]->designid;
       ?>
 	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 displayfitler" data-color="<?= $fabric_color; ?>" data-pattern="<?= $fabric_pattern; ?>" data-price="<?= $price; ?>">
-	 	<div class="fabric-details" id="<?= $custom_key;?>" >
+	 	<div class="fabric-details" id="<?= $custom_key;?>">
 			<a  class="swatchchangeOption" href="#" data-part="<?= $key;?>" data-key="<?= $custom_key;?>">
 				<img class="img-responsive" src="<?= $image_url."".$image;?>">
 
@@ -466,6 +467,7 @@ else
 	</div>
 	<?php $i++;} ?>
 	</div>
+
 
 
 	<!-- <a class="swatchchangeOption" href="#" data-part="ED543432" data-key="04700032-67">04700032-67-ED543432</a> -->

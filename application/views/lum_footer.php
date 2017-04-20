@@ -25,13 +25,19 @@ if($_SESSION['user_subscribe']=="registered" && $_SESSION["subscribe"]=="no"){
 function validateForm()
 {
  		var newemail = $("#newemail").val();
-		if(newemail == '')
+		console.log(newemail.length)
+
+		var lenEmail=newemail.length;
+		//return false;
+		
+		
+		if(newemail == '' || lenEmail<4)
 		{
-			//alert('Please Enter E-mail.');
 			document.getElementById('error').innerHTML = ('Please Enter Email');
 			return false;
 		}
-        var ema = document.getElementById('newemail');
+        
+		var ema = document.getElementById('newemail');
         var filter = "/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/";
         if (!filter.test(ema.value))
 		{
@@ -41,7 +47,9 @@ function validateForm()
         }
  }
 </script>
+
 <!--<script type='text/javascript'>var _refiral=_refiral||{};_refiral.apiKey='0e7c7d6c41c76b9ee6445ae01cc0181d';(function(){var ref=document.createElement('script');ref.type='text/javascript';ref.async=true;ref.src='https://cdn.refiral.com/libs/refiral.min.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(ref,s);})();</script>-->
+
 <!-- Google Code for Stylior promotion Conversion Page -->
 <script type="text/javascript">
 /* <![CDATA[ */
@@ -61,9 +69,6 @@ var google_remarketing_only = false;
 </div>
 </noscript>
 
-
-
-
 <!-- Facebook Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -72,89 +77,33 @@ n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
 document,'script','https://connect.facebook.net/en_US/fbevents.js');
 
-fbq('init', '1248172288528875');
+fbq('init', '2055046121389006');
 fbq('track', "PageView");</script>
 <noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1248172288528875&ev=PageView&noscript=1"
+src="https://www.facebook.com/tr?id=2055046121389006&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Facebook Pixel Code -->
 
 
-
-
-
-
-<div class="lum_footer">
-
-
-
-<div class="new_lum_footer_change">
-		<div class="new_lum_footer_change_left">
-		<form  method="post" name="form" action="<?php echo $base_url_temp; ?>home/subscribe" onsubmit="return validateForm();" enctype="multipart/form-data">
-
-		<input type="email" name="newemail" id="newemail" class="lum_column_big_input_join" placeholder="Enter your email">
-		<button class="lum_column_big_button_join" id="lum_column_big_button_join"  type="submit"  >JOIN</button>
-		</form>
-		</div>
-		<div class="new_lum_footer_change_right">
-							<a href="https://www.facebook.com/styliorfashion/" target="_new"><img class="lum_column_big_img" src="<?=base_url() ?>images/lum_fb-icon_bw.png" onmouseover="hover(this);" onmouseout="unhover(this);" alt=""></a>
-
-
-							<a href="https://plus.google.com/u/0/100002617149579103996/posts" target="_new"><img class="lum_column_big_img" src="<?=base_url() ?>images/lum_gplus-icon_bw.png" onmouseover="hover(this);" onmouseout="unhover(this);" alt=""></a>
-
-
-							<a href="https://www.instagram.com/styliorfashion/" target="_new"><img class="lum_column_big_img" src="<?=base_url() ?>images/lum_instagram-icon_bw.png" onmouseover="hover(this);" onmouseout="unhover(this);" alt=""></a>
-
-							<a href="https://www.linkedin.com/company/stylior-com?trk=biz-companies-cym" target="_new"><img class="lum_column_big_img" src="<?=base_url() ?>images/lum_linkdin-icon_bw.png" onmouseover="hover(this);" onmouseout="unhover(this);" alt=""></a>
-
-							<a href="https://www.pinterest.com/styliorfashion/" target="_new"><img class="lum_column_big_img" src="<?=base_url() ?>images/lum_pintrest-icon_bw.png" onmouseover="hover(this);" onmouseout="unhover(this);" alt=""></a>
-
-							<a href="https://www.youtube.com/channel/UCFwHuzx8WXKzjminQXJglWw" target="_new"><img class="lum_column_big_img" src="<?=base_url() ?>images/lum_you-tube_bw.png" onmouseover="hover(this);" onmouseout="unhover(this);" alt=""></a>
-
-		</div>
-</div>
-
-<div class="new_lum_footer_change_space lum_login container-fluid">
-	<div class="lum_column_small col-xs-12 col-sm-4 col-lg-4 ">
-		<div class="lum_column_small_head" style="padding:0 0 10px 15px">SERVICES</div>
-		<div><a href="<?= $base_url_temp ?>trial-shirt" onmouseover="hover_foot('trial_shirt_img');" onmouseout="unhover_foot('trial_shirt_img');"><div class="lum_column_small_head_link"><img id="trial_shirt_img" class="lum_column_small_img" src="<?=base_url() ?>images/lum_trial_shirt.png" alt=""></div>TRIAL SHIRT</a></div>
-		<div><a href="<?= $base_url_temp ?>book-a-home-visit" onmouseover="hover_foot('book_an_appointment_img');" onmouseout="unhover_foot('book_an_appointment_img');"><div class="lum_column_small_head_link"><img id="book_an_appointment_img" class="lum_column_small_img" src="<?=base_url() ?>images/lum_book_appointment.png" alt=""></div>BOOK A HOME VISIT</a></div>
-		<div><a href="<?= $base_url_temp ?>fit-guide" onmouseover="hover_foot('fit_guide_img');" onmouseout="unhover_foot('fit_guide_img');"><div class="lum_column_small_head_link"><img id="fit_guide_img" class="lum_column_small_img" src="<?=base_url() ?>images/lum_fit_guid.png" alt=""></div>FIT GUIDE</a></div>
-		<div><a href="<?= $base_url_temp ?>return-policy" onmouseover="hover_foot('alteration_img');" onmouseout="unhover_foot('alteration_img');"><div class="lum_column_small_head_link"><img id="alteration_img" class="lum_column_small_img" src="<?=base_url() ?>images/lum_alteration.png" alt=""></div>ALTERATION / REMAKE / RETURN</a></div>
-		<!--<div><a href="#" onmouseover="hover_foot('refer_a_friend_img');" onmouseout="unhover_foot('refer_a_friend_img');"><div class="lum_column_small_head_link"><img id="refer_a_friend_img" class="lum_column_small_img" src="<?=base_url() ?>images/lum_reffer_friend.png" alt=""></div>REFER A FRIEND</a></div>-->
-		<!--<div><a href="<?= $base_url_temp ?>giftcard" onmouseover="hover_foot('gift_card_img');" onmouseout="unhover_foot('gift_card_img');"><div class="lum_column_small_head_link"><img id="gift_card_img" class="lum_column_small_img" src="<?=base_url() ?>images/lum_gift_card.png" alt=""></div>GIFT CARD</a></div>-->
-		<!--<div><a href="#" onmouseover="hover_foot('coupons_img');" onmouseout="unhover_foot('coupons_img');"><div class="lum_column_small_head_link"><img id="coupons_img" class="lum_column_small_img" src="<?=base_url() ?>images/lum_coupon.png" alt=""></div>COUPONS</a></div>-->
-
-	</div>
-	<div class="lum_column_small col-xs-12 col-sm-4 col-lg-4 ">
-		<div class="lum_column_small_head"  style="padding:0 0 10px 15px">ABOUT</div>
-		<div><a href="<?= $base_url_temp ?>our-story" onmouseover="hover_foot('about_stylior_img');" onmouseout="unhover_foot('about_stylior_img');">
-
-		<div class="lum_column_small_head_link"><img id="about_stylior_img" class="lum_column_small_img" src="<?=base_url() ?>images/lum_about_stylior.png" alt=""></div>
-
-		ABOUT STYLIOR</a></div>
-		<div><a href="<?= $base_url_temp ?>why-custom" onmouseover="hover_foot('why_custom_img');" onmouseout="unhover_foot('why_custom_img');"><div style="width:26px;height:26px;float:left;position:relative;top:-4px;"><img id="why_custom_img" class="lum_column_small_img" src="<?=base_url() ?>images/lum_why_custom.png" alt=""></div>WHY CUSTOM</a></div>
-		<div><a href="http://www.blog.stylior.com" onmouseover="hover_foot('blog_img');" onmouseout="unhover_foot('blog_img');">
-		<div class="lum_column_small_head_link">
-		<img id="blog_img" class="lum_column_small_img" src="<?=base_url() ?>images/lum_blog.png" alt=""></div>BLOG</a></div>
-		<!--<div><a href="<?= $base_url_temp ?>careers" onmouseover="hover_foot('careers_img');" onmouseout="unhover_foot('careers_img');"><div class="lum_column_small_head_link"><img id="careers_img" class="lum_column_small_img" src="<?=base_url() ?>images/lum_career.png" alt=""></div>CAREERS</a></div>-->
-		<div><a href="http://www.corporatestylior.com" onmouseover="hover_foot('corporate_orders_img');" onmouseout="unhover_foot('corporate_orders_img');"><div class="lum_column_small_head_link"><img id="corporate_orders_img" class="lum_column_small_img" src="<?=base_url() ?>images/lum_caporate_order.png" alt=""></div>CORPORATE ORDERS</a></div>
-	</div>
-	<div class="lum_column_small col-xs-12 col-sm-4 col-lg-4 ">
-		<div class="lum_column_small_head"  style="padding:0 0 10px 15px">HELP</div>
-		<div><a href="<?= $base_url_temp ?>payment-policy" onmouseover="hover_foot('payment_policy_img');" onmouseout="unhover_foot('payment_policy_img');"><div class="lum_column_small_head_link"><img id="payment_policy_img" class="lum_column_small_img" src="<?=base_url() ?>images/lum_payment_policy.png" alt=""></div>PAYMENT POLICY</a></div>
-		<div><a href="<?= $base_url_temp ?>privacy-policy" onmouseover="hover_foot('privacy_policy_img');" onmouseout="unhover_foot('privacy_policy_img');"><div class="lum_column_small_head_link"><img id="privacy_policy_img" class="lum_column_small_img" src="<?=base_url() ?>images/lum_privacy_policy.png" alt=""></div>PRIVACY POLICY</a></div>
-		<div><a href="<?= $base_url_temp ?>terms-and-conditions" onmouseover="hover_foot('terms_conditions_img');" onmouseout="unhover_foot('terms_conditions_img');"><div class="lum_column_small_head_link"><img id="terms_conditions_img" class="lum_column_small_img" src="<?=base_url() ?>images/lum_terms_condition.png" alt=""></div>TERMS & CONDITIONS</a></div>
-		<div><a href="<?= $base_url_temp ?>disclaimer" onmouseover="hover_foot('desclaimer_img');" onmouseout="unhover_foot('desclaimer_img');"><div class="lum_column_small_head_link"><img id="desclaimer_img" class="lum_column_small_img" src="<?=base_url() ?>images/lum_disclaimer.png" alt=""></div>DISCLAIMER</a></div>
-		<div><a href="<?= $base_url_temp ?>contact-us" onmouseover="hover_foot('your_account_img');" onmouseout="unhover_foot('your_account_img');"><div class="lum_column_small_head_link"><img id="your_account_img" class="lum_column_small_img" src="<?=base_url() ?>images/lum_about_stylior.png" alt=""></div>CONTACT US</a></div>
-		<div><a href="<?= $base_url_temp ?>faq" onmouseover="hover_foot('');" onmouseout="unhover_foot('');"><div class="lum_column_small_head_link"><img id="your_account_img" class="lum_column_small_img" src="<?=base_url() ?>images/relaunch/faq.png" alt=""></div>FAQ</a></div>
-
-	</div>
-</div>
+<section class="subscribe">
+    <div class="container">
+    	<div class="subscribe_content">
+        	<h1>get more offers</h1>
+            <p><em></em></p>
+            <form method="post" name="form" action="<?php echo $base_url_temp; ?>home/subscribe" onsubmit="return validateForm();" enctype="multipart/form-data">
+            	<div class="input-group">
+                	<input type="email" class="subscribe_input" id="newemail" name="newemail" placeholder="Enter Your Email">
+                	<button class="btn subscribe_submit " type="submit">Submit</button>
+                     <label id="error"></label>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
 
 
 <!-- start modal -->
-  <div class="modal fade" id="subscribeModal" role="dialog" style="display:none;">
+<div class="modal fade" id="subscribeModal" role="dialog" style="display:none;">
   <div class="vertical-alignment-helper">
     <div class="modal-dialog modal-md vertical-align-center">
       <div class="modal-content mobi">
@@ -189,12 +138,147 @@ src="https://www.facebook.com/tr?id=1248172288528875&ev=PageView&noscript=1"
     </div>
   </div>
   </div>
-  </div>
+</div>
 
 <!-- end of modal -->
-<div class="footer_bottom" align="center">
-	 &copy; 2015 LUMINOR FASHION PRIVATE LIMITED. ALL RIGHTS RESERVED.
-</div>
+<!-- ================= new footer code ================= -->
+<footer class="footer stylior-footer">
+    <section class="footer-topSection">
+        <div class="container">
+            <div class="row hidden-xs hidden-sm">
+                <div class="col-md-4">
+                    <div class="footer-title">FOLLOW US</div>
+                    <ul class="footer-social-links">
+                        <li><a href="https://www.facebook.com/styliorfashion/" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="https://www.instagram.com/styliorfashion/" target="_blank"><i class="fa fa-instagram"></i></a></li>
+                        <li><a href="https://plus.google.com/u/0/100002617149579103996/posts" target="_blank"><i class="fa fa-google-plus"></i></a></li>
+                        <li><a href="https://www.pinterest.com/styliorfashion/" target="_blank"><i class="fa fa-pinterest"></i></a></li>
+                        <li><a href="https://www.linkedin.com/company/stylior-com?trk=biz-companies-cym" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+                        <li><a href="https://www.youtube.com/channel/UCFwHuzx8WXKzjminQXJglWw" target="_blank"><i class="fa fa-youtube"></i></a></li>	
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <div class="footer-title">SERVICES</div>
+                    <ul class="footer-links">
+                        <li><a href="<?= $base_url_temp ?>trial-shirt">trial shirts</a></li>
+                        <li><a href="<?= $base_url_temp ?>book-a-home-visit">book a home visit</a></li>
+                        <li><a href="<?= $base_url_temp ?>fit-guide">fit guide</a></li>
+                        <li><a href="<?= $base_url_temp ?>return-policy">alteration / remake / return</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <div class="footer-title">ABOUT</div>
+                    <ul class="footer-links">
+                        <li><a href="<?= $base_url_temp ?>our-story">about stylior</a></li>
+                        <li><a href="<?= $base_url_temp ?>why-custom">why custom</a></li>
+                        <li><a href="http://www.blog.stylior.com">blog</a></li>
+                        <li><a href="http://www.corporatestylior.com">corporate orders</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-md-2">
+                    <div class="footer-title">help</div>
+                    <ul class="footer-links">
+                        <li><a href="<?= $base_url_temp ?>payment-policy">payment policy</a></li>
+                        <li><a href="<?= $base_url_temp ?>privacy-policy">privacy policy</a></li>
+                        <li><a href="<?= $base_url_temp ?>terms-and-conditions">terms and conditions</a></li>
+                        <li><a href="<?= $base_url_temp ?>disclaimer">disclaimer</a></li>
+                        <li><a href="<?= $base_url_temp ?>contact-us">contact us</a></li>
+                        <li><a href="<?= $base_url_temp ?>faq">faq</a></li>
+                    </ul>
+                </div>  
+            </div>
+            <!--  footer code for mobile and ipad  -->
+            <div class="row visible-xs visible-sm">
+                <div class="col-xs-12">
+                    <div class="panel-group footer-panel-small">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                  <a data-toggle="collapse" href="#follow_us">FOLLOW</a>
+                                </h4>
+                            </div>
+                            <div id="follow_us" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <ul class="footer-social-links">
+                                        <li><a href="https://www.facebook.com/styliorfashion/" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                                        <li><a href="https://www.instagram.com/styliorfashion/" target="_blank"><i class="fa fa-instagram"></i></a></li>
+                                        <li><a href="https://plus.google.com/u/0/100002617149579103996/posts" target="_blank"><i class="fa fa-google-plus"></i></a></li>
+                                        <li><a href="https://www.pinterest.com/styliorfashion/" target="_blank"><i class="fa fa-pinterest"></i></a></li>
+                                        <li><a href="https://www.linkedin.com/company/stylior-com?trk=biz-companies-cym" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+                                        <li><a href="https://www.youtube.com/channel/UCFwHuzx8WXKzjminQXJglWw" target="_blank"><i class="fa fa-youtube"></i></a></li>	
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                  <a data-toggle="collapse" href="#service">SERVICE</a>
+                                </h4>
+                            </div>
+                            <div id="service" class="panel-collapse collapse">
+                                <div class="panel-body footer-links">
+                                    <div class="row">
+                                        <div class="col-sm-6 link-left"><a href="<?= $base_url_temp ?>trial-shirt">trial shirts</a></div>
+                                        <div class="col-sm-6 link-right"><a href="<?= $base_url_temp ?>book-a-home-visit">book a home visit</a></div>
+                                        <div class="col-sm-6 link-left"><a href="<?= $base_url_temp ?>fit-guide">fit guide</a></div>
+                                        <div class="col-sm-6 link-right"><a href="<?= $base_url_temp ?>return-policy">alteration / remake / return</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                  <a data-toggle="collapse" href="#about">ABOUT</a>
+                                </h4>
+                            </div>
+                            <div id="about" class="panel-collapse collapse">
+                                <div class="panel-body footer-links">
+                                <div class="row">
+                                    <div class="col-sm-6 link-left"><a href="<?= $base_url_temp ?>our-story">about stylior</a></div>
+                                    <div class="col-sm-6 link-right"><a href="<?= $base_url_temp ?>why-custom">why custom</a></div>
+                                    <div class="col-sm-6 link-left"><a href="http://www.blog.stylior.com">blog</a></div>
+                                    <div class="col-sm-6 link-right"><a href="http://www.corporatestylior.com">corporate orders</a></div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                  <a data-toggle="collapse" href="#help">HELP</a>
+                                </h4>
+                            </div>
+                            <div id="help" class="panel-collapse collapse">
+                                <div class="panel-body footer-links">
+                                <div class="row">
+                                    <div class="col-sm-6 link-left"><a href="<?= $base_url_temp ?>payment-policy">payment policy</a></div>
+                                    <div class="col-sm-6 link-right"><a href="<?= $base_url_temp ?>privacy-policy">privacy policy</a></div>
+                                    <div class="col-sm-6 link-left"><a href="<?= $base_url_temp ?>terms-and-conditions">terms and conditions</a></div>
+                                    <div class="col-sm-6 link-right"><a href="<?= $base_url_temp ?>disclaimer">disclaimer</a></div>
+                                    <div class="col-sm-6 link-left"><a href="<?= $base_url_temp ?>contact-us">contact us</a></div>
+                                    <div class="col-sm-6 link-right"><a href="<?= $base_url_temp ?>faq">faq</a></div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--  footer code for mobile and ipad  -->
+        </div>
+    </section>
+    <section class="footer-bottomSection">
+    	<div class="container">
+        	<p class="text-center">	 &copy; 2015 Luminor Fashion Private Limited. All Rights Reserved. </p>
+        </div>
+    </section>
+</footer>
+
+<!-- ================= new footer code ================= -->
+
 
 <script>
 function hover(element) {
@@ -239,8 +323,8 @@ if(!isset($_COOKIE[$cookie_name])) {
 </script>
 
 <script type="text/javascript" src="<?=base_url() ?>js/bootstrap.min.js"></script>
+<script type="text/javascript" src="<?=base_url() ?>js/bootsnav.js"></script>
 <script src="<?=base_url() ?>js/owl.carousel.js"></script>
  <script src="<?=base_url() ?>js/jquery.mb.YTPlayer.js"></script>
 <script type="text/javascript" src="<?=base_url() ?>js/wow.js"></script>
 <script type="text/javascript" src="<?=base_url() ?>js/script.js"></script>
-<script type="text/javascript" src="<?=base_url() ?>js/bootsnav.js"></script>
