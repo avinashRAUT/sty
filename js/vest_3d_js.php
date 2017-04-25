@@ -1,8 +1,10 @@
 <?php header("Content-type: application/javascript");?>
+
 	/***** VARIABLE DECLARATION ********/
 		/***** VARIABLE DECLARATION ********/
 			/***** VARIABLE DECLARATION ********/
 				/***** VARIABLE DECLARATION ********/
+
 	var api_url= "http://textronic.online/api_Stylior/v1/img?";
 	var base_fabric="9A77A2D9";
 	//**** Note *** to change shirt fabric, you need to change the swatch for model,collar and placket....
@@ -37,8 +39,6 @@
 			}
 			make_url+="/";
 		}
-
-
 		$(".processimage").attr("src", api_url+make_url);
 		$(".changeOption").click(function(){
 			make_url="";
@@ -88,9 +88,6 @@
 
 });
 
-
-
-
 /**************Fucntion:addtocart function ********
 ************* Ajax function with loggedin and without login**
 ************
@@ -98,7 +95,7 @@
 /* start : add to cart function */
 function addToCart(loginUser)
 {
-          var result = $(".processimage").attr("src"); //get image here"<?= $https_url_large_img."".$cmsf->image;?>";
+	      var result = $(".processimage").attr("src"); //get image here"<?= $https_url_large_img."".$cmsf->image;?>";
           base_url = 'https://www.stylior.com/'; //'<? echo $bas_ul ?>';
           console.log(result);
           var exact_price = $("#current_product_price").val();
@@ -106,7 +103,6 @@ function addToCart(loginUser)
           var subcatid='18'; //17 suit is for subcategory...
           var ordertype="vest";
           var fabric_namevest = $(".current_title").html();
-
           if(loginUser)
           {
             $.ajax({
@@ -141,35 +137,33 @@ function addToCart(loginUser)
               type: 'POST',
               data:
                 {
-                  details :  JSON.stringify(Obj3d),
-                  price_vest : exact_price,
-                  productid_vest : product_id ,
-                  subcatid_vest : subcatid ,
-                  pname_vest : fabric_namevest,
-                  imagedata_vest : result,
-                  ordertype:"vest",
-                  order:"standard"
+					details :  JSON.stringify(Obj3d),
+					price_vest : exact_price,
+					productid_vest : product_id ,
+					subcatid_vest : subcatid ,
+					pname_vest : fabric_namevest,
+					imagedata_vest : result,
+					ordertype:"vest",
+					order:"standard"
                  },
               success: function(response)
               {
-                console.log(response);
-                // return false;
-                $('#loadingmessage').hide();
-                var url=base_url+'home/lum_login';
-                //alert(url);
-                window.location = url;
+					console.log(response);
+					$('#loadingmessage').hide();
+					var url=base_url+'home/lum_login';
+					window.location = url;
               }
+            
             });
-            return false;
-          
+             return false;       
           }
 }
 
 /*end : add to cart*/
-function changeFabricInfo(c_key){
+function changeFabricInfo(c_key){ 		
+
   		var fabric_title=$(".product-title-"+c_key).html();
   		var fabric_price=$(".product-price-"+c_key).html();
-
   		var  fabric_pattern=$(".product-pattern-"+c_key).html();
 		var  fabric_color=$(".product-color-"+c_key).html();
 		var  fabric_threadcount=$(".product-threadcount-"+c_key).html();
@@ -178,12 +172,11 @@ function changeFabricInfo(c_key){
   		//alert(fabric_title+""+fabric_price+"color"+fabric_color);
  		$(".current_title").html(fabric_title);
 		$(".current_price ").html(fabric_price);
-
 		$("#current_product_price").val(fabric_price.split(' ')[1]);
-
 		//color and pattern are replacing with different code,, just comment it ...
 		//$(".current_pattern ").html(fabric_pattern);
 		//$(".current_color").html(fabric_color);
 		$(".current_threadcount").html(fabric_threadcount);
 		$("#current_product_id").val(fabric_product_id.trim());
+
 }

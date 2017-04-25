@@ -5,7 +5,7 @@
 				/***** VARIABLE DECLARATION ********/
 	var api_url= "http://textronic.online/api_Stylior/v1/img?";
 	var base_fabric="B40522A2";
-	
+
 	// var Obj3d={
 	// 	'pleats':{'part':'TRNOPLEAT','pair':'TRSLIM','swatch':base_fabric},
 	// 	'trouser_fit':{'part':'TRSLIM','pair':'TRNOPLEAT','swatch':base_fabric},
@@ -18,7 +18,7 @@
 	//**** Note *** to change shirt fabric, you need to change the swatch for model,collar and placket....
 	//***
 
-	var shirtFabric='8FBCCAC4';
+	var shirtFabric='BA0A483A';
 	var liningFabric='6A2AC8B5';
 
 	var Obj3d={
@@ -97,14 +97,14 @@
 		//console.log(Obj3d);
 	var make_url="";
 	$(document).ready(function(){
-	// change data-key of cuff button jacket_style	
+	// change data-key of cuff button jacket_style
 
 	// var option = $(".jacket-button-details").find('h4').text();
 	// $('#show_button > a').attr('data',"CS" + option);
 	// $('#kissing_button > a').attr('data',"CK" + option);
 
 	//console.clear();
-  
+
   //apply default data and price to summary details...
   for (var key in Obj3d) {
 			//make_url+=Obj3d[key]+"/";
@@ -138,7 +138,7 @@
 			//alert(replaced);
 			Obj3d['face_type']['view']="";
 			if(replaced=="jacket_style"){
-			
+
 				Obj3d['cutaway']['pairpair']=value
 				Obj3d['lapel']['pairpair']=value
 				Obj3d['lapel_button_hole']['pairpair']=value
@@ -163,7 +163,7 @@
 			}
 			else if(replaced=="vents"||replaced=="cuff_accent_stitching"||replaced=="cuff_button_style"){
 				Obj3d['face_type']['view']="back";
-		
+
 			}
 			else if(replaced=="back_pocket"  ){
 				Obj3d['face_type']['view']="backopen";
@@ -181,7 +181,7 @@
 		    		Obj3d[replaced]['part']=Obj3d['model']['pair'];
 					if(replaced=="jacket_style"){
 						//hide this to show complete suit
-						
+
 						// Obj3d[replaced]['part']=Obj3d['jacket_button']['part'];
 						Obj3d[replaced]['part']=Obj3d['jacket_button']['pair'];
 						Obj3d['jacket_button']['pair']=value;
@@ -191,7 +191,7 @@
 					var button_val = Obj3d['jacket_button']['part'];
 					var res = button_val.substring(1);
 					Obj3d['cuff_button_style']['part'] = value+""+res;
-				
+
 			}
 			else
 		    {
@@ -429,7 +429,7 @@ function addToCart(loginUser)
           var fabric_namesuit = $(".current_title").html();
           //alert(fabric_namesuit)
           //var loginUser='<?php echo $_SESSION['user_id']; ?>';
-          
+
           if(loginUser)
           {
             $.ajax({
@@ -449,13 +449,13 @@ function addToCart(loginUser)
                 success: function(response)
                 {
                 	console.log("THis is testing")
-					
+
 					console.log(response);
 	                $('#loadingmessage').hide();
 		            window.location = "#suit_measurements";
 	                //var url=base_url+'cart/lum_view_cart';
 	                window.location = url;
-	                
+
                 }
               });
           }

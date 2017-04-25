@@ -4,7 +4,7 @@
 			/***** VARIABLE DECLARATION ********/
 				/***** VARIABLE DECLARATION ********/
 	var api_url= "http://textronic.online/api_Stylior/v1/img?";
-	var base_fabric="BA344DEE";
+	var base_fabric="EE21BF56";
     var contrastFabric='';
 	var monogram={'monogram':{'color_monogram':'','font_monogram':'','location_monogram':'','text_monogram':''},};
 	var Obj3d={
@@ -25,7 +25,9 @@
 	'stylior_logo':'part=logo2&swatch='+base_fabric,
 	'face_type':'',
 	};
+
 	changeFabricInfo(base_fabric);
+
 	//part=BLACK1&pair=REGULAR/part=BLACK1&pair=BOX/part=BLACK1&pair=SQUARE&swatch=30515A55
 	//TOTAL BUTTONS:'buttons':'part=BLACK1&pair=REGULAR/part=BLACK1&pair=BOX/part=BLACK1&pair=SQUARE&swatch=30515A55',
 	// var monogram={'monogram':{'color_monogram':'','font_monogram':'','location_monogram':'','text_monogram':''},};
@@ -50,6 +52,7 @@
 	// 'bottom_hem'
 	// 'stylior_logo'
 	//console.log(Obj3d);
+	
 	var make_url="";
 	$(document).ready(function(){
 	/*******Initial shirt modal render using global array (Obj3d) 

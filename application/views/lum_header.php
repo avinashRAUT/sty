@@ -115,7 +115,7 @@ else
  <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="google-site-verification" content="JvthufbKUe07U-38F5bK2koa6vI5FN97PgcgCZ0QVck" />
+
     <link rel="shortcut icon" href="<?= $bas_ul ?>stylior/site/images/favicon.jpg" sizes="32x32" />
     <!--  non-retina iPhone pre iOS 7 -->
     <link rel="apple-touch-icon" href="<?= $bas_ul ?>stylior/site/images/favicon.jpg" sizes="57x57" />
@@ -127,7 +127,7 @@ else
 <link rel="stylesheet" href="<?= $https_url ?>/site/css/font-awesome.min.css">
 <link rel="stylesheet" href="<?= $https_url ?>/site/css/ionicons.min.css">
 
- <link href="<?=$https_url ?>site/css/bootstrap.css" rel="stylesheet" />
+ <link href="<?=$https_url ?>site/css/bootstrap.min.css" rel="stylesheet" />
  <link href="<?= $https_url ?>/site/css/bootsnav.css" rel="stylesheet">
 
 <!-- 3d page css  -->
@@ -148,7 +148,7 @@ if($data[1]=="home" && $data[2]=="new_custom" ||$data[2]=="new_custom_demo"){?>
   <script src=<?= $bas_ul ?>site/js/remodal.js></script>
   <link rel="stylesheet" href="https://www.stylior.com/site/css/remodal.css">
   <link rel="stylesheet" href="https://www.stylior.com/site/css/remodal-default-theme.css">
-  <link href="<?=$https_url ?>site/css/bootstrap.css" rel="stylesheet" />
+  <link href="<?=$https_url ?>site/css/bootstrap.min.css" rel="stylesheet" />
   <link href="<?=$https_url ?>site/css/details_style.css" rel="stylesheet" />
   <link rel="stylesheet" type="text/css" href="<?=$https_url ?>site/css/animate.css">
   <link rel="stylesheet" type="text/css" href="<?=$https_url ?>site/css/owl.carousel.css">
@@ -165,7 +165,7 @@ if($data[1]=="home" && $data[2]=="new_custom" ||$data[2]=="new_custom_demo"){?>
   </style>
   
  <?php }else if($data[1]=="trial-shirt"){?>
-<link href="<?=$https_url ?>site/css/bootstrap.css" rel="stylesheet" />
+<link href="<?=$https_url ?>site/css/bootstrap.min.css" rel="stylesheet" />
 <script src=<?= $bas_ul ?>site/js/remodal.js></script>
 <link rel="stylesheet" href="https://www.stylior.com/site/css/remodal.css">
 <link rel="stylesheet" href="https://www.stylior.com/site/css/remodal-default-theme.css">
@@ -178,7 +178,7 @@ if($data[1]=="home" && $data[2]=="new_custom" ||$data[2]=="new_custom_demo"){?>
 <?php } else { ?>
   <link rel="stylesheet" type="text/css" href="<?= $https_url ?>site/css/animate.css">
   <link rel="stylesheet" type="text/css" href="<?= $https_url ?>site/css/owl.carousel.css">
-  <link href="<?=$https_url ?>site/css/bootstrap.css" rel="stylesheet" />
+  <link href="<?=$https_url ?>site/css/bootstrap.min.css" rel="stylesheet" />
 <?php } ?>
 <?php if(isset($title)){ ?>
   <title><?php echo $title;?></title>
@@ -285,26 +285,19 @@ src="https://www.facebook.com/tr?id=1248172288528875&ev=PageView&noscript=1"
 
               				<?php } 
         							else {?>
-        							<li class="" onclick="popup('popUpDiv_login')"><a  href="#" >LOGIN</i></a></li>
-
+        							<li class="" ><a  href="<?= $bas_ul ?>home/lum_login" >LOGIN</i></a></li>
+                      <!--onclick="popup('popUpDiv_login')" -->
         							<?php  }?>
                     </ul>
-                        </div>
-                        
-                    
-                    
+                      </div>
                       </div><!-- end of pull-right < login -->
                     </div> 
                 </div>
             </div>
         </div>
-    </div>
-    
-          
+    </div>         
     <!-- Start Navigation -->
-
-<nav class="navbar navbar-default navbar-mobile navbar-sticky bootsnav">
-
+    <nav class="navbar navbar-default navbar-mobile navbar-sticky bootsnav">
     <div class="container custom-container">      
         <!-- Start Header Navigation -->
         <div class="navbar-header">
@@ -314,7 +307,6 @@ src="https://www.facebook.com/tr?id=1248172288528875&ev=PageView&noscript=1"
             <a class="navbar-brand" href="<?php echo $bas_ul;?>"><img src="https://www.stylior.com/stylior/site/images/relaunch/logo.png" class="logo" alt=""></a>
         </div>
         <!-- End Header Navigation -->
-
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="navbar-menu">
             <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
@@ -346,8 +338,8 @@ src="https://www.facebook.com/tr?id=1248172288528875&ev=PageView&noscript=1"
                                       </ul>    
                                 </div>
                                 </div>
-                                <div class="col-menu col-md-6 col-xs-12 offer_image hide">
-                                <img src="<?= $https_url ?>site/images/header/offer-image.jpg" class="img-responsive" alt="shop">
+                                <div class="col-menu col-md-6 col-xs-12 offer_image">
+                                <img src="<?= $https_url ?>site/images/header/offer-image.jpg" class="" alt="shop">
                                 </div>
                             </div>
                         </li>
@@ -359,7 +351,8 @@ src="https://www.facebook.com/tr?id=1248172288528875&ev=PageView&noscript=1"
                     	<li>
                             <div class="row">
                                     <div class="col-menu col-md-4 col-xs-12 nav-offerImage offer_image">
-                                        <img src="<?= $https_url ?>site/images/header/nav_studio_1.jpg" class="img-responsive" alt="shop" >
+                                    <!--<img src="<?= $https_url ?>site/images/header/nav_studio_1.jpg" class="img-responsive" alt="shop" >-->
+                                        <a href="<?php echo $bas_ul;?>trial-shirt"><img src="<?= $https_url ?>site/images/header/first-shirt.jpg" class="img-responsive" alt="shop" ></a>
                                     </div>
                                     <div class="col-menu col-md-4 col-xs-12 studio-customize">
 										<h5 class="title">customise your wardrobe</h5>

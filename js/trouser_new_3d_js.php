@@ -44,7 +44,6 @@ header("Content-type: application/javascript");
 	// 'stylior_logo'
 	//console.log(Obj3d);
 	changeFabricInfo(base_fabric);
-	
 	var make_url="";
 	$(document).ready(function(){
 		console.clear();
@@ -60,16 +59,12 @@ header("Content-type: application/javascript");
 					 console.log("&");
 
 			}
-			make_url+="/";
-	
+		make_url+="/";
 		}
 
 		$(".processimage").make_url;
 		$(".processimage").attr("src", api_url+make_url);
 		$(".se-pre-con").hide();
-
-
-
 		$(".changeOption").click(function(){
 			  make_url="";
            /// Obj3d[loweer_value_key]="";
@@ -87,11 +82,14 @@ header("Content-type: application/javascript");
 			else{
 				Obj3d['back_pocket']['view']='';
 			}
+
             if(replaced=="pleats"){
 				 Obj3d['trouser_fit']['pair']=value;
             }
+			
 			Obj3d[replaced]['part']=value
 			// console.log(Obj3d);
+			
 			for (var key in Obj3d) {
 				//console.log(Obj3d[key]);
 				// make_url+=Obj3d[key]+"&swatch="+base_fabric+"/";
@@ -105,11 +103,10 @@ header("Content-type: application/javascript");
 				make_url+="/";
 			}
 
-
-        //$(".processimage").make_url);
-		    $(".processimage").attr("src","");
-		console.log(make_url);
-	    $(".processimage").attr("src", api_url+make_url);
+			//$(".processimage").make_url);
+			$(".processimage").attr("src","");
+			console.log(make_url);
+			$(".processimage").attr("src", api_url+make_url);
 		});
 
 		$(".swatchchangeOption").click(function(){
@@ -132,13 +129,12 @@ header("Content-type: application/javascript");
 				$(".processimage").attr("src", api_url+make_url);
     			$(".se-pre-con").hide();
 	        });
-
-		/******* To change the view of modal-shirt
-		****     toggle button : front and back view
-		****     Shirt-3d page
-		****
-		*****/
-		$("#backface_trouser").click(function(){
+			/******* To change the view of modal-shirt
+			****     toggle button : front and back view
+			****     Shirt-3d page
+			****
+			*****/
+			$("#backface_trouser").click(function(){
 				//alert("Var")
 				make_url="";
 
@@ -325,7 +321,7 @@ function addToCart(loginUser)
  						$(".se-pre-con").show();
  					},
  					data: {
- 						details : JSON.stringify(Obj3d) , price_shirt : exact_price, productid_shirt : product_id ,  subcatid_shirt : '10' ,	pname_shirt : fabric_name,imagedata_shirt: result,ordertype:"shirt",order:"custom"
+ 						details : JSON.stringify(Obj3d) , price_pant : exact_price, productid_pant : product_id ,  subcatid_pant : '11' ,	pname_pant : fabric_name,imagedata_pant: result,ordertype:"pant",order:"custom"
  				   },
  				   success: function(response)
  					{

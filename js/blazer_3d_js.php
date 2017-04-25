@@ -171,10 +171,9 @@
 						}
 						make_url+="/";
 		}
-	$('#fabricModal').modal('hide');
+		
+		$('#fabricModal').modal('hide');
 		$(".processimage").attr("src", api_url+make_url);
-
-
 
    });
 
@@ -196,6 +195,7 @@ function filterData(type,id){
 		if(type=="color")
 		{
 	        $('.displayfitler').hide();
+			
 			$("[data-color='"+id+"']").each(function(){
 				$("[data-color='"+id+"']").show();
 			});

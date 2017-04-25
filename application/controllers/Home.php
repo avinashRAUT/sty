@@ -99,9 +99,7 @@
 
 
 public function resetpass(){
-
 	$this->load->model('user_model');
-
 	if($this->input->post('reset')=="reset"){
 		$id = $this->session->userdata('user_id');
 	//	echo "session id".$id;
@@ -136,28 +134,15 @@ public function resetpass(){
 			(
 
 				'L_strErrorMessage' => '',
-
-
-
-					'Name'      => '',
-
-					'Address1'      => '',
-
-					'Address2'      => '',
-
-					'City'      => '',
-
-					'State'      => '',
-
-					'Zip'      => '',
-
-					'Status'      => '',
-
-					'country'      => '',
-
-					'Phone'      => ''
-
-
+				'Name'      => '',
+				'Address1'      => '',
+				'Address2'      => '',
+				'City'      => '',
+				'State'      => '',
+				'Zip'      => '',
+				'Status'      => '',
+				'country'      => '',
+				'Phone'      => ''
 
 			);
 
@@ -720,6 +705,40 @@ public function resetpass(){
 		}
 
    }
+
+
+
+
+
+	public function lum_login_test()
+	{
+		$this->load->helper('url');
+
+		$this->output->enable_profiler(FALSE);
+
+		$base_url = $this->config->item('base_url_temp');
+
+		if($_SESSION['trailshirtoffline']=="True")
+		{
+		$this->load->view('offline_header');
+		$this->load->view('offine_login_view');
+
+		}
+		else
+		{
+
+		$this->load->view('lum_header');
+
+		$this->load->view('lum_login_test');
+
+		$this->load->view('lum_footer');
+
+		}
+
+   }
+
+
+
 
 
 
@@ -2124,32 +2143,40 @@ public function login_test()
 					$_SESSION['Guestuser_id']=$id;
 					// redirecting to add cart function based on 3d data selection  -- -added by MIN  vijay
 					//both
-				if(isset($_SESSION['selected3dInfo_pant']) && !empty($_SESSION['selected3dInfo_pant'])&& isset($_SESSION['selected3dInfo_shirt']) && !empty($_SESSION['selected3dInfo_shirt']))
-				{
+				
+
+				if(isset($_SESSION['selected3dInfo_pant']) && !empty($_SESSION['selected3dInfo_pant'])&& isset($_SESSION['selected3dInfo_shirt']) && !empty($_SESSION['selected3dInfo_shirt'])){
 					$_SESSION['ordertype']="both";
+					redirect($this->config->item('base_url_temp').'Cart/addToCartTrouser', 'location') ;
+				}
+				else if(isset($_SESSION['selected3dInfo_shirt']) && !empty($_SESSION['selected3dInfo_shirt'])){
+					    $_SESSION['ordertype']="shirt";
+						redirect($this->config->item('base_url_temp').'Cart/addcart3dcombined', 'location');
+				}
+				else if(isset($_SESSION['selected3dInfo_pant']) && !empty($_SESSION['selected3dInfo_pant'])){
+						// echo "hihi".$this->config->item('base_url');exit;
+						$_SESSION['ordertype']="pant";
+						redirect($this->config->item('base_url_temp').'Cart/addToCartTrouser', 'location') ;
+				}
+				//trailshirt
+				else if(isset($_SESSION['selected3dInfo_shirttrail']) && !empty($_SESSION['selected3dInfo_shirttrail'])){
+					// echo "hihi".$this->config->item('base_url');exit;
+					$_SESSION['ordertype']="trailshirt";
 					redirect($this->config->item('base_url_temp').'Cart/addcart3dcombined', 'location') ;
 				}
-			//shirt
-			else if(isset($_SESSION['selected3dInfo_shirt']) && !empty($_SESSION['selected3dInfo_shirt']))
-			{
-				    $_SESSION['ordertype']="shirt";
-					redirect($this->config->item('base_url_temp').'Cart/addcart3dcombined', 'location');
-			}
-			//pant
-			else if(isset($_SESSION['selected3dInfo_pant']) && !empty($_SESSION['selected3dInfo_pant']))
-			{
-					// echo "hihi".$this->config->item('base_url');exit;
-					$_SESSION['ordertype']="pant";
-					redirect($this->config->item('base_url_temp').'Cart/addcart3dcombined', 'location') ;
-			}
-			//trailshirt
-			else if(isset($_SESSION['selected3dInfo_shirttrail']) && !empty($_SESSION['selected3dInfo_shirttrail']))
-			{
-				// echo "hihi".$this->config->item('base_url');exit;
-				$_SESSION['ordertype']="trailshirt";
-				redirect($this->config->item('base_url_temp').'Cart/addcart3dcombined', 'location') ;
-			}
-			redirect($this->config->item('base_url_temp'));
+				else if(isset($_SESSION['selected3dInfo_vest']) && !empty($_SESSION['selected3dInfo_vest'])){
+					    $_SESSION['ordertype']="vest";
+						redirect($this->config->item('base_url_temp').'Cart/addToCartVest', 'location');
+				}
+	           	else if(isset($_SESSION['selected3dInfo_blazer']) && !empty($_SESSION['selected3dInfo_blazer'])){
+					    $_SESSION['ordertype']="blazer";
+						redirect($this->config->item('base_url_temp').'Cart/addToCartBlazer', 'location');
+				}
+	           	else if(isset($_SESSION['selected3dInfo_suit']) && !empty($_SESSION['selected3dInfo_suit'])){
+					    $_SESSION['ordertype']="suit";
+						redirect($this->config->item('base_url_temp').'Cart/addToCartSuit', 'location');
+				}	
+				redirect($this->config->item('base_url_temp'));
 
 		}
 
@@ -6175,17 +6202,13 @@ public function shopnow($id,$catid,$subcatid)
 			$_SESSION['username']     = (string)$is_valid_user[0]->username;
 			$_SESSION['logged_in']    = (bool)true;
 			$_SESSION['email'] = $is_valid_user[0]->email;
+			
 			$newuserdata = array(
-
-						   'username'  => (int)$is_valid_user[0]->id,
-
-						   'userid'    => (string)$is_valid_user[0]->username,
-
-						   'email'     =>$is_valid_user[0]->email ,
-
-						   'logged_in' => true
-
-						);
+				'username'  => (int)$is_valid_user[0]->id,
+				'userid'    => (string)$is_valid_user[0]->username,
+				'email'     =>$is_valid_user[0]->email ,
+				'logged_in' => true
+			);
 
 			//print_r($newuserdata);
 			$check = $this->session->set_userdata($newuserdata);
@@ -6206,41 +6229,29 @@ public function shopnow($id,$catid,$subcatid)
 					);
 					//print_r($data);
 					$this->cart->insert($data);
-
 				}
-
 			}
 
 			// redirecting to add cart function based on 3d data selection  -- -added by MIN  vijay
 
-			if(isset($_SESSION['selected3dInfo_pant']) && !empty($_SESSION['selected3dInfo_pant'])&& isset($_SESSION['selected3dInfo_shirt']) && !empty($_SESSION['selected3dInfo_shirt']))
-
-			{
-
-					$_SESSION['ordertype']="both";
-
-					redirect($this->config->item('base_url_temp').'Cart/addcart3dcombined', 'location') ;
-
+			if(isset($_SESSION['selected3dInfo_pant']) && !empty($_SESSION['selected3dInfo_pant'])&& isset($_SESSION['selected3dInfo_shirt']) && !empty($_SESSION['selected3dInfo_shirt'])){
+				$_SESSION['ordertype']="both";
+   				redirect($this->config->item('base_url_temp').'Cart/addToCartTrouser', 'location') ;
 			}
-			else if(isset($_SESSION['selected3dInfo_shirt']) && !empty($_SESSION['selected3dInfo_shirt']))
-			{
+			else if(isset($_SESSION['selected3dInfo_shirt']) && !empty($_SESSION['selected3dInfo_shirt']) && !empty($_SESSION['selected3dInfo_pant'])){
 				$_SESSION['ordertype']="shirt";
 				redirect($this->config->item('base_url_temp').'Cart/addcart3dcombined', 'location');
-
 			}
 			else if(isset($_SESSION['selected3dInfo_pant']) && !empty($_SESSION['selected3dInfo_pant']))
-			{
-				// echo "hihi".$this->config->item('base_url');exit;
+			{  // echo "hihi".$this->config->item('base_url');exit;
 				$_SESSION['ordertype']="pant";
-				redirect($this->config->item('base_url_temp').'Cart/addcart3dcombined', 'location') ;
-
+				redirect($this->config->item('base_url_temp').'Cart/addToCartTrouser', 'location') ;
 			}
 			else if(isset($_SESSION['selected3dInfo_shirttrail']) && !empty($_SESSION['selected3dInfo_shirttrail']))
 			{
 				// echo "hihi".$this->config->item('base_url');exit;
 				$_SESSION['ordertype']="trailshirt";
 				redirect($this->config->item('base_url_temp').'Cart/addcart3dcombined', 'location') ;
-
 			}
 			// this codition has added for suit customization...
 			else if(isset($_SESSION['selected3dInfo_suit']) && !empty($_SESSION['selected3dInfo_suit']))
@@ -6248,7 +6259,6 @@ public function shopnow($id,$catid,$subcatid)
 				// echo "hihi".$this->config->item('base_url');exit;
 				$_SESSION['ordertype']="suit";
 				redirect($this->config->item('base_url_temp').'Cart/addToCartSuit', 'location') ;
-
 			}
 			// this codition has added for blazer customization...
 			else if(isset($_SESSION['selected3dInfo_blazer']) && !empty($_SESSION['selected3dInfo_blazer']))
@@ -6256,7 +6266,6 @@ public function shopnow($id,$catid,$subcatid)
 				// echo "hihi".$this->config->item('base_url');exit;
 				$_SESSION['ordertype']="blazer";
 				redirect($this->config->item('base_url_temp').'Cart/addToCartBlazer', 'location') ;
-
 			}
 			else if(isset($_SESSION['selected3dInfo_vest']) && !empty($_SESSION['selected3dInfo_vest']))
 			{
@@ -6265,40 +6274,18 @@ public function shopnow($id,$catid,$subcatid)
 				redirect($this->config->item('base_url_temp').'Cart/addToCartVest', 'location') ;
 
 			}
-
-
-
-
 			redirect($this->config->item('base_url_temp'));
-
 		}
-
 		else
-
 		{
-
-
-
 			echo "<script>
-
-
-
-				alert('The email and password you entered don\'t match.');
-
+			alert('The email and password you entered don\'t match.');
 				window.location.href='".$this->config->item('base_url_temp')."home/lum_login';
-
-				</script>";
+			</script>";
 
 
 
 		}
-
-
-
-
-
-
-
 
 
 	}
@@ -7265,9 +7252,9 @@ function get_tbl_size()
 
 /*page not found 404*/
 function show_test_header(){
-
+echo "var tesitng";
 	$this->load->view('lum_header_test.php');
-    $this->load->view('page_404.php');
+    $this->load->view('lum_home_test.php');
     $this->load->view('lum_footer_test.php');
 
 }

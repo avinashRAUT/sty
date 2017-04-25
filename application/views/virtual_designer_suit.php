@@ -16,8 +16,9 @@ else {
 	$image_url = "http://www.stylior.com/stylior/site/";
 }
 session_start();
+
 function getIPAddress($deep_detect){
-//$ip="86.96.201.72";
+
 	 if (filter_var($ip, FILTER_VALIDATE_IP) === FALSE) {
         $ip = $_SERVER["REMOTE_ADDR"];
 
@@ -28,74 +29,10 @@ function getIPAddress($deep_detect){
                 $ip = $_SERVER['HTTP_CLIENT_IP'];
         }
     }
-
-$geopluginURL='http://www.geoplugin.net/php.gp?ip='.$ip;
-$addrDetailsArr = unserialize(file_get_contents($geopluginURL));
-return $addrDetailsArr;
-
+    $geopluginURL='http://www.geoplugin.net/php.gp?ip='.$ip;
+    $addrDetailsArr = unserialize(file_get_contents($geopluginURL));
+    return $addrDetailsArr;
 }
-
-/*
-if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
-    $ip = $_SERVER['HTTP_CLIENT_IP'];
-} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-    $ip = $_SERVER<div class="button-options" id="trouser_button_options" style="display: none">
-	<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 ">
-		<div class="button-details" id="AC1FD311">
-				<a class="changeOption" href="#" data="STBBLACK" data-key="Trouser Button">
-					<img class="img-responsive" src="<?= $image_url; ?>upload/trouser/buttons/black.png">
-					</a>
-				<div class="option-info">
-					<h4>BLACK</h4>
-				</div>
-		</div>
-	</div>
-	<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 ">
-		<div class="button-details" id="E4D8E807">
-				<a class="changeOption" href="#" data="STBBROWN" data-key="Trouser Button">
-					<img class="img-responsive" src="<?= $image_url; ?>upload/trouser/buttons/brown.png">
-				</a>
-				<div class="option-info">
-					<h4>BROWN </h4>
-				</div>
-		</div>
-	</div>
-	<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 ">
-		<div class="button-details" id="B697A8D2">
-				<a class="changeOption" href="#" data="STBGRAY" data-key="Trouser Button">
-					<img class="img-responsive" src="<?= $image_url; ?>upload/trouser/buttons/gray.png">
-				</a>
-				<div class="option-info">
-					<h4>GREY</h4>
-				</div>
-		</div>
-	</div>
-	<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 ">
-		<div class="button-details" id="B83C5994">
-				<a class="changeOption" href="#" data="STBNAVY" data-key="Trouser Button">
-					<img class="img-responsive" src="<?= $image_url; ?>upload/trouser/buttons/navy.png">
-				</a>
-				<div class="option-info">
-					<h4>NAVY</h4>
-				</div>
-		</div>
-	</div>
-	<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 ">
-		<div class="button-details" id="16770C30">
-				<a class="changeOption" href="#" data="STBWHITE" data-key="Trouser Button">
-					<img class="img-responsive" src="<?= $image_url; ?>upload/trouser/buttons/white.png">
-				</a>
-				<div class="option-info">
-					<h4>WHITE</h4>
-				</div>
-		</div>
-	</div>
-</div>['HTTP_X_FORWARDED_FOR'];
-} else {
-    $ip = $_SERVER['REMOTE_ADDR'];
-}
-*/
-
 
 if(!isset($_SESSION['currencycode']))
 {

@@ -1560,7 +1560,8 @@ vest/vest_default.png -->
 
 	<div class="rendered-trouser">
 		<img class="img-responsive processimage" src="">
-		<img src="http://www.tsg.ge/images/loading.gif" class="loadingmessage">
+		<img src="<?=base_url()."images/loading_new.gif"; ?>" class="loadingmessage">
+		
 
 
 
