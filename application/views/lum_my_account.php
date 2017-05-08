@@ -776,8 +776,13 @@ $shirt_measurement_array=array("standardsize","length","fitype","WEIGHTkg","shou
     max-width: 17%;
     min-width: 50%;
 }
+
 .lum_switch11 img{
-	max-width:300px;}
+	max-width:300px;
+     width: 100%;
+     height: auto;
+}
+
 </style>
 <script>
 
@@ -798,6 +803,7 @@ $(".delete-addr").on("click",function(){
 	})
 
 })
+
 });
 
 </script>
@@ -1180,8 +1186,6 @@ $(".delete-addr").on("click",function(){
 			if($uid !=""){
 
 								 //$uid=$this->session->userdata('userid').'fshdf';die;
-
-
 								$measureprofile = $this->home_model->allusermeasurements($uid);
 							}
 					if($measureprofile != '' && count(measureprofile) > 0) {
@@ -1190,10 +1194,7 @@ $(".delete-addr").on("click",function(){
 								{
 									$serdata = $mdetail->serializedata;
 									$uns= unserialize($serdata);	?>
-
-
 				<div class="lum_switch11">
-
 					<?php echo $mdetail->userprofilename; ?>
 					<div class="lum_fab_img_bold"><?php echo $mdetail->metricft; ?> <?php echo $mdetail->metricinch; ?> In </div>
 					<button class="class_button_lum delete-addr" data-attr="<?=$mdetail->id?>">Delete</button>
@@ -1262,7 +1263,9 @@ $(".delete-addr").on("click",function(){
 					<div class="tab_address_lum_inner">ADDRESS LINE 2 : <br /><input  id="Address2add" class="tab_address_lum_input" type="text" name="Address2"/></div>
 					<div class="tab_address_lum_inner">TOWN / CITY : <br /><input id="Cityadd" class="tab_address_lum_input Cityadd" type="text" name="City" required/></div>
 					<div class="tab_address_lum_inner">STATE : <br /><input  id="Stateadd" class="tab_address_lum_input Stateadd" type="text" name="State" /></div>
-					<div class="tab_address_lum_inner">PINCODE : <br /><input   id="Zipadd" class="tab_address_lum_input Zipadd" type="text" name="Zip" required/></div>
+					<div class="tab_address_lum_inner">PINCODE : <br /><input   id="Zipadd" class="tab_address_lum_input Zipadd" pattern="[0-9]{6}" type="text" name="Zip" required/></div>
+
+
 					<div class="tab_address_lum_inner">COUNTRY : <br /><input  id="countryadd" class="tab_address_lum_input countryadd" type="text" name="country"  pattern="[A-Za-z]+" title="Please enter proper country name" required  /></div>
 					<div class="tab_address_lum_inner">MOBILE NUMBER :  &nbsp;<span id="errmsg"></span><br /><input  maxlength=10 id="Phoneadd" class="tab_address_lum_input Phoneadd" type="text" name="Phone" /></div>
 					<div class="tab_address_lum_inner1">
@@ -1316,11 +1319,7 @@ $(".delete-addr").on("click",function(){
 		{
 	$address = "0";
 		}?>
-
-
-
-
-						</div>
+		</div>
 
 					</div>
 				</div>
@@ -1537,4 +1536,4 @@ $('.add_open').click(function()
 
 		}
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.js"></script> -->

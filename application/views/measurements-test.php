@@ -495,12 +495,15 @@ Shoulder Angle
                    </div>
 
    			   		<div class="entry">
-	   			   		<label>LENGTH</label>
-						<input type="text" id="lum_input_required7" class="mesure-form" name="bodypartvalue[85]"  placeholder="TROUSER LENGTH" required/>
+   			   		<label>LENGTH</label>
+					<input type="text" id="lum_input_required7" class="mesure-form" name="bodypartvalue[85]"  placeholder="TROUSER LENGTH" required/>
                    </div>
+
+
 
 					<!-- extra info here -->
 					<div class="lum_switch_right" >
+
 						<label>Profile Name:</label> <input type="text" class="mesure-form" name="profilename" required="required" >
 						<?php if($_SESSION['subcatid']==10)
 						{  $cat_va = "Shirt";
@@ -522,23 +525,34 @@ Shoulder Angle
 
      </div><!-- end of subMenu -->
 
-	</div>
+</div>
+
+
+
 </li>
 
 <li data-content="m_summary">
-	<div class="m-summary-data">
-	<!--<h2>Selected Product</h2>-->
-	 <div class="m-summary-body">
-		</div>
-		<div class="m-summary-data-img">
-		<?php if(isset($_SESSION['selected3dInfo_shirt']['data'])){?>
-	    <img src="<?php echo $_SESSION['selected3dInfo_shirt']['data']; ?>" >
-	   <?php } ?>
-	    </div>
-	    <div class="gap10"></div>
+<div class="m-summary-data">
+<!-- <h2>Selected Product</h2>
+ -->	<div class="m-summary-body">
+
 	</div>
+
+	<div class="m-summary-data-img">
+	<?php if(isset($_SESSION['selected3dInfo_shirt']['data'])){?>
+    <img src="<?php echo $_SESSION['selected3dInfo_shirt']['data']; ?>" >
+   <?php } ?>
+    </div>
+    <div class="gap10"></div>
+
+
+</div>
 </li>
 
-</ul> <!-- cd-tabs-content -->
+
+
+
+	</ul> <!-- cd-tabs-content -->
 </div> <!-- cd-tabs -->
 </div> <!-- cd-tabs -->
+

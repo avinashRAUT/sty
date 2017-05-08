@@ -177,7 +177,9 @@ if($data[1]=="home" && $data[2]=="new_custom" ||$data[2]=="new_custom_demo"){?>
 <link rel="stylesheet" href="<?=$https_url ?>site/css/3d_page_css.css">
 <?php } else { ?>
   <link rel="stylesheet" type="text/css" href="<?= $https_url ?>site/css/animate.css">
+  <?php if($data[2]!="mdemo") {?>
   <link rel="stylesheet" type="text/css" href="<?= $https_url ?>site/css/owl.carousel.css">
+  <?php } ?>
   <link href="<?=$https_url ?>site/css/bootstrap.min.css" rel="stylesheet" />
 <?php } ?>
 <?php if(isset($title)){ ?>
@@ -375,7 +377,7 @@ src="https://www.facebook.com/tr?id=1248172288528875&ev=PageView&noscript=1"
                 </li>
             	<li><a href="<?php echo $bas_ul;?>book-a-home-visit">BOOK A HOME VISIT</a></li>
                 <li><a href="<?php echo $bas_ul;?>wedding-suit">WEDDING</a></li>
-                <li><a href="#">STORE</a></li>
+                <li><a href="<?php echo $bas_ul;?>store">STORE</a></li>
                 <li><a href="http://www.blog.stylior.com" target="_blank">BLOG</a></li>
                 <li class="dropdown megamenu-fw moreMenu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">MORE</a>

@@ -103,7 +103,7 @@ src="https://www.facebook.com/tr?id=2055046121389006&ev=PageView&noscript=1"
 
 
 <!-- start modal -->
-<div class="modal fade" id="subscribeModal" role="dialog" style="display:none;">
+<!--<div class="modal fade" id="subscribeModal" role="dialog" style="display:none;">
   <div class="vertical-alignment-helper">
     <div class="modal-dialog modal-md vertical-align-center">
       <div class="modal-content mobi">
@@ -138,7 +138,7 @@ src="https://www.facebook.com/tr?id=2055046121389006&ev=PageView&noscript=1"
     </div>
   </div>
   </div>
-</div>
+</div>-->
 
 <!-- end of modal -->
 <!-- ================= new footer code ================= -->
@@ -151,7 +151,7 @@ src="https://www.facebook.com/tr?id=2055046121389006&ev=PageView&noscript=1"
                     <ul class="footer-social-links">
                         <li><a href="https://www.facebook.com/styliorfashion/" target="_blank"><i class="fa fa-facebook"></i></a></li>
                         <li><a href="https://www.instagram.com/styliorfashion/" target="_blank"><i class="fa fa-instagram"></i></a></li>
-                        <li><a href="https://plus.google.com/u/0/100002617149579103996/posts" target="_blank"><i class="fa fa-google-plus"></i></a></li>
+                        <li><a href="https://plus.google.com/u/0/100002617149579103996/posts" target="_blank" class="google-plus"><i class="fa fa-google-plus"></i></a></li>
                         <li><a href="https://www.pinterest.com/styliorfashion/" target="_blank"><i class="fa fa-pinterest"></i></a></li>
                         <li><a href="https://www.linkedin.com/company/stylior-com?trk=biz-companies-cym" target="_blank"><i class="fa fa-linkedin"></i></a></li>
                         <li><a href="https://www.youtube.com/channel/UCFwHuzx8WXKzjminQXJglWw" target="_blank"><i class="fa fa-youtube"></i></a></li>	
@@ -324,7 +324,20 @@ if(!isset($_COOKIE[$cookie_name])) {
 
 <script type="text/javascript" src="<?=base_url() ?>js/bootstrap.min.js"></script>
 <script type="text/javascript" src="<?=base_url() ?>js/bootsnav.js"></script>
+
+<?php 
+$data=explode('/', $_SERVER['REQUEST_URI']);
+// echo "<div style='display:none'>";
+//     $data=explode('/', $_SERVER['REQUEST_URI']);
+//     print_r($data);
+// echo "</div>";
+
+if($data[2]!="mdemo") {?>
 <script src="<?=base_url() ?>js/owl.carousel.js"></script>
- <script src="<?=base_url() ?>js/jquery.mb.YTPlayer.js"></script>
+<?php } ?>
+
+<script src="<?=base_url() ?>js/jquery.mb.YTPlayer.js"></script>
+
 <script type="text/javascript" src="<?=base_url() ?>js/wow.js"></script>
 <script type="text/javascript" src="<?=base_url() ?>js/script.js"></script>
+

@@ -83,8 +83,9 @@ $route['product/(:any)/(:any)'] = "home/details/$1/$2";
 $route['style/(:any)'] = "home/style/$1";
 $route['page/(:any)'] = "home/page1/$1";
 $route['404_override'] = 'home/show_404';
-
+$route['mdemo'] = 'home/mdemo';
 $route['scaffolding_trigger'] = "";
+
 /*
 $route['logout'] = "home/logout";
 $route['signin'] = "home/signin";

@@ -11,18 +11,27 @@ $https_url="http://www.stylior.com/";
 $https_url_large_img="http://www.stylior.com/upload/products1/medium/";
 
 }
+  echo "testing";
+  //print_r($shirt_new);
+  /*foreach($shirt_new as $index=>$product)
+  {
+    print_r($product);
+  }
+*/
 
 
 ?>
 
 <title> Create and Design your very own Custom Tailored Dress & Shirts at Stylior Fashion, India
 </title>
+
 <meta name="description" content="At Stylior Fashion, you will get Luxury to make your own shirt or you can create your very own custom shirt with the help of our experts.
 "/>
 <meta name="keywords" content="Custom Shirts, Shirts, Suits, Men Accessories, Trousers, Tailored, Dress, Own Shirts, Design Dress, Shirts for Man, Create, Stylor Fashion, India"/>
+
 <meta name="msvalidate.01" content="3329622651CA6FCF4425CAF6AD27F8EC" />
 
- <script type="application/ld+json">
+<script type="application/ld+json">
     {
       "@context": "http://schema.org",
       "@type": "Organization",
@@ -61,12 +70,8 @@ $https_url_large_img="http://www.stylior.com/upload/products1/medium/";
   ]
 }
 </script>
-
-
 <?php
-
 $https_url_large_img="https://www.stylior.com/stylior/upload/products1/large/";
-
 ?>
  <!-- Carousel
     ================================================== -->
@@ -104,9 +109,6 @@ $https_url_large_img="https://www.stylior.com/stylior/upload/products1/large/";
     </div>	
 <!--slider section-->
 
-
-
-
 <section class="content-wrap">
 	<!--first section-->
     <div class="row">
@@ -122,7 +124,7 @@ $https_url_large_img="https://www.stylior.com/stylior/upload/products1/large/";
             <img src="<?= base_url() ?>images/home/blank-space.gif">
         </div>
     
-        <div class="cust_shop home_design design-section1 cfadeInLeftBig col-sm-4 col-sm-pull-4 col-xs-12">
+        <div class="cust_shop home_design design-section1 col-sm-4 col-sm-pull-4 col-xs-12 wow animated fadeInLeft">
             <img src="<?= base_url() ?>images/home/home-shirt-shop.jpg" alt="Stylior">
             <div class="cust_shop_overlay">
                 <h2>Design your </h2>
@@ -131,7 +133,7 @@ $https_url_large_img="https://www.stylior.com/stylior/upload/products1/large/";
             </div>
         </div>
     
-        <div class="cust_shop home_design design-section3 animated fadeInRightBig col-sm-4 col-xs-12">
+        <div class="cust_shop home_design design-section3 col-sm-4 col-xs-12 wow animated fadeInRight">
             <img src="<?= base_url() ?>images/home/home-suit-shop.jpg" alt="Stylior">
             <div class="cust_shop_overlay">
                 <h2>make the best impression with</h2>
@@ -140,15 +142,16 @@ $https_url_large_img="https://www.stylior.com/stylior/upload/products1/large/";
             </div>
         </div>
     </div>
+
     <!--first section-->
     <!--second section-->
-    <div class="container">
+    <!--<div class="container">
     	<div class="row">
-        	<div class="col-md-12 wow animated fadeInLeft">
+        	<div class="col-md-12 wow animated fadeInDown">
             	<img src="<?= base_url() ?>images/home/store_locator.jpg" class="img-responsive" alt="Store">
             </div>
         </div>
-    </div>
+    </div>-->
     <!--second section-->
     
     <!--third section-->
@@ -158,48 +161,60 @@ $https_url_large_img="https://www.stylior.com/stylior/upload/products1/large/";
       <div class="row text-center">
          <h2 class="title_new"><span>NEW ARRIVAL</span></h2>
       </div>
+
+<?php 
+
+?>
+
        <div id="owl-demo" class="owl-carousel owl-theme">
-           <?php $this->db->select('*');
+           <?php
+            $this->db->select('*');
             $this->db->from('tbl_product as t1');
             $this->db->join('tbl_product_image as t2', 't2.pid = t1.id','left');
             //$this->db->join('colour as c1', 't1.colour = c1.id','inner');
             //$this->db->join('design as d1', 't1.designid = d1.id','inner');
             $this->db->where('subcatid',10);
             $this->db->where('qty>',0);
-          $this->db->where('is_home',1);
-        
-                $this->db->where('t2.baseimage',1);
+            $this->db->where('is_home',1);
+            $this->db->where('t2.baseimage',1);
             $this->db->limit(10);
             $q = $this->db->get();
             //echo "<pre>";
             //print_r($q->result()); die;
-            $ret['result'] = $q->result();
-        
-        
-            foreach($ret['result'] as $index =>$product)
-                {
-                if($product->id!="")
-                    $product_images_pids[]=$product->id;
-                }
-                if($product->id!="")
-                {
+            $ret['result'] = $trouser_new; //$q->result();
+            foreach($trouser_new as $index =>$product)
+            {
+                  if($product->id!="")
+                   $product_images_pids[]=$product->id;
+            }
+             
+  
+             if($product->id!="")
+             {
                 $prd_images_qry = $this->db->query("select pid, image  from tbl_product_image where pid in (".implode(",",$product_images_pids).") order by id");
         
-                foreach($prd_images_qry->result() as $index =>$product)
+            
+
+               foreach($prd_images_qry->result() as $index =>$product)
                 {
+                    echo "test";
+                    print_r($product);
                     $product_images[$product->pid][]=$product->image;
                 }
-                }
-                $ret['images']  = $product_images;
-                $ret['count']  = $query1->num_rows;
-        
-             $i=0;
-            foreach($ret['result'] as $result[])
-            {
+
+              }
+
+              $ret['images']  = $product_images;
+              $ret['count']  = $query1->num_rows;      
+              $i=0;
+
+              foreach($ret['result'] as $result[])
+              {
                 if($i<30)
                 {
-            //echo "<pre>";
-            //print_r($ret['result']);?>
+                //echo "<pre>";
+                //print_r($ret['result']);
+                  ?>
               <div class="item">
                 <a href="<? echo $base_ul."/mens-shirts/".str_replace(' ','-',$ret['result'][$i]->pname)."-".$ret['result'][$i]->pid; ?>" >
                  <img src="<?php echo $https_url_large_img."".$ret['result'][$i]->image;?>" class="img-responsive" width="242" height="392">
@@ -240,11 +255,11 @@ $https_url_large_img="https://www.stylior.com/stylior/upload/products1/large/";
                          echo "AUD ".$ret['result'][$i]->AUD;
                        }
                        else
-                       {
-                         //echo $this->session->userdata('currencycode')."";
-            
-                         //echo ceil(( $image['result'][$i]->price / ( $this->session->userdata('currencyvalue') * ($this->session->userdata('multiplier')/100)) )/$this->session->userdata('ceiling'))*$this->session->userdata('ceiling');
-                       }
+                        {
+                            //echo $this->session->userdata('currencycode')."";
+                            //echo ceil(( $image['result'][$i]->price / ( $this->session->userdata('currencyvalue') * ($this->session->userdata('multiplier')/100)) )/$this->session->userdata('ceiling'))*$this->session->userdata('ceiling');
+                        }
+                      
                        ?>
         
                  </div>
@@ -265,7 +280,7 @@ $https_url_large_img="https://www.stylior.com/stylior/upload/products1/large/";
     
     <div class="row home_shop_cloths">
         <a href="">
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 shop-div">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 shop-div wow animated fadeInUp">
                 <img src="<?=base_url() ?>images/home/vests-shop.jpg" alt="shop" class="img-responsive">
                 <div class="home_shop_overlay">
                    <a href="<?= $bas_ul ?>mens-vests" alt="Design your vest"> <h1>Vest</h1></a>
@@ -274,7 +289,7 @@ $https_url_large_img="https://www.stylior.com/stylior/upload/products1/large/";
         
         </a>
         <a href="">
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 shop-div">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 shop-div wow animated fadeInUp">
                 <img src="<?=base_url() ?>images/home/trouser-shop.jpg" alt="shop" class="img-responsive">
             <div class="home_shop_overlay">
                 <h4>comfort and style at it's best</h4>
@@ -283,7 +298,7 @@ $https_url_large_img="https://www.stylior.com/stylior/upload/products1/large/";
             </div>
         </a>
         <a href="">
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 shop-div">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 shop-div wow animated fadeInUp">
                 <img src="<?=base_url() ?>images/home/acccessories-shop.jpg" alt="shop" class="img-responsive">
             <div class="home_shop_overlay">
                 <a href="<?= $bas_ul ?>mens-ties"><h1>Accessories</h1>
@@ -300,7 +315,6 @@ $https_url_large_img="https://www.stylior.com/stylior/upload/products1/large/";
         </div>
         <div class="col-md-6 col-sm-12 ba-right">
         	<div class="">
-          		<h1>AS EXPERIENCE  AS CUSTOM  AS YOUR SUIT</h1>
                 <div class="row">
                     <div class="col-md-4 col-sm-4 col-sm-12 ba-contents">
                     	<div class="div-ba">
@@ -309,7 +323,7 @@ $https_url_large_img="https://www.stylior.com/stylior/upload/products1/large/";
                             </div>
                             <div class="icon-box-content">
                                 <h4>book a free home visit</h4>
-                                <p>(only mumbai & dubai)</p>
+                              <!--  <p>(only mumbai & dubai)</p>-->
                             </div>
                         </div> 
                     </div>
@@ -321,7 +335,7 @@ $https_url_large_img="https://www.stylior.com/stylior/upload/products1/large/";
                             </div>
                             <div class="icon-box-content">
                                 <h4>visit stylist</h4>
-                                <p>our travelling stylist will help you to get measurement, choose fabrics and style options as per your convenience.</p>
+                                <!--<p>our travelling stylist will help you to get measurement, choose fabrics and style options as per your convenience.</p>-->
                             </div>
                         </div> 
                     </div>
@@ -333,7 +347,7 @@ $https_url_large_img="https://www.stylior.com/stylior/upload/products1/large/";
                             </div>
                             <div class="icon-box-content">
                                 <h4>free shipping and easy returns</h4>
-                                <p>it's a 15 days free return policy which works in three stages: alteration | remake | return</p>
+                                <!--<p>it's a 15 days free return policy which works in three stages: alteration | remake | return</p>-->
                             </div>
                         </div> 
                     </div>
@@ -392,11 +406,6 @@ $https_url_large_img="https://www.stylior.com/stylior/upload/products1/large/";
 	<!-- home-services -->
     
 </section>
-
-
-
-
-
 <script>
   $(document).ready(function(){
     $("#myCarousel").carousel({

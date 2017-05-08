@@ -1,30 +1,20 @@
 <?php
 		defined('BASEPATH') OR exit('No direct script access allowed');
-
 		class Home extends CI_Controller {
-
+		
 		function __Construct()
 		{
 
-		  parent::__Construct ();
-
-		  $this->load->helper('url');
-
-		   $this->load->database();
-
-		   $this->load->library('session');
-
-		   $this->load->model('home_model');
-
-		   $this->load->model('User_model');
-
-		   $this->load->model('Cart_model');
-
-		   $this->load->model('Account_model');
-
-		   $this->load->model('Appointment_model');
-
-		   $this->load->model('Bilship_model');
+		  	parent::__Construct ();
+			$this->load->helper('url');
+			$this->load->database();
+			$this->load->library('session');
+			$this->load->model('home_model');
+			$this->load->model('User_model');
+			$this->load->model('Cart_model');
+			$this->load->model('Account_model');
+			$this->load->model('Appointment_model');
+			$this->load->model('Bilship_model');
 
 		}
 
@@ -40,7 +30,20 @@
 	        $this->load->view('lum_header');
 			//$this->data['image'] = $this->home_model->home_cat();
 			//$data['allbanner'] = $this->home_model->allbanner();
-			$this->load->view('lum_home');
+			$data=array();  		
+	         //new arrival  shirt code
+   			$this->db->from('tbl_product as t1');
+            $this->db->join('tbl_product_image as t2', 't2.pid = t1.id','left');
+            $this->db->where('subcatid',10);
+            $this->db->where('qty>',0);
+            $this->db->where('is_home',1);
+            $this->db->where('t2.baseimage',1);
+            $this->db->limit(10);
+            $q = $this->db->get();
+            //echo "<pre>";
+            //print_r($q->result()); die;
+            $data['shirt_new'] = $q->result();
+        	$this->load->view('lum_home',$data);
 	        $this->load->view('lum_footer');
 		}
 
@@ -55,76 +58,74 @@
 			/*end avr*/
 		 }
 
-	public function updateaddress()
-	{
-		$L_strErrorMessage='';
-		$form_field = $data = array(
-		'L_strErrorMessage' => '',
-		'addressid'=>'',
-		'Name'      => '',
-		'Address1'      => '',
-		'Address2'      => '',
-		'City'      => '',
-		'State'      => '',
-		'Zip'      => '',
-		'Status'      => '',
-		'country'      => '',
-		'Phone'      => ''
-		);
-		if($this->input->post('action') == 'updateaddress')
+
+		public function updateaddress()
 		{
-		foreach($form_field as $key => $value)
-		{
-		$data[$key]=$this->input->post($key);
+			$L_strErrorMessage='';
+			$form_field = $data = array(
+			'L_strErrorMessage' => '',
+			'addressid'=>'',
+			'Name'      => '',
+			'Address1'      => '',
+			'Address2'      => '',
+			'City'      => '',
+			'State'      => '',
+			'Zip'      => '',
+			'Status'      => '',
+			'country'      => '',
+			'Phone'      => ''
+			);
+			if($this->input->post('action') == 'updateaddress')
+			{
+			foreach($form_field as $key => $value)
+			{
+			$data[$key]=$this->input->post($key);
+			}
+		   $this->Bilship_model->updateaddress($data);
+
+			$this->session->set_flashdata('L_strErrorMessage','Address Updated Succcessfully!!!!');
+
+			redirect($this->config->item('base_url_temp').'home/lum_my_account');
+
+			if ($this->validation->run() == FALSE)
+			{
+
+			$data['L_strErrorMessage'] = $this->validation->error_string;
+			}
+			else
+			{
+			//$data['allcategory'] = $this->product_model->allcategory();
+			$this->load->view('lum_my_account',$data);
+			}
+			}
 		}
-	   $this->Bilship_model->updateaddress($data);
 
-		$this->session->set_flashdata('L_strErrorMessage','Address Updated Succcessfully!!!!');
+	public function resetpass(){
+			$this->load->model('user_model');
+			if($this->input->post('reset')=="reset"){
+				$id = $this->session->userdata('user_id');
+			//	echo "session id".$id;
+			//	print_r($_POST);
+			   /*session id1166Array ( [previouspass] => 118191462987173636500 [newpassword] => [re_password] => [reset] => reset )*/
+			   $data=array(
+		     	'password'=>$_POST['newpassword'],
+		     	'repassword'=>$_POST['re_password'],
+			    	);
 
-		redirect($this->config->item('base_url_temp').'home/lum_my_account');
+		       if($data['newpassword']==$data['re_password']){
+					if($this->user_model->resetPassword($id,$data['password'])){
+							$this->session->set_userdata("smsg","Password Changed!");
+				            redirect($this->config->item('base_url_temp').'home/lum_my_account');
 
-		if ($this->validation->run() == FALSE)
-		{
+					}
 
-		$data['L_strErrorMessage'] = $this->validation->error_string;
-		}
-		else
-		{
-		//$data['allcategory'] = $this->product_model->allcategory();
-		$this->load->view('lum_my_account',$data);
-		}
-		}
-	}
-
-
-
-public function resetpass(){
-	$this->load->model('user_model');
-	if($this->input->post('reset')=="reset"){
-		$id = $this->session->userdata('user_id');
-	//	echo "session id".$id;
-	//	print_r($_POST);
-	   /*session id1166Array ( [previouspass] => 118191462987173636500 [newpassword] => [re_password] => [reset] => reset )*/
-	   $data=array(
-     	'password'=>$_POST['newpassword'],
-     	'repassword'=>$_POST['re_password'],
-	    	);
-
-       if($data['newpassword']==$data['re_password']){
-			if($this->user_model->resetPassword($id,$data['password'])){
-					$this->session->set_userdata("smsg","Password Changed!");
-		            redirect($this->config->item('base_url_temp').'home/lum_my_account');
+		       }
 
 			}
 
-       }
-
-	}
-
-}
+		}
 
 	public function addaddress()
-
 	{
 
 		$L_strErrorMessage='';
@@ -149,41 +150,33 @@ public function resetpass(){
 
 
 	if($this->input->post('action') == 'addaddress')
-
 	{
+		foreach($form_field as $key => $value)
+		{
+			$data[$key]=$this->input->post($key);
+		}
+		//  echo "<pre>";
+		//  print_r($data);
+ 		$this->Bilship_model->addaddress($data);
+		$this->session->set_flashdata('L_strErrorMessage','Address Added Succcessfully!!!!');
+		/*start avr*/
+		$this->session->set_userdata("smsg","Address Added Succesfully");
+		/*end avr*/
+        redirect($this->config->item('base_url_temp').'home/lum_my_account');
 
-			foreach($form_field as $key => $value)
+		if($this->validation->run() == FALSE)
+		{
 
-			{
+			$data['L_strErrorMessage'] = $this->validation->error_string;
 
-				$data[$key]=$this->input->post($key);
+		}
+		else
+		{
 
-			}
+			//$data['allcategory'] = $this->product_model->allcategory();
+			$this->load->view('lum_my_account',$data);
 
-     		//  echo "<pre>";
-			//  print_r($data);
-     		$this->Bilship_model->addaddress($data);
-			$this->session->set_flashdata('L_strErrorMessage','Address Added Succcessfully!!!!');
-			/*start avr*/
-			$this->session->set_userdata("smsg","Address Added Succesfully");
-			/*end avr*/
-            redirect($this->config->item('base_url_temp').'home/lum_my_account');
-			if ($this->validation->run() == FALSE)
-				{
-
-				$data['L_strErrorMessage'] = $this->validation->error_string;
-
-				}
-
-				else
-
-				{
-
-     				//$data['allcategory'] = $this->product_model->allcategory();
-
-					$this->load->view('lum_my_account',$data);
-
-				}
+		}
 
 	}
 
@@ -726,13 +719,9 @@ public function resetpass(){
 		}
 		else
 		{
-
-		$this->load->view('lum_header');
-
-		$this->load->view('lum_login_test');
-
-		$this->load->view('lum_footer');
-
+			$this->load->view('lum_header');
+			$this->load->view('lum_login_test');
+			$this->load->view('lum_footer');
 		}
 
    }
@@ -1950,91 +1939,34 @@ public function lum_fit_guide()
 		{
 
 			$this->session->set_userdata('catid',$catid);
-
 			$this->session->set_userdata('subcatid',$subcatid);
-
 			$this->session->set_userdata('productid',$productid);
-
 		    $this->load->helper('url');
-
 		    $this->data['shirtfabrics'] = $this->home_model->customdtata($catid,10);
-
 			$this->data['pantfabrics'] = $this->home_model->customdtatapant($catid,11);
-
 			$this->data['allfabrics'] = $this->home_model->allfabdtata();
-
 			$this->data['collars'] = $this->home_model->allcollardata();
-
 			$this->data['cuffs'] = $this->home_model->allcuffdata();
-
 			$this->data['innercontrastfab'] = $this->home_model->allinnercontrastfab();
-
-
-
-
 			$this->data['allbuttons'] = $this->home_model->allbuttons();
-
 			$this->data['basefab'] = $this->home_model->getbasefab($productid);
-
 			$this->data['productid'] =$productid;
-
 			$this->data['subcatid'] =$subcatid;
-
 			$this->data['catid'] =$catid;
-
-
-
-				//echo $subcatid; die;
-
-
-
+			//echo $subcatid; die;
 			//echo "<pre>";print_r($this->data['allfabrics'] );die;
-
 			//$this->data['shirtfabrics'] = $this->home_model->customdtata($catid,10);
-
-				//$this->output->enable_profiler(FALSE);
-
-
-
-
-
-				$this->load->view('header');
-
-
-
-
-
-
-
-
-
-				if($subcatid=="11")
-
-				{
-
+			//$this->output->enable_profiler(FALSE);
+			$this->load->view('header');
+			if($subcatid=="11")
+			{
 				 $this->load->view('3dcombined_pant',$this->data);
-
-
-
-				}
-
-				else
-
-				{
-
-				 $this->load->view('3dcombined_new',$this->data);
-
-
-
-				}
-
-
-
-				$this->load->view('footer');
-
-
-
-
+			}
+			else
+			{
+			 $this->load->view('3dcombined_new',$this->data);
+			}
+			$this->load->view('footer');
 
 		}
 
@@ -2043,37 +1975,24 @@ public function lum_fit_guide()
 
 
 		public function newmeasure()
-
 		{
-
-
 			$this->load->helper('url');
 			$this->output->enable_profiler(FALSE);
 			$base_url = $this->config->item('base_url');
-
 			if($_SESSION['subcatid']==20||$_SESSION['trail-shirt'])
 			{
 				$_SESSION['subcatid']=10;
 			}
-
 			if(!empty($_SESSION['subcatid']))
 		    {
 			 $_POST['subcatid']=$_SESSION['subcatid'];
 		    }
-
-
 		    $_POST['catid']=9;
-
 			$_POST['fit']=1;
 			$this->data['datashirt'] = $this->home_model->shirtparts($_POST['catid'],$_POST['subcatid']);
 			$this->data['shirt_sizes'] = $this->home_model->shirtparts($_POST['catid'],$_POST['subcatid']);
 			$get_sizes = $this->Cart_model->sizedata($_POST['subcatid'],$_POST['fit']);
 			$this->data['sizes'] =$get_sizes;
-
-
-
-
-
 			$this->load->view('lum_header');
 			if($_POST['subcatid']==10)
 			{
@@ -2083,259 +2002,178 @@ public function lum_fit_guide()
 			{
 			 $this->load->view('lum_saved_profile9',$this->data);
 			}
-
 			$this->load->view('lum_footer');
 
-
 		}
 
-public function login_test()
+		public function login_test()
+		  {
+		    $this->load->helper('url');
+		    $this->output->enable_profiler(FALSE);
+			$base_url = $this->config->item('base_url');
+		    //$this->load->view('header');
+		    $this->load->view('login_test');
+		    //$this->load->view('footer');
 
-  {
+		  }
 
-    $this->load->helper('url');
-
-    $this->output->enable_profiler(FALSE);
-
-   $base_url = $this->config->item('base_url');
-
-    //$this->load->view('header');
-
-    $this->load->view('login_test');
-
-    //$this->load->view('footer');
-
-  }
-
-	public function guestlogin()
-
-	{
-		if(!empty($_POST['guestemail']))
+		public function guestlogin()
 		{
-			$guestemail= $_POST['guestemail'];
-			$alreadyexists = $this->User_model->checkvalidemail($guestemail);
-			if($alreadyexists != '')
+			if(!empty($_POST['guestemail']))
 			{
-				$data['L_strErrorMessage'] = "Email Id already Exists.!!";
-				$data['countrycode'] = $this->user_model->getccode();
-				$data['title'] = 'Stylior.com';
-				$data['keywords'] = '';
-				$data['description'] = '';
-				$this->load->view('login_view',$data);
-			}
-			else
-			{
-				foreach($_POST as $key => $value)
+				$guestemail= $_POST['guestemail'];
+				$alreadyexists = $this->User_model->checkvalidemail($guestemail);
+				if($alreadyexists != '')
 				{
-					$data[$key]=$this->input->post($key);
+					$data['L_strErrorMessage'] = "Email Id already Exists.!!";
+					$data['countrycode'] = $this->user_model->getccode();
+					$data['title'] = 'Stylior.com';
+					$data['keywords'] = '';
+					$data['description'] = '';
+					$this->load->view('login_view',$data);
 				}
-				$this->load->library('session');
-				$content['username']  = $data['guestemail'];
-				$content['email']	  = $data['guestemail'];
-				$content['password']  = "guest";
-				$this->session->set_userdata('email',$content['email']);
-				$this->session->set_userdata('username',$content['username']);
-				if($this->input->post("action")=="guestlogin")
+				else
 				{
-					$id = $this->User_model->guestuser($content);
-					$this->session->set_userdata('user_id',$id);
-					$_SESSION['usertype']="Guest";
-					$_SESSION['Guestuser_id']=$id;
-					// redirecting to add cart function based on 3d data selection  -- -added by MIN  vijay
-					//both
-				
+					foreach($_POST as $key => $value)
+					{
+						$data[$key]=$this->input->post($key);
+					}
 
-				if(isset($_SESSION['selected3dInfo_pant']) && !empty($_SESSION['selected3dInfo_pant'])&& isset($_SESSION['selected3dInfo_shirt']) && !empty($_SESSION['selected3dInfo_shirt'])){
-					$_SESSION['ordertype']="both";
-					redirect($this->config->item('base_url_temp').'Cart/addToCartTrouser', 'location') ;
-				}
-				else if(isset($_SESSION['selected3dInfo_shirt']) && !empty($_SESSION['selected3dInfo_shirt'])){
-					    $_SESSION['ordertype']="shirt";
-						redirect($this->config->item('base_url_temp').'Cart/addcart3dcombined', 'location');
-				}
-				else if(isset($_SESSION['selected3dInfo_pant']) && !empty($_SESSION['selected3dInfo_pant'])){
-						// echo "hihi".$this->config->item('base_url');exit;
-						$_SESSION['ordertype']="pant";
+					$this->load->library('session');
+					$content['username']  = $data['guestemail'];
+					$content['email']	  = $data['guestemail'];
+					$content['password']  = "guest";
+
+					$this->session->set_userdata('email',$content['email']);
+					$this->session->set_userdata('username',$content['username']);
+					
+					if($this->input->post("action")=="guestlogin")
+					{
+						$id = $this->User_model->guestuser($content);
+						$this->session->set_userdata('user_id',$id);
+						$_SESSION['usertype']="Guest";
+						$_SESSION['Guestuser_id']=$id;
+						// redirecting to add cart function based on 3d data selection  
+		
+						if(isset($_SESSION['selected3dInfo_pant']) && !empty($_SESSION['selected3dInfo_pant'])&& isset($_SESSION['selected3dInfo_shirt']) && !empty($_SESSION['selected3dInfo_shirt'])){
+						$_SESSION['ordertype']="both";
 						redirect($this->config->item('base_url_temp').'Cart/addToCartTrouser', 'location') ;
-				}
-				//trailshirt
-				else if(isset($_SESSION['selected3dInfo_shirttrail']) && !empty($_SESSION['selected3dInfo_shirttrail'])){
-					// echo "hihi".$this->config->item('base_url');exit;
-					$_SESSION['ordertype']="trailshirt";
-					redirect($this->config->item('base_url_temp').'Cart/addcart3dcombined', 'location') ;
-				}
-				else if(isset($_SESSION['selected3dInfo_vest']) && !empty($_SESSION['selected3dInfo_vest'])){
-					    $_SESSION['ordertype']="vest";
-						redirect($this->config->item('base_url_temp').'Cart/addToCartVest', 'location');
-				}
-	           	else if(isset($_SESSION['selected3dInfo_blazer']) && !empty($_SESSION['selected3dInfo_blazer'])){
-					    $_SESSION['ordertype']="blazer";
-						redirect($this->config->item('base_url_temp').'Cart/addToCartBlazer', 'location');
-				}
-	           	else if(isset($_SESSION['selected3dInfo_suit']) && !empty($_SESSION['selected3dInfo_suit'])){
-					    $_SESSION['ordertype']="suit";
-						redirect($this->config->item('base_url_temp').'Cart/addToCartSuit', 'location');
-				}	
-				redirect($this->config->item('base_url_temp'));
+					}
+					else if(isset($_SESSION['selected3dInfo_shirt']) && !empty($_SESSION['selected3dInfo_shirt'])){
+						    $_SESSION['ordertype']="shirt";
+							redirect($this->config->item('base_url_temp').'Cart/addcart3dcombined', 'location');
+					}
+					else if(isset($_SESSION['selected3dInfo_pant']) && !empty($_SESSION['selected3dInfo_pant'])){
+							// echo "hihi".$this->config->item('base_url');exit;
+							$_SESSION['ordertype']="pant";
+							redirect($this->config->item('base_url_temp').'Cart/addToCartTrouser', 'location') ;
+					}
+					//trailshirt
+					else if(isset($_SESSION['selected3dInfo_shirttrail']) && !empty($_SESSION['selected3dInfo_shirttrail'])){
+						// echo "hihi".$this->config->item('base_url');exit;
+						$_SESSION['ordertype']="trailshirt";
+						redirect($this->config->item('base_url_temp').'Cart/addcart3dcombined', 'location') ;
+					}
+					else if(isset($_SESSION['selected3dInfo_vest']) && !empty($_SESSION['selected3dInfo_vest'])){
+						    $_SESSION['ordertype']="vest";
+							redirect($this->config->item('base_url_temp').'Cart/addToCartVest', 'location');
+					}
+		           	else if(isset($_SESSION['selected3dInfo_blazer']) && !empty($_SESSION['selected3dInfo_blazer'])){
+						    $_SESSION['ordertype']="blazer";
+							redirect($this->config->item('base_url_temp').'Cart/addToCartBlazer', 'location');
+					}
+		           	else if(isset($_SESSION['selected3dInfo_suit']) && !empty($_SESSION['selected3dInfo_suit'])){
+						    $_SESSION['ordertype']="suit";
+							redirect($this->config->item('base_url_temp').'Cart/addToCartSuit', 'location');
+					}	
+					
+					redirect($this->config->item('base_url_temp'));
+
+			}
 
 		}
+
+	  }
 
 	}
-
-  }
-
-}
 
 
 
 
 
 	/*category controller for shirts...*/
-
-
-
 	public function affliate_login()
-
 	{
-
-      // echo "<pre>";
-
-//print_r($_SESSION);
-
-
-
-
-
-		 	if($this->session->userdata['user_id'] && $this->session->userdata['affiliate']=1)
-
-			{
-
+		// echo "<pre>";
+		//print_r($_SESSION);
+	 	if($this->session->userdata['user_id'] && $this->session->userdata['affiliate']=1)
+		{
 				redirect($this->config->item('base_url').'home/myaccount');
 
-			}
-
-
-
-
-
+		}
 		$this->load->helper('url');
-
 		$this->load->view('header');
-
 		$data = array();
-
 		$data['email']="";
-
 		$data['L_strErrorMessage'] = "";
-
 		$data['err_msg'] = "";
-
 		$data['title'] = 'Stylior.com';
-
 		$data['keywords'] = '';
-
 		$data['description'] = '';
-
-
-
 		$this->load->view('affliate_login',$data);
-
 		$this->load->view('footer');
 
 	}
 
 	public function affliate_registration()
+	 {
 
- {
+		$this->load->helper('url');
+		$this->load->view('header');
+		$this->load->model('user_model');  
+	    if($this->session->userdata('user_id') != "")
+		{
+   			redirect($this->config->item('base_url').'home/checkout');
+        }
+        else
+  		{
+		   $data = array();
+	       $data['L_strErrorMessage'] = "";
+	       $data['err_msg'] = "";
+	       $data['countrycode'] = $this->home_model->countrycode();
+	       $data['title'] = 'Stylior.com';
+	       $data['keywords'] = '';
+	       $data['description'] = '';
+	       $this->load->view('affliate_registration',$data);
+	       $this->load->view('footer');
+        }
 
-   $this->load->helper('url');
-
-  $this->load->view('header');
-
-
-
-  $this->load->model('user_model');
-
-  if($this->session->userdata('user_id') != "")
-
-  {
-
-   redirect($this->config->item('base_url').'home/checkout');
-
-  }
-
-  else
-
-  {
-
-
-
-   $data = array();
-
-   $data['L_strErrorMessage'] = "";
-
-   $data['err_msg'] = "";
-
-   $data['countrycode'] = $this->home_model->countrycode();
-
-   $data['title'] = 'Stylior.com';
-
-   $data['keywords'] = '';
-
-   $data['description'] = '';
-
-   $this->load->view('affliate_registration',$data);
-
-   $this->load->view('footer');
-
-  }
-
- }
+     }
 
 
 
 	public function insider_registration()
-
 	 {
-
-
-
 		$this->load->model('user_model');
-
 		if($this->session->userdata('user_id') != "")
-
 		{
 
 			redirect($this->config->item('base_url').'home/checkout');
 
 		}
-
 		else
-
 		{
 
 			$this->load->helper('url');
-
-
-
-		$this->load->view('header');
-
+    		$this->load->view('header');
 			$data = array();
-
 			$data['L_strErrorMessage'] = "";
-
 			$data['err_msg'] = "";
-
 			$data['title'] = 'Stylior.com';
-
 			$data['keywords'] = '';
-
 			$data['description'] = '';
-
 			$data['countrycode'] = $this->home_model->countrycode();
-
 			$this->load->view('insider_registration',$data);
-
 			$this->load->view('footer');
 
 		}
@@ -3006,7 +2844,6 @@ public function login_test()
 		/*meta data end*/
 		if($this->input->get('size') != '')
 		{
-
 				$data['size'] = $this->input->get('size');
 				if(count($data['size']) > 0)
     			{
@@ -3014,56 +2851,30 @@ public function login_test()
 					$sizerange .= 'size[]='.$data['size'][$k].'&';
 					}
 
-				}
-
+			}
 		}
-
 		else
-
 		{
-
 			$data['size'] = array();
-
 		}
-
-
 
 		$data['page'] = $this->input->get('page');
-
 		$data['color'] = $this->input->get('color');
-
 		$data['size'] = $this->input->get('size');
-
-
-
 		$data['designid'] = $this->input->get('designid');
-
 		$data['fabricid'] = $this->input->get('fabricid');
-
 		$data['priceord'] = $this->input->get('priceord');
-
 		if($data['page'] == '')
-
 		{
-
 			$data['page'] = $config['per_page'] = '9';
-
 		}
-
 		else
-
 		{
-
 			$data['page'] = $config['per_page'] = $this->input->get('page');
 
 		}
-
-
-
 		$pageno = $this->input->get('per_page');
-
 		if($pageno == '')
-
 		{
 
 			$pageno = '0';
@@ -3073,31 +2884,16 @@ public function login_test()
 
 
 		$perpage = '3';
-
 		$this->data['image'] = $this->home_model->shop_accessories($catid,$subcatid);
-
 		$this->pagination->initialize($config);
-
-
-
-
-
 		//////////
-
 		if(isset($_POST["designer"]))
-
 		{
-
-
-
 			$this->data['customize_type'] = "designer";
 
 		}
-
 		else if(isset($_POST["customize"]))
-
 		{
-
 			$this->data['customize_type'] = "customize";
 
 		}
@@ -3105,25 +2901,15 @@ public function login_test()
 
 
 		$this->load->helper('url');
-
 		$this->output->enable_profiler(FALSE);
-
 		//$this->data['image'] = $this->home_model->shop($catid,$subcatid);
-
 		$this->data['allcolor']=$this->home_model->allcolor();
-
 		$this->data['alldesign1'] = $this->home_model->alldesign1($catid,$subcatid);
-
 		$this->data['subcatid']=$subcatid;
-
 		$this->data['catid']=$catid;
-
 		//$this->data['images1'] = $return['images'];
-
 		$this->load->view('lum_header',$metadata);
-
 		$this->load->view('lum_shop_cufflinks',$this->data);
-
 		$this->load->view('lum_footer');
 
 	}
@@ -3160,95 +2946,131 @@ public function login_test()
 	}
 
 
-		public function shop_shirts($catid,$subcatid)
-		{
+/****
+*** Testing a pagination 
+***
+*/
 
-			//echo $subcatid;die;
 
-			$this->load->model('home_model');
+/*      $config = array();
+        $config["base_url"] = base_url() . "welcome/example1";
+        $config["total_rows"] = $this->Countries->record_count();
+        $config["per_page"] = 20;
+        $config["uri_segment"] = 3;
+        $this->pagination->initialize($config);
+        $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+        $data["results"] = $this->Countries->
+            fetch_countries($config["per_page"], $page);
+        $data["links"] = $this->pagination->create_links();
 
-			$this->data['details'] = $this->home_model->shop_suit(10);;
+        $this->load->view("example1", $data);
 
-			$this->data['metadata'] = $this->home_model->getCategoryInfo(10);;
-			$metadata['title'] = $this->data['c'][0]->title;
-			$metadata['metadescription'] = $this->data['c'][0]->description;
-			$metadata['metakeywords'] = $this->data['c'][0]->keyword;
+        */
 
-					//echo "<pre>";
 
-				//	print_r($this->data['metadata']);die;
+	public function shop_shirts_page($pageid)
+	{
 
-			$this->load->helper('url');
+		//echo $subcatid;die;
+		$this->load->library('pagination');   	
+    	$this->load->model('home_model');
+		//$this->data['details'] = $this->home_model->shop_suit(10);;	
+		// $this->data['metadata'] = $this->home_model->getCategoryInfo(10);;
+		// $metadata['title'] = $this->data['c'][0]->title;
+		// $metadata['metadescription'] = $this->data['c'][0]->description;
+		// $metadata['metakeywords'] = $this->data['c'][0]->keyword;	
+		/*start var*/
+		$config = array();
+		$config['base_url'] = 'https://www.stylior.com/home/shop_shirts_page/';			
+		$config["total_rows"] = count($this->home_model->shop_suit(10));
+		//echo "Total Rows".$config["total_rows"];
+		$config["uri_segment"] = 3;	
+		$page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+		$config["per_page"] =20;
+	    $choice = $config["total_rows"] / $config["per_page"];
+	    $config["num_links"] = round($choice);
 
-			$this->output->enable_profiler(FALSE);
+	    echo "data o 10 categorty"."pagenumbre".$choice.",per page limit".$config["per_page"];
 
-			$this->load->view('lum_header',$metadata);
 
-			$this->load->view('shirts',$this->data);
+		$data["details"] = $this->home_model->shop_suit_page(10,$page,$config["per_page"]);
+		
+		$this->pagination->initialize($config);          
+    	$data["links"] = $this->pagination->create_links();
+		// $this->load->view("example1", $data);
+		/*end var*/
+		// echo $this->pagination->create_links();
+		$this->load->helper('url');
+		$this->output->enable_profiler(FALSE);
+		$this->load->view('lum_header',$metadata);
+		$this->load->view('shirts-pagination',$data);
+		$this->load->view('lum_footer');
 
-			$this->load->view('lum_footer');
+	}
 
-		}
+	public function shop_shirts($catid,$subcatid)
+	{
 
-		public function shop_trousers($catid,$subcatid)
-		{
+		//echo $subcatid;die;
+		$this->load->library('pagination');   	
+    	$this->load->model('home_model');
+		$this->data['details'] = $this->home_model->shop_suit(10);;
+		$this->data['metadata'] = $this->home_model->getCategoryInfo(10);;
+		$metadata['title'] = $this->data['c'][0]->title;
+		$metadata['metadescription'] = $this->data['c'][0]->description;
+		$metadata['metakeywords'] = $this->data['c'][0]->keyword;	
 
-			//echo $subcatid;die;
+		// $config['base_url'] = 'https://stylior.com/mens-shirts/';
+		// $config['total_rows'] = 60;
+		// $config['per_page'] = 20;
+		// $this->pagination->initialize($config);
+		// echo "<dis>links:";
+		// echo $this->pagination->create_links();
 
-			$this->load->model('home_model');
+		$this->load->helper('url');
+		$this->output->enable_profiler(FALSE);
+		$this->load->view('lum_header',$metadata);
+		$this->load->view('shirts',$this->data);
+		$this->load->view('lum_footer');
 
-			$this->data['details'] = $this->home_model->shop_suit(11);;
+	}
 
-			$this->data['metadata'] = $this->home_model->getCategoryInfo(11);;
-			$metadata['title'] = $this->data['c'][0]->title;
-			$metadata['metadescription'] = $this->data['c'][0]->description;
-			$metadata['metakeywords'] = $this->data['c'][0]->keyword;
-
-					//echo "<pre>";
-
-				//	print_r($this->data['metadata']);die;
-
-			$this->load->helper('url');
-
-			$this->output->enable_profiler(FALSE);
-
-			$this->load->view('lum_header',$metadata);
-
-			$this->load->view('trousers',$this->data);
-
-			$this->load->view('lum_footer');
-
-		}
+	public function shop_trousers($catid,$subcatid)
+	{
+		//echo $subcatid;die;
+		$this->load->model('home_model');
+		$this->data['details'] = $this->home_model->shop_suit(11);;
+		$this->data['metadata'] = $this->home_model->getCategoryInfo(11);;
+		$metadata['title'] = $this->data['c'][0]->title;
+		$metadata['metadescription'] = $this->data['c'][0]->description;
+		$metadata['metakeywords'] = $this->data['c'][0]->keyword;
+		//echo "<pre>";
+		//	print_r($this->data['metadata']);die;
+		$this->load->helper('url');
+		$this->output->enable_profiler(FALSE);
+		$this->load->view('lum_header',$metadata);
+		$this->load->view('trousers',$this->data);
+		$this->load->view('lum_footer');
+	}
 
 	public function shop_blazer($catid,$subcatid)
 	{
 
 		//echo $subcatid;die;
-
 		$this->load->model('home_model');
-
 		$this->data['details'] = $this->home_model->shop_suit(16);;
-
-
-			//	echo "<pre>";
-
-			//	print_r($this->data['details']);die;
-
+		//	echo "<pre>";
+		//	print_r($this->data['details']);die;
 		$this->load->helper('url');
-
 		$this->output->enable_profiler(FALSE);
-
 		$this->load->view('lum_header');
-
 		$this->load->view('blazer',$this->data);
-
 		$this->load->view('lum_footer');
 
 	}
 
 	public function shop_vests($catid,$subcatid)
 	{
-
 		$this->load->model('home_model');
 		$this->data['details'] = $this->home_model->shop_suit(18);;
 		$this->load->helper('url');
@@ -3268,19 +3090,17 @@ public function login_test()
 	{
 			$this->load->model('home_model');
 			$this->data['details'] = $this->home_model->shop_suit(19);
-    /*get meta data */
-     	$subcategory_details=$this->home_model->getCategoryInfo($subcatid);
-		$metadata['title']=$subcategory_details->title;
-        $metadata['metadescription']=$subcategory_details->description;
-        $metadata['metakeywords']=$subcategory_details->keyword;
-    /*meta data end*/
-
+		    /*get meta data */
+	     	$subcategory_details=$this->home_model->getCategoryInfo($subcatid);
+			$metadata['title']=$subcategory_details->title;
+	        $metadata['metadescription']=$subcategory_details->description;
+	        $metadata['metakeywords']=$subcategory_details->keyword;
+		    /*meta data end*/
     		$this->load->helper('url');
 			$this->output->enable_profiler(FALSE);
 			$this->load->view('lum_header',$metadata);
 			$this->load->view('shirt-arrival',$this->data);
 			$this->load->view('lum_footer');
-
 	}
 
     public function shop($catid,$subcatid)
@@ -3288,218 +3108,120 @@ public function login_test()
 
 		    $this->load->model('home_model');
 			$page= $this->input->get('per_page') ? $this->input->get('per_page') : 0;
-
 			$this->load->library('pagination');
-
 			$url_to_paging = $this->config->item('base_url');
-
 			$sizerange = '';
-
 			if($this->input->get('size') != '')
-
 			{
 
 				$data['size'] = $this->input->get('size');
-
-
-
 				if(count($data['size']) > 0){
-
 					for($k='0';$k< count($data['size']); $k++){
-
 						$sizerange .= 'size[]='.$data['size'][$k].'&';
-
 					}
 
 				}
 
-
-
 			}
-
 			else {
 
 				$data['size'] = array();
 
 			}
+			$data['page'] = $this->input->get('page');
+			$data['color'] = $this->input->get('color');
+	        $data['size'] = $this->input->get('size');
+			$data['designid'] = $this->input->get('designid');
+			$data['fabricid'] = $this->input->get('fabricid');
+	 	    $data['priceord'] = $this->input->get('priceord');
+			if($data['page'] == '')
+			{
+				$data['page'] = $config['per_page'] = '9';
+			}
+			else
+			{
+				$data['page'] = $config['per_page'] = $this->input->get('page');
 
-
-
-		$data['page'] = $this->input->get('page');
-
-		$data['color'] = $this->input->get('color');
-
-        $data['size'] = $this->input->get('size');
-
-
-
-		$data['designid'] = $this->input->get('designid');
-
-		$data['fabricid'] = $this->input->get('fabricid');
-
-		 $data['priceord'] = $this->input->get('priceord');
-
-
-
-
-
-
-
-
-
-
-
-		if($data['page'] == '')
-
-		{
-
-			$data['page'] = $config['per_page'] = '9';
-
-		}
-
-		else
-
-		{
-
-			$data['page'] = $config['per_page'] = $this->input->get('page');
-
-		}
-
-
+			}
 
 		$pageno = $this->input->get('per_page');
-
 		if($pageno == '')
-
 		{
-
 			$pageno = '0';
-
 		}
-
-
-
 		$perpage = '3';
-
-
-
-
-
 		//	$config['base_url'] = $url_to_paging.'home/shop/9/10?per_page='.$page.'&color='.$this->input->get('color').'&design='.$this->input->get('designid').'&'.$sizerange;
-
-
-
-			//echo "<pre>";
-
-			//print_r($config);
-
-
-
-
-
+		//echo "<pre>";
+		//print_r($config);
 		//$config['base_url'] = $url_to_paging.'home/lists/?per_page='.$page.'&color'.$this->input->get('color').'&design='.$this->input->get('designid').'&'.$sizerange;
 
-
-
-
-
-
-
-			//$return = $this->home_model->allproductsNew();
-
-			$this->data['image'] = $this->home_model->shop($catid,$subcatid,$config['per_page'],$pageno, $data);
-
+		//$return = $this->home_model->allproductsNew();
+		$this->data['image'] = $this->home_model->shop($catid,$subcatid,$config['per_page'],$pageno, $data);
 		//echo "<pre>";
-
 		//print_r($this->data['image']);die;
-
 		$data['allproducts'] = $return['result'];
-
 		$config['total_rows'] = $return['count'];
-
 		$data['images'] = $return['images'];
-
-
-
-			//echo "<pre>";
-
+		//echo "<pre>";
 		//print_r($data['allproducts']);
-
 		$this->pagination->initialize($config);
+		//////////
+		if(isset($_POST["designer"]))
+		{
+			$this->data['customize_type'] = "designer";
 
-
-
-
-
-			//////////
-
-			if(isset($_POST["designer"]))
-
-			{
-
-				$this->data['customize_type'] = "designer";
-
-			}
-			else if(isset($_POST["customize"]))
-			{
-
+		}
+		else if(isset($_POST["customize"]))
+		{
 				$this->data['customize_type'] = "customize";
+		}
+		$this->load->helper('url');
+		$this->output->enable_profiler(FALSE);
+		//$this->data['image'] = $this->home_model->shop($catid,$subcatid);
+		$this->data['allcolor']=$this->home_model->allcolor();
+		$this->data['alldesign'] = $this->home_model->alldesign($catid,$subcatid);
+		$this->data['subcatid']=$subcatid;
+		$this->data['catid']=$catid;
+		//$this->data['images1'] = $return['images'];
+		$this->load->view('header');
+		$this->load->view('shop',$this->data);
+		$this->load->view('footer');
 
-			}
 
-			 $this->load->helper('url');
- 			 $this->output->enable_profiler(FALSE);
-			 //$this->data['image'] = $this->home_model->shop($catid,$subcatid);
- 			$this->data['allcolor']=$this->home_model->allcolor();
-			$this->data['alldesign'] = $this->home_model->alldesign($catid,$subcatid);
-			$this->data['subcatid']=$subcatid;
-	     	$this->data['catid']=$catid;
-			//$this->data['images1'] = $return['images'];
+	}
+
+
+
+	public function shopnow($id,$catid,$subcatid)
+	{
+
+		  	$this->session->set_userdata('subcatid',$subcatid);
+		// $this->load->helper('url');
+			$this->output->enable_profiler(FALSE);
+			$this->data['c'] = $this->home_model->shopnow($id,$catid,$subcatid);
+		$_POST['catid']=9;
+		$_POST['subcatid']=$_SESSION['subcatid'];
+		$_POST['fit']=1;
+
+		$this->data['datashirt'] = $this->home_model->shirtparts($_POST['catid'],$_POST['subcatid']);
+
+		$this->data['shirt_sizes'] = $this->home_model->shirtparts($_POST['catid'],$_POST['subcatid']);
+
+		$get_sizes = $this->Cart_model->sizedata($_POST['subcatid'],$_POST['fit']);
+
+
+
+		$this->data['sizes'] =$get_sizes;
+
+
+
 			$this->load->view('header');
-			$this->load->view('shop',$this->data);
+
+			$this->load->view('shop-now',$this->data);
+
 			$this->load->view('footer');
 
-		}
-
-
-
-public function shopnow($id,$catid,$subcatid)
-
-		{
-
-			  	$this->session->set_userdata('subcatid',$subcatid);
-
-			// $this->load->helper('url');
-
-				$this->output->enable_profiler(FALSE);
-
-				$this->data['c'] = $this->home_model->shopnow($id,$catid,$subcatid);
-
-			$_POST['catid']=9;
-
-			$_POST['subcatid']=$_SESSION['subcatid'];
-
-			$_POST['fit']=1;
-
-			$this->data['datashirt'] = $this->home_model->shirtparts($_POST['catid'],$_POST['subcatid']);
-
-			$this->data['shirt_sizes'] = $this->home_model->shirtparts($_POST['catid'],$_POST['subcatid']);
-
-			$get_sizes = $this->Cart_model->sizedata($_POST['subcatid'],$_POST['fit']);
-
-
-
-			$this->data['sizes'] =$get_sizes;
-
-
-
-				$this->load->view('header');
-
-				$this->load->view('shop-now',$this->data);
-
-				$this->load->view('footer');
-
-		}
+	}
 
 		public function details_designer($pname)
 		{
@@ -6183,7 +5905,6 @@ public function shopnow($id,$catid,$subcatid)
 	}
 
 	public function auth()
-
 	{
 
 		$this->load->library('session');
@@ -6202,7 +5923,7 @@ public function shopnow($id,$catid,$subcatid)
 			$_SESSION['username']     = (string)$is_valid_user[0]->username;
 			$_SESSION['logged_in']    = (bool)true;
 			$_SESSION['email'] = $is_valid_user[0]->email;
-			
+
 			$newuserdata = array(
 				'username'  => (int)$is_valid_user[0]->id,
 				'userid'    => (string)$is_valid_user[0]->username,
@@ -6231,59 +5952,61 @@ public function shopnow($id,$catid,$subcatid)
 					$this->cart->insert($data);
 				}
 			}
-
-			// redirecting to add cart function based on 3d data selection  -- -added by MIN  vijay
-
-			if(isset($_SESSION['selected3dInfo_pant']) && !empty($_SESSION['selected3dInfo_pant'])&& isset($_SESSION['selected3dInfo_shirt']) && !empty($_SESSION['selected3dInfo_shirt'])){
-				$_SESSION['ordertype']="both";
-   				redirect($this->config->item('base_url_temp').'Cart/addToCartTrouser', 'location') ;
-			}
-			else if(isset($_SESSION['selected3dInfo_shirt']) && !empty($_SESSION['selected3dInfo_shirt']) && !empty($_SESSION['selected3dInfo_pant'])){
+			// redirecting to add cart function based on 3d data selection  -- 
+			/*
+			if(empty($_SESSION['selected3dInfo_shirt'])&& isset($_SESSION['selected3dInfo_shirt']) && !empty($_SESSION['selected3dInfo_shirt'])){
 				$_SESSION['ordertype']="shirt";
+   				redirect($this->config->item('base_url_temp').'Cart/addToCartShirt', 'location') ;
+			}		
+			else */
+			if(isset($_SESSION['selected3dInfo_pant']) && !empty($_SESSION['selected3dInfo_pant'])&& isset($_SESSION['selected3dInfo_shirt']) && !empty($_SESSION['selected3dInfo_shirt'])){
+				
+				$_SESSION['ordertype']="both";
+   				redirect($this->config->item('base_url_temp').'Cart/addToCartTrouser', 'location');
+
+			}
+			else if(isset($_SESSION['selected3dInfo_shirt']) && !empty($_SESSION['selected3dInfo_shirt'])) {
+			    $_SESSION['ordertype']="shirt";
 				redirect($this->config->item('base_url_temp').'Cart/addcart3dcombined', 'location');
+
 			}
 			else if(isset($_SESSION['selected3dInfo_pant']) && !empty($_SESSION['selected3dInfo_pant']))
-			{  // echo "hihi".$this->config->item('base_url');exit;
+			{  
+
 				$_SESSION['ordertype']="pant";
 				redirect($this->config->item('base_url_temp').'Cart/addToCartTrouser', 'location') ;
 			}
-			else if(isset($_SESSION['selected3dInfo_shirttrail']) && !empty($_SESSION['selected3dInfo_shirttrail']))
-			{
+			else if(isset($_SESSION['selected3dInfo_shirttrail']) && !empty($_SESSION['selected3dInfo_shirttrail'])){
 				// echo "hihi".$this->config->item('base_url');exit;
 				$_SESSION['ordertype']="trailshirt";
 				redirect($this->config->item('base_url_temp').'Cart/addcart3dcombined', 'location') ;
 			}
 			// this codition has added for suit customization...
-			else if(isset($_SESSION['selected3dInfo_suit']) && !empty($_SESSION['selected3dInfo_suit']))
-			{
+			else if(isset($_SESSION['selected3dInfo_suit']) && !empty($_SESSION['selected3dInfo_suit'])){
 				// echo "hihi".$this->config->item('base_url');exit;
 				$_SESSION['ordertype']="suit";
 				redirect($this->config->item('base_url_temp').'Cart/addToCartSuit', 'location') ;
 			}
 			// this codition has added for blazer customization...
-			else if(isset($_SESSION['selected3dInfo_blazer']) && !empty($_SESSION['selected3dInfo_blazer']))
-			{
+			else if(isset($_SESSION['selected3dInfo_blazer']) && !empty($_SESSION['selected3dInfo_blazer'])){
 				// echo "hihi".$this->config->item('base_url');exit;
 				$_SESSION['ordertype']="blazer";
 				redirect($this->config->item('base_url_temp').'Cart/addToCartBlazer', 'location') ;
 			}
-			else if(isset($_SESSION['selected3dInfo_vest']) && !empty($_SESSION['selected3dInfo_vest']))
-			{
-				// echo "hihi".$this->config->item('base_url');exit;
+			else if(isset($_SESSION['selected3dInfo_vest']) && !empty($_SESSION['selected3dInfo_vest'])){
 				$_SESSION['ordertype']="vest";
 				redirect($this->config->item('base_url_temp').'Cart/addToCartVest', 'location') ;
-
 			}
+
 			redirect($this->config->item('base_url_temp'));
 		}
 		else
 		{
+
 			echo "<script>
 			alert('The email and password you entered don\'t match.');
 				window.location.href='".$this->config->item('base_url_temp')."home/lum_login';
 			</script>";
-
-
 
 		}
 
@@ -7140,144 +6863,169 @@ public function getbodypart(){
 	}
  }
 
-/*var end*/
-
-
+		/*var end*/
 		public function wedding_page(){
-		$this->load->helper('url');
-		$this->output->enable_profiler(FALSE);
-		$metadata['title']='Wedding Suit | Mens Wedding Suits | Mens Suits for Weddings | Designer Suits for Men';
-		$metadata['metadescription']='Shop wedding suits for men, discover our unique selection of vintage and custom made
-		slim fit wedding suits to make your day perfect.';
-		$metadata['metakeywords']='mens suits, suits, menswear, wedding suit, wedding suits for groom,
-		groom suits, wedding suit for men, boys wedding suit, mens clothing';
-		$this->load->view('lum_header',$metadata);
-		$this->load->view('wedding-suit');
-		$this->load->view('lum_footer');
+			$this->load->helper('url');
+			$this->output->enable_profiler(FALSE);
+			$metadata['title']='Wedding Suit | Mens Wedding Suits | Mens Suits for Weddings | Designer Suits for Men';
+			$metadata['metadescription']='Shop wedding suits for men, discover our unique selection of vintage and custom made
+			slim fit wedding suits to make your day perfect.';
+			$metadata['metakeywords']='mens suits, suits, menswear, wedding suit, wedding suits for groom,
+			groom suits, wedding suit for men, boys wedding suit, mens clothing';
+
+			$this->load->view('lum_header',$metadata);
+			$this->load->view('wedding-suit');
+			$this->load->view('lum_footer');
+		}
+
+		public function wedding_enquiry_submit()
+		{
+
+		 $data = array();
+		 $name = $data['name'] = $_POST['name'];
+		 $email = 'support@stylior.com';
+		 $content = $data['content'] = $_POST['message'];
+		 $email_customer = $data['email_customer'] = $_POST['email'];
+		 $phone = $data['phone'] = $_POST['phone'];
+		 $date_today = date("Y-m-d");
+		 $message = "Dear Support team ,\n $name has made an enquiry using our form . The details of the enquiry is as given below. \n\n  Name : $name \n Email : $email_customer \n phone: $phone \n Message : $content";
+		 $subject  = 'New Enquiry';
+		 $headers  = 'MIME-Version: 1.0' . "\r\n";
+		 $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+		 $headers .= 'From: stylior.com <newsletter@stylior.com>' . "\r\n" .
+					 'Reply-To: newsletter@stylior.com' . "\r\n" .
+					 'X-Mailer: PHP/' . phpversion();
+		 if(mail($email, $subject, $message, $headers))
+			{
+				//print_r ($data);//die;
+				echo "<script>alert('Thank you for Contact with stylior.com !');</script>";
+				echo "<script>document.location.href='".$this->config->item('base_url_temp')."wedding-suit'</script>";
+			}
+			else
+			{
+				echo "<script>alert('Mail was not sent. Please try again later');</script>";
+				echo "<script>document.location.href='".$this->config->item('base_url_temp')."wedding-suit'</script>";
+			}
+		}
+
+
+		public function review(){
+		
+			$data['name'] = $_POST['name'];
+			$data['city'] = $_POST['city'];
+			$data['country'] = $_POST['country'];
+			$data['state'] = $_POST['state'];
+			$data['email'] = $_POST['email'];
+			$data['phone'] = $_POST['phone'];
+			$data['review'] = $_POST['review'];
+			$data['name'] = "";
+			$data['city'] = "";
+			$data['country'] = "";
+			$data['state'] = "";
+			$data['email'] = "";
+			$data['phone'] = "";
+			$data['date_of_birth'] = "";
+			$data['created_date'] = date("Y-m-d");
+			$data['review'] = "Reviews here";
+			$result = $this->home_model->addreview($data);
+	
+		}
+	
+	/*
+	* Get tbl_size by id
+	*/
+	function get_tbl_size()
+	{	
+				$size=$_GET['size'];
+				$category=$_GET['category'];
+				if(isset($size) && isset($category)){
+				$this->db->select('id,category,size,measurement');
+				$result=$this->db->get_where('tbl_size',array('size'=>$size,'category'=>$category))->row_array();
+				//print_r($result);
+				echo json_encode($result);
+				}
+				else
+				{
+				echo "No data found";
+				}
+	}
+	
+
+	/*end of get tbl_size*/
+	//*page not found 404*/
+	function show_test_header(){	 	   
+				//new arrival  shirt code       
+		        $data=array();
+				$this->db->from('tbl_product as t1');
+				$this->db->join('tbl_product_image as t2', 't2.pid = t1.id','left');
+				$this->db->where('subcatid',10);
+				$this->db->where('qty>',0);
+				$this->db->where('is_home',1);
+				$this->db->where('t2.baseimage',1);
+				$this->db->limit(10);
+				$q = $this->db->get();
+		        $data['shirt_new'] = $q->result();
+				$this->db->from('tbl_product as t1');
+				$this->db->join('tbl_product_image as t2', 't2.pid = t1.id','left');
+				$this->db->where('subcatid',11);
+				$this->db->where('qty>',0);
+				$this->db->where('is_home',1);
+				$this->db->where('t2.baseimage',1);
+				$this->db->limit(10);
+				$q = $this->db->get();
+				$data['trouser_new'] = $q->result();
+	   			$this->db->from('tbl_product as t1');
+				$this->db->join('tbl_product_image as t2', 't2.pid = t1.id','left');
+				$this->db->where('subcatid',16);
+				$this->db->where('qty>',0);
+				$this->db->where('is_home',1);
+				$this->db->where('t2.baseimage',1);
+				$this->db->limit(10);
+				$q = $this->db->get();
+				$data['blazer_new'] = $q->result();		
+
+				// print_r($data['blazer_new']);
+				//print_r($data['trouser_new']);
+				$this->load->view('lum_header_test.php');
+			    $this->load->view('lum_home_test.php',$data);
+			    $this->load->view('lum_footer_test.php');
+
 	}
 
-public function wedding_enquiry_submit()
-
-{
-
- $data = array();
-
- $name = $data['name'] = $_POST['name'];
-
- $email = 'support@stylior.com';
-
- $content = $data['content'] = $_POST['message'];
-
- $email_customer = $data['email_customer'] = $_POST['email'];
-
- $phone = $data['phone'] = $_POST['phone'];
-
- $date_today = date("Y-m-d");
-
- $message = "Dear Support team ,\n $name has made an enquiry using our form . The details of the enquiry is as given below. \n\n  Name : $name \n Email : $email_customer \n phone: $phone \n Message : $content";
-
- $subject  = 'New Enquiry';
-
- $headers  = 'MIME-Version: 1.0' . "\r\n";
-
- $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-
- $headers .= 'From: stylior.com <newsletter@stylior.com>' . "\r\n" .
-
-			 'Reply-To: newsletter@stylior.com' . "\r\n" .
-
-			 'X-Mailer: PHP/' . phpversion();
-
- if(mail($email, $subject, $message, $headers))
-
-	{
-		//print_r ($data);//die;
-		echo "<script>alert('Thank you for Contact with stylior.com !');</script>";
-		echo "<script>document.location.href='".$this->config->item('base_url_temp')."wedding-suit'</script>";
+	/*page not found 404*/
+	function show_404(){
+		$this->load->view('lum_header.php');
+	    $this->load->view('page_404.php');
+	    $this->load->view('lum_footer.php');
 	}
-	else
-	{
-		echo "<script>alert('Mail was not sent. Please try again later');</script>";
-		echo "<script>document.location.href='".$this->config->item('base_url_temp')."wedding-suit'</script>";
-	}
-}
-
-public function review(){
-
-	$data['name'] = $_POST['name'];
-	$data['city'] = $_POST['city'];
-	$data['country'] = $_POST['country'];
-	$data['state'] = $_POST['state'];
-	$data['email'] = $_POST['email'];
-	$data['phone'] = $_POST['phone'];
-	$data['review'] = $_POST['review'];
-	$data['name'] = "";
-	$data['city'] = "";
-	$data['country'] = "";
-	$data['state'] = "";
-	$data['email'] = "";
-	$data['phone'] = "";
-	$data['date_of_birth'] = "";
-	$data['created_date'] = date("Y-m-d");
-
-	$data['review'] = "Reviews here";
-	$result = $this->home_model->addreview($data);
-}
 
 
-
-
-
-
-/*
-* Get tbl_size by id
-*/
-function get_tbl_size()
-{
-      $size=$_GET['size'];
-      $category=$_GET['category'];
-      if(isset($size) && isset($category)){
-      $this->db->select('id,category,size,measurement');
-      $result=$this->db->get_where('tbl_size',array('size'=>$size,'category'=>$category))->row_array();
-     //print_r($result);
-	  echo json_encode($result);
-	}
-	else
-	{
-		echo "No data found";
-	}
-}
-/*end of get tbl_size*/
-
-
-/*page not found 404*/
-function show_test_header(){
-echo "var tesitng";
-	$this->load->view('lum_header_test.php');
-    $this->load->view('lum_home_test.php');
-    $this->load->view('lum_footer_test.php');
-
-}
-
-
-
-
-/*page not found 404*/
-function show_404(){
-	$this->load->view('lum_header.php');
-    $this->load->view('page_404.php');
-    $this->load->view('lum_footer.php');
-}
-
-/*****return product image based       ****/
-/***             param : pid           ****/
-/******************************************/
-
- function getProductImageByPid($pid){
-	   	   $sql = "SELECT image from tbl_product_image where pid=".$pid;
+	/*****return product image based       ****/
+	/***             param : pid           ****/
+	/******************************************/
+	function getProductImageByPid($pid){
+			$sql = "SELECT image from tbl_product_image where pid=".$pid;
 			$query1 = $this->db->query($sql);
 			$result1 = $query1->result();
-	return $result1;
+			return $result1;
 	}
+
+
+	/*delete this once u complete the measruement*/
+	function mdemo(){
+	//	$this->load->view('lum_header.php');
+	    $this->load->view('measurements-test.php');
+	  //  $this->load->view('lum_footer.php');
+	}
+
+
+	function store(){
+		$this->load->view('lum_header.php');
+	    $this->load->view('lum_store.php');
+	    $this->load->view('lum_footer.php');	
+	}
+     
+
+
 
 }
