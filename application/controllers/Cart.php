@@ -67,7 +67,8 @@ class Cart extends CI_Controller {
 		}
 		/* new cart end */
  		redirect($this->config->item('http_host').'cart/lum_view_cart','refresh',$data);
- 	}
+
+ }
 
 
 	function addgifttocart(){
@@ -254,9 +255,7 @@ class Cart extends CI_Controller {
 
 	}
  //var changed end
-
-
-	function savemesurementoncart()
+function savemesurementoncart()
 	{
 		$data=array();
 		$data['metricft']=$this->input->post('foot');
@@ -302,7 +301,7 @@ class Cart extends CI_Controller {
  		$this->cart->insert($data);
 		$this->Cart_model->insertcartindb($data['cartprod']);
 
-	}
+}
 
 
 /* rreplaced on date 11 oct 2016
@@ -3330,26 +3329,22 @@ function savedataforvest(){
 	 function voucherchecknew()
 	 {
 
-						 $val_sub = $this->input->post("val_sub");
-                         //print_r($val_sub);
-						 $voucher = $this->input->post("voucher");
-						 //echo $coupan.'hhu';
-						//echo $voucher;$val_sub;die;
-						//$checkvoucher_order = $this->Cart_model->checkvoucher_order($voucher);
-						$select_voucher = $this->Cart_model->selectVoucher($voucher);
-						//echo "<pre>";
-						//print_r($select_voucher);
-						//die;
-						$value = $select_voucher->value;
-						$vname = $select_voucher->code;
-
-						$usedvoucher = $this->Cart_model->user_voucher_check($vname,$value);//check giftvoucher code,price rows in oreder table
-
-						//print_r($usedvoucher);
-						if($select_voucher != '')
-
-					{
-
+				 $val_sub = $this->input->post("val_sub");
+		         //print_r($val_sub);
+				 $voucher = $this->input->post("voucher");
+				 //echo $coupan.'hhu';
+				//echo $voucher;$val_sub;die;
+				//$checkvoucher_order = $this->Cart_model->checkvoucher_order($voucher);
+				$select_voucher = $this->Cart_model->selectVoucher($voucher);
+				//echo "<pre>";
+				//print_r($select_voucher);
+				//die;
+				$value = $select_voucher->value;
+				$vname = $select_voucher->code;
+				$usedvoucher = $this->Cart_model->user_voucher_check($vname,$value);//check giftvoucher code,price rows in oreder table
+				//print_r($usedvoucher);
+				if($select_voucher != '')
+				{
 							//echo 'hi';die;
 							if($usedvoucher != '' && !empty($usedvoucher)) {//free/paid giftvoucher Second time uses
 								if($usedvoucher->vouchervalue == "paid"){//paid
@@ -3378,69 +3373,59 @@ function savedataforvest(){
 								$this->session->set_userdata('vouchercode',$vouchercode);
 								$this->session->set_userdata('vouchervalue',$vouchervalue);
 							}
-						} else {
-							//echo "0";
-
-							//echo $coupan.'gdfg';die;
-							//echo $coupan.'hhu';
-							 $val_sub = $this->input->post("val_sub");
-						  $coupan = $this->input->post("voucher");
-                          //print_r($coupan);
-							$select_coupan = $this->Cart_model->selectCoupan($coupan,$val_sub);
-								//echo "<pre>";
-								//print_r($select_coupan);
-								//die;
-							$coupanname = $select_coupan->coupanname;
-							$no_of_coupan = $select_coupan->no_of_coupan;//done
-							$coupan_per_user = $select_coupan->coupan_per_user;//done
-							  $mini_amountt = $select_coupan->mini_amount;		//done
-							   $totals = $this->session->userdata('total_amount');
-					if($totals>=$mini_amountt)
-					{
-							//echo 'fasdfsdfs';die;
-
-							$usedcoupanvalue = $this->Cart_model->coupen_check($coupanname);//no of rows
-							$noofcoupon =  $no_of_coupan - $usedcoupanvalue;// no of coupon
-							$noofusedperuser = $this->Cart_model->user_coupen_check($coupanname);//no of rows
-							$noofcoupancheck = $coupan_per_user - $noofusedperuser;//per user
-							//$newtotal = $mini_amountt - $this->session->userdata('total_amount');
-							//if($select_coupan != '' && $noofcoupon>0 && $noofcoupancheck>0 && $newtotal>0) {
-
-
-
-
-							if($select_coupan != '' && $no_of_coupan  == 0)
-							{
-								$couponprice = $select_coupan->discount;
-								$coupanvalue = $select_coupan->coupanvalue;
-								$coupanname = $select_coupan->coupanname;
-								//echo   $couponprice.$coupanname;die();
-								$this->session->set_userdata('couponprice',$couponprice);
-								$this->session->set_userdata('couponcode',$coupanvalue);
-								$this->session->set_userdata('coupanname',$coupanname);
-							} else if($select_coupan != '' && $noofcoupon > 0 && $noofcoupancheck>0)
-							{
-								$couponprice = $select_coupan->discount;
-								$coupanvalue = $select_coupan->coupanvalue;
-								$coupanname = $select_coupan->coupanname;
-								//echo   $couponprice.$coupanname;die();
-								$this->session->set_userdata('couponprice',$couponprice);
-								$this->session->set_userdata('couponcode',$coupanvalue);
-								$this->session->set_userdata('coupanname',$coupanname);
-							} else
-							{
-								echo "0";
-							}
-					}else{
-
-								echo "2";
+				} 
+				else{
+						$val_sub = $this->input->post("val_sub");
+						$coupan = $this->input->post("voucher");
+						//print_r($coupan);
+						$select_coupan = $this->Cart_model->selectCoupan($coupan,$val_sub);
+						//echo "<pre>";
+						//print_r($select_coupan);
+						//die;
+						$coupanname = $select_coupan->coupanname;
+						$no_of_coupan = $select_coupan->no_of_coupan;//done
+						$coupan_per_user = $select_coupan->coupan_per_user;//done
+						$mini_amountt = $select_coupan->mini_amount;		//done
+						$totals = $this->session->userdata('total_amount');
+						if($totals>=$mini_amountt)
+						{
+								//echo 'fasdfsdfs';die;
+								$usedcoupanvalue = $this->Cart_model->coupen_check($coupanname);//no of rows
+								$noofcoupon =  $no_of_coupan - $usedcoupanvalue;// no of coupon
+								$noofusedperuser = $this->Cart_model->user_coupen_check($coupanname);//no of rows
+								$noofcoupancheck = $coupan_per_user - $noofusedperuser;
+								//per user
+								//$newtotal = $mini_amountt - $this->session->userdata('total_amount');
+								//if($select_coupan != '' && $noofcoupon>0 && $noofcoupancheck>0 && $newtotal>0) {
+								if($select_coupan != '' && $no_of_coupan  == 0)
+								{
+									$couponprice = $select_coupan->discount;
+									$coupanvalue = $select_coupan->coupanvalue;
+									$coupanname = $select_coupan->coupanname;
+									//echo   $couponprice.$coupanname;die();
+									$this->session->set_userdata('couponprice',$couponprice);
+									$this->session->set_userdata('couponcode',$coupanvalue);
+									$this->session->set_userdata('coupanname',$coupanname);
+								}else if($select_coupan != '' && $noofcoupon > 0 && $noofcoupancheck>0)
+								{
+									$couponprice = $select_coupan->discount;
+									$coupanvalue = $select_coupan->coupanvalue;
+									$coupanname = $select_coupan->coupanname;
+									//echo   $couponprice.$coupanname;die();
+									$this->session->set_userdata('couponprice',$couponprice);
+									$this->session->set_userdata('couponcode',$coupanvalue);
+									$this->session->set_userdata('coupanname',$coupanname);
+								}else{
+									echo "0";
+								}				
 						}
+						else
+						{
+									echo "2";
 						}
 
 
-
-
-
+					}
 
 		}
 
@@ -3450,18 +3435,20 @@ function savedataforvest(){
 			 $this->session->unset_userdata('vouchervalue');
 			 echo "0";
 		}
-
+	
 		function mywallet()
 		{
 						$walletamount = $this->Cart_model->getwalletamount();
 						$this->session->set_userdata('mywalletdata',$walletamount);
 		}
+	
 		function removewallet()
 		{
 			 $this->session->unset_userdata('mywalletdata');
 
 			 echo "0";
 		}
+	
 		function show_fit()
 		{
 			$bid = $_POST['bid'];
@@ -3478,6 +3465,7 @@ function savedataforvest(){
 			$html .="</select>";
 			echo $html;
 		}
+
 		function show_size()
 		{
 			$fitid = $_POST['fitid'];
@@ -3494,8 +3482,9 @@ function savedataforvest(){
 			$html .="</select>";
 			echo $html;
 		}
+
 		function mapping1($style_id)
-	{
+		{
 		//echo $this->input->post('measureid');die;
 		//echo $style_id;die;
 		$data = array();
