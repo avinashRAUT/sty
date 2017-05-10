@@ -1007,6 +1007,65 @@ function savemesurementoncart()
 		$this->load->view('lum_footer');
  	}
 
+/*
+var started....
+dated : 10th May 2017 
+Remove this after use....
+*/
+
+public function lum_view_cart_test()
+ 	{
+		 //error_reporting(E_ALL);
+         //print_r($_SESSION);exit;
+            // Display errors in output
+        //    ini_set('display_errors', 1);
+		$this->load->library('session');
+		$this->load->helper('url');
+
+
+		//$this->load->library('cart');
+		$this->output->enable_profiler(FALSE);
+		$http_host = $this->config->item('http_host');
+		$this->load->view('lum_header');
+		//$this->session->unset_userdata('measuredid');
+		//if(isset($_SESSION['user_id']) ==""){
+			//redirect($http_host.'home/login');
+		//}
+		$this->session->unset_userdata('measuredid');
+
+		if($this->session->userdata('user_id')=="")
+		{
+			redirect($http_host.'home/lum_login_view');
+		}
+		//echo "<pre>";print_r($this->cart->contents() ) ;die;
+
+ 		$data = array();
+ 		$data['err_msg'] = '';
+			$data['title'] = 'Stylior.com';
+			$data['keywords'] = '';
+			$data['description'] = '';
+			//echo "<pre>";
+			//print_r($data);exit;
+
+		if($_SESSION['currencycode'] == '')
+		{
+		$inr = 'INR';
+		$_SESSION['currencyvalue'] = '1';
+		$_SESSION['currencycode'] = $inr;
+		}
+		else
+		{
+		$inr = $_SESSION['currencycode'];
+		}
+		//echo "<pre>";
+		//print_r($session);
+		//print_r($data);die;
+ 		$this->load->view('lum_viewcart_test',$data);
+		$this->load->view('lum_footer');
+ 	}
+
+
+
 
 
 
