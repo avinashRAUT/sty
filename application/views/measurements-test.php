@@ -204,29 +204,82 @@ $https_url_large_img="http://www.stylior.com/upload/products1/";
                                 <article>
                                    <div class="row">
                                         <h3>Your Fit</h3>
+                                        <!-- <div class="col-md-4">
+                                            <div id="lum_but_limt-radio12" class="meas_option">
+                                               <label>
+                                                <img rel="slim" src="<?= $https_url ?>site/images/measurement/slim.png" alt="measurement" class="option_without_bg">
+                                                <input type="radio" id="slim"  value="slim"  checked />                                       
+                                            </label>
+
+                                            <img src="<?= $https_url ?>site/images/measurement/slim_hover.png" alt="measurement" class="option_with_bg">
                                         
-                                        <div class="col-md-4">
-                                            <div id="lum_but_limt-radio" class="meas_option">
-  												<img src="<?= $https_url ?>site/images/measurement/slim.png" alt="measurement" class="option_without_bg">
-                                                <img src="<?= $https_url ?>site/images/measurement/slim_hover.png" alt="measurement" class="option_with_bg">
                                                 <p>Slim</p>
+  
+
                                             </div>
                                         </div>
+
                                         <div class="col-md-4">
-                                            <div  id="lum_but_limt-radio" class="meas_option">
-                                                <img src="<?= $https_url ?>site/images/measurement/tailored.png" alt="measurement" class="option_without_bg">
+                                            <div  id="lum_but_limt-radio1d2" class="meas_option">
+                                            <label>
+                                            <img rel="tailored" src="<?= $https_url ?>site/images/measurement/tailored.png" alt="measurement" class="option_without_bg">
+                                            <input type="radio" name="cust_yourfit" id="tailored"  value="tailored"  />
+                                            </label>
                                                 <img src="<?= $https_url ?>site/images/measurement/tailored_hover.png" alt="measurement" class="option_with_bg">
                                                 <p>Tailored</p>
+                                        
+
                                             </div>
                                         </div>
+
                                         <div class="col-md-4">
+
                                             <div  id="lum_but_limt-radio" class="meas_option">
+                                                
                                                 <img src="<?= $https_url ?>site/images/measurement/regular.png" alt="measurement" class="option_without_bg">
                                                 <img src="<?= $https_url ?>site/images/measurement/regular_hover.png" alt="measurement" class="option_with_bg">
                                                 <p>Regular</p>
                                             </div>
+                                       </div>
+                                        -->
+
+                                        <label>Your Fit<span></span></label>
+                                        <div id="lum_but_limt-radio" class="item">
+                                        <div class="col-md-4">
+                                        <div   class="meas_option ">
+                                        <img rel="regular_fit" src="<?= $https_url ?>site/images/measurement/slim.png" alt="measurement" class="option_without_bg  ">
+                                        <img src="<?= $https_url ?>site/images/measurement/slim_hover.png" alt="measurement" class="option_with_bg">
+                                        <!-- <img  rel="regular_fit" src="https://www.stylior.com/stylior/site/images/quick/slim.gif" class="measure-outer"  > -->
+                                        <input type="radio" name="yourfit" id="regular_fit" value="slim"  class="outer-contrast-radio " checked />                                       
+                                        </div><!-- EO meas_option -->
                                         </div>
-                                   </div>
+
+                                        <p>Slim</p>
+                                        </div>
+
+                                        <div  id="lum_but_limt-radio" class="item">
+                                        <div class="col-md-4"><div   class="meas_option ">
+                                           <img rel="tailored" src="<?= $https_url ?>site/images/measurement/tailored.png" alt="measurement" class="option_without_bg  ">
+                                            <img src="<?= $https_url ?>site/images/measurement/tailored_hover.png" alt="measurement" class="option_with_bg">
+                                            <!-- <img  rel="tailored" src="https://www.stylior.com/stylior/site/images/quick/tailored.gif" class="measure-outer" > -->
+                                       <input type="radio" name="yourfit" id="tailored"    value="tailored"     class="outer-contrast-radio "  />
+          
+                                        <p>Tailored</p>
+                                        </div><!-- EO meas_option --></div>
+                                        </div>
+
+                                        <div  id="lum_but_limt-radio" class="item" >
+                                        <div class="col-md-4"><div class="meas_option">
+                                        <img rel="comfort" src="<?= $https_url ?>site/images/measurement/regular.png" alt="measurement" class="option_without_bg ">
+                                        <img src="<?= $https_url ?>site/images/measurement/regular_hover.png" alt="measurement" class="option_with_bg">
+                                        <!-- <img rel="comfort" src="https://www.stylior.com/stylior/site/images/quick/regular.gif"    class="measure-outer" > -->
+                                        <input type="radio" name="yourfit" id="comfort"     value="comfort"      class="outer-contrast-radio "  />
+                                        <p>Comfort</p>
+                                        </div><!-- EO meas_option --></div>
+                                        </div>
+
+
+                                    </div>
                                 </article>           
                             </section>
                             <section id="std_length" class="measurement-section">
@@ -1136,6 +1189,9 @@ $("#quick_save").click(function(){
 
     console.clear();
     console.log("height_select:"+height_select+"body_weight:"+body_weight+"yourfit:"+yourfit+"yourlength:"+yourlength);  
+   
+
+
     return false;
 
     //alert($('input[name="yourlength"]:checked').val());
@@ -1256,30 +1312,33 @@ $("#guideDescription-standard").html("");
 });
 
 
-function getSelectedMeasure(idtype,number){
-    $("#"+idtype).val(number);
-}
+    function getSelectedMeasure(idtype,number){
+        $("#"+idtype).val(number);
+
+    }
 
 
 
-$(".measure-outer").on("click",function()
-{
-
-    $("#"+$(this).attr("rel")).trigger("click");
-    $('.measure-outer').each(function() {
-      if(!$("#"+$(this).attr("rel")).is(':checked'))
-      {     $(this).css({"border": ""});
+    $(".option_without_bg").on("click",function()
+    {
+     
+        $(this).hide();
+        
+        $("#"+$(this).attr("rel")).trigger("click");
+        $('.option_without_bg').each(function() {
+          if(!$("#"+$(this).attr("rel")).is(':checked'))
+          {     $(this).css({"border": ""});
+                $("."+$(this).attr("rel")).remove();
+          }
+          else
+          {
             $("."+$(this).attr("rel")).remove();
-      }
-      else
-      {
-        $("."+$(this).attr("rel")).remove();
-        $(this).css({"border": "1px solid black"});
-        //$(this).css({"background": "#15A6D6","color":"#fff"});
-      }
-      });
+            $(this).css({"border": "1px solid black"});
+            //$(this).css({"background": "#15A6D6","color":"#fff"});
+          }
+          });
 
-});
+    });
 
 
 </script>
