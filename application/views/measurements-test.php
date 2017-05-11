@@ -171,7 +171,7 @@ $https_url_large_img="http://www.stylior.com/upload/products1/";
                     <div class="gap10"></div>
                     <div class="gap10"></div>
                     <div class="gap10"></div>
-                    <input type="submit" class="lum_measurement_bottom_inner_top_button cart"  value="Add to Cart"  id="lum_measurement_bottom_inner_top_button">
+                    <input type="submit" class="lum_measurement_bottom_inner_top_button cart"  value="Add to Cart"  >
                     
                     </form>
                     </div>
@@ -304,7 +304,7 @@ $https_url_large_img="http://www.stylior.com/upload/products1/";
                                                     
                                                     <div class="size size-dev">
                                                     	<label>Size</label>
-                                                        <select class="height_select measurement-select" id="size_select" name="size_select">
+                                                        <select class="size_select measurement-select" id="size_select" name="size_select">
                                                         <option value="">Select Size</option>
                                                         <option value= "36"  >	 36 	      </option>
                                                         <option value= "37"   >	 37 		      </option>
@@ -356,12 +356,12 @@ $https_url_large_img="http://www.stylior.com/upload/products1/";
                                                     <input type="text" id="lum_input_required8" class="mesure-form measurement-input" name="bodypartvalue[62]"  placeholder="WAIST" required/>
                                                     </div>
                                                   
-													<button type="submit" id="lum_measurement_bottom_inner_top_button" class="blue-btn lum_measurement_bottom_inner_top_button cart">Add to cart </button>
+													<button type="submit" id="quick_save" class="blue-btn lum_measurement_bottom_inner_top_button cart">Add to cart </button>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <h4 class="Title">how to measure</h4>
-                                            <div id="guideDescription">
+                                            <div id="guideDescription-standard">
                                                 <video id="guideDescription" class="lum_video-new" controls>
                                                     <source src="https://www.stylior.com/site_old/views/images/measurement_vdo/Bicep.m4v" type="video/mp4" />
                                                     <source src="https://www.stylior.com/site_old/views/images/measurement_vdo/Bicep.m4v" type="video/ogg" />
@@ -377,7 +377,7 @@ $https_url_large_img="http://www.stylior.com/upload/products1/";
                     <div class="sidebar-measurement-summary col-md-3 col-md-pull-9 col-xs-12">
                         <div class="meas-summary">
                         	<h3>summary</h3>
-                            <div class="fit_option meas_option">
+                           <div class="fit_option meas_option">
                                 <img src="<?= $https_url ?>site/images/measurement/slim_hover.png" alt="measurement" class="option_with_bg">
                                 <p>Slim</p>
                                 <a href="" class="edit_measurement">Edit</a>
@@ -391,15 +391,16 @@ $https_url_large_img="http://www.stylior.com/upload/products1/";
                                 <img src="<?= $https_url ?>site/images/measurement/shoulder_type_normal_hover.png" alt="measurement" class="option_with_bg">
                                 <p>Normal</p>
                                 <a href="" class="edit_measurement">Edit</a>
-                            </div>
-        
-                        	<button type="submit" id="lum_measurement_bottom_inner_top_button" class="blue-btn lum_measurement_bottom_inner_top_button cart">Add to cart </button>
+                            </div>       
+
+                            <button type="submit" id="lum_measurement_bottom_inner_top_button" class="blue-btn lum_measurement_bottom_inner_top_button cart">Add to cart </button>
+
                         </div>
-                    </div>
-                
+                   </div>               
                 </div>
             </div>
         </div>
+
    		<div role="tabpanel" class="tab-pane fade" id="body_measurement">
             <div class="measurement_wrapper">
                 <div class="row">
@@ -1122,7 +1123,6 @@ if(selected_size!=undefined){
 */
 
 $("#quick_save").click(function(){
-
    var measureid ="";
     if("<?= $_GET['update'] ?>"=="shirt"){
      measureid = '<?php echo $_GET['mid'];?>';
@@ -1133,7 +1133,12 @@ $("#quick_save").click(function(){
     var body_weight=$('#body_weight').val();
     var yourfit=$('input[name="yourfit"]:checked').val();
     var yourlength=$('input[name="yourlength"]:checked').val();
-    //console.log("height_select:"+height_select+"body_weight:"+body_weight+"yourfit:"+yourfit+"yourlength:"+yourlength);   //alert($('input[name="yourlength"]:checked').val());
+
+    console.clear();
+    console.log("height_select:"+height_select+"body_weight:"+body_weight+"yourfit:"+yourfit+"yourlength:"+yourlength);  
+    return false;
+
+    //alert($('input[name="yourlength"]:checked').val());
     shritDimension.HEIGHTinch=height_select;
     shritDimension.standardsize=size_select;
     shritDimension.WEIGHTkg=body_weight;
@@ -1153,7 +1158,7 @@ $("#quick_save").click(function(){
     base_url = '<?php echo $bas_ul; ?>';
     // var exact_price = $("#prd_price").val();
     // var product_id = $("#prd_id").val();
-      var subcatid='<?php echo $_SESSION['subcatid']; ?>';
+    var subcatid='<?php echo $_SESSION['subcatid']; ?>';
     var ordertype;
     //alert("tyoe"+subcatid);
     if(subcatid=="10")
@@ -1183,7 +1188,6 @@ $("#quick_save").click(function(){
           }
         });
     }
-
   });
 
 /** Add Measurement data collect from here.
@@ -1196,7 +1200,6 @@ $("#add-mesurement").on("click",function(){
         /*alert("var testing");
         console.log("thid is data tesitng");
         */
-
         var data = $(".mesure-form").serialize();
           console.log("var Data"+data);
 
@@ -1208,8 +1211,7 @@ $("#add-mesurement").on("click",function(){
             },
             success:function(data){
               console.log("this is data"+data);
-
-             location.href='<? echo $bas_ul?>/cart/lum_view_cart';
+              location.href='<? echo $bas_ul?>/cart/lum_view_cart';
 
             }
            });
@@ -1265,20 +1267,15 @@ $(".measure-outer").on("click",function()
 
     $("#"+$(this).attr("rel")).trigger("click");
     $('.measure-outer').each(function() {
-
       if(!$("#"+$(this).attr("rel")).is(':checked'))
-      {
-
-        $(this).css({"border": ""});
-        $("."+$(this).attr("rel")).remove();
-
+      {     $(this).css({"border": ""});
+            $("."+$(this).attr("rel")).remove();
       }
       else
       {
         $("."+$(this).attr("rel")).remove();
         $(this).css({"border": "1px solid black"});
         //$(this).css({"background": "#15A6D6","color":"#fff"});
-
       }
       });
 

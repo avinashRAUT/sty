@@ -1,4 +1,5 @@
 <?php
+
 		defined('BASEPATH') OR exit('No direct script access allowed');
 		class Home extends CI_Controller {
 		
@@ -20,8 +21,8 @@
 
 		public function index()
 		{
-			error_reporting(1);
-		ini_set('display_errors', 1)
+			//error_reporting(1);
+			//ini_set('display_errors', 1)
 			$this->load->helper('url');
 			$this->output->enable_profiler(FALSE);
 			//var start
@@ -6680,15 +6681,27 @@ public function lum_fit_guide()
 
 													'X-Mailer: PHP/' . phpversion();
 
+
+
 										//echo $message; die;
-										//mail('patelnikul321@gmail.com', $subject, $message, $headers);
-										mail('orders@stylior.com', $subject, $message, $headers);
+
+ 										//mail('patelnikul321@gmail.com', $subject, $message, $headers);
+
+ 										mail('orders@stylior.com', $subject, $message, $headers);
+
 										mail($this->session->userdata('email'), $subject, $message, $headers);
-										$this->session->unset_userdata('couponprice');
-										$this->session->unset_userdata('giftwrap');
-										$this->session->unset_userdata('couponcode');
-										$this->session->unset_userdata('shipping_cost');
-										$this->cart->destroy();
+
+
+
+						$this->session->unset_userdata('couponprice');
+
+						$this->session->unset_userdata('giftwrap');
+
+						$this->session->unset_userdata('couponcode');
+
+						$this->session->unset_userdata('shipping_cost');
+
+						$this->cart->destroy();
 
 
 
@@ -6869,35 +6882,36 @@ public function getbodypart(){
 		public function wedding_enquiry_submit()
 		{
 
-			 $data = array();
-			 $name = $data['name'] = $_POST['name'];
-			 $email = 'support@stylior.com';
-			 $content = $data['content'] = $_POST['message'];
-			 $email_customer = $data['email_customer'] = $_POST['email'];
-			 $phone = $data['phone'] = $_POST['phone'];
-			 $date_today = date("Y-m-d");
-			 $message = "Dear Support team ,\n $name has made an enquiry using our form . The details of the enquiry is as given below. \n\n  Name : $name \n Email : $email_customer \n phone: $phone \n Message : $content";
-			 $subject  = 'New Enquiry';
-			 $headers  = 'MIME-Version: 1.0' . "\r\n";
-			 $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-			 $headers .= 'From: stylior.com <newsletter@stylior.com>' . "\r\n" .
-						 'Reply-To: newsletter@stylior.com' . "\r\n" .
-						 'X-Mailer: PHP/' . phpversion();
-			 if(mail($email, $subject, $message, $headers))
-				{
-					//print_r ($data);//die;
-					echo "<script>alert('Thank you for Contact with stylior.com !');</script>";
-					echo "<script>document.location.href='".$this->config->item('base_url_temp')."wedding-suit'</script>";
-				}
-				else
-				{
-					echo "<script>alert('Mail was not sent. Please try again later');</script>";
-					echo "<script>document.location.href='".$this->config->item('base_url_temp')."wedding-suit'</script>";
-				}
+		 $data = array();
+		 $name = $data['name'] = $_POST['name'];
+		 $email = 'support@stylior.com';
+		 $content = $data['content'] = $_POST['message'];
+		 $email_customer = $data['email_customer'] = $_POST['email'];
+		 $phone = $data['phone'] = $_POST['phone'];
+		 $date_today = date("Y-m-d");
+		 $message = "Dear Support team ,\n $name has made an enquiry using our form . The details of the enquiry is as given below. \n\n  Name : $name \n Email : $email_customer \n phone: $phone \n Message : $content";
+		 $subject  = 'New Enquiry';
+		 $headers  = 'MIME-Version: 1.0' . "\r\n";
+		 $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+		 $headers .= 'From: stylior.com <newsletter@stylior.com>' . "\r\n" .
+					 'Reply-To: newsletter@stylior.com' . "\r\n" .
+					 'X-Mailer: PHP/' . phpversion();
+		 if(mail($email, $subject, $message, $headers))
+			{
+				//print_r ($data);//die;
+				echo "<script>alert('Thank you for Contact with stylior.com !');</script>";
+				echo "<script>document.location.href='".$this->config->item('base_url_temp')."wedding-suit'</script>";
+			}
+			else
+			{
+				echo "<script>alert('Mail was not sent. Please try again later');</script>";
+				echo "<script>document.location.href='".$this->config->item('base_url_temp')."wedding-suit'</script>";
+			}
 		}
 
 
 		public function review(){
+		
 			$data['name'] = $_POST['name'];
 			$data['city'] = $_POST['city'];
 			$data['country'] = $_POST['country'];
@@ -6915,6 +6929,7 @@ public function getbodypart(){
 			$data['created_date'] = date("Y-m-d");
 			$data['review'] = "Reviews here";
 			$result = $this->home_model->addreview($data);
+	
 		}
 	
 	/*
@@ -6933,7 +6948,7 @@ public function getbodypart(){
 				else
 				{
 				echo "No data found";
-			}
+				}
 	}
 	
 
