@@ -2990,17 +2990,16 @@ public function lum_fit_guide()
 		$config["per_page"] =20;
 	    $choice = $config["total_rows"] / $config["per_page"];
 	    $config["num_links"] = round($choice);
-
-	    echo "data o 10 categorty"."pagenumbre".$choice.",per page limit".$config["per_page"];
-
-
+	    // echo "data o 10 categorty"."pagenumbre".$choice.",per page limit".$config["per_page"];
 		$data["details"] = $this->home_model->shop_suit_page(10,$page,$config["per_page"]);
-		
 		$this->pagination->initialize($config);          
     	$data["links"] = $this->pagination->create_links();
+		
 		// $this->load->view("example1", $data);
 		/*end var*/
 		// echo $this->pagination->create_links();
+        /*  */ 
+
 		$this->load->helper('url');
 		$this->output->enable_profiler(FALSE);
 		$this->load->view('lum_header',$metadata);

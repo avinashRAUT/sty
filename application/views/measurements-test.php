@@ -26,8 +26,21 @@ $https_url_large_img="http://www.stylior.com/upload/products1/";
     <link href="<?= $https_url ?>site/css/mega_menu.css" rel="stylesheet">
     
 <!--    <link href="assets/css/main.css" rel="stylesheet">-->
+<style type="text/css">
+.pre-loader{
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    width: 100%;
+    height: 100%;
+}
 
-    
+</style>
+
 </head>
 <body>
 <div class="measurement_tabs_section">
@@ -188,6 +201,7 @@ $https_url_large_img="http://www.stylior.com/upload/products1/";
                 </div>
             </div>
         </div>
+
    		<div role="tabpanel" class="tab-pane fade" id="standard_size">
         	<div class="measurement_wrapper">
                 <div class="row">
@@ -318,7 +332,12 @@ $https_url_large_img="http://www.stylior.com/upload/products1/";
                                    <div class="row">
                                         <h3>measurement</h3>
                                         <div class="col-md-6">
-                                        <!--height and weight section-->
+                                        <!--height and weight section-->          
+                            <div class="pre-loader">
+                                <img src="https://www.stylior.com/stylior/site/images/loading_new.gif" />
+                            </div>
+
+
                                            <div class="measurement-form-section">
                                                <h4 class="Title">What's your height and weight?</h4>
                                                <div class="standardcol measurement-form">
@@ -432,27 +451,17 @@ $https_url_large_img="http://www.stylior.com/upload/products1/";
                     </div>
                     
                     <div class="sidebar-measurement-summary col-md-3 col-md-pull-9 col-xs-12">
+ 
                         <div class="meas-summary">
-                        	<h3>summary</h3>
-                           <div class="fit_option meas_option">
-                                <img src="<?= $https_url ?>site/images/measurement/slim_hover.png" alt="measurement" class="option_with_bg">
-                                <p>Slim</p>
-                                <a href="" class="edit_measurement">Edit</a>
-                            </div>
-                            <div class="posture_option meas_option">
-                                <img src="<?= $https_url ?>site/images/measurement/body_normal_hover.png" alt="measurement" class="option_with_bg">
-                                <p>Normal</p>
-                                <a href="" class="edit_measurement">Edit</a>
-                            </div>
-                            <div class="posture_option meas_option">
-                                <img src="<?= $https_url ?>site/images/measurement/shoulder_type_normal_hover.png" alt="measurement" class="option_with_bg">
-                                <p>Normal</p>
-                                <a href="" class="edit_measurement">Edit</a>
-                            </div>       
+                           <h3>summary</h3>
+                            <div class="summary_container">
 
-                            <button type="submit" id="lum_measurement_bottom_inner_top_button" class="blue-btn lum_measurement_bottom_inner_top_button cart">Add to cart </button>
+                            </div>
+                            <button type="submit" id="lum_measurement_bottom_inner_top_button" class="blue-btn lum_measurement_bottom_inner_top_button cart">Reset</button>
+                        
 
                         </div>
+
                    </div>               
                 </div>
             </div>
@@ -461,6 +470,9 @@ $https_url_large_img="http://www.stylior.com/upload/products1/";
    		<div role="tabpanel" class="tab-pane fade" id="body_measurement">
             <div class="measurement_wrapper">
                 <div class="row">
+                    
+                </div>
+
                     <div class="content-measurement col-md-9 col-md-push-3 col-xs-12">
                         <div data-spy="affix" id="dot-nav" class="affix">
                             <ul>
@@ -480,7 +492,7 @@ $https_url_large_img="http://www.stylior.com/upload/products1/";
                                         <div class="col-md-4">
                                            <div class="fit_option meas_option">
                                                 <img src="<?= $https_url ?>site/images/measurement/slim.png" alt="measurement" class="option_without_bg">
-                                                <img src="<?= $https_url ?>site/images/measurement/slim_hover.png" alt="measurement" class="option_with_bg">
+                                                <img src="<?= $https_url ?>site/images/measurement/slim_hover.png" alt="<" class="option_with_bg">
                                                 <p>Slim</p>
                                            </div>
                                         </div>
@@ -588,7 +600,12 @@ $https_url_large_img="http://www.stylior.com/upload/products1/";
                             </section>    
                             <section id="add_measurement" class="measurement-section">
                                 <article>
+
                                    <div class="row">
+                                <div class="pre-loader">
+                                <img src="https://www.stylior.com/stylior/site/images/loading_new.gif" />
+                                </div>
+
                                         <h3>measurement</h3>
                                         <div class="col-md-6">
                                         <!--height and weight section-->
@@ -736,9 +753,10 @@ $(document).ready(function(){
 	$('.meas_option').click( function(){
 		$('.meas_option').removeClass("active");
 		$(this).addClass("active");
-	//		alert('test');
-	//		$('.option_with_bg').addClass("active");
-	//		$('.option_without_bg').hide();
+    
+    	//		alert('test');
+    	//		$('.option_with_bg').addClass("active");
+    	//		$('.option_without_bg').hide();
 
 	});
 });
@@ -1272,6 +1290,8 @@ if(selected_size!=undefined){
     /*date 14 sep 2016*/
 
     $(".entry").on("click",function(){
+    $(".pre-loader").show();
+
     var base_url='<? echo $bas_ul?>';
     var current_id=this.id;
     var i = $(this).find(" input");
@@ -1289,7 +1309,9 @@ if(selected_size!=undefined){
       var youtubeurl = base_url+""+data.youtubeurl;
       var description = "<p>"+data.desc+"</p>";
       var source_video='<video id="lum_input_required_video1" class="lum_video-new" controls><source src="'+youtubeurl+'" type="video/mp4"><source src="'+youtubeurl+'" type="video/ogg"></video>'+description;
-
+      
+      $(".pre-loader").hide();
+      
       if(current_id == "entry-standard"){
           $("#guideDescription-standard").append(source_video);
       }
@@ -1304,37 +1326,73 @@ if(selected_size!=undefined){
     });
 
     });
+    
+
+
+    /*create array to store all the values of fit and lenght body posture  and other image selection options*/
+    var selectionType={"fit": ["slim", "tailored", "comfort"],
+    "legth": ["short", "regular", "tall"]};
+
+
+
+   // {"fit":{"slim","tailored","confort"},"lenght":{"short","regular","tall"},};
+   
     function getSelectedMeasure(idtype,number){
         $("#"+idtype).val(number);
-
     }
+
     //hide all with bg images ..
     $(".option_with_bg").hide();
     $(".option_without_bg").show();
-    
-        $(".meas_option_rel").on("click",function(){       
-        $(".option_without_bg").show();
-        $(".option_with_bg").hide();
-        $(this).hide();    
-        // console.log("Testing");
-        // var attr_value = $(this).attr("rel");
-        // console.log(attr_value);
-        $(this).next('.option_with_bg').show();
-        $("#"+$(this).attr("rel")).trigger("click");
-        $('.meas_option_rel').each(function() {
+    var data_container = '';
+    $(".meas_option_rel").on("click",function(){
+    var selected_value=$(this).attr("rel");
+    if ($.inArray( selected_value, selectionType.fit) > -1)
+    {
+    alert("Got the selected eelement");
 
+    }
+
+    var imgsrc=$(this).attr('src');             
+    $('.summary_container').html(' ');
+
+            var string_data='<div class="summary_option">\
+            <img src="'+imgsrc+'"\
+            <p>Slim</p>\
+            </div>';
+
+            data_container += string_data;
+            $('.summary_container').html(data_container);
+     
+            console.log(imgsrc);
+            console.log(string_data);
+     
+            $(".option_without_bg").show();
+            $(".option_with_bg").hide();
+            $(this).hide();
+
+            // console.log("Testing");
+            // var attr_value = $(this).attr("rel");
+            // console.log(attr_value);
+            $(this).next('.option_with_bg').show();
+            $("#"+$(this).attr("rel")).trigger("click");
+            $('.meas_option_rel').each(function() {
+     
+           
             if(!$("#"+$(this).attr("rel")).is(':checked'))
             {    
+            
                 $(this).css({"border": ""});
                 $("."+$(this).attr("rel")).remove();
+            
             }
             else
             {
+
                 $("."+$(this).attr("rel")).remove();
                 $(this).css({"border": "1px solid black"});
                 //$(this).css({"background": "#15A6D6","color":"#fff"});
-            }
-  
+            } 
       });
     });
 </script>
