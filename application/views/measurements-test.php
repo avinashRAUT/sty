@@ -17,12 +17,12 @@ $https_url_large_img="http://www.stylior.com/upload/products1/";
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>Custom Shirt | Stylior</title>
-	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    <meta charset="UTF-8">
+    <title>Custom Shirt | Stylior</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
     <link href="https://fonts.googleapis.com/css?family=Didact+Gothic" rel="stylesheet">
-	<link rel="stylesheet" href="<?=base_url() ?>css/bootstrap.css">
-	<link rel="stylesheet" href="<?=base_url() ?>css/font-awesome.min.css">
+    <link rel="stylesheet" href="<?=base_url() ?>css/bootstrap.css">
+    <link rel="stylesheet" href="<?=base_url() ?>css/font-awesome.min.css">
     <link href="<?= $https_url ?>site/css/mega_menu.css" rel="stylesheet">
     
 <!--    <link href="assets/css/main.css" rel="stylesheet">-->
@@ -44,15 +44,15 @@ $https_url_large_img="http://www.stylior.com/upload/products1/";
 </head>
 <body>
 <div class="measurement_tabs_section">
-	<div class="tabs-options">
+    <div class="tabs-options">
     <ul id="measure_tabs_options" class="nav nav-tabs" role="tablist">
-    	<li role="presentation" class="active"><a href="#saved_profile" role="tab" data-toggle="tab">saved profile</a></li>
+        <li role="presentation" class="active"><a href="#saved_profile" role="tab" data-toggle="tab">saved profile</a></li>
         <li role="presentation"><a href="#standard_size" role="tab" data-toggle="tab">standard size</a></li>
         <li role="presentation"><a href="#body_measurement" role="tab" data-toggle="tab">measurement</a></li>        
     </ul>
     </div>
     <div class="tab-content measurement-tab-details" data-content="height">
-   		<div role="tabpanel" class="tab-pane fade in active" id="saved_profile">
+        <div role="tabpanel" class="tab-pane fade in active" id="saved_profile">
             <div class="height">
                 <div class="measurement_container">
                     <div class="savedmeasure">
@@ -85,12 +85,12 @@ $https_url_large_img="http://www.stylior.com/upload/products1/";
                         <div class="gap10"></div>
                     
                         <table class="m_s_table">
-                          <tr>
-                            <th>BODY POSTURE</th>
-                            <th>BODY FIT</th>
-                            <th>SHOULDER TYPE</th>
+                          <tr>
+                            <th>BODY POSTURE</th>
+                            <th>BODY FIT</th>
+                            <th>SHOULDER TYPE</th>
                             <th>SHOULDER ANGLE</th>
-                          </tr>
+                          </tr>
                           <tr>
                                 <?php
                                 $posture = $mdetail->posture;
@@ -202,8 +202,8 @@ $https_url_large_img="http://www.stylior.com/upload/products1/";
             </div>
         </div>
 
-   		<div role="tabpanel" class="tab-pane fade" id="standard_size">
-        	<div class="measurement_wrapper">
+        <div role="tabpanel" class="tab-pane fade" id="standard_size">
+            <div class="measurement_wrapper">
                 <div class="row">
                     <div class="content-measurement col-md-9 col-md-push-3 col-xs-12">
                         <div data-spy="affix" id="dot-nav" class="affix">
@@ -217,55 +217,28 @@ $https_url_large_img="http://www.stylior.com/upload/products1/";
                             <section id="std_fit" class="measurement-section">
                                 <article>
                                    <div class="row">
-                                        <!-- <div class="col-md-4">
-                                            <div id="lum_but_limt-radio12" class="meas_option">
-                                               <label>
-                                                <img rel="slim" src="<?= $https_url ?>site/images/measurement/slim.png" alt="measurement" class="option_without_bg">
-                                                <input type="radio" id="slim"  value="slim"  checked />                                       
-                                            </label>
-                                           <img src="<?= $https_url ?>site/images/measurement/slim_hover.png" alt="measurement" class="option_with_bg">                                      
-                                                <p>Slim</p>
-                                           </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div  id="lum_but_limt-radio1d2" class="meas_option">
-                                            <label>
-                                            <img rel="tailored" src="<?= $https_url ?>site/images/measurement/tailored.png" alt="measurement" class="option_without_bg">
-                                            <input type="radio" name="cust_yourfit" id="tailored"  value="tailored"  />
-                                            </label>
-                                                <img src="<?= $https_url ?>site/images/measurement/tailored_hover.png" alt="measurement" class="option_with_bg">
-                                                <p>Tailored</p>
-                                             </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div  id="lum_but_limt-radio" class="meas_option">                                               
-                                                <img src="<?= $https_url ?>site/images/measurement/regular.png" alt="measurement" class="option_without_bg">
-                                                <img src="<?= $https_url ?>site/images/measurement/regular_hover.png" alt="measurement" class="option_with_bg">
-                                                <p>Regular</p>
-                                            </div>
-                                       </div>-->
-    
-                                        <label>Your Fit<span></span></label>
+                                       <label>Your Fit<span></span></label>
                                         <div id="lum_but_limt-radio" class="item">
-                                        <div class="col-md-4">
-                                        <div  class="meas_option">
-                                                <div>
-                                                    <img rel="regular_fit" src="<?= $https_url ?>site/images/measurement/slim.png" alt="measurement" class="option_without_bg  meas_option_rel">
-                                                    <img src="<?= $https_url ?>site/images/measurement/slim_hover.png" alt="measurement" class="option_with_bg">
-                                                    <!-- <img  rel="regular_fit" src="https://www.stylior.com/stylior/site/images/quick/slim.gif" class="measure-outer"  > -->
-                                                    <input type="radio" name="yourfit" id="regular_fit" value="slim"  class="outer-contrast-radio hide" checked />
-                                                </div><!-- meas_option_rel -->
-                                        </div><!-- EO meas_option -->                                       
-                                        <p>Slim</p>
-                                        </div>
+                                            <div class="col-md-4">
+                                                <div  class="meas_option">
+                                                    <div>
+                                                        <img rel="regular_fit" src="<?= $https_url ?>site/images/measurement/slim.png" alt="measurement" class="option_without_bg  meas_option_rel">
+                                                        <img src="<?= $https_url ?>site/images/measurement/slim_hover.png" alt="measurement" class="option_with_bg ">
+                                                        <!-- <img  rel="regular_fit" src="https://www.stylior.com/stylior/site/images/quick/slim.gif" class="measure-outer"  > -->
+                                                        <input type="radio" name="yourfit" id="regular_fit" value="slim"  class="outer-contrast-radio hide" checked />
+                                                    </div><!-- meas_option_rel -->
+
+                                                </div><!-- EO meas_option -->                                       
+                                            <p>Slim</p>
+                                            </div>
                                         </div>
 
                                         <div  id="lum_but_limt-radio" class="item">
                                         <div class="col-md-4">
                                         <div    class="meas_option">
-                                        <div  >
+                                        <div>
                                             <img rel="tailored"  src="<?= $https_url ?>site/images/measurement/tailored.png" alt="measurement" class="option_without_bg  meas_option_rel">
-                                            <img src="<?= $https_url ?>site/images/measurement/tailored_hover.png" alt="measurement" class="option_with_bg">
+                                            <img src="<?= $https_url ?>site/images/measurement/tailored_hover.png" alt="measurement" class="option_with_bg  ">
                                             <!-- <img  rel="tailored" src="https://www.stylior.com/stylior/site/images/quick/tailored.gif" class="measure-outer" > -->
                                             <input type="radio" name="yourfit" id="tailored"    value="tailored"     class="outer-contrast-radio hide"  />
                                        </div><!-- meas_option_rel -->
@@ -278,22 +251,24 @@ $https_url_large_img="http://www.stylior.com/upload/products1/";
                                         <div class="col-md-4">
                                         <div  class="meas_option">
                                         <div >
-                                        <img rel="comfort"  src="<?= $https_url ?>site/images/measurement/regular.png" alt="measurement" class="option_without_bg meas_option_rel">
-                                        <img src="<?= $https_url ?>site/images/measurement/regular_hover.png" alt="measurement" class="option_with_bg">
-                                        <!-- <img rel="comfort" src="https://www.stylior.com/stylior/site/images/quick/regular.gif"    class="measure-outer" > -->
-                                        <input type="radio" name="yourfit" id="comfort"     value="comfort"      class="outer-contrast-radio hide"  />
+                                            <img rel="comfort"  src="<?= $https_url ?>site/images/measurement/regular.png" alt="measurement" class="option_without_bg meas_option_rel">
+                                            
+                                            <img src="<?= $https_url ?>site/images/measurement/regular_hover.png" alt="measurement" class="option_with_bg ">
+                                            <!-- <img rel="comfort" src="https://www.stylior.com/stylior/site/images/quick/regular.gif"    class="measure-outer" > -->
+                                            
+                                            <input type="radio" name="yourfit" id="comfort" value="comfort"      class="outer-contrast-radio hide"/>
+
                                         </div><!-- meas_option_rel -->
-                                        <p>Comfort</p>
+                                            <p>Comfort</p>
                                         </div><!-- EO meas_option -->
                                         </div>
-                                        </div>
-
-
+                                       </div>
                                     </div>
                                 </article>           
                             </section>
                             
                             <section id="std_length" class="measurement-section">
+                           
                             <article>
                                 <div class="row">
                                     <h3>Your Length</h3>
@@ -324,7 +299,8 @@ $https_url_large_img="http://www.stylior.com/upload/products1/";
                                         </div>
                                     </div>
                                 </div>
-                            </article>           
+                            </article>   
+
                             </section>   
                            
                             <section id="std_add_measurement" class="measurement-section">
@@ -345,28 +321,28 @@ $https_url_large_img="http://www.stylior.com/upload/products1/";
                                                         <label>Height </label>
                                                             <select class="height_select measurement-select" id="height_select" name="height_select">
                                                                 <option value=""> Select Height </option>
-                                                                <option value="5'0"	" >   5'0"	 </option>
-                                                                <option value="5'1"	" >   5'1"	 </option>
-                                                                <option value="5'2"	" >   5'2"	 </option>
-                                                                <option value="5'3"	" >   5'3"	 </option>
-                                                                <option value="5'4"	" >   5'4"	 </option>
-                                                                <option value="5'5"	" >   5'5"	 </option>
-                                                                <option value="5'6"	" >   5'6"	 </option>
-                                                                <option value="5'7"	" >   5'7"	 </option>
-                                                                <option value="5'8"	" >   5'8"	 </option>
-                                                                <option value="5'9"	" >   5'9"	 </option>
+                                                                <option value="5'0" " >   5'0"   </option>
+                                                                <option value="5'1" " >   5'1"   </option>
+                                                                <option value="5'2" " >   5'2"   </option>
+                                                                <option value="5'3" " >   5'3"   </option>
+                                                                <option value="5'4" " >   5'4"   </option>
+                                                                <option value="5'5" " >   5'5"   </option>
+                                                                <option value="5'6" " >   5'6"   </option>
+                                                                <option value="5'7" " >   5'7"   </option>
+                                                                <option value="5'8" " >   5'8"   </option>
+                                                                <option value="5'9" " >   5'9"   </option>
                                                                 <option value="5'10"" >   5'10"   </option>
                                                                 <option value="5'11"" >   5'11"   </option>
-                                                                <option value="6'0"	" >   6'0"	 </option>
-                                                                <option value="6'1"	" >   6'1"	 </option>
-                                                                <option value="6'2"	" >   6'2"	 </option>
-                                                                <option value="6'3"	" >   6'3"	 </option>
-                                                                <option value="6'4"	" >   6'4"	 </option>
-                                                                <option value="6'5"	" >   6'5"	 </option>
-                                                                <option value="6'6"	" >   6'6"	 </option>
-                                                                <option value="6'7"	" >   6'7"	 </option>
-                                                                <option value="6'8"	" >   6'8"	 </option>
-                                                                <option value="6'9"	" >   6'9"	 </option>
+                                                                <option value="6'0" " >   6'0"   </option>
+                                                                <option value="6'1" " >   6'1"   </option>
+                                                                <option value="6'2" " >   6'2"   </option>
+                                                                <option value="6'3" " >   6'3"   </option>
+                                                                <option value="6'4" " >   6'4"   </option>
+                                                                <option value="6'5" " >   6'5"   </option>
+                                                                <option value="6'6" " >   6'6"   </option>
+                                                                <option value="6'7" " >   6'7"   </option>
+                                                                <option value="6'8" " >   6'8"   </option>
+                                                                <option value="6'9" " >   6'9"   </option>
                                                                 <option value="6'10"" >   6'10" </option>
                                                                 <option value="6'11"" >   6'11" </option>
                                                             </select>
@@ -375,24 +351,24 @@ $https_url_large_img="http://www.stylior.com/upload/products1/";
                                                         <label>Weight</label>
                                                         <input type="text" name="body_weight" id="body_weight" class="measurement-input" value="" placeholder="Enter Weight" />
 
-													</div> <!-- div of weight -->
+                                                    </div> <!-- div of weight -->
                                                     
                                                     <div class="size size-dev">
-                                                    	<label>Size</label>
+                                                        <label>Size</label>
                                                         <select class="size_select measurement-select" id="size_select" name="size_select">
                                                         <option value="">Select Size</option>
-                                                        <option value= "36"  >	 36 	      </option>
-                                                        <option value= "37"   >	 37 		      </option>
-                                                        <option value= "38"   >	 38 		  </option>
-                                                        <option value= "39"   >	 39 		      </option>
-                                                        <option value= "40"  >	 40 	      </option>
-                                                        <option value= "41" >	 41 		  </option>
-                                                        <option value= "42" >	 42        </option>
-                                                        <option value= "43" >	 43 		  </option>
-                                                        <option value= "44" >	 44        </option>
+                                                        <option value= "36"  >   36           </option>
+                                                        <option value= "37"   >  37               </option>
+                                                        <option value= "38"   >  38           </option>
+                                                        <option value= "39"   >  39               </option>
+                                                        <option value= "40"  >   40           </option>
+                                                        <option value= "41" >    41           </option>
+                                                        <option value= "42" >    42        </option>
+                                                        <option value= "43" >    43           </option>
+                                                        <option value= "44" >    44        </option>
                                                         
-                                                        <option value= "45" >	 45 		  </option>
-                                                        <option value= "46" >	 46        </option>
+                                                        <option value= "45" >    45           </option>
+                                                        <option value= "46" >    46        </option>
                                                         </select>
                                                     </div> <!-- div of size -->
                                                 </div>
@@ -431,7 +407,7 @@ $https_url_large_img="http://www.stylior.com/upload/products1/";
                                                     <input type="text" id="lum_input_required8" class="mesure-form measurement-input" name="bodypartvalue[62]"  placeholder="WAIST" required/>
                                                     </div>
                                                   
-													<button type="submit" id="quick_save" class="blue-btn lum_measurement_bottom_inner_top_button cart">Add to cart </button>
+                                                    <button type="submit" id="quick_save" class="blue-btn lum_measurement_bottom_inner_top_button cart">Add to cart </button>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -441,7 +417,7 @@ $https_url_large_img="http://www.stylior.com/upload/products1/";
                                                     <source src="https://www.stylior.com/site_old/views/images/measurement_vdo/Bicep.m4v" type="video/mp4" />
                                                     <source src="https://www.stylior.com/site_old/views/images/measurement_vdo/Bicep.m4v" type="video/ogg" />
                                                 </video>
-                                                <p>	Bicep</p>
+                                                <p> Bicep</p>
                                             </div>
                                         </div>
                                    </div>
@@ -452,22 +428,46 @@ $https_url_large_img="http://www.stylior.com/upload/products1/";
                     
                     <div class="sidebar-measurement-summary col-md-3 col-md-pull-9 col-xs-12">
  
-                        <div class="meas-summary">
-                           <h3>summary</h3>
+                        <div class=""> <!-- remove this class meas-summary -->
+                            <h3>summary</h3>
+
                             <div class="summary_container">
+                                <div class="summary_fit">
+                                </div>
+                                <div class="summary_length">
+                                </div>
 
+                                <div class="summary_measurement">
+                                    <label>Height</label>
+                                    <label class="summary_heigth"></label>
+                                    <label>Weight</label>
+                                    <label class="summary_weight"> </label>
+                                    <label>Size</label>
+                                    <label class="summary_size"> </label>
+                                    <label>Shoulder</label>
+                                    <label class="summary_shoulder"> </label>
+                                    <label>Neck</label>
+                                    <label class="summary_neck"> </label>
+                                    <label>Sleeve</label>
+                                    <label class="summary_sleeve"> </label>
+                                    <label>Length</label>
+                                    <label class="summary_shirt_length"> </label>
+                                    <label>Chest</label>
+                                    <label class="summary_chest"> </label>
+                                    <label>Waist</label>
+                                    <label class="summary_waist"> </label>
+                                </div>
                             </div>
+
                             <button type="submit" id="lum_measurement_bottom_inner_top_button" class="blue-btn lum_measurement_bottom_inner_top_button cart">Reset</button>
-                        
 
-                        </div>
-
-                   </div>               
+                    </div>
+                 </div>               
                 </div>
             </div>
         </div>
 
-   		<div role="tabpanel" class="tab-pane fade" id="body_measurement">
+        <div role="tabpanel" class="tab-pane fade" id="body_measurement">
             <div class="measurement_wrapper">
                 <div class="row">
                     
@@ -483,43 +483,47 @@ $https_url_large_img="http://www.stylior.com/upload/products1/";
                                 <li class="awesome-tooltip" title="add_measurement"><a href="#add_measurement"></a></li>
                             </ul>
                         </div>
+                        
                         <div id="main" class="">
-                            <section id="fit" class="measurement-section">
+                        <section id="fit" class="measurement-section">
                                 <article>
                                    <div class="row">
                                         <h3>Your Fit</h3>
-                                        
-                                        <div class="col-md-4">
-                                           <div class="fit_option meas_option">
-                                                <img src="<?= $https_url ?>site/images/measurement/slim.png" alt="measurement" class="option_without_bg">
+                                         <div class="col-md-4">
+                                            <div class="fit_option meas_option">
+                                                <img  rel="slim" src="<?= $https_url ?>site/images/measurement/slim.png" alt="measurement" class="option_without_bg meas_option_rel">
                                                 <img src="<?= $https_url ?>site/images/measurement/slim_hover.png" alt="<" class="option_with_bg">
+                                                <input type="radio" name="yourfit" id="slim" value="slim"  class="outer-contrast-radio " checked />
                                                 <p>Slim</p>
                                            </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="fit_option meas_option">
-                                                <img src="<?= $https_url ?>site/images/measurement/tailored.png" alt="measurement" class="option_without_bg">
+                                                <img  rel="tailored" src="<?= $https_url ?>site/images/measurement/tailored.png" alt="measurement" class="option_without_bg meas_option_rel">
                                                 <img src="<?= $https_url ?>site/images/measurement/tailored_hover.png" alt="measurement" class="option_with_bg">
-                                                <p>Tailored</p>
+                                                <input type="radio" name="cust_yourfit" id="tailored" value="tailored" class="mesure-form outer-contrast-radio">
+                                               <p>Tailored</p>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="fit_option meas_option">
-                                                <img src="<?= $https_url ?>site/images/measurement/regular.png" alt="measurement" class="option_without_bg">
-                                                <img src="<?= $https_url ?>site/images/measurement/regular_hover.png" alt="measurement" class="option_with_bg">
+                                               <img  rel="regular" src="<?= $https_url ?>site/images/measurement/regular.png" alt="measurement" class="option_without_bg meas_option_rel">
+                                               <img src="<?= $https_url ?>site/images/measurement/regular_hover.png" alt="measurement" class="option_with_bg">
+                                               <input type="radio" name="cust_yourfit" id="regular" value="regular" class="outer-contrast-radio" />
                                                 <p>Regular</p>
                                             </div>
-                                        </div>
-                                   </div>
-                                </article>           
-                            </section>
+                                     </div>
+
+                                 </div>
+                            </article>           
+                        </section>
             
-                            <section id="body_posture" class="measurement-section">
-                            <article>
+                        <section id="body_posture" class="measurement-section">
+                           <article>
                                 <div class="row">
-                                <h3>Body Posture</h3>
-                                    <div class="col-md-4">
-                                        <div class="posture_option meas_option">
+                                    <h3>Body Posture</h3>
+                                        <div class="col-md-4">
+                                            <div class="posture_option meas_option">
                                             <img src="<?= $https_url ?>site/images/measurement/body_normal.png" alt="measurement" class="option_without_bg">
                                             <img src="<?= $https_url ?>site/images/measurement/body_normal_hover.png" alt="measurement" class="option_with_bg">
                                             <p>Normal</p>
@@ -598,6 +602,7 @@ $https_url_large_img="http://www.stylior.com/upload/products1/";
                                     </div>
                                 </article>          
                             </section>    
+                            
                             <section id="add_measurement" class="measurement-section">
                                 <article>
 
@@ -616,9 +621,9 @@ $https_url_large_img="http://www.stylior.com/upload/products1/";
                                                         <label>Height </label>
                                                         <select class="measurement-select" name="height">
                                                         <option value="">Select Height</option>
-                                                        <option value="">   5	 </option>
-                                                        <option value="">   5	 </option>
-                                                        <option value="">   5	 </option>
+                                                        <option value="">   5    </option>
+                                                        <option value="">   5    </option>
+                                                        <option value="">   5    </option>
                                                         </select>
                                                     </div>
                                                     <div class="weight area measurement-entry">
@@ -677,7 +682,7 @@ $https_url_large_img="http://www.stylior.com/upload/products1/";
                                                 <input type="text" id="lum_input_required9" class="mesure-form measurement-input" name="bodypartvalue[67]" placeholder="HIP" required="">
                                                 </div>
                                             </div>
-											<button type="submit" id="lum_measurement_bottom_inner_top_button" class="blue-btn lum_measurement_bottom_inner_top_button cart">Add to cart </button>
+                                            <button type="submit" id="lum_measurement_bottom_inner_top_button" class="blue-btn lum_measurement_bottom_inner_top_button cart">Add to cart </button>
                                         </div>
                                         <div class="col-md-6">
                                             <h4 class="Title">how to measure</h4>
@@ -686,7 +691,7 @@ $https_url_large_img="http://www.stylior.com/upload/products1/";
                                                     <source src="https://www.stylior.com/site_old/views/images/measurement_vdo/Bicep.m4v" type="video/mp4" />
                                                     <source src="https://www.stylior.com/site_old/views/images/measurement_vdo/Bicep.m4v" type="video/ogg" />
                                                 </video>
-                                                <p>	Bicep</p> -->
+                                                <p> Bicep</p> -->
                                             </div>
                                         </div>
                                    </div>
@@ -696,33 +701,33 @@ $https_url_large_img="http://www.stylior.com/upload/products1/";
                     </div>
                     <div class="sidebar-measurement-summary col-md-3 col-md-pull-9 col-xs-12">
                         <div class="meas-summary">
-                        	<h3>summary</h3>
+                            <h3>summary</h3>
                             
                             <div id="lum_but_limt-radio" class="meas_option">
                                 <img src="<?= $https_url ?>site/images/measurement/slim_hover.png" alt="measurement" class="option_with_bg">
                                 <p>Slim</p>
-								<a href="" class="edit_measurement">Edit</a>
+                                <a href="" class="edit_measurement">Edit</a>
                             </div>
                             
                             <div class="posture_option meas_option">
                                 <img src="<?= $https_url ?>site/images/measurement/body_normal_hover.png" alt="measurement" class="option_with_bg">
                                 <p>Normal</p>
-								<a href="" class="edit_measurement">Edit</a>
+                                <a href="" class="edit_measurement">Edit</a>
                             </div>
                             
                             <div class="posture_option meas_option">
                                 <img src="<?= $https_url ?>site/images/measurement/shoulder_type_normal_hover.png" alt="measurement" class="option_with_bg">
                                 <p>Normal</p>
-								<a href="" class="edit_measurement">Edit</a>
+                                <a href="" class="edit_measurement">Edit</a>
                             </div>
                             
                             <div class="posture_option meas_option">
                                 <img src="<?= $https_url ?>site/images/measurement/shouler_angle_even_hover.png" alt="measurement" class="option_with_bg">
                                 <p>Normal</p>
-								<a href="" class="edit_measurement">Edit</a>
+                                <a href="" class="edit_measurement">Edit</a>
                             </div>
                             
-							<button type="submit" id="lum_measurement_bottom_inner_top_button" class="blue-btn lum_measurement_bottom_inner_top_button cart">Add to cart </button>
+                            <button type="submit" id="lum_measurement_bottom_inner_top_button" class="blue-btn lum_measurement_bottom_inner_top_button cart">Add to cart </button>
                         </div>
                     </div>
                 
@@ -740,25 +745,27 @@ $https_url_large_img="http://www.stylior.com/upload/products1/";
 
 <script type="text/javascript">
     $(document).ready(function(){
+      
       $('.meas-summary').slimScroll({
-		  	height: '90vh',
-			color: 'rgb(40, 44, 62)',
-			disableFadeOut: true
+            height: '90vh',
+            color: 'rgb(40, 44, 62)',
+            disableFadeOut: true
       });
+
     });
 </script>
 
 <script>
 $(document).ready(function(){
-	$('.meas_option').click( function(){
-		$('.meas_option').removeClass("active");
-		$(this).addClass("active");
+    $('.meas_option').click( function(){
+        $('.meas_option').removeClass("active");
+        $(this).addClass("active");
     
-    	//		alert('test');
-    	//		$('.option_with_bg').addClass("active");
-    	//		$('.option_without_bg').hide();
+        //      alert('test');
+        //      $('.option_with_bg').addClass("active");
+        //      $('.option_without_bg').hide();
 
-	});
+    });
 });
 </script>
 
@@ -787,24 +794,24 @@ $(document).ready(function(){
        });
     
      /*$(".fittype_select").on("click",function(){
-	        console.log("This is fittype id :"+this.id);
-	        shirtDimension.fitype=this.id.replace(/_/g, ' ');
+            console.log("This is fittype id :"+this.id);
+            shirtDimension.fitype=this.id.replace(/_/g, ' ');
 
-	         $('.fittype_select').removeClass('active');
-	        $(this).addClass('active');
-	        $('#fit_error').removeClass('option_error');
-	        $('#fit_error').hide();
-	      });
-	       $(".length_select").on("click",function(){
-	        console.log("This is fittype id :"+this.id);
-	        shirtDimension.length=this.id.replace(/_/g, ' ');
+             $('.fittype_select').removeClass('active');
+            $(this).addClass('active');
+            $('#fit_error').removeClass('option_error');
+            $('#fit_error').hide();
+          });
+           $(".length_select").on("click",function(){
+            console.log("This is fittype id :"+this.id);
+            shirtDimension.length=this.id.replace(/_/g, ' ');
 
-	         $('.length_select').removeClass('active');
-	        $(this).addClass('active');
-	        $('#length_error').removeClass('option_error');
-	         $('#length_error').hide();
-	      }); 
-	   */
+             $('.length_select').removeClass('active');
+            $(this).addClass('active');
+            $('#length_error').removeClass('option_error');
+             $('#length_error').hide();
+          }); 
+       */
 
       $(".pocket_select").on("click",function(){
         console.log("This is pocket option  :"+this.id);
@@ -1136,11 +1143,31 @@ jQuery(document).ready(function($){
 });
 
 /*avr measurements functions here.*/
+
 var shritDimension={"HEIGHTinch":"","WEIGHTkg":"","pocket":"NO","Monogram":"NO","MonoLocation":"","Monofontstyle":"","Monocolor":"","Monotext":"None","fitype":"NO","standardsize":"NO","length":"NO","shoulder":"","neck":"","length":"","chest":"","waist":"","sleeve":""};
+
+function changeTheSummary(measurement){
+        // console.log("This is testing");
+        // console.log(measurement);
+        // // $('.summary_heigth').text(measurement.);
+        // $('.summary_weight').text(measurement);
+        // $('.summary_size').text(measurement);
+        $('.summary_shoulder').text(measurement.shoulder);
+        $('.summary_neck').text(measurement.neck);
+        $('.summary_sleeve').text(measurement.sleeve);
+        $('.summary_shirt_length').text(measurement.shirt_length);
+        $('.summary_chest').text(measurement.chest);
+        $('.summary_waist').text(measurement.waist);
+}
+
+
+
 /***********
 ****** to get standard measurements based on size selection
 ****** stylior.com : 18 Oct 2016
 */
+var measurement_server="";
+
 $('select#size_select').change(function(){
 var selected_size=$("#size_select option:selected").text();
 var     base_url = '<?php echo $bas_ul; ?>';
@@ -1160,6 +1187,9 @@ if(selected_size!=undefined){
           if(response !== null && response !== undefined && response.length > 100){
           var var_result= $.parseJSON(response);
           var measurement = $.parseJSON(var_result.measurement);
+         //change the value of measurement based on the server response.
+          changeTheSummary(measurement);
+
           $("#lum_input_required1").val(measurement.shoulder);
           $("#lum_input_required2").val(measurement.neck);
           $("#lum_input_required3").val(measurement.sleeve);
@@ -1205,13 +1235,12 @@ if(selected_size!=undefined){
         var yourlength=$('input[name="yourlength"]:checked').val();
         console.clear();
         console.log("height_select:"+height_select+"body_weight:"+body_weight+"yourfit:"+yourfit+"yourlength:"+yourlength);  
-        return false;
-        //alert($('input[name="yourlength"]:checked').val());
         shritDimension.HEIGHTinch=height_select;
         shritDimension.standardsize=size_select;
         shritDimension.WEIGHTkg=body_weight;
         shritDimension.fitype=yourfit;
         shritDimension.length=yourlength;
+        
         /*added by var for standard measurements*/
         shritDimension.shoulder=$("#lum_input_required1").val();
         shritDimension.neck=$("#lum_input_required2").val();
@@ -1219,6 +1248,7 @@ if(selected_size!=undefined){
         shritDimension.shirt_length=$("#lum_input_required5").val();
         shritDimension.chest=$("#lum_input_required6").val();
         shritDimension.waist=$("#lum_input_required8").val();
+        
         /*end by var*/
         //ajax call to server420
         var result ="imagedata";
@@ -1330,8 +1360,8 @@ if(selected_size!=undefined){
 
 
     /*create array to store all the values of fit and lenght body posture  and other image selection options*/
-    var selectionType={"fit": ["slim", "tailored", "comfort"],
-    "legth": ["short", "regular", "tall"]};
+    var selectionType={"fit": ["regular_fit", "tailored", "comfort"],
+    "length": ["length_short", "length_regular", "length_high"]};
 
 
 
@@ -1344,57 +1374,142 @@ if(selected_size!=undefined){
     //hide all with bg images ..
     $(".option_with_bg").hide();
     $(".option_without_bg").show();
+    
     var data_container = '';
+   
+
+
+   /*summary work start */
+    $(".height_select").on("click",function(){
+        var height_selected=$(this).val();
+        $(".summary_heigth").text(height_selected);
+    });
+
+    $("#body_weight").on("click",function(){
+        var height_selected=$(this).val();
+        $(".summary_weight").text(height_selected);
+    });
+
+    //shoulder value collection
+    $("#lum_input_required1").on("change",function(){
+        
+        var valuetext=$(this).val();
+        $(".summary_shoulder").text(valuetext);
+   
+    });
+    //neck text value collect
+     $("#lum_input_required2").on("change",function(){
+        
+        var valuetext=$(this).val();
+        $(".summary_neck").text(valuetext);
+   
+    });
+
+    //sleeve text value collect
+     $("#lum_input_required3").on("change",function(){
+        
+        var valuetext=$(this).val();
+        $(".summary_sleeve").text(valuetext);
+   
+    });
+
+
+    //shirt_length text value collect
+     $("#lum_input_required5").on("change",function(){
+        
+        var valuetext=$(this).val();
+        $(".summary_shirt_length").text(valuetext);
+   
+    });
+
+    //shirt_length text value collect
+     $("#lum_input_required5").on("change",function(){
+        
+        var valuetext=$(this).val();
+        $(".summary_shirt_length").text(valuetext);
+   
+    });
+
+
+    //shirt_length text value collect
+     $("#lum_input_required6").on("change",function(){
+        var valuetext=$(this).val();
+        $(".summary_chest").text(valuetext);
+     });
+    //shirt_length text value collect
+     $("#lum_input_required7").on("change",function(){       
+        var valuetext=$(this).val();
+        $(".summary_chest").text(valuetext);
+    });
+   
+
     $(".meas_option_rel").on("click",function(){
-    var selected_value=$(this).attr("rel");
-    if ($.inArray( selected_value, selectionType.fit) > -1)
-    {
-    alert("Got the selected eelement");
 
-    }
+            var selected_value=$(this).attr("rel");        
+            //create a empty container here
+            if ($.inArray(selected_value, selectionType.fit) > -1)
+            {
+                $('.summary_fit').html(''); 
+                console.log("Got the selected eelement");       
+                /*var added*/
+                var imgsrc=$(this).attr('src');                    
+                var string_data='<div class="summary_option">\
+                <img src="'+imgsrc+'">\
+                <label>'+selected_value+'</label>\
+                </div>';
+                data_container = string_data;
+                $('.summary_fit').html(data_container);
+                console.log(imgsrc);
+                console.log(string_data);
+                /*end var*/
 
-    var imgsrc=$(this).attr('src');             
-    $('.summary_container').html(' ');
-
-            var string_data='<div class="summary_option">\
-            <img src="'+imgsrc+'"\
-            <p>Slim</p>\
-            </div>';
-
-            data_container += string_data;
-            $('.summary_container').html(data_container);
-     
-            console.log(imgsrc);
-            console.log(string_data);
-     
-            $(".option_without_bg").show();
-            $(".option_with_bg").hide();
+              
+                // $(".option_without_bg,.option_without_fit").show();
+                // $(".option_with_bg ,.option_with_bg_fit ").hide();
+            
+            }
+            else if ($.inArray(selected_value, selectionType.length) > -1)
+            {
+           
+                $('.summary_length').html('');
+                console.log("Got the selection of length");
+                /*var added*/
+                var imgsrc=$(this).attr('src');                    
+                var string_data='<div class="summary_option">\
+                <img src="'+imgsrc+'">\
+                <label>'+selected_value+'</label>\
+                </div>';
+                data_container = string_data;
+                $('.summary_length').html(data_container);
+                // $(".option_without_bg").show();
+                // $(".option_with_bg").hide();
+            }
+            // $("section.option_with_bg").hide();
+            $(this).parents('section').find('.option_without_bg').show();
+            $(this).parents('section').find('.option_with_bg').hide();
             $(this).hide();
-
             // console.log("Testing");
             // var attr_value = $(this).attr("rel");
             // console.log(attr_value);
             $(this).next('.option_with_bg').show();
             $("#"+$(this).attr("rel")).trigger("click");
             $('.meas_option_rel').each(function() {
-     
-           
-            if(!$("#"+$(this).attr("rel")).is(':checked'))
-            {    
-            
-                $(this).css({"border": ""});
-                $("."+$(this).attr("rel")).remove();
-            
-            }
-            else
-            {
+                if(!$("#"+$(this).attr("rel")).is(':checked'))
+                {    
+                     $(this).css({"border": ""});
+                     $("."+$(this).attr("rel")).remove();         
+                }
+                else
+                {
+                    $("."+$(this).attr("rel")).remove();
+                    $(this).css({"border": "1px solid black"});
+                    //$(this).css({"background": "#15A6D6","color":"#fff"});
+                }
 
-                $("."+$(this).attr("rel")).remove();
-                $(this).css({"border": "1px solid black"});
-                //$(this).css({"background": "#15A6D6","color":"#fff"});
-            } 
-      });
-    });
+       });
+
+});
+
 </script>
 </html>
 
