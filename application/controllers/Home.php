@@ -32,20 +32,20 @@
 			//$this->data['image'] = $this->home_model->home_cat();
 			//$data['allbanner'] = $this->home_model->allbanner();
 			$data=array();  		
-	         //new arrival  shirt code
-   			$this->db->from('tbl_product as t1');
-            $this->db->join('tbl_product_image as t2', 't2.pid = t1.id','left');
-            $this->db->where('subcatid',10);
-            $this->db->where('qty>',0);
-            $this->db->where('is_home',1);
-            $this->db->where('t2.baseimage',1);
-            $this->db->limit(10);
-            $q = $this->db->get();
-            //echo "<pre>";
-            //print_r($q->result()); die;
-            $data['shirt_new'] = $q->result();
-        	$this->load->view('lum_home',$data);
-	        $this->load->view('lum_footer');
+	        //new arrival  shirt code
+				$this->db->from('tbl_product as t1');
+	        $this->db->join('tbl_product_image as t2', 't2.pid = t1.id','left');
+	        $this->db->where('subcatid',10);
+	        $this->db->where('qty>',0);
+	        $this->db->where('is_home',1);
+	        $this->db->where('t2.baseimage',1);
+	        $this->db->limit(10);
+	        $q = $this->db->get();
+			//echo "<pre>";
+			//print_r($q->result()); die;
+			$data['shirt_new'] = $q->result();
+			$this->load->view('lum_home',$data);
+			$this->load->view('lum_footer');
 		}
 
 		public function deleteaddress()
@@ -58,7 +58,6 @@
 			redirect($this->config->item('base_url_temp').'home/lum_my_account');
 			/*end avr*/
 		 }
-
 
 		public function updateaddress()
 		{
@@ -99,6 +98,7 @@
 			$this->load->view('lum_my_account',$data);
 			}
 			}
+
 		}
 
 	public function resetpass(){
@@ -5345,6 +5345,40 @@ public function lum_fit_guide()
 			$this->load->view('lum_footer');
 
 		}
+
+
+
+/*Remove after using this... Var created 17 May 2017*/
+		public function lum_check_out_test()
+		{
+
+			error_reporting(1);
+			ini_set('display_errors,1');
+			$this->load->library('session');
+			$this->load->helper('url');
+			$this->output->enable_profiler(FALSE);
+			$cartdata = array(
+					'styleid'    => $this->session->userdata('saveid'),
+					'cqty'      => '1',
+			);
+			$data = array();
+			$data['err_msg'] = '';
+			$data['all_address'] = $this->home_model->all_address();
+			$data['allcountry'] = $this->home_model->allcountry();
+			$data['deafaultadd'] = $this->home_model->deafaultadd();
+			$data['title'] = 'Stylior.com';
+			$data['keywords'] = '';
+	   	    $data['description'] = '';
+	    	$this->session->set_userdata($cartdata);
+			$this->load->view('lum_header');
+			$this->load->view('lum_check_out_test',$data);
+			$this->load->view('lum_footer');
+
+		}
+
+
+
+
 
 		public function lum_shop_new($catid,$subcatid)
 		{
