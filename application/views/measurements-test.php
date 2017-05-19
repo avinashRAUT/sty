@@ -56,21 +56,23 @@ $https_url_large_img="http://www.stylior.com/upload/products1/";
             <div class="height">
                 <div class="measurement_container">
                     <div class="savedmeasure">
-                    <?php
-                     $measureprofile = $this->home_model->allusermeasurements($uid);?>
-                     <select name="save_m2" id="save_m2" class="measurement-select" onchange="showExistingMeasure(this.value);"
-                     >
+                   <?php
+
                     
-                        <option value="">Choose profile</option>
+                    $uid=$_SESSION['user_id'];
+                     $measureprofile = $this->home_model->allusermeasurements($uid);
+                     ?>
+                     <select name="save_m2" id="save_m2" class="measurement-select" onchange="showExistingMeasure(this.value);">
+                     <option value="">Choose profile</option>
                         <?php foreach($measureprofile as $mdetail)
                              {
                                    echo '<option value="'.$mdetail->id.'">'.$mdetail->userprofilename.'</option>';
                              }
-                         ?>
+                        ?>
                     </select>
                     <!-- collect saved data based on the selection -->
                     <?php
-                            if($uid !=""){
+                        if($uid !=""){
                             $measureprofile = $this->home_model->allusermeasurements($uid);
                              $i=0;
                              foreach($measureprofile as $mdetail)
@@ -78,12 +80,11 @@ $https_url_large_img="http://www.stylior.com/upload/products1/";
                                 $serdata = $mdetail->serializedata;
                                 $uns= unserialize($serdata);
                                 ?>
-                    
-                        <div id="bodymeasure-<?php echo $mdetail->id; ?>" class="bodymeasure" style="display:none;" >
+                            <div id="bodymeasure-<?php echo $mdetail->id; ?>" class="bodymeasure" style="display:none;" >
                             <form action="<? echo $bas_ul?>cart/saveadd3d" method="post" id="filters1" name="filters1" >
                             <input type="hidden"  name="measureid"  class="measureid"  value="<?php echo $mdetail->id; ?>" />
                         <div class="gap10"></div>
-                    
+
                         <table class="m_s_table">
                           <tr>
                             <th>BODY POSTURE</th>
@@ -184,9 +185,9 @@ $https_url_large_img="http://www.stylior.com/upload/products1/";
                     <div class="gap10"></div>
                     <div class="gap10"></div>
                     <div class="gap10"></div>
+                   
                     <input type="submit" class="lum_measurement_bottom_inner_top_button cart"  value="Add to Cart"  >
-                    
-                    </form>
+                </form>
                     </div>
                     </div>
                     
@@ -1453,32 +1454,40 @@ if(selected_size!=undefined){
     base_url = '<?= $bas_ul ?>';
 
     $("#add-mesurement").on("click",function(){
-            /*alert("var testing");
-            console.log("thid is data tesitng");
-            */
+        // var data = $(".mesure-form").serialize();
+        var data = $(".mesure-form").serializeArray();
+        //console.log("Get the all the data of measure form");
+        //console.log(data[1].name);               
+       data.forEach(function(item) {
+            var nameofid=$('input[name="'+item.name+'"]:eq(0)').attr('id') // First
+            $('#'+nameofid).css({"border":"1px solid #666"});
+            if(item.value=="" || item.value==undefined) {
+                 $('#'+nameofid).css({"border": "red solid 1px"});
+           return false;
+           }
+            // do something with `item`
+        });
+  
+        $.ajax({
+            url:base_url+'cart/new_mvalue' ,
+            method: "POST",
+            data: {
 
-            var data = $(".mesure-form").serialize();
-             $.ajax({
-                url:base_url+'cart/new_mvalue' ,
-                method: "POST",
-                data: {'data': $(".mesure-form").serialize(),
-                      'subcatid':10,
-                },
-                success:function(data){
-                  console.log("this is data"+data);
-                  location.href='<? echo $bas_ul?>/cart/lum_view_cart';
+                  'data': $(".mesure-form").serialize(),
+                  'subcatid':10,
+            },
+            success:function(data){
+              console.log("this is data"+data);
+              location.href='<? echo $bas_ul?>/cart/lum_view_cart';
+            }
+        });
 
-                }
-               });
-
-    });
+   });
 
     /*change the instruction on body part*/
     /*date 14 sep 2016*/
-
     $(".entry").on("click",function(){
     $(".pre-loader").show();
-
     var base_url='<? echo $bas_ul?>';
     var current_id=this.id;
     var i = $(this).find(" input");
@@ -1487,7 +1496,6 @@ if(selected_size!=undefined){
     $("#guideDescription").html("");
     $("#guideDescription-standard").html("");
     $.ajax({
-
       url:base_url+'home/getbodypart' ,
       method: "POST",
       data: {'bid': m},
@@ -1495,21 +1503,19 @@ if(selected_size!=undefined){
       data = JSON.parse(data);
       var youtubeurl = base_url+""+data.youtubeurl;
       var description = "<p>"+data.desc+"</p>";
-      var source_video='<video id="lum_input_required_video1" class="lum_video-new" controls><source src="'+youtubeurl+'" type="video/mp4"><source src="'+youtubeurl+'" type="video/ogg"></video>'+description;
-      
+      var source_video='<video id="lum_input_required_video1" class="lum_video-new" controls><source src="'+youtubeurl+'" type="video/mp4"><source src="'+youtubeurl+'" type="video/ogg"></video>'+description;   
       $(".pre-loader").hide();
-      
       if(current_id == "entry-standard"){
           $("#guideDescription-standard").append(source_video);
       }
       else{
           $("#guideDescription").append(source_video);
       }
-
+ 
       var vidd = document.getElementById("lum_input_required_video1");
         vidd.play();
-
       }
+
     });
 
     });
@@ -1609,7 +1615,7 @@ if(selected_size!=undefined){
     $(".meas_option_rel").on("click",function(){
 
             var selected_value=$(this).attr("rel");        
-            alert(selected_value);            
+            console.log("This is select value"+selected_value);            
             
             //create a empty container here
             if ($.inArray(selected_value, selectionType.fit) > -1)
@@ -1743,5 +1749,9 @@ if(selected_size!=undefined){
 });
 
 </script>
+<!-- declared the validate.js -->
+
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.js"></script>
+
 </html>
 

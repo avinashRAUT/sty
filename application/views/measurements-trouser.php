@@ -16,7 +16,6 @@ $https_url_large_img="http://www.stylior.com/upload/products1/";
 	 <div class="cd-tabs" style="<?php echo $css_here;?>">
 	 <div class="goback">
 		<button data-remodal-action="close" aria-label="Close">BACK</button>
-
 		<nav>
 			<ul class="cd-tabs-navigation">
 				<li><a data-content="height" href="#0" class="height selected">SAVED PROFILES</a></li>

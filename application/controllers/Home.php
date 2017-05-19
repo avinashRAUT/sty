@@ -2394,113 +2394,57 @@ public function lum_fit_guide()
 
 
 	public function shop_shirt($catid,$subcatid)
-
 	{
-
-
-
-	//echo $subcatid;die;
-
-		$this->load->model('home_model');
-
-		$page= $this->input->get('per_page') ? $this->input->get('per_page') : 0;
-
-		$this->load->library('pagination');
-
-		$url_to_paging = $this->config->item('base_url');
-
-		$sizerange = '';
-
-					/*get meta data */
-					$subcategory_details=$this->home_model->getCategoryInfo($subcatid);
-					$metadata['title']=$subcategory_details->title;
-					$metadata['metadescription']=$subcategory_details->description;
-					$metadata['metakeywords']=$subcategory_details->keyword;
-					/*meta data end*/
-
-
-
-
-		if($this->input->get('size') != '')
-
-		{
-
-			$data['size'] = $this->input->get('size');
-
-
-
-			if(count($data['size']) > 0)
-
+			//echo $subcatid;die;
+			$this->load->model('home_model');
+			$page= $this->input->get('per_page') ? $this->input->get('per_page') : 0;
+			$this->load->library('pagination');
+			$url_to_paging = $this->config->item('base_url');
+			$sizerange = '';
+			/*get meta data */
+			$subcategory_details=$this->home_model->getCategoryInfo($subcatid);
+			$metadata['title']=$subcategory_details->title;
+			$metadata['metadescription']=$subcategory_details->description;
+			$metadata['metakeywords']=$subcategory_details->keyword;
+			/*meta data end*/
+			if($this->input->get('size') != '')
 			{
+				$data['size'] = $this->input->get('size');
+				if(count($data['size']) > 0)
+				{
 
-				for($k='0';$k< count($data['size']); $k++){
-
-					$sizerange .= 'size[]='.$data['size'][$k].'&';
-
+					for($k='0';$k< count($data['size']); $k++){
+						$sizerange .= 'size[]='.$data['size'][$k].'&';
+					}
 				}
-
+			}
+			else
+			{
+				$data['size'] = array();
 			}
 
-
-
-		}
-
-		else
-
-		{
-
-			$data['size'] = array();
-
-		}
-
-
-
 		$data['page'] = $this->input->get('page');
-
 		$data['color'] = $this->input->get('color');
-
 		$data['size'] = $this->input->get('size');
-
-
-
 		$data['designid'] = $this->input->get('designid');
-
 		$data['fabricid'] = $this->input->get('fabricid');
-
 		$data['priceord'] = $this->input->get('priceord');
-
+		
 		if($data['page'] == '')
-
 		{
-
 			$data['page'] = $config['per_page'] = '9';
-
 		}
-
 		else
-
 		{
-
 			$data['page'] = $config['per_page'] = $this->input->get('page');
-
 		}
-
-
 
 		$pageno = $this->input->get('per_page');
-
 		if($pageno == '')
-
 		{
-
 			$pageno = '0';
-
 		}
-
-
-
 		$perpage = '3';
-
 		//$return = $this->home_model->allproductsNew();
     	$this->data['image'] = $this->home_model->shop($catid,$subcatid,$config['per_page'],$pageno, $data);
 		//$data['allproducts'] = $return['result'];
@@ -2511,48 +2455,27 @@ public function lum_fit_guide()
 		//////////
 		if(isset($_POST["designer"]))
 		{
-
 			$this->data['customize_type'] = "designer";
-
 		}
-
 		else if(isset($_POST["customize"]))
-
 		{
-
 			$this->data['customize_type'] = "customize";
-
 		}
-
-
-
 		$this->load->helper('url');
-
 		$this->output->enable_profiler(FALSE);
-
 		//$this->data['image'] = $this->home_model->shop($catid,$subcatid);
-
 		$this->data['allcolor']=$this->home_model->allcolor();
-
 		$this->data['alldesign'] = $this->home_model->alldesign($catid,$subcatid);
-
-		 $this->data['subcatid']=$subcatid;
-
-		 $this->data['catid']=$catid;
-		  $_SESSION['subcatid']=$subcatid;
-		  $_SESSION['catid']=$catid;
-		 $this->session->set_userdata('subcatid',$this->data['subcatid']);
-
-			//$this->session->set_userdata('subcatid',$subcatid);
-
-				//$this->session->set_userdata('categoryid',$catid);
-
+		$this->data['subcatid']=$subcatid;
+		$this->data['catid']=$catid;
+		$_SESSION['subcatid']=$subcatid;
+		$_SESSION['catid']=$catid;
+		$this->session->set_userdata('subcatid',$this->data['subcatid']);
+		//$this->session->set_userdata('subcatid',$subcatid);
+		//$this->session->set_userdata('categoryid',$catid);
 		//$this->data['images1'] = $return['images'];
-
 		$this->load->view('lum_header',$metadata);
-
 		$this->load->view('lum_shop',$this->data);
-
 		$this->load->view('lum_footer');
 
 	}
@@ -2971,7 +2894,6 @@ public function lum_fit_guide()
 
 	public function shop_shirts_page($pageid)
 	{
-
 		//echo $subcatid;die;
 		$this->load->library('pagination');   	
     	$this->load->model('home_model');
@@ -2984,23 +2906,16 @@ public function lum_fit_guide()
 		$config = array();
 		$config['base_url'] = 'https://www.stylior.com/home/shop_shirts_page/';			
 		$config["total_rows"] = count($this->home_model->shop_suit(10));
-		//echo "Total Rows".$config["total_rows"];
 		$config["uri_segment"] = 3;	
 		$page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
 		$config["per_page"] =20;
 	    $choice = $config["total_rows"] / $config["per_page"];
 	    $config["num_links"] = round($choice);
-	    // echo "data o 10 categorty"."pagenumbre".$choice.",per page limit".$config["per_page"];
-		$data["details"] = $this->home_model->shop_suit_page(10,$page,$config["per_page"]);
+	    
+	    $data["details"] = $this->home_model->shop_suit_page(10,$page,$config["per_page"]);
 		$this->pagination->initialize($config);          
-    	$data["links"] = $this->pagination->create_links();
-		
-		// $this->load->view("example1", $data);
-		/*end var*/
-		// echo $this->pagination->create_links();
-        /*  */ 
-
-		$this->load->helper('url');
+    	$data["links"] = $this->pagination->create_links(); 
+     	$this->load->helper('url');
 		$this->output->enable_profiler(FALSE);
 		$this->load->view('lum_header',$metadata);
 		$this->load->view('shirts-pagination',$data);
@@ -3010,33 +2925,53 @@ public function lum_fit_guide()
 
 	public function shop_shirts($catid,$subcatid)
 	{
-
+		/*start var : code change for the pagination*/
 		//echo $subcatid;die;
-		$this->load->library('pagination');   	
+		// $this->load->library('pagination');   	
+  		//$this->load->model('home_model');
+		// $this->data['details'] = $this->home_model->shop_suit(10);;
+		// $this->data['metadata'] = $this->home_model->getCategoryInfo(10);;
+		// $metadata['title'] = $this->data['c'][0]->title;
+		// $metadata['metadescription'] = $this->data['c'][0]->description;
+		// $metadata['metakeywords'] = $this->data['c'][0]->keyword;	
+		// $this->load->helper('url');
+		// $this->output->enable_profiler(FALSE);
+		// $this->load->view('lum_header',$metadata);
+		// $this->load->view('shirts',$this->data);
+		// $this->load->view('lum_footer');
+         /*END of previous code*/  
+		// echo ":".$this->uri->segment(3);           
+	    $this->load->library('pagination');   	
     	$this->load->model('home_model');
-		$this->data['details'] = $this->home_model->shop_suit(10);;
-		$this->data['metadata'] = $this->home_model->getCategoryInfo(10);;
-		$metadata['title'] = $this->data['c'][0]->title;
-		$metadata['metadescription'] = $this->data['c'][0]->description;
-		$metadata['metakeywords'] = $this->data['c'][0]->keyword;	
-
-		// $config['base_url'] = 'https://stylior.com/mens-shirts/';
-		// $config['total_rows'] = 60;
-		// $config['per_page'] = 20;
-		// $this->pagination->initialize($config);
-		// echo "<dis>links:";
-		// echo $this->pagination->create_links();
-
-		$this->load->helper('url');
+		//$this->data['details'] = $this->home_model->shop_suit(10);; X	
+		$this->data['metadata'] = $this->home_model->getCategoryInfo(10);
+		$metadata['title'] = $this->data['c'][0]->title; 
+		$metadata['metadescription'] = $this->data['c'][0]->description; 
+		$metadata['metakeywords'] = $this->data['c'][0]->keyword;	     	
+		/*start var*/
+		$config = array();
+		// $config['base_url'] = 'https://www.stylior.com/home/shop_shirts_page/';	
+		$config['base_url'] = 'https://www.stylior.com/home/shop_shirts';
+		$config["total_rows"] = count($this->home_model->shop_suit(10));
+		$config["uri_segment"] = 3;	
+		$page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+		$config["per_page"] =20;
+	    $choice = $config["total_rows"] / $config["per_page"];
+	    $config["num_links"] = round($choice);    
+	    $data["details"] = $this->home_model->shop_suit_page(10,$page,$config["per_page"]);
+		$this->pagination->initialize($config);          
+    	$data["links"] = $this->pagination->create_links(); 
+     	$this->load->helper('url');
 		$this->output->enable_profiler(FALSE);
 		$this->load->view('lum_header',$metadata);
-		$this->load->view('shirts',$this->data);
+		$this->load->view('shirts-pagination',$data);
 		$this->load->view('lum_footer');
 
 	}
 
 	public function shop_trousers($catid,$subcatid)
 	{
+
 		//echo $subcatid;die;
 		$this->load->model('home_model');
 		$this->data['details'] = $this->home_model->shop_suit(11);;
@@ -3051,6 +2986,7 @@ public function lum_fit_guide()
 		$this->load->view('lum_header',$metadata);
 		$this->load->view('trousers',$this->data);
 		$this->load->view('lum_footer');
+
 	}
 
 	public function shop_blazer($catid,$subcatid)
