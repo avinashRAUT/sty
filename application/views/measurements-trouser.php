@@ -18,9 +18,9 @@ $https_url_large_img="http://www.stylior.com/upload/products1/";
 		<button data-remodal-action="close" aria-label="Close">BACK</button>
 		<nav>
 			<ul class="cd-tabs-navigation">
-				<li><a data-content="height" href="#0" class="height selected">SAVED PROFILES</a></li>
-				<li><a data-content="weight" href="#0" class="weight" >STANDARD SIZE</a></li>
-				<li><a data-content="fit" href="#0" class="fit">BODY MEASUREMENT</a></li>
+				<li><a data-content="height" href="#0"    class="height selected">SAVED PROFILES</a></li>
+				<li><a data-content="weight" href="#0"    class="weight" >STANDARD SIZE</a></li>
+				<li><a data-content="fit"    href="#0"    class="fit">BODY MEASUREMENT</a></li>
 			</ul> <!-- cd-tabs-navigation -->
 		</nav>
 
@@ -32,14 +32,15 @@ $https_url_large_img="http://www.stylior.com/upload/products1/";
         <?php
          $measureprofile = $this->home_model->allusermeasurements($uid);?>
          <select name="save_m" id="save_m" onchange="showExistingMeasure(this.value);">
-
             <option value="">Choose profile</option>
             <?php foreach($measureprofile as $mdetail)
-				 {
-                       echo '<option value="'.$mdetail->id.'">'.$mdetail->userprofilename.'</option>';
+				  {
+					echo '<option value="'.$mdetail->id.'">'.$mdetail->userprofilename.'</option>';
+                       
                   }
 			 ?>
         </select>
+		
 		<!-- collect saved data based on the selection -->
 		<?php
 				if($uid !=""){
@@ -54,7 +55,6 @@ $https_url_large_img="http://www.stylior.com/upload/products1/";
 					echo $mdetail->metricft;
 					echo $mdetail->metricweight;*/
 					?>
-
 			<div id="bodymeasure-<?php echo $mdetail->id; ?>" class="bodymeasure" style="display:none;" >
 				<form action="<?= $bas_ul?>cart/saveadd3d" method="post" id="filters1" name="filters1" >
 				<input type="hidden"  name="measureid"  class="measureid"  value="<?php echo $mdetail->id; ?>" />
@@ -155,21 +155,20 @@ $https_url_large_img="http://www.stylior.com/upload/products1/";
 
 				  } $i++;?>
 
-		<div class="submit">
-
-	<!--<input type="submit" class="lum_measurement_bottom_inner_top_button"  value="Add to Cart"  id="lum_measurement_bottom_inner_top_button
-	"> -->
-   <div class="gap10"></div>
-   <div class="gap10"></div>
-   <div class="gap10"></div>
-   <!-- <button name="" class="lum_measurement_bottom_inner_top_button" id="lum_measurement_bottom_inner_top_button<?php //echo $i;?>"><!---Add to cart</button> -->
-   <input type="submit" class="lum_measurement_bottom_inner_top_button"  value="Add to Cart"  id="lum_measurement_bottom_inner_top_button">
+<div class="submit">
+<!--<input type="submit" class="lum_measurement_bottom_inner_top_button"  value="Add to Cart"  id="lum_measurement_bottom_inner_top_button
+"> -->
+<div class="gap10"></div>
+<div class="gap10"></div>
+<div class="gap10"></div>
+<!-- <button name="" class="lum_measurement_bottom_inner_top_button" id="lum_measurement_bottom_inner_top_button<?php //echo $i;?>"><!---Add to cart</button> -->
+<input type="submit" class="lum_measurement_bottom_inner_top_button"  value="Add to Cart"  id="lum_measurement_bottom_inner_top_button">
 
 </form>
 </div>
-		</div>
+</div>
 
-    			 <?php } /*end of foreach*/ ?>
+			 <?php } /*end of foreach*/ ?>
 
 
 

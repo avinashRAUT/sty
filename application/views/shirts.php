@@ -43,38 +43,38 @@ $https_url_large_img="http://www.stylior.com/upload/products1/large/";
    display:none;
 }
 a.image_action {
-	display:block; text-decoration:none; text-align:center; color:rgba(79,79,79,1.00); border:1px solid #fff}
+  display:block; text-decoration:none; text-align:center; color:rgba(79,79,79,1.00); border:1px solid #fff}
 a.image_action:hover {border:1px solid #E4E4E4;}
 p.suit-info {
-	background-color:#fff; display:block;font-size: 16px;text-align:center; margin-bottom:0; padding-top:10px;min-height: 85px;}
+  background-color:#fff; display:block;font-size: 16px;text-align:center; margin-bottom:0; padding-top:10px;min-height: 85px;}
 p.suit-info span{
-	background-color:#fff; font-size:14px;color:#DD0003; display:block;padding:5px 0;    font-weight: bold;
+  background-color:#fff; font-size:14px;color:#DD0003; display:block;padding:5px 0;    font-weight: bold;
 }
 a.image_action:hover p.suit-info {background-color:#e6e6e6; }
 a.image_action:hover p.suit-info span{background-color:#e6e6e6;}
 a.image_action h4 {
-	font-size:16px; font-weight:bold; border:1px solid #fff;}
+  font-size:16px; font-weight:bold; border:1px solid #fff;}
 a.image_action:hover h4 {
-	background-color:#E4E4E4; color:#fff}
+  background-color:#E4E4E4; color:#fff}
 .image_on, .image_action:hover .image_off{
    display:block;
 }
 .suit-banner {
-	/*background-image:url("<?=base_url() ?>images/suit-banner.jpg"); */background-repeat:no-repeat; background-position:top right; margin-bottom:30px; }
+  /*background-image:url("<?=base_url() ?>images/suit-banner.jpg"); */background-repeat:no-repeat; background-position:top right; margin-bottom:30px; }
 .suit-banner h3 {
-	background-color:rgba(255,255,255,.7); padding:10px 35px; margin-top:25px; display:inline-block; clear:both; }
+  background-color:rgba(255,255,255,.7); padding:10px 35px; margin-top:25px; display:inline-block; clear:both; }
 .suit-banner p{
-	background-color:rgba(255,255,255,.7); padding:10px 35px; margin-top:25px; display:inline-block; font-size:18px
-	}
+  background-color:rgba(255,255,255,.7); padding:10px 35px; margin-top:25px; display:inline-block; font-size:18px
+  }
   @media (min-width: 1600px){
 .container {
     width: 1500px;
 }
 }
 /*p.suit-info{
-	text-align:center; text-decoration:none; font-size:14px; display:block }
+  text-align:center; text-decoration:none; font-size:14px; display:block }
 p.suit-info h4{
-	font-size:16px !important; font-weight:bold}*/
+  font-size:16px !important; font-weight:bold}*/
 </style>
 <div class="container-fluid">
 <div class="row">
@@ -89,25 +89,23 @@ p.suit-info h4{
 </div>
 </div>
 </div>
-
 <h1 class="hide">Custom Made Shirts Online</h1>
-
 <div class="container">
     <div class="row suit_css">
-
       <?php
-
-
       foreach($details as $shirt)
       {
+        // echo "Teting in view page";
+        // print_r($details);
         ?>
-
         <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
-      <a class="image_action" href="<? echo $base_ul."/mens-shirts/".str_replace(' ','-',$shirt->pname)."-".$shirt->pid; ?>"> <img  class="img-responsive image_on" src="<?php echo $https_url_large_img.$shirt->image;?>"  alt=""/>
-      <img  class="img-responsive image_off" src="<?php echo $https_url_large_img.$shirt->image;?>"   alt=""/>
-      <p class="suit-info">
-<?php echo $shirt->pname ?>
-<span><?php
+        <a class="image_action" href="<? echo $base_ul."/mens-shirts/".str_replace(' ','-',$shirt->pname)."-".$shirt->pid; ?>"> <img  class="img-responsive image_on" src="<?php echo $https_url_large_img.$shirt->image;?>"  alt=""/>
+        <img  class="img-responsive image_off" src="<?php echo $https_url_large_img.$shirt->image;?>"   alt=""/>
+        <p class="suit-info">
+  <?php echo $shirt->pname ?>
+<span>
+
+<?php
 if($this->session->userdata('currencycode')=="" ||$this->session->userdata('currencycode') == 'INR')
 {
   echo "INR ".$shirt->price;
@@ -143,16 +141,24 @@ else if($this->session->userdata('currencycode') == 'AUD')
 else
 {
   //echo $this->session->userdata('currencycode')."";
-
   //echo ceil(( $image['result'][$i]->price / ( $this->session->userdata('currencyvalue') * ($this->session->userdata('multiplier')/100)) )/$this->session->userdata('ceiling'))*$this->session->userdata('ceiling');
 }
 ?>
 </span>
+
 </p></a>
 
-       </div>
+</div>
        <? } ?>
-
-
     </div>
+
+
+<nav aria-label="Page navigation example " class="stylior-pagination">
+<?php 
+echo $links; 
+?>
+</nav>
+
+
+
 </div>
