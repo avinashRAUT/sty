@@ -152,4 +152,11 @@ else
 
 
     </div>
+
+<nav aria-label="Page navigation example " class="stylior-pagination">
+<?php 
+echo $links; 
+?>
+</nav>
+
 </div>
