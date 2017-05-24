@@ -2606,7 +2606,7 @@ public function shop_accessories($catid,$subcatid)
 			// $this->load->view('lum_header',$metadata);
 			// $this->load->view('vests',$data);
 			// $this->load->view('lum_footer');
-
+			// echo "No Data coming";
 			$this->load->library('pagination');
 			$this->load->model('home_model');
 			//$page= $this->input->get('per_page') ? $this->input->get('per_page') : 0;	
@@ -2641,7 +2641,6 @@ public function shop_accessories($catid,$subcatid)
 			$data['designid'] = $this->input->get('designid');
 			$data['fabricid'] = $this->input->get('fabricid');
 			$data['priceord'] = $this->input->get('priceord');
-			
 			if($data['page'] == '')
 			{
 				$data['page'] = $config['per_page'] = '9';
@@ -2664,12 +2663,10 @@ public function shop_accessories($catid,$subcatid)
 			if(isset($_POST["designer"]))
 			{
 				$this->data['customize_type'] = "designer";
-
 			}
 			else if(isset($_POST["customize"]))
 			{
 				$this->data['customize_type'] = "customize";
-
 			}
 			$this->load->helper('url');
 			$this->output->enable_profiler(FALSE);
@@ -2681,10 +2678,7 @@ public function shop_accessories($catid,$subcatid)
 			//$this->data['images1'] = $return['images'];
 			$this->load->view('lum_header',$metadata);
 			$this->load->view('lum_shop_cufflinks_test',$this->data);
-			$this->load->view('lum_footer');
-		
-
-
+			$this->load->view('lum_footer');	
 		}
 	
 
@@ -4987,7 +4981,6 @@ public function shop_accessories($catid,$subcatid)
 		}
 
 		public function lum_my_account()
-
 		{
 			//ini_set('display_errors', 1);
 			$id = $_SESSION['user_id'];
@@ -4998,7 +4991,6 @@ public function shop_accessories($catid,$subcatid)
 			'styleid'    => $this->session->userdata('saveid'),
 			'cqty'      => '1',
 			);
-
 			//print_r($cartdata);die;
 			$this->session->set_userdata($cartdata);
 			$this->load->view('lum_header');
@@ -5062,7 +5054,6 @@ public function shop_accessories($catid,$subcatid)
 
 /*var created : 19 May 2017 Remove After use*/
 		public function lum_my_account_test()
-
 		{
 			//ini_set('display_errors', 1);
 			$id = $_SESSION['user_id'];
@@ -5073,7 +5064,6 @@ public function shop_accessories($catid,$subcatid)
 			'styleid'    => $this->session->userdata('saveid'),
 			'cqty'      => '1',
 			);
-
 			//print_r($cartdata);die;
 			$this->session->set_userdata($cartdata);
 			$this->load->view('lum_header');
@@ -5090,7 +5080,6 @@ public function shop_accessories($catid,$subcatid)
 			$this->data['getproname'] = $this->User_model->getproname($id);
 			$this->data['bodypartname'] = $this->User_model->bodypartname($id);
 			$this->data['order_details'] = $this->User_model->userorder($id);
-
 			//print_r($this->User_model->userorder($id));
 			foreach ($this->User_model->userorder($id) as $key => $value) {
 					if(isset($value->order_id)) {
@@ -5126,11 +5115,13 @@ public function shop_accessories($catid,$subcatid)
 
 				}
 			}
+
 			$this->data['wallet'] = $this->User_model->userwallet($id);
 			$this->data['wishlist']=$this->User_model->wishlist($id);
 			$this->data['savedstyle']=$this->User_model->savedstyle($id);
 			$this->load->view('lum_my_account_test',$this->data);
 			$this->load->view('lum_footer');
+
 
 		}
 
