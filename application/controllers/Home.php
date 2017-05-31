@@ -33,14 +33,15 @@
 			//$data['allbanner'] = $this->home_model->allbanner();
 			$data=array();  		
 	        //new arrival  shirt code
-				$this->db->from('tbl_product as t1');
-	        $this->db->join('tbl_product_image as t2', 't2.pid = t1.id','left');
-	        $this->db->where('subcatid',10);
-	        $this->db->where('qty>',0);
-	        $this->db->where('is_home',1);
-	        $this->db->where('t2.baseimage',1);
-	        $this->db->limit(10);
-	        $q = $this->db->get();
+		$this->db->from('tbl_product as t1');
+		$this->db->join('tbl_product_image as t2', 't2.pid = t1.id','left');
+		$this->db->where('subcatid',10);
+		$this->db->where('qty>',0);
+		$this->db->where('is_home',1);
+		$this->db->where('t2.baseimage',1);
+		$this->db->limit(10);
+
+        $q = $this->db->get();
 			//echo "<pre>";
 			//print_r($q->result()); die;
 			$data['shirt_new'] = $q->result();
@@ -101,7 +102,8 @@
 
 		}
 
-	public function resetpass(){
+
+		public function resetpass(){
 			$this->load->model('user_model');
 			if($this->input->post('reset')=="reset"){
 				$id = $this->session->userdata('user_id');
@@ -2577,7 +2579,7 @@ public function shop_accessories($catid,$subcatid)
 	*** shop_cufflinks test
 	*** delete after the use 
 	*** */
-	public function shop_cufflinks_test($catid,$subcatid)
+	public function shop_cufflinks($catid,$subcatid)
 	{
 
 			//echo $subcatid;die;
@@ -2677,7 +2679,7 @@ public function shop_accessories($catid,$subcatid)
 			$this->data['catid']=$catid;
 			//$this->data['images1'] = $return['images'];
 			$this->load->view('lum_header',$metadata);
-			$this->load->view('lum_shop_cufflinks_test',$this->data);
+			$this->load->view('lum_shop_cufflinks',$this->data);
 			$this->load->view('lum_footer');	
 		}
 	

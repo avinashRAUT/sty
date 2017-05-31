@@ -46,12 +46,13 @@ $(".delete-addr").on("click",function(){
 <section class="myaccount-section"> 
 
     <div class="container">
+       	<h2>Account</h2>
         <ul id="myAccountTab" class ="nav nav-tabs">
-            <li class="active"><a href="#myaccount" data-toggle="tab"><span class="sprite myaccount_icon"></span> MY ACCOUNT</a></li>
-            <li><a href="#mywishlist" data-toggle="tab">WISH LIST</a></li>
-            <li><a href="#myorders" data-toggle="tab">MY ORDERS</a></li>
-            <li><a href="#mymeasurements" data-toggle="tab">MEASUREMENT</a></li>
-            <li><a href="#myaddress" data-toggle="tab">ADDRESS</a></li>
+			<li class="active"><a href="#myaccount" data-toggle="tab"><span class="sprite myaccount_icon"></span> <span class="hidden-xs">MY ACCOUNT</span></a></li>
+			<li><a href="#mywishlist" data-toggle="tab"><span class="sprite wishlist_icon"></span><span class="hidden-xs">WISH LIST</span></a></li>
+            <li><a href="#myorders" data-toggle="tab"><span class="sprite ordercart_icon"></span><span class="hidden-xs">MY ORDERS</span></a></li>
+            <li><a href="#mymeasurements" data-toggle="tab"><span class="sprite measurement_icon"></span><span class="hidden-xs">MEASUREMENT</span></a></li>
+            <li><a href="#myaddress" data-toggle="tab"><span class="sprite address_icon"></span><span class="hidden-xs">ADDRESS</span></a></li>
         </ul>
         
         <div id="myAccountTabContent" class="tab-content">
@@ -60,7 +61,7 @@ $(".delete-addr").on("click",function(){
             <div class="tab-pane fade in active" id="myaccount">
                 <div class="row" style="min-height:300px;">
                     <div  class="col-sm-12">
-                        <div class="col-md-3 col-xs-12">
+                        <div class="col-md-3 col-sm-4 col-xs-12">
                             <!-- required for floating -->
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs tabs-left">
@@ -70,7 +71,7 @@ $(".delete-addr").on("click",function(){
                                 <li><a href="#reset_password" data-toggle="tab">RESET PASSWORD</a></li>
                             </ul>
                         </div>
-                        <div class="col-md-9 col-xs-12">
+                        <div class="col-md-9 col-sm-8 col-xs-12">
                             <!-- Tab panes -->
                             <div class="tab-content myaccount-tab-content">
 							<?php //echo "<pre>";
@@ -347,11 +348,11 @@ $(".delete-addr").on("click",function(){
                     <td class="remove text-center account_order_total">
 						<?php echo $order_list->order_currency;?> <?php echo $order_list->order_total;?>
                     </td>
-					<td class="remove text-center account_order_status">                       
+
+					<td class="remove text-center account_order_status">
+                        order status
 						<?php echo $order_list->order_status;?>
 					</td>
-                   
-
                 </tr>
 				<?php  } ?>
  
@@ -439,8 +440,8 @@ $(".delete-addr").on("click",function(){
                     </div>
                     <div class="col-md-8">
                         <div class="tab_spac_lum">
-							<p>Add a new address</p>
                             <div id="account_tab_address_lum" class="tab_address_lum">
+								<p class="subtitle">Add a new address</p>
                                 <form name="checkout" id="checkout" class="form" method="post" action="<?php echo $this->config->item('base_url_temp');?>home/addaddress">
                                 <div class="form-group">
                                 	<label>Name :</label>
@@ -487,7 +488,7 @@ $(".delete-addr").on("click",function(){
                                     <input  maxlength=10 id="Phoneadd" class="tab_address_lum_input Phoneadd form-control" type="text" name="Phone" />
                                 </div>
                                    
-								<h3>Additional Address Details</h3>
+								<p class="subtitle">Additional Address Details</p>
 								<div class="row">
 									<div class="col-md-6">									
 										<div class="form-group">
@@ -516,10 +517,8 @@ $(".delete-addr").on("click",function(){
                                 <form name="checkoutedit" id="checkoutedit<?php echo $j ?>" class="form" method="post"   action="<?php echo $this->config->item('base_url_temp');?>home/updateaddress">
 									<INPUT TYPE="hidden" NAME="action" VALUE="updateaddress">
 									<INPUT TYPE="hidden" NAME="addressid" VALUE="<?php echo $address->id; ?>">
-									<div class="tab_address_lum_inner1">
-									EDIT address
-									<div class="tab_address_lum_inner">Be sure to click "Deliver to this address" when you've finished.</div>
-									</div>
+									<p class="subtitle">EDIT address</p>
+									<p>Be sure to click "Deliver to this address" when you've finished.</p>
 									<div class="form-group">
 										<label>Name</label>
 										<input class="tab_address_lum_input Nameadd" type="text" id="Name<?php echo $j ?>" name="Name" value="<?php echo $address->Name; ?>" />
