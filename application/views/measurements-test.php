@@ -54,7 +54,7 @@ $https_url_large_img="http://www.stylior.com/upload/products1/";
     <div class="tab-content measurement-tab-details" data-content="height">
         <div role="tabpanel" class="tab-pane fade in active" id="saved_profile">
             <div class="height">
-                <div class="measurement_container">
+                <div class="measurement_container container">
                     <div class="savedmeasure">
                    <?php
 
@@ -80,116 +80,117 @@ $https_url_large_img="http://www.stylior.com/upload/products1/";
                                 $serdata = $mdetail->serializedata;
                                 $uns= unserialize($serdata);
                                 ?>
-                            <div id="bodymeasure-<?php echo $mdetail->id; ?>" class="bodymeasure" style="display:none;" >
-                            <form action="<? echo $bas_ul?>cart/saveadd3d" method="post" id="filters1" name="filters1" >
-                            <input type="hidden"  name="measureid"  class="measureid"  value="<?php echo $mdetail->id; ?>" />
-                        <div class="gap10"></div>
+					<div id="bodymeasure-<?php echo $mdetail->id; ?>" class="bodymeasure" style="display:none;" >
+						<form action="<? echo $bas_ul?>cart/saveadd3d" method="post" id="filters1" name="filters1" >
+							<input type="hidden"  name="measureid"  class="measureid"  value="<?php echo $mdetail->id; ?>" />
+							<div class="gap10"></div>
+							<div class="table-responsive">
+								<table class="table m_s_table table-saved-profile">
+									<thead>
+										<tr>
+											<th>BODY POSTURE</th>
+											<th>BODY FIT</th>
+											<th>SHOULDER TYPE</th>
+											<th>SHOULDER ANGLE</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+									<?php
+									$posture = $mdetail->posture;
+									if($posture == '0'){
+									$post_val ='Normal';
+									}else if($posture == '1'){
+									$post_val = 'Hunched';
+									}else if($posture == '2'){
+									$post_val ='Erect';
+									}?>
+									<td><?php echo $post_val;?></td>
+									<?php
+									$fit = $mdetail->fit;
+									if($fit == '0'){
+									$fit_val ='Slim';
+									}else if($fit == '1'){
+									$fit_val = 'Tailored';
+									}else if($fit == '2'){
+									$fit_val ='Regular';
+									}
+									?>
+									<td><?php echo $fit_val;?></td>
 
-                        <table class="m_s_table">
-                          <tr>
-                            <th>BODY POSTURE</th>
-                            <th>BODY FIT</th>
-                            <th>SHOULDER TYPE</th>
-                            <th>SHOULDER ANGLE</th>
-                          </tr>
-                          <tr>
-                                <?php
-                                $posture = $mdetail->posture;
-                                if($posture == '0'){
-                                $post_val ='Normal';
-                                }else if($posture == '1'){
-                                $post_val = 'Hunched';
-                                }else if($posture == '2'){
-                                $post_val ='Erect';
-                                }?>
-                                <td style="color:red"><?php echo $post_val;?></td>
-                                <?php
-                                $fit = $mdetail->fit;
-                                if($fit == '0'){
-                                $fit_val ='Slim';
-                                }else if($fit == '1'){
-                                $fit_val = 'Tailored';
-                                }else if($fit == '2'){
-                                $fit_val ='Regular';
-                                }
-                                ?>
-                                <td style="color:red"><?php echo $fit_val;?></td>
-                    
-                    
-                                <?php
-                                $shouldertype = $mdetail->shouldertype;
-                                if($shouldertype == '0'){
-                                $shouldertype_val ='Normal';
-                                }else if($shouldertype == '1'){
-                                $shouldertype_val = 'Sloping';
-                                }else if($shouldertype == '2'){
-                                $shouldertype_val ='Straight';
-                                }?>
-                                <td style="color:red"><?php echo $shouldertype_val;?></td>
-                    
-                    
-                    
-                                <?php
-                                $shoulderangle = $mdetail->shoulderangle;
-                                if($shoulderangle == '0')
-                                {
-                                $shoulderangle_val ='Even';
-                                }
-                                else if($shoulderangle == '1')
-                                {
-                                $shoulderangle_val = 'Lower Left';
-                                }
-                                else if($shoulderangle == '2')
-                                {
-                                $shoulderangle_val ='Lower Right';
-                                }
-                                ?>
-                                <td style="color:red"><?php echo $shoulderangle_val;?></td>
-                    
-                            </tr>
-                    
-                        </table>
-                    
-                        <div class="gap10"></div>
-                    
-                                <?php
-                                if($uns != '') {
-                                  $array1 = $uns[0];
-                                  $array2 = $uns[1];
-                    
-                                 for($k=0;$k<count($array1);$k++){
-                                   $val_body = $this->User_model->bodypartname($array1[$k])." - ".$array2[$k];
-                                 }
-                                 } else {
-                    
-                                   $val_body="-";
-                                }
-                    
-                                ?>
-                                <input type="hidden"  name="" value="<?php echo $val_body;?>">
-                                <?php if($uns != '') {
-                                 $array1 = $uns[0];
-                                 $array2 = $uns[1];
-                                 for($k='0';$k<count($array1);$k++) { ?>
-                                    <span class="bodyparts-array
-                                    ">
-                                    <?php echo $this->User_model->bodypartname($array1[$k]) ?> |
-                                    <?php echo $array2[$k]; ?>
-                                    </span>
-                                <?php }
-                    
-                              } $i++;?>
-                    
-                    <div class="submit">
-                    
-                    <div class="gap10"></div>
-                    <div class="gap10"></div>
-                    <div class="gap10"></div>
-                   
-                    <input type="submit" class="lum_measurement_bottom_inner_top_button cart"  value="Add to Cart"  >
-                </form>
-                    </div>
-                    </div>
+
+									<?php
+									$shouldertype = $mdetail->shouldertype;
+									if($shouldertype == '0'){
+									$shouldertype_val ='Normal';
+									}else if($shouldertype == '1'){
+									$shouldertype_val = 'Sloping';
+									}else if($shouldertype == '2'){
+									$shouldertype_val ='Straight';
+									}?>
+									<td><?php echo $shouldertype_val;?></td>
+
+
+
+									<?php
+									$shoulderangle = $mdetail->shoulderangle;
+									if($shoulderangle == '0')
+									{
+									$shoulderangle_val ='Even';
+									}
+									else if($shoulderangle == '1')
+									{
+									$shoulderangle_val = 'Lower Left';
+									}
+									else if($shoulderangle == '2')
+									{
+									$shoulderangle_val ='Lower Right';
+									}
+									?>
+									<td><?php echo $shoulderangle_val;?></td>
+								</tr>
+									</tbody>
+								</table>
+							</div>
+							<div class="gap10"></div>
+
+							<?php
+							if($uns != '') {
+							$array1 = $uns[0];
+							$array2 = $uns[1];
+
+							for($k=0;$k<count($array1);$k++){
+							$val_body = $this->User_model->bodypartname($array1[$k])." - ".$array2[$k];
+							}
+							} else {
+
+							$val_body="-";
+							}
+
+							?>
+							<input type="hidden"  name="" value="<?php echo $val_body;?>">
+							<p class="saved_profiles_details">
+							<?php if($uns != '') {
+							$array1 = $uns[0];
+							$array2 = $uns[1];
+							for($k='0';$k<count($array1);$k++) { ?>
+							<span class="bodyparts-array
+							">
+							<?php echo $this->User_model->bodypartname($array1[$k]) ?> :
+								<?php echo $array2[$k]; ?><span class="divider">|</span>
+								</span>
+							<?php }
+
+							} $i++;?>
+							</p>
+							<div class="submit">
+								<div class="gap10"></div>
+								<div class="gap10"></div>
+								<div class="gap10"></div>
+							</div>
+							<input type="submit" class="lum_measurement_bottom_inner_top_button cart blue-btn" value="Add to Cart"  >
+						</form>
+					</div>
                     
                              <?php } /*end of foreach*/ ?>
                     
@@ -429,38 +430,29 @@ $https_url_large_img="http://www.stylior.com/upload/products1/";
                     
                     <div class="sidebar-measurement-summary col-md-3 col-md-pull-9 col-xs-12">
  
-                        <div class=""> <!-- remove this class meas-summary -->
+                        <div class="meas-summary"> <!-- remove this class meas-summary -->
                             <h3>summary</h3>
 
-                            <div class="summary_container">
+                            <div class="summary_container summary_info">
                                 <div class="summary_fit">
                                 </div>
                                 <div class="summary_length">
                                 </div>
 
                                 <div class="summary_measurement">
-                                    <label>Height</label>
-                                    <label class="summary_heigth"></label>
-                                    <label>Weight</label>
-                                    <label class="summary_weight"> </label>
-                                    <label>Size</label>
-                                    <label class="summary_size"> </label>
-                                    <label>Shoulder</label>
-                                    <label class="summary_shoulder"> </label>
-                                    <label>Neck</label>
-                                    <label class="summary_neck"> </label>
-                                    <label>Sleeve</label>
-                                    <label class="summary_sleeve"> </label>
-                                    <label>Length</label>
-                                    <label class="summary_shirt_length"> </label>
-                                    <label>Chest</label>
-                                    <label class="summary_chest"> </label>
-                                    <label>Waist</label>
-                                    <label class="summary_waist"> </label>
+									<p><label class="summary_meas_label">Height<span class="option-colon">:</span> </label><label class="summary_heigth"></label></p>
+                                    <p><label class="summary_meas_label">Weight<span class="option-colon">:</span></label><label class="summary_weight"> </label></p>
+                                    <p><label class="summary_meas_label">Size<span class="option-colon">:</span></label><label class="summary_size"> </label></p>
+                                    <p><label class="summary_meas_label">Shoulde<span class="option-colon">:</span></label><label class="summary_shoulder"> </label></p>
+                                    <p><label class="summary_meas_label">Neck<span class="option-colon">:</span></label><label class="summary_neck"> </label></p>
+                                    <p><label class="summary_meas_label">Sleeve<span class="option-colon">:</span></label><label class="summary_sleeve"> </label></p>
+                                    <p><label class="summary_meas_label">Length<span class="option-colon">:</span></label><label class="summary_shirt_length"> </label></p>
+                                    <p><label class="summary_meas_label">Ches<span class="option-colon">:</span></label><label class="summary_chest"> </label></p>
+                                    <p><label class="summary_meas_label">Waist<span class="option-colon">:</span></label><label class="summary_waist"> </label></p>
                                 </div>
                             </div>
 
-                            <button type="submit" id="lum_measurement_bottom_inner_top_button" class="blue-btn lum_measurement_bottom_inner_top_button cart">Reset</button>
+                            <button type="submit" id="standard_reset" class="blue-btn lum_measurement_bottom_inner_top_button cart" onclick="resetStandard();">Reset</button>
 
                     </div>
                  </div>               
@@ -799,7 +791,7 @@ $https_url_large_img="http://www.stylior.com/upload/products1/";
                                 <!-- end var  -->
 
 
-                            <button type="submit" id="lum_measurement_bottom_inner_top_button" class="blue-btn lum_measurement_bottom_inner_top_button cart">Reset </button>
+                            <button type="submit" id="lum_measurement_bottom_inner_top_button" class="blue-btn lum_measurement_bottom_inner_top_button cart" onclick="resetBody();">Reset </button>
                         </div>
                     </div>
                 
@@ -1130,49 +1122,107 @@ $(document).ready(function(){
 
 
       });
-    </script>
+</script>
 
 <script type="text/javascript">
 
-function showExistingMeasure(measureid){
-  $(".bodymeasure").hide();
-  $('#bodymeasure-'+measureid).show();
+    function showExistingMeasure(measureid){
+      $(".bodymeasure").hide();
+      $('#bodymeasure-'+measureid).show();
 
-}
+    }
 
+    /**** VAR : Create Function to reset 
+    ***   Reset all selected Measurement from standard Shirt measurements
+    **/
+    /* <div class="summary_container">
+    <div class="bm_summary_fit">
+    </div>
+    <div class="bm_summary_shoulder_type">
+    </div>
+    <div class="bm_summary_body_posture">
+    </div>
+    <div class="bm_summary_shoulder_angle">
+    </div>
+    <div class="bm_summary_measurement">
+    <label>Height</label>
+    <label class="bm_summary_heigth"></label>
+    <label>Weight</label>
+    <label class="bm_summary_weight"> </label>
+    <label>Bicep</label>
+    <label class="bm_summary_bicep"> </label>
+    <label>Shoulder</label>
+    <label class="bm_summary_shoulder"> </label>
+    <label>Neck</label>
+    <label class="bm_summary_neck"> </label>
+    <label>Sleeve</label>
+    <label class="bm_summary_sleeve"> </label>
+    <label>Whist</label>
+    <label class="bm_summary_wrist"> </label>
+    <label>Length</label>
+    <label class="bm_summary_shirt_length"> </label>
+    <label>Chest</label>
+    <label>Arm Hole</label>
+    <label class="bm_summary_armhole"> </label>
+    <label>Hip</label>
+    <label class="bm_summary_hip"> </label>
+    <label class="bm_summary_chest"> </label>
+    <label>Waist</label>
+    <label class="bm_summary_waist"> </label>
+    </div>
+    </div>*/
 
-// <!-- Events -->
-  // $(document).on('opening', '.remodal', function () {
-  //   console.log('opening');
-  // });
-  // $(document).on('opened', '.remodal', function () {
-  //   console.log('opened');
-  // });
-  // $(document).on('closing', '.remodal', function (e) {
-  //   console.log('closing' + (e.reason ? ', reason: ' + e.reason : ''));
-  // });
-  // $(document).on('closed', '.remodal', function (e) {
-  //   console.log('closed' + (e.reason ? ', reason: ' + e.reason : ''));
-  // });
-  // $(document).on('confirmation', '.remodal', function () {
-  //   console.log('confirmation');
-  // });
-  // $(document).on('cancellation', '.remodal', function () {
-  //   console.log('cancellation');
-  // });
-  // //The second way to initialize:
-  // $('[data-remodal-id=modal2]').remodal({
-  //   modifier: 'with-red-theme'
-  // });
+    function resetStandard(){     
+        $(".option_with_bg").hide();
+        $(".option_without_bg").show();
+       
+        $(".summary_fit").text("");
+        $(".summary_length").text("");
+        $(".summary_heigth").text("");
+        $(".summary_weight").text("");
+        $(".summary_size").text("");
+        $(".summary_shoulder").text("");
+        $(".summary_sleeve").text("");
+        $(".summary_neck").text("");
+        $(".summary_shirt_length").text("");
+        $(".summary_chest").text("");
+        $(".summary_waist").text("");
+        $(':input').val('');
+
+    }
+
+    function resetBody(){
+       $(".option_with_bg").hide();
+       $(".option_without_bg").show();
+       $(".bm_summary_fit").text("");
+       $(".bm_summary_shoulder_type").text("");
+       $(".bm_summary_body_posture").text("");
+       $(".bm_summary_shoulder_angle").text("");
+       //$(".bm_summary_measurement").text("");
+       $(".bm_summary_heigth").text("");
+       $(".bm_summary_weight").text("");
+       $(".bm_summary_bicep").text("");
+       $(".bm_summary_shoulder").text("");
+       $(".bm_summary_neck").text("");
+       $(".bm_summary_sleeve").text("");
+       $(".bm_summary_wrist").text("");
+       $(".bm_summary_shirt_length").text("");
+       $(".bm_summary_armhole").text("");
+       $(".bm_summary_hip").text("");
+       $(".bm_summary_chest").text("");
+       $(".bm_summary_waist").text("");
+       $(':input').val('');
+    }
 
 
 jQuery(document).ready(function($){
-  var tabItems = $('.cd-tabs-navigation a'),
+    var tabItems = $('.cd-tabs-navigation a'),
     tabContentWrapper = $('.cd-tabs-content');
-
-  tabItems.on('click', function(event){
+    tabItems.on('click', function(event){
     event.preventDefault();
+    
     var selectedItem = $(this);
+    
     if( !selectedItem.hasClass('selected') ) {
       var selectedTab = selectedItem.data('content'),
         selectedContent = tabContentWrapper.find('li[data-content="'+selectedTab+'"]'),
@@ -1213,13 +1263,7 @@ jQuery(document).ready(function($){
 
 var shritDimension={"HEIGHTinch":"","WEIGHTkg":"","pocket":"NO","Monogram":"NO","MonoLocation":"","Monofontstyle":"","Monocolor":"","Monotext":"None","fitype":"NO","standardsize":"NO","length":"NO","shoulder":"","neck":"","length":"","chest":"","waist":"","sleeve":""};
 
-// var selectionType_bm={"bm_summary_heigth":"height_select","bm_summary_weight":"weight","bm_summary_bicep":"lum_input_required0","bm_summary_shoulder":"lum_input_required1","bm_summary_neck":"lum_input_required2","bm_summary_sleeve":"lum_input_required3","bm_summary_wrist":"lum_input_required4","bm_summary_shirt_length":"lum_input_required5","bm_summary_armhole":"lum_input_required7","bm_summary_hip":"lum_input_required9","bm_summary_chest":"","bm_summary_waist":"lum_input_required8",};
-
-
-
 var selectionType_summary={"height_select":"bm_summary_heigth","weight":"bm_summary_weight","lum_input_required0":"bm_summary_bicep","lum_input_required1":"bm_summary_shoulder","lum_input_required2":"bm_summary_neck","lum_input_required3":"bm_summary_sleeve","lum_input_required4":"bm_summary_wrist","lum_input_required5":"bm_summary_shirt_length","lum_input_required7":"bm_summary_armhole","lum_input_required9":"bm_summary_hip","lum_input_required8":"bm_summary_waist",};
-
-
 
 $(".mesure-form").change(function(){
     
@@ -1227,91 +1271,88 @@ $(".mesure-form").change(function(){
     console.log($(this).val());
     console.log($(this).attr('id'));
     var gettheid=$(this).attr('id');
-
     console.log("this is selection type by body measurement");
     console.log("this is id of current id"+selectionType_summary[gettheid]);
-    $("."+selectionType_summary[gettheid]).text($(this).val())
-
-    // $.each(selectionType_bm, function(key, value){
-    //     console.log(key, value);
-    // });
-  //start assignation of the value to summary class container...
-   // <div class="bm_summary_fit">
-   //                              </div>
-   //                              <div class="bm_summary_shoulder_type">
-   //                              </div>
-   //                              <div class="bm_summary_body_posture">
-   //                              </div>
-   //                              <div class="bm_summary_shoulder_angle">
-   //                              </div>
-   //                              <div class="bm_summary_measurement">
-   //                                  <label>Height</label>
-   //                                  <label class="bm_summary_heigth"></label>
-   //                                  <label>Weight</label>
-   //                                  <label class="bm_summary_weight"> </label>
-   //                                  <label>Bicep</label>
-   //                                  <label class="bm_summary_bicep"> </label>
-   //                                  <label>Shoulder</label>
-   //                                  <label class="bm_summary_shoulder"> </label>
-   //                                  <label>Neck</label>
-   //                                  <label class="bm_summary_neck"> </label>
-   //                                  <label>Sleeve</label>
-   //                                  <label class="bm_summary_sleeve"> </label>
-   //                                  <label>Whist</label>
-   //                                  <label class="bm_summary_whist"> </label>
-   //                                  <label>Length</label>
-   //                                  <label class="bm_summary_shirt_length"> </label>
-   //                                  <label>Chest</label>
-   //                                  <label>Arm Hole</label>
-   //                                  <label class="bm_summary_armhole"> </label>
-   //                                  <label>Hip</label>
-   //                                  <label class="bm_summary_hip"> </label>
-   //                                  <label class="bm_summary_chest"> </label>
-   //                                  <label>Waist</label>
-   //                                  <label class="bm_summary_waist"> </label>
-   //                              </div>                         
-   //                          </div>
-   /*var started working*/
-   // "bm_summary_heigth    
-   // <label>Weight</label>
-   // "bm_summary_weight"    
-   // <label>Bicep</label>
-   // "bm_summary_bicep"    
-   // <label>Shoulder</label>
-   // "bm_summary_shoulder"    
-   // <label>Neck</label>
-   // "bm_summary_neck"    
-   // <label>Sleeve</label>
-   // "bm_summary_sleeve"    
-   // <label>Whist</label>
-   // "bm_summary_whist"    
-   // <label>Length</label>
-   // "bm_summary_shirt_length"    
-   // <label>Chest</label>
-   // <label>Arm Hole</label>
-   // "bm_summary_armhole"    
-   // <label>Hip</label>
-   // "bm_summary_hip"    
-   // "bm_summary_chest"    
-   // <label>Waist</label>
-   // "bm_summary_waist"    
-    // $(".      bm_summary_heigth      ").text();
-    // $(".      bm_summary_weight      ").text();
-    // $(".      bm_summary_bicep      ").text();
-    // $(".      bm_summary_shoulder      ").text();
-    // $(".      bm_summary_neck      ").text();
-    // $(".      bm_summary_sleeve      ").text();
-    // $(".      bm_summary_whist      ").text();
-    // $(".      bm_summary_shirt_length      ").text();
-    // $(".      bm_summary_armhole      ").text();
-    // $(".      bm_summary_hip      ").text();
-    // $(".      bm_summary_chest      ").text();
-    // $(".      bm_summary_waist      ").text();
-    /*var working herer*/
-
-});
-
-
+    
+    $("."+selectionType_summary[gettheid]).text($(this).val());
+      
+            // $.each(selectionType_bm, function(key, value){
+            //     console.log(key, value);
+            // });
+            //start assignation of the value to summary class container...
+            // <div class="bm_summary_fit">
+            //</div>
+            //<div class="bm_summary_shoulder_type">
+            //</div>
+            //<div class="bm_summary_body_posture">
+            //</div>
+            //<div class="bm_summary_shoulder_angle">
+            //</div>
+            //<div class="bm_summary_measurement">
+            //<label>Height</label>
+            //<label class="bm_summary_heigth"></label>
+            //<label>Weight</label>
+            //<label class="bm_summary_weight"> </label>
+            //<label>Bicep</label>
+            //<label class="bm_summary_bicep"> </label>
+            //<label>Shoulder</label>
+            //<label class="bm_summary_shoulder"> </label>
+            //<label>Neck</label>
+            //<label class="bm_summary_neck"> </label>
+            //<label>Sleeve</label>
+            //<label class="bm_summary_sleeve"> </label>
+            //<label>Whist</label>
+            //<label class="bm_summary_whist"> </label>
+            //<label>Length</label>
+            //<label class="bm_summary_shirt_length"> </label>
+            //<label>Chest</label>
+            //<label>Arm Hole</label>
+            //<label class="bm_summary_armhole"> </label>
+            //<label>Hip</label>
+            //<label class="bm_summary_hip"> </label>
+            //<label class="bm_summary_chest"> </label>
+            //<label>Waist</label>
+            //<label class="bm_summary_waist"> </label>
+            //                              </div>                         
+            //                          </div>
+            /*var started working*/
+            // "bm_summary_heigth    
+            // <label>Weight</label>
+            // "bm_summary_weight"    
+            // <label>Bicep</label>
+            // "bm_summary_bicep"    
+            // <label>Shoulder</label>
+            // "bm_summary_shoulder"    
+            // <label>Neck</label>
+            // "bm_summary_neck"    
+            // <label>Sleeve</label>
+            // "bm_summary_sleeve"    
+            // <label>Whist</label>
+            // "bm_summary_whist"    
+            // <label>Length</label>
+            // "bm_summary_shirt_length"    
+            // <label>Chest</label>
+            // <label>Arm Hole</label>
+            // "bm_summary_armhole"    
+            // <label>Hip</label>
+            // "bm_summary_hip"    
+            // "bm_summary_chest"    
+            // <label>Waist</label>
+            // "bm_summary_waist"    
+            // $(".      bm_summary_heigth      ").text();
+            // $(".      bm_summary_weight      ").text();
+            // $(".      bm_summary_bicep      ").text();
+            // $(".      bm_summary_shoulder      ").text();
+            // $(".      bm_summary_neck      ").text();
+            // $(".      bm_summary_sleeve      ").text();
+            // $(".      bm_summary_whist      ").text();
+            // $(".      bm_summary_shirt_length      ").text();
+            // $(".      bm_summary_armhole      ").text();
+            // $(".      bm_summary_hip      ").text();
+            // $(".      bm_summary_chest      ").text();
+            // $(".      bm_summary_waist      ").text();
+            /*var working herer*/
+    });
 
 function changeTheSummary(measurement){
         $('.summary_shoulder').text(measurement.shoulder);
@@ -1331,7 +1372,6 @@ $('select#size_select').change(function(){
 var selected_size=$("#size_select option:selected").text();
 var     base_url = '<?php echo $bas_ul; ?>';
 if(selected_size!=undefined){
-
       console.log("var testing."+selected_size+"url"+base_url);
       $.ajax({
         url: base_url+"home/get_tbl_size/"+selected_size+"/10",
@@ -1535,8 +1575,7 @@ if(selected_size!=undefined){
 
 
    // {"fit":{"slim","tailored","confort"},"lenght":{"short","regular","tall"},};
-   
-    function getSelectedMeasure(idtype,number){
+   function getSelectedMeasure(idtype,number){
         $("#"+idtype).val(number);
     }
 

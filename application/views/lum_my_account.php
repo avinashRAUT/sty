@@ -350,8 +350,8 @@ $(".delete-addr").on("click",function(){
                     </td>
 
 					<td class="remove text-center account_order_status">
-                        order status
-						<?php echo $order_list->order_status;?>
+                        
+						<?php echo $order_list->status;?>
 					</td>
                 </tr>
 				<?php  } ?>
@@ -621,10 +621,9 @@ url:'<?= $base_url_temp ?>home/deleteaddress',
 method:'POST',
 data:{"id":adeId},
 success:function(data){
-$(".sessionmessge").html("Address Deleted Succesfully");
-
-$("#tab_address"+adeId).html("");
-//	location.reload();
+    $(".sessionmessge").html("Address Deleted Succesfully");
+    $("#tab_address"+adeId).html("");
+    //	location.reload();
 }
 })
 })

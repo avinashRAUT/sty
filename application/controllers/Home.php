@@ -5009,7 +5009,7 @@ public function shop_accessories($catid,$subcatid)
 			$this->data['getproname'] = $this->User_model->getproname($id);
 			$this->data['bodypartname'] = $this->User_model->bodypartname($id);
 			$this->data['order_details'] = $this->User_model->userorder($id);
-
+			
 			//print_r($this->User_model->userorder($id));
 			foreach ($this->User_model->userorder($id) as $key => $value) {
 					if(isset($value->order_id)) {
@@ -5020,8 +5020,7 @@ public function shop_accessories($catid,$subcatid)
 					//print_r($data_nor_shirt->product_details_page);
 
 					if(isset($data_nor_shirt->product_details_page)){
-					echo "testing from herere22 ";
-					$this->data['order_item_details'][$order_id] = $data_order_item;
+						$this->data['order_item_details'][$order_id] = $data_order_item;
 								// print_r($data[0]->product_id);
 								$img_name=$this->getProductImageByPid($data_order_item[0]->product_id);
 
@@ -5029,17 +5028,12 @@ public function shop_accessories($catid,$subcatid)
 
                         }
 					else if(isset($data_order_item[0]->save3d)){
-					
 						$this->data['order_item_details'][$order_id] = $data_order_item;
 						$save3d=$data_order_item[0]->save3d - 1;
-						
-						$img_data=$this->User_model->savestylebyid($save3d);
-
-						
-						 if(isset($img_data[0]->baseimage)){
-							
+						$img_data=$this->User_model->savestylebyid($save3d);		
+						if(isset($img_data[0]->baseimage)){
 							$this->data['image_of_product'][$order_id]=$img_data[0]->baseimage;
-					}
+						}
 
 					}
 
