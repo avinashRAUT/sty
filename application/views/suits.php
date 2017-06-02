@@ -18,11 +18,7 @@ $https_url_large_img="http://www.stylior.com/upload/products1/large/";
 <meta name="keywords" content="Custom Suits, Design Suit, Tailor Made, Mens Suits, online, customized, Suits, Stylior Fashion, India">
 
 <!-- Bootstrap -->
-<link rel="stylesheet" type="text/css" href="<?=base_url() ?>css/animate.css">
-<link href="<?=base_url() ?>css/bootstrap.css" rel="stylesheet" />
-<link rel="stylesheet" type="text/css" href="<?=base_url() ?>css/owl.carousel.css">
-<link href="<?=base_url() ?>css/style.css" rel="stylesheet" />
-<link rel="stylesheet" type="text/css" href="<?=base_url() ?>css/font-awesome.min.css" />
+
   <style>
     .wow:first-child {
       visibility: hidden;
@@ -36,7 +32,9 @@ $https_url_large_img="http://www.stylior.com/upload/products1/large/";
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script type="text/javascript" src="<?=base_url() ?>js/jquery.min.js"></script></head>
+<!-- <script type="text/javascript" src="<?=base_url() ?>js/jquery.min.js"></script> -->
+
+</head>
 
 <!-- new navbar design -->
 <style type="text/css">

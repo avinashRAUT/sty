@@ -16,11 +16,7 @@ $https_url_large_img="http://www.stylior.com/upload/products1/large/";
 <meta name="keywords" content="Custom Made Shirts, Tailored Shirts, Custom Shirts, Mens, Customization, Suits, Online, Best, Fashion, Stylior Fashion, India">
 <meta name="description" content="Stylior Fashion is specialized in Custom made tailored shirts for Men. If you   wanna design your own Shirt please visit us.">
 <!-- Bootstrap -->
-<link rel="stylesheet" type="text/css" href="<?=base_url() ?>css/animate.css">
-<link href="<?=base_url() ?>css/bootstrap.css" rel="stylesheet" />
-<link rel="stylesheet" type="text/css" href="<?=base_url() ?>css/owl.carousel.css">
-<link href="<?=base_url() ?>css/style.css" rel="stylesheet" />
-<link rel="stylesheet" type="text/css" href="<?=base_url() ?>css/font-awesome.min.css" />
+
   <style>
     .wow:first-child {
       visibility: hidden;
@@ -34,7 +30,8 @@ $https_url_large_img="http://www.stylior.com/upload/products1/large/";
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script type="text/javascript" src="<?=base_url() ?>js/jquery.min.js"></script></head>
+
+</head>
 
 <!-- new navbar design -->
 <style type="text/css">

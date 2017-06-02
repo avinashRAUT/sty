@@ -10,16 +10,7 @@ $bas_ul = "http://www.stylior.com/";
 $https_url="http://www.stylior.com/";
 $https_url_large_img="http://www.stylior.com/upload/products1/medium/";
 
-}
-  echo "testing";
-  //print_r($shirt_new);
-  /*foreach($shirt_new as $index=>$product)
-  {
-    print_r($product);
-  }
-*/
-
-
+} 
 ?>
 
 <title> Create and Design your very own Custom Tailored Dress & Shirts at Stylior Fashion, India
@@ -73,12 +64,9 @@ $https_url_large_img="http://www.stylior.com/upload/products1/medium/";
 <?php
 $https_url_large_img="https://www.stylior.com/stylior/upload/products1/large/";
 ?>
- <!-- Carousel
-    ================================================== -->
-
-
+<!-- Carousel ================================================== -->
 <!--slider section-->
-	<div id="home-slider" class="carousel slide carousel-fade" data-ride="carousel">
+<div id="home-slider" class="carousel slide carousel-fade" data-ride="carousel">
       <!-- Indicators -->
       <ol class="carousel-indicators">
         <li data-target="#home-slider" data-slide-to="0" class="active"></li>
@@ -105,10 +93,9 @@ $https_url_large_img="https://www.stylior.com/stylior/upload/products1/large/";
                 </div>
             </div>
         </div>
-        
-    </div>	
-<!--slider section-->
+</div>	
 
+<!--slider section-->
 <section class="content-wrap">
 	<!--first section-->
     <div class="row">
@@ -143,17 +130,6 @@ $https_url_large_img="https://www.stylior.com/stylior/upload/products1/large/";
         </div>
     </div>
 
-    <!--first section-->
-    <!--second section-->
-    <!--<div class="container">
-    	<div class="row">
-        	<div class="col-md-12 wow animated fadeInDown">
-            	<img src="<?= base_url() ?>images/home/store_locator.jpg" class="img-responsive" alt="Store">
-            </div>
-        </div>
-    </div>-->
-    <!--second section-->
-    
     <!--third section-->
      <div class="row">
      <!-- NEW ARRIVAL -->

@@ -22,35 +22,36 @@ if($_SESSION['user_subscribe']=="registered" && $_SESSION["subscribe"]=="no"){
 ?>
 
 <script>
+
+
 function validateForm()
 {
  		var newemail = $("#newemail").val();
 		console.log(newemail.length)
-
 		var lenEmail=newemail.length;
 		//return false;
-		
-		
-		if(newemail == '' || lenEmail<4)
+
+        if(newemail == '' || lenEmail<4)
 		{
 			document.getElementById('error').innerHTML = ('Please Enter Email');
 			return false;
-		}
-        
+		} 
+
 		var ema = document.getElementById('newemail');
         var filter = "/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/";
+        
         if (!filter.test(ema.value))
 		{
 			document.getElementById('error').innerHTML=('Please Enter Valid Email Address');
             ema.focus;
             return false;
         }
- }
+}
 </script>
 
 <!--<script type='text/javascript'>var _refiral=_refiral||{};_refiral.apiKey='0e7c7d6c41c76b9ee6445ae01cc0181d';(function(){var ref=document.createElement('script');ref.type='text/javascript';ref.async=true;ref.src='https://cdn.refiral.com/libs/refiral.min.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(ref,s);})();</script>-->
-
 <!-- Google Code for Stylior promotion Conversion Page -->
+
 <script type="text/javascript">
 /* <![CDATA[ */
 var google_conversion_id = 857353778;
@@ -305,23 +306,25 @@ function unhover_foot(element) {
 }
 
 $(window).load(function(){
-<?php
- $cookie_name = "subscribe";
-$cookie_value = "done";
- setcookie($cookie_name, $cookie_value, time() + (86400 ), "/"); // 86400 = 1 day
-if(!isset($_COOKIE[$cookie_name])) {
-  $actual_link = $_SERVER['HTTP_HOST'];
-  $params=$_SERVER['REQUEST_URI'];
-  $count_p=strlen($params);
-//  echo "url print".$actual_link."Parmas".$params;
-// echo strlen($params);
-  if($_SESSION['sub_message']!=="done" && $count_p==1111) {?>
-		$('#subscribeModal').modal('show');
-	<?php }?>
 
-<?php } ?>
+<?php
+
+    $cookie_name = "subscribe";
+    $cookie_value = "done";
+
+    // 86400 = 1 day
+    if(!isset($_COOKIE[$cookie_name])) {
+      $actual_link = $_SERVER['HTTP_HOST'];
+      $params=$_SERVER['REQUEST_URI'];
+      $count_p=strlen($params);
+      if($_SESSION['sub_message']!=="done") {
+        setcookie($cookie_name, $cookie_value, time() + (86400 ), "/"); ?>
+    		$('#subscribeModal').modal('show');
+    	<?php }?>
+    <?php } ?>
 
 });
+
 </script>
 
 <script type="text/javascript" src="<?=base_url() ?>js/bootstrap.min.js"></script>

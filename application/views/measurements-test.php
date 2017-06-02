@@ -38,7 +38,6 @@ $https_url_large_img="http://www.stylior.com/upload/products1/";
     width: 100%;
     height: 100%;
 }
-
 </style>
 
 </head>
@@ -80,117 +79,117 @@ $https_url_large_img="http://www.stylior.com/upload/products1/";
                                 $serdata = $mdetail->serializedata;
                                 $uns= unserialize($serdata);
                                 ?>
-					<div id="bodymeasure-<?php echo $mdetail->id; ?>" class="bodymeasure" style="display:none;" >
-						<form action="<? echo $bas_ul?>cart/saveadd3d" method="post" id="filters1" name="filters1" >
-							<input type="hidden"  name="measureid"  class="measureid"  value="<?php echo $mdetail->id; ?>" />
-							<div class="gap10"></div>
-							<div class="table-responsive">
-								<table class="table m_s_table table-saved-profile">
-									<thead>
-										<tr>
-											<th>BODY POSTURE</th>
-											<th>BODY FIT</th>
-											<th>SHOULDER TYPE</th>
-											<th>SHOULDER ANGLE</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-									<?php
-									$posture = $mdetail->posture;
-									if($posture == '0'){
-									$post_val ='Normal';
-									}else if($posture == '1'){
-									$post_val = 'Hunched';
-									}else if($posture == '2'){
-									$post_val ='Erect';
-									}?>
-									<td><?php echo $post_val;?></td>
-									<?php
-									$fit = $mdetail->fit;
-									if($fit == '0'){
-									$fit_val ='Slim';
-									}else if($fit == '1'){
-									$fit_val = 'Tailored';
-									}else if($fit == '2'){
-									$fit_val ='Regular';
-									}
-									?>
-									<td><?php echo $fit_val;?></td>
+                    <div id="bodymeasure-<?php echo $mdetail->id; ?>" class="bodymeasure" style="display:none;" >
+                        <form action="<? echo $bas_ul?>cart/saveadd3d" method="post" id="filters1" name="filters1" >
+                            <input type="hidden"  name="measureid"  class="measureid"  value="<?php echo $mdetail->id; ?>" />
+                            <div class="gap10"></div>
+                            <div class="table-responsive">
+                                <table class="table m_s_table table-saved-profile">
+                                    <thead>
+                                        <tr>
+                                            <th>BODY POSTURE</th>
+                                            <th>BODY FIT</th>
+                                            <th>SHOULDER TYPE</th>
+                                            <th>SHOULDER ANGLE</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                    <?php
+                                    $posture = $mdetail->posture;
+                                    if($posture == '0'){
+                                    $post_val ='Normal';
+                                    }else if($posture == '1'){
+                                    $post_val = 'Hunched';
+                                    }else if($posture == '2'){
+                                    $post_val ='Erect';
+                                    }?>
+                                    <td><?php echo $post_val;?></td>
+                                    <?php
+                                    $fit = $mdetail->fit;
+                                    if($fit == '0'){
+                                    $fit_val ='Slim';
+                                    }else if($fit == '1'){
+                                    $fit_val = 'Tailored';
+                                    }else if($fit == '2'){
+                                    $fit_val ='Regular';
+                                    }
+                                    ?>
+                                    <td><?php echo $fit_val;?></td>
 
 
-									<?php
-									$shouldertype = $mdetail->shouldertype;
-									if($shouldertype == '0'){
-									$shouldertype_val ='Normal';
-									}else if($shouldertype == '1'){
-									$shouldertype_val = 'Sloping';
-									}else if($shouldertype == '2'){
-									$shouldertype_val ='Straight';
-									}?>
-									<td><?php echo $shouldertype_val;?></td>
+                                    <?php
+                                    $shouldertype = $mdetail->shouldertype;
+                                    if($shouldertype == '0'){
+                                    $shouldertype_val ='Normal';
+                                    }else if($shouldertype == '1'){
+                                    $shouldertype_val = 'Sloping';
+                                    }else if($shouldertype == '2'){
+                                    $shouldertype_val ='Straight';
+                                    }?>
+                                    <td><?php echo $shouldertype_val;?></td>
 
 
 
-									<?php
-									$shoulderangle = $mdetail->shoulderangle;
-									if($shoulderangle == '0')
-									{
-									$shoulderangle_val ='Even';
-									}
-									else if($shoulderangle == '1')
-									{
-									$shoulderangle_val = 'Lower Left';
-									}
-									else if($shoulderangle == '2')
-									{
-									$shoulderangle_val ='Lower Right';
-									}
-									?>
-									<td><?php echo $shoulderangle_val;?></td>
-								</tr>
-									</tbody>
-								</table>
-							</div>
-							<div class="gap10"></div>
+                                    <?php
+                                    $shoulderangle = $mdetail->shoulderangle;
+                                    if($shoulderangle == '0')
+                                    {
+                                    $shoulderangle_val ='Even';
+                                    }
+                                    else if($shoulderangle == '1')
+                                    {
+                                    $shoulderangle_val = 'Lower Left';
+                                    }
+                                    else if($shoulderangle == '2')
+                                    {
+                                    $shoulderangle_val ='Lower Right';
+                                    }
+                                    ?>
+                                    <td><?php echo $shoulderangle_val;?></td>
+                                </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="gap10"></div>
 
-							<?php
-							if($uns != '') {
-							$array1 = $uns[0];
-							$array2 = $uns[1];
+                            <?php
+                            if($uns != '') {
+                            $array1 = $uns[0];
+                            $array2 = $uns[1];
 
-							for($k=0;$k<count($array1);$k++){
-							$val_body = $this->User_model->bodypartname($array1[$k])." - ".$array2[$k];
-							}
-							} else {
+                            for($k=0;$k<count($array1);$k++){
+                            $val_body = $this->User_model->bodypartname($array1[$k])." - ".$array2[$k];
+                            }
+                            } else {
 
-							$val_body="-";
-							}
+                            $val_body="-";
+                            }
 
-							?>
-							<input type="hidden"  name="" value="<?php echo $val_body;?>">
-							<p class="saved_profiles_details">
-							<?php if($uns != '') {
-							$array1 = $uns[0];
-							$array2 = $uns[1];
-							for($k='0';$k<count($array1);$k++) { ?>
-							<span class="bodyparts-array
-							">
-							<?php echo $this->User_model->bodypartname($array1[$k]) ?> :
-								<?php echo $array2[$k]; ?><span class="divider">|</span>
-								</span>
-							<?php }
+                            ?>
+                            <input type="hidden"  name="" value="<?php echo $val_body;?>">
+                            <p class="saved_profiles_details">
+                            <?php if($uns != '') {
+                            $array1 = $uns[0];
+                            $array2 = $uns[1];
+                            for($k='0';$k<count($array1);$k++) { ?>
+                            <span class="bodyparts-array
+                            ">
+                            <?php echo $this->User_model->bodypartname($array1[$k]) ?> :
+                                <?php echo $array2[$k]; ?><span class="divider">|</span>
+                                </span>
+                            <?php }
 
-							} $i++;?>
-							</p>
-							<div class="submit">
-								<div class="gap10"></div>
-								<div class="gap10"></div>
-								<div class="gap10"></div>
-							</div>
-							<input type="submit" class="lum_measurement_bottom_inner_top_button cart blue-btn" value="Add to Cart"  >
-						</form>
-					</div>
+                            } $i++;?>
+                            </p>
+                            <div class="submit">
+                                <div class="gap10"></div>
+                                <div class="gap10"></div>
+                                <div class="gap10"></div>
+                            </div>
+                            <input type="submit" class="lum_measurement_bottom_inner_top_button cart blue-btn" value="Add to Cart"  >
+                        </form>
+                    </div>
                     
                              <?php } /*end of foreach*/ ?>
                     
@@ -208,6 +207,11 @@ $https_url_large_img="http://www.stylior.com/upload/products1/";
             <div class="measurement_wrapper">
                 <div class="row">
                     <div class="content-measurement col-md-9 col-md-push-3 col-xs-12">
+                    
+                        <div class="summary-button visible-xs visible-sm">
+                            <a href="javascript:void(0)" class="btn btn-default summary-toggle" id="summary-toggle">summary</a>
+                        </div> 
+                       
                         <div data-spy="affix" id="dot-nav" class="affix">
                             <ul>
                                 <li class="awesome-tooltip active" title="fit"><a href="#std_fit"></a></li>
@@ -429,7 +433,7 @@ $https_url_large_img="http://www.stylior.com/upload/products1/";
                     </div>
                     
                     <div class="sidebar-measurement-summary col-md-3 col-md-pull-9 col-xs-12">
- 
+                        <a class="close-sidebar visible-xs visible-sm"><i class="fa fa-times" aria-hidden="true"></i></a>
                         <div class="meas-summary"> <!-- remove this class meas-summary -->
                             <h3>summary</h3>
 
@@ -440,7 +444,7 @@ $https_url_large_img="http://www.stylior.com/upload/products1/";
                                 </div>
 
                                 <div class="summary_measurement">
-									<p><label class="summary_meas_label">Height<span class="option-colon">:</span> </label><label class="summary_heigth"></label></p>
+                                    <p><label class="summary_meas_label">Height<span class="option-colon">:</span> </label><label class="summary_heigth"></label></p>
                                     <p><label class="summary_meas_label">Weight<span class="option-colon">:</span></label><label class="summary_weight"> </label></p>
                                     <p><label class="summary_meas_label">Size<span class="option-colon">:</span></label><label class="summary_size"> </label></p>
                                     <p><label class="summary_meas_label">Shoulde<span class="option-colon">:</span></label><label class="summary_shoulder"> </label></p>
@@ -453,6 +457,7 @@ $https_url_large_img="http://www.stylior.com/upload/products1/";
                             </div>
 
                             <button type="submit" id="standard_reset" class="blue-btn lum_measurement_bottom_inner_top_button cart" onclick="resetStandard();">Reset</button>
+
 
                     </div>
                  </div>               
@@ -467,6 +472,10 @@ $https_url_large_img="http://www.stylior.com/upload/products1/";
                 </div>
 
                     <div class="content-measurement col-md-9 col-md-push-3 col-xs-12">
+                        <div class="summary-button visible-xs visible-sm">
+                            <a href="javascript:void(0)" class="btn btn-default summary-toggle" id="summary-toggle">summary</a>
+                        </div> 
+                       
                         <div data-spy="affix" id="dot-nav" class="affix">
                             <ul>
                                 <li class="awesome-tooltip active" title="fit"><a href="#fit"></a></li>
@@ -745,6 +754,9 @@ $https_url_large_img="http://www.stylior.com/upload/products1/";
                     </div>
                     
                     <div class="sidebar-measurement-summary col-md-3 col-md-pull-9 col-xs-12">
+                        <!--close sidebar button-->
+                            <a class="close-sidebar visible-xs visible-sm"><i class="fa fa-times" aria-hidden="true"></i></a>
+                        <!--close sidebar button-->
                         <div class="meas-summary">
                             <h3>summary</h3>
                                 <!-- start var  -->
@@ -759,39 +771,26 @@ $https_url_large_img="http://www.stylior.com/upload/products1/";
                                 </div>
 
                                 <div class="bm_summary_measurement">
-                                    <label>Height</label>
-                                    <label class="bm_summary_heigth"></label>
-                                    <label>Weight</label>
-                                    <label class="bm_summary_weight"> </label>
-                                    <label>Bicep</label>
-                                    <label class="bm_summary_bicep"> </label>
-                                    <label>Shoulder</label>
-                                    <label class="bm_summary_shoulder"> </label>
-                                    <label>Neck</label>
-                                    <label class="bm_summary_neck"> </label>
-                                    <label>Sleeve</label>
-                                    <label class="bm_summary_sleeve"> </label>
-                                    <label>Whist</label>
-                                    <label class="bm_summary_wrist"> </label>
-                                    <label>Length</label>
-                                    <label class="bm_summary_shirt_length"> </label>
-                                    <label>Chest</label>
-                                    <label>Arm Hole</label>
-                                    <label class="bm_summary_armhole"> </label>
-                                    <label>Hip</label>
-                                    <label class="bm_summary_hip"> </label>
-                                    <label class="bm_summary_chest"> </label>
-                                    <label>Waist</label>
-                                    <label class="bm_summary_waist"> </label>
+                                   <p><label class="summary_meas_label">Height<span class="option-colon">:</span> </label><label class="bm_summary_heigth"></label></p>
+                                   <p><label class="summary_meas_label">Weight<span class="option-colon">:</span> </label><label class="bm_summary_weight"></label></p>
+                                   <p><label class="summary_meas_label">Bicep<span class="option-colon">:</span> </label><label class="bm_summary_bicep"></label></p>
+                                   <p><label class="summary_meas_label">Shoulder<span class="option-colon">:</span> </label><label class="bm_summary_shoulder"></label></p>
+                                   <p><label class="summary_meas_label">Neck<span class="option-colon">:</span> </label><label class="bm_summary_neck"></label></p>
+                                   <p><label class="summary_meas_label">Sleeve<span class="option-colon">:</span> </label><label class="bm_summary_sleeve"></label></p>
+                                   <p><label class="summary_meas_label">Whist<span class="option-colon">:</span> </label><label class="bm_summary_wrist"></label></p>
+                                   <p><label class="summary_meas_label">Length<span class="option-colon">:</span></label><label class="bm_summary_shirt_length"></label></p>
+                                   <p><label class="summary_meas_label">Chest<span class="option-colon">:</span> </label><label class="bm_summary_chest"></label></p>
+                                   <p><label class="summary_meas_label">Arm Hole<span class="option-colon">:</span> </label><label class="bm_summary_armhole"></label></p>
+                                   <p><label class="summary_meas_label">Hip<span class="option-colon">:</span> </label><label class="bm_summary_hip"></label></p>
+                                   <p><label class="summary_meas_label">Waist<span class="option-colon">:</span> </label><label class="bm_summary_waist"></label></p>
                                 </div>
                             
                             </div>
 
 
                                 <!-- end var  -->
+                        <button type="submit" id="lum_measurement_bottom_inner_top_button" class="blue-btn lum_measurement_bottom_inner_top_button cart" onclick="resetBody();">Reset </button>
 
-
-                            <button type="submit" id="lum_measurement_bottom_inner_top_button" class="blue-btn lum_measurement_bottom_inner_top_button cart" onclick="resetBody();">Reset </button>
                         </div>
                     </div>
                 
@@ -1553,7 +1552,7 @@ if(selected_size!=undefined){
       }
  
       var vidd = document.getElementById("lum_input_required_video1");
-        vidd.play();
+        vidd.pause();
       }
 
     });
@@ -1773,6 +1772,7 @@ if(selected_size!=undefined){
             $(this).next('.option_with_bg').show();
             $("#"+$(this).attr("rel")).trigger("click");
             $('.meas_option_rel').each(function() {
+
                 if(!$("#"+$(this).attr("rel")).is(':checked'))
                 {    
                      $(this).css({"border": ""});
@@ -1781,11 +1781,25 @@ if(selected_size!=undefined){
                 else
                 {
                     $("."+$(this).attr("rel")).remove(); 
-                   $(this).css({"border": "1px solid black"});
+                    $(this).css({"border": "1px solid black"});
                 }
+
             });
 
+// #PC : start 
+    $(".summary-toggle").click(function(e) {
+        e.preventDefault();
+        $(".measurement_wrapper").toggleClass("toggled");
+    });
+    $(".close-sidebar").click(function() {
+        $(".measurement_wrapper").removeClass("toggled");
+    });
+// #PC : end
+
+
+
 });
+
 
 </script>
 <!-- declared the validate.js -->

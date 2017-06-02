@@ -150,11 +150,10 @@ if($data[1]=="home" && $data[2]=="new_custom" ||$data[2]=="new_custom_demo"){?>
   <script src=<?= $bas_ul ?>site/js/remodal.js></script>
   <link rel="stylesheet" href="https://www.stylior.com/site/css/remodal.css">
   <link rel="stylesheet" href="https://www.stylior.com/site/css/remodal-default-theme.css">
-  <!--<link href="<?=$https_url ?>site/css/bootstrap.min.css" rel="stylesheet" />-->
   <link href="<?=$https_url ?>site/css/details_style.css" rel="stylesheet" />
   <link rel="stylesheet" type="text/css" href="<?=$https_url ?>site/css/animate.css">
   <link rel="stylesheet" type="text/css" href="<?=$https_url ?>site/css/owl.carousel.css">
-  <link rel="stylesheet" type="text/css" href="<?=$https_url ?>site/css/font-awesome.min.css" />
+
   <link href="<?=$https_url ?>site/css/simple-lightbox.min.css" rel="stylesheet" />
   <style>
      .stylior-header .wrap-sticky nav.navbar.bootsnav {
@@ -167,7 +166,6 @@ if($data[1]=="home" && $data[2]=="new_custom" ||$data[2]=="new_custom_demo"){?>
   </style>
   
  <?php }else if($data[1]=="trial-shirt"){?>
-<!--<link href="<?=$https_url ?>site/css/bootstrap.min.css" rel="stylesheet" />-->
 <script src=<?= $bas_ul ?>site/js/remodal.js></script>
 <link rel="stylesheet" href="https://www.stylior.com/site/css/remodal.css">
 <link rel="stylesheet" href="https://www.stylior.com/site/css/remodal-default-theme.css">
@@ -182,7 +180,6 @@ if($data[1]=="home" && $data[2]=="new_custom" ||$data[2]=="new_custom_demo"){?>
   <?php if($data[2]!="mdemo") {?>
   <link rel="stylesheet" type="text/css" href="<?= $https_url ?>site/css/owl.carousel.css">
   <?php } ?>
-  <link href="<?=$https_url ?>site/css/bootstrap.min.css" rel="stylesheet" />
 <?php } ?>
 <?php if(isset($title)){ ?>
   <title><?php echo $title;?></title>

@@ -5,7 +5,6 @@
 		
 		function __Construct()
 		{
-
 		  	parent::__Construct ();
 			$this->load->helper('url');
 			$this->load->database();
@@ -16,7 +15,6 @@
 			$this->load->model('Account_model');
 			$this->load->model('Appointment_model');
 			$this->load->model('Bilship_model');
-
 		}
 
 		public function index()
@@ -33,20 +31,18 @@
 			//$data['allbanner'] = $this->home_model->allbanner();
 			$data=array();  		
 	        //new arrival  shirt code
-		$this->db->from('tbl_product as t1');
-		$this->db->join('tbl_product_image as t2', 't2.pid = t1.id','left');
-		$this->db->where('subcatid',10);
-		$this->db->where('qty>',0);
-		$this->db->where('is_home',1);
-		$this->db->where('t2.baseimage',1);
-		$this->db->limit(10);
-
-        $q = $this->db->get();
-			//echo "<pre>";
-			//print_r($q->result()); die;
+			$this->db->from('tbl_product as t1');
+			$this->db->join('tbl_product_image as t2', 't2.pid = t1.id','left');
+			$this->db->where('subcatid',10);
+			$this->db->where('qty>',0);
+			$this->db->where('is_home',1);
+			$this->db->where('t2.baseimage',1);
+			$this->db->limit(10);
+			$q = $this->db->get();
 			$data['shirt_new'] = $q->result();
 			$this->load->view('lum_home',$data);
 			$this->load->view('lum_footer');
+
 		}
 
 		public function deleteaddress()
@@ -104,6 +100,7 @@
 
 
 		public function resetpass(){
+
 			$this->load->model('user_model');
 			if($this->input->post('reset')=="reset"){
 				$id = $this->session->userdata('user_id');
@@ -114,12 +111,10 @@
 		     	'password'=>$_POST['newpassword'],
 		     	'repassword'=>$_POST['re_password'],
 			    	);
-
-		       if($data['newpassword']==$data['re_password']){
+	       if($data['newpassword']==$data['re_password']){
 					if($this->user_model->resetPassword($id,$data['password'])){
 							$this->session->set_userdata("smsg","Password Changed!");
 				            redirect($this->config->item('base_url_temp').'home/lum_my_account');
-
 					}
 
 		       }
@@ -134,7 +129,6 @@
 		$L_strErrorMessage='';
 
 			$form_field = $data = array
-
 			(
 
 				'L_strErrorMessage' => '',
@@ -6734,17 +6728,15 @@ public function getbodypart(){
 				$size=$_GET['size'];
 				$category=$_GET['category'];
 				if(isset($size) && isset($category)){
-				$this->db->select('id,category,size,measurement');
-				$result=$this->db->get_where('tbl_size',array('size'=>$size,'category'=>$category))->row_array();
-				//print_r($result);
-				echo json_encode($result);
+					$this->db->select('id,category,size,measurement');
+					$result=$this->db->get_where('tbl_size',array('size'=>$size,'category'=>$category))->row_array();
+					echo json_encode($result);
 				}
 				else
 				{
 				echo "No data found";
 				}
 	}
-	
 
 	/*end of get tbl_size*/
 	//*page not found 404*/
@@ -6778,14 +6770,13 @@ public function getbodypart(){
 				$this->db->limit(10);
 				$q = $this->db->get();
 				$data['blazer_new'] = $q->result();		
-
 				// print_r($data['blazer_new']);
 				//print_r($data['trouser_new']);
 				$this->load->view('lum_header_test.php');
 			    $this->load->view('lum_home_test.php',$data);
 			    $this->load->view('lum_footer_test.php');
-
 	}
+
 
 	/*page not found 404*/
 	function show_404(){
@@ -6793,7 +6784,6 @@ public function getbodypart(){
 	    $this->load->view('page_404.php');
 	    $this->load->view('lum_footer.php');
 	}
-
 
 	/*****return product image based       ****/
 	/***             param : pid           ****/
@@ -6805,7 +6795,6 @@ public function getbodypart(){
 			return $result1;
 	}
 
-
 	/*delete this once u complete the measruement*/
 	function mdemo(){
 	//	$this->load->view('lum_header.php');
@@ -6813,14 +6802,11 @@ public function getbodypart(){
 	  //  $this->load->view('lum_footer.php');
 	}
 
-
 	function store(){
 		$this->load->view('lum_header.php');
 	    $this->load->view('lum_store.php');
 	    $this->load->view('lum_footer.php');	
-	}
-     
-
+	}  
 
 
 }
