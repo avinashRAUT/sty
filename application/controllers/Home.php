@@ -42,7 +42,6 @@
 			$data['shirt_new'] = $q->result();
 			$this->load->view('lum_home',$data);
 			$this->load->view('lum_footer');
-
 		}
 
 		public function deleteaddress()
@@ -95,12 +94,9 @@
 			$this->load->view('lum_my_account',$data);
 			}
 			}
-
 		}
 
-
 		public function resetpass(){
-
 			$this->load->model('user_model');
 			if($this->input->post('reset')=="reset"){
 				$id = $this->session->userdata('user_id');
@@ -183,92 +179,39 @@
 
 
 
-	public function deletemeasure()
-
-	{
+public function deletemeasure()
+{
 
 		//echo $_POST['id'];
-
-
-
 	 $this->home_model->deletemeasure($_POST['id']);
-
 	 $this->session->set_flashdata('error','Measure Deleted Succcessfully!!!!');
+}
 
-
-
-	}
-
-	public function sendMail()
-
-	{
-
-
-
+public function sendMail()
+{
 		//error_reporting(1);
-
 		//ini_set('display_errors', 1);
-
 		$data=$dataInfo=array();
-
-
-
 		/* foreach($selectedData as $info){
-
 			$dataInfo[$info['name']]=$info['value'];
-
-		}
-
-			*/
-
+		}*/
 	 	$appointment_time=$this->input->post("appoint_time_of_day")." at ".$this->input->post("start_time");
-
-
-
-
-
 		$data['name'] =$_POST['firstname'];
-
 		$data['email'] =$_POST['email'];
-
 		$data['phonenumber'] =$_POST['phonenumber'];
-
 		$data['address'] =$_POST['address'];
-
 		$dataInfo['time_of_day'] = $appointment_time;
-
 		$dataInfo['selectedDate'] = $this->input->post("date");
-
 		$new_date_format = date('Y-m-d', strtotime($dataInfo['selectedDate']));
-
-
-
 		$date_today = date("Y-m-d");
-
 		$date_now= new DateTime($date_today);
-
 		$sel_date= new DateTime($new_date_format);
-
-
-
 		if ($sel_date < $date_now) {
-
-
-
 			echo '<script type="text/javascript">alert("Appointment Not Booked For Selected Date:'.$sel_date.'");</script>';
-
-
-
 			 echo "<script>document.location.href='".$this->config->item('base_url_temp')."book-a-home-visit'</script>";
-
-
-
 		}
-
 		else
-
 		{
-
 		//if($date_today )
 
 		$dataInfo['appointment_date'] =$new_date_format;
@@ -6797,10 +6740,21 @@ public function getbodypart(){
 
 	/*delete this once u complete the measruement*/
 	function mdemo(){
-	//	$this->load->view('lum_header.php');
-	    $this->load->view('measurements-test.php');
-	  //  $this->load->view('lum_footer.php');
+	if( !$this->session->userdata('logged_in'))
+		{
+		
+		$this->load->view('lum_header.php');
+	    $this->load->view('page_404.php');
+	    $this->load->view('lum_footer.php');
+
+ 		}
+ 		else {
+	    $this->load->view('measurements-test.php');	
+ 	   }
 	}
+
+
+
 
 	function store(){
 		$this->load->view('lum_header.php');

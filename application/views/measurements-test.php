@@ -214,16 +214,16 @@ $https_url_large_img="http://www.stylior.com/upload/products1/";
                        
                         <div data-spy="affix" id="dot-nav" class="affix">
                             <ul>
-                                <li class="awesome-tooltip active" title="fit"><a href="#std_fit"></a></li>
-                                <li class="awesome-tooltip" title="posture"><a href="#std_length"></a></li>
-                                <li class="awesome-tooltip" title="add_measurement"><a href="#std_add_measurement"></a></li>
+                                <li class="awesome-tooltip active" title="Fit"><a href="#std_fit"></a></li>
+                                <li class="awesome-tooltip" title="Length"><a href="#std_length"></a></li>
+                                <li class="awesome-tooltip" title="Measurement"><a href="#std_add_measurement"></a></li>
                             </ul>
                         </div>
                         <div id="main" class="">
                             <section id="std_fit" class="measurement-section">
                                 <article>
                                    <div class="row">
-                                       <label>Your Fit<span></span></label>
+                                       <h3>Your Fit</h3>
                                         <div id="lum_but_limt-radio" class="item">
                                             <div class="col-md-4">
                                                 <div  class="meas_option">
@@ -419,7 +419,7 @@ $https_url_large_img="http://www.stylior.com/upload/products1/";
                                         <div class="col-md-6">
                                             <h4 class="Title">how to measure</h4>
                                             <div id="guideDescription-standard">
-                                                <video id="guideDescription" class="lum_video-new" controls>
+                                                <video id="guideDescription" class="lum_video-new" poster="<?= $https_url ?>site/images/measurement/video_poster.jpg" controls>
                                                     <source src="https://www.stylior.com/site_old/views/images/measurement_vdo/Bicep.m4v" type="video/mp4" />
                                                     <source src="https://www.stylior.com/site_old/views/images/measurement_vdo/Bicep.m4v" type="video/ogg" />
                                                 </video>
@@ -478,11 +478,11 @@ $https_url_large_img="http://www.stylior.com/upload/products1/";
                        
                         <div data-spy="affix" id="dot-nav" class="affix">
                             <ul>
-                                <li class="awesome-tooltip active" title="fit"><a href="#fit"></a></li>
-                                <li class="awesome-tooltip" title="posture"><a href="#body_posture"></a></li>
+                                <li class="awesome-tooltip active" title="Fit"><a href="#fit"></a></li>
+                                <li class="awesome-tooltip" title="Posture"><a href="#body_posture"></a></li>
                                 <li class="awesome-tooltip" title="shoulder_type"><a href="#shoulder_type"></a></li>
                                 <li class="awesome-tooltip" title="shoulder_angle"><a href="#shoulder_angle"></a></li>
-                                <li class="awesome-tooltip" title="add_measurement"><a href="#add_measurement"></a></li>
+                                <li class="awesome-tooltip" title="Measurement"><a href="#add_measurement"></a></li>
                             </ul>
                         </div>
                         
@@ -742,11 +742,12 @@ $https_url_large_img="http://www.stylior.com/upload/products1/";
  
                                         <div class="col-md-6">
                                             <h4 class="Title">how to measure</h4>
-                                            <div id="guideDescription">
+                                            <div id="guideDescription">            
+                                            <video id="lum_input_required_video1" class="lum_video-new"  poster="<?= $https_url ?>site/images/measurement/video_poster.jpg" controls="">
+                                             <source src="https://www.stylior.com/site_old/views/images/measurement_vdo/Bicep.m4v" type="video/mp4"><source src="https://www.stylior.com/site_old/views/images/measurement_vdo/Bicep.m4v" type="video/ogg"></video>
 
                                             </div>
                                         </div>
-                                   
                                    </div>
                                 </article>           
                             </section>   
@@ -1380,35 +1381,34 @@ if(selected_size!=undefined){
             size : selected_size,
             category :  '10'
           },
-        success: function(response) {
-          console.log(response.length);
-          if(response !== null && response !== undefined && response.length > 100){
-          var var_result= $.parseJSON(response);
-          var measurement = $.parseJSON(var_result.measurement);
-         //change the value of measurement based on the server response.
-          changeTheSummary(measurement);
+     
+         success: function(response) {
+              console.log(response.length);
+              if(response !== null && response !== undefined && response.length > 100){
 
-          $("#lum_input_required1").val(measurement.shoulder);
-          $("#lum_input_required2").val(measurement.neck);
-          $("#lum_input_required3").val(measurement.sleeve);
-          $("#lum_input_required5").val(measurement.shirt_length);
-          $("#lum_input_required6").val(measurement.chest);
-          $("#lum_input_required8").val(measurement.waist);
-          }
-          else{
-
-          $("#lum_input_required1").val("");
-          $("#lum_input_required2").val("");
-          $("#lum_input_required3").val("");
-          $("#lum_input_required5").val("");
-          $("#lum_input_required6").val("");
-          $("#lum_input_required8").val("");
-
-          }
-
-
+              var var_result= $.parseJSON(response);
+              var measurement = $.parseJSON(var_result.measurement);
+             //change the value of measurement based on the server response.
+              changeTheSummary(measurement);
+              $("#lum_input_required1").val(measurement.shoulder);
+              $("#lum_input_required2").val(measurement.neck);
+              $("#lum_input_required3").val(measurement.sleeve);
+              $("#lum_input_required5").val(measurement.shirt_length);
+              $("#lum_input_required6").val(measurement.chest);
+              $("#lum_input_required8").val(measurement.waist);
+              }
+              else{
+              $("#lum_input_required1").val("");
+              $("#lum_input_required2").val("");
+              $("#lum_input_required3").val("");
+              $("#lum_input_required5").val("");
+              $("#lum_input_required6").val("");
+              $("#lum_input_required8").val("");
+              }
         }
+
       });
+
   }
 });
 
@@ -1551,7 +1551,7 @@ if(selected_size!=undefined){
           $("#guideDescription").append(source_video);
       }
  
-      var vidd = document.getElementById("lum_input_required_video1");
+       var vidd = document.getElementById("lum_input_required_video1");
         vidd.pause();
       }
 
@@ -1648,6 +1648,20 @@ if(selected_size!=undefined){
         var valuetext=$(this).val();
         $(".summary_chest").text(valuetext);
     });
+   
+
+// #PC : start 
+    $(".summary-toggle").click(function(e) {
+        e.preventDefault();
+        $(".measurement_wrapper").toggleClass("toggled");
+    });
+    $(".close-sidebar").click(function() {
+        $(".measurement_wrapper").removeClass("toggled");
+    });
+// #PC : end
+
+
+
    
 
     $(".meas_option_rel").on("click",function(){
@@ -1785,17 +1799,6 @@ if(selected_size!=undefined){
                 }
 
             });
-
-// #PC : start 
-    $(".summary-toggle").click(function(e) {
-        e.preventDefault();
-        $(".measurement_wrapper").toggleClass("toggled");
-    });
-    $(".close-sidebar").click(function() {
-        $(".measurement_wrapper").removeClass("toggled");
-    });
-// #PC : end
-
 
 
 });
