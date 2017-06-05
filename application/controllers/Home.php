@@ -6753,6 +6753,20 @@ public function getbodypart(){
  	   }
 	}
 
+	/*delete this once u complete the measruement*/
+	function mdemo_trouser(){
+	if( !$this->session->userdata('logged_in'))
+		{
+		
+		$this->load->view('lum_header.php');
+	    $this->load->view('page_404.php');
+	    $this->load->view('lum_footer.php');
+
+ 		}
+ 		else {
+	    $this->load->view('measurements-test-tr.php');	
+ 	   }
+	}
 
 
 

@@ -13,6 +13,8 @@ class Cart extends CI_Controller {
 			$this->load->model('Cart_model');
 			$this->load->model('home_model');
 			$this->load->model('account_model');
+			$this->load->model("standard_measurement_model"); 
+
 	}
 
 	function add()
@@ -646,76 +648,62 @@ function savemesurementoncart()
 		}
 	}
 
-	//function to update array object from 3d
-
+  //function to update array object from 3d
+  
   function updatecart()
-	{
-		 $mycartid=$_SESSION['latestcartId'];
+{
+	
+		
+
+		$mycartid=$_SESSION['latestcartId'];
 		$lastid=$_SESSION['saveid'];
-	    //if a data of subcatid is comming from ajax request....
-		
+	    //if a data of subcatid is comming from ajax request....	
 		//var start 31 march 2017..
-		   if(isset($_POST['subcatid'])){
-				$this->session->userdata['selected3dInfo_shirt']['subcatid']=$_POST['subcatid'];
-				$this->session->userdata['subcatid']=$_POST['subcatid'];
-		   }
 
+ 		if(isset($_POST['subcatid'])){
+			$this->session->userdata['selected3dInfo_shirt']['subcatid']=$_POST['subcatid'];
+			$this->session->userdata['subcatid']=$_POST['subcatid'];
+		 }
 		//var end here 31 march 2017
-		
-
-
 		//echo "lastt id".$lastid;
-
 		//var_dump($_SESSION['saveid']);
 		//if(!empty($_POST))
 		{
-	      //JSON data need to be added
-		   $detailsneedtoupdate   = $_POST['details_up'];
-				 
+		//JSON data need to be added
+		$detailsneedtoupdate   = $_POST['details_up'];			 
 		// echo "seesion herer";
 		// echo "session 1".$this->session->userdata['subcatid'];
 		// echo "session herer23".$this->session->userdata['selected3dInfo_vest']['subcatid'];
 		// print_r($detailsneedtoupdate);
 		// exit();
- 		//	print_r($this->session->userdata['selected3dInfo_shirt']['subcatid']);
-
-
-		   $josntoadded= json_decode($detailsneedtoupdate,true);
-
-   //  		echo "Data  coming from poist--2";
-			// print_r( $josntoadded );
-			// exit();
-
-		   //last inserted record in save3d table
-		   	$lastitem = $this->Cart_model->getlastinsertitem($lastid);
-			//print_r($_SESSION);
-			//echo "tesitng session";
-			//added to get mycartid by var
-			$mycartid=$this->session->userdata('latestcartId');
-			//end var
-			//exit();
-		    //last inserted record in mycart table
-//		    echo "mycartid".$mycartid;
-			//print_r($this->session->userdata('order'));
-     		if($this->session->userdata('order')=="custom"){
+		//	print_r($this->session->userdata['selected3dInfo_shirt']['subcatid']);
+		$josntoadded= json_decode($detailsneedtoupdate,true);
+		//echo "Data  coming from poist--2";
+		// print_r( $josntoadded );
+		// exit();
+		//last inserted record in save3d table
+		$lastitem = $this->Cart_model->getlastinsertitem($lastid);
+		//print_r($_SESSION);
+		//echo "tesitng session";
+		//added to get mycartid by var
+		$mycartid=$this->session->userdata('latestcartId');
+		//end var
+		//exit();
+		//last inserted record in mycart table
+		//echo "mycartid".$mycartid;
+		//print_r($this->session->userdata('order'));
+		if($this->session->userdata('order')=="custom"){
 				print_r($lastitem);
-			//	exit();
-			}
-
-
-
-
-		   $lastitemmycart = $this->Cart_model->getlastinsertitemmycart($mycartid);
-			//decoding json array from the last record : save3d(dbtable)
-		   $josn= json_decode($lastitem[0]->details,true);
-		    //decoding json array from the last record : mycart(dbtable)
-		   $josnmy= json_decode($lastitemmycart[0]->options,true);
-		   //echo "<pre>";
-		   $entityBody = stripslashes($lastitemmycart[0]->options);
-		   $decodedJSON = json_decode($entityBody, true);
-	   	   $sss=json_decode($josnmy['details'],true);
-
-		
+		}	   
+	   	$lastitemmycart = $this->Cart_model->getlastinsertitemmycart($mycartid);
+		//decoding json array from the last record : save3d(dbtable)
+		$josn= json_decode($lastitem[0]->details,true);
+		//decoding json array from the last record : mycart(dbtable)
+		$josnmy= json_decode($lastitemmycart[0]->options,true);
+		//echo "<pre>";
+		$entityBody = stripslashes($lastitemmycart[0]->options);
+		$decodedJSON = json_decode($entityBody, true);
+		$sss=json_decode($josnmy['details'],true);	
 		/*$book1 = $lastitemmycart[0]->options;
 		$book=json_decode($book1);
 		print_r($book);
@@ -728,30 +716,26 @@ function savemesurementoncart()
 		//print_r($_SESSION);
 		// 	die;
 		//appending the new key values to the json save3d
-//		$josn['standardsize']=$josntoadded['standardsize'];
-//		$josn['length']=$josntoadded['length'];
-//		$josn['fitype']=$josntoadded['fitype'];
+		//$josn['standardsize']=$josntoadded['standardsize'];
+		//$josn['length']=$josntoadded['length'];
+		//$josn['fitype']=$josntoadded['fitype'];
 		// echo "josn";
 		// print_r($josn);
 		//appending the new key values to the json mycart
-//		$sss['standardsize']=$josntoadded['standardsize'];
-//		$sss['length']=$josntoadded['length'];
-//		$sss['fitype']=$josntoadded['fitype'];
+		//$sss['standardsize']=$josntoadded['standardsize'];
+		//$sss['length']=$josntoadded['length'];
+		//$sss['fitype']=$josntoadded['fitype'];
 		/***var added by 18oct
-         *** standard measurements is storing in mycart from here..
+		*** standard measurements is storing in mycart from here..
 		**** 10 for shirt , 11 for trouser ...
 		*** note for SHehjaz : add create else if based on subcat id for suite and furhter..
 		***/
-
 		// print_r($josntoadded);
 		// print_r($josntoadded['standardsize']);
 		// 	echo "SSS variable";
 		// 			print_r($sss);
 		// 			exit();
-
-
-		if($this->session->userdata['subcatid']==10||$this->session->userdata['selected3dInfo_shirt']['subcatid']==10){
-	 
+		if($this->session->userdata['subcatid']==10||$this->session->userdata['selected3dInfo_shirt']['subcatid']==10){ 
 				$sss['measurements']['standardsize']=$josntoadded['standardsize'];
 				$sss['measurements']['WEIGHTkg']=$josntoadded['WEIGHTkg'];
 				$sss['measurements']['fitype']=$josntoadded['fitype'];
@@ -764,10 +748,8 @@ function savemesurementoncart()
 				$sss['measurements']['waist']=$josntoadded['waist'];
 
 	    }
-    	else if($this->session->userdata['subcatid']==11||$this->session->userdata['selected3dInfo_shirt']['subcatid']==11)
-    	{
-			//var trouserMeasure={"HEIGHTinch":"","WEIGHTkg":"","pocket":"NO","Monogram":"NO","MonoLocation":"","Monofontstyle":"","Monocolor":"","Monotext":"None","fitype":"NO","standardsize":"NO","length":"NO","waist":"","hip":"","rise":"","bottom":"","knee":"","thigh":""};
-			
+    	else if($this->session->userdata['subcatid']==11||$this->session->userdata['selected3dInfo_shirt']['subcatid']==11){
+
 			$sss['measurements']['HEIGHTinch']=$josntoadded['HEIGHTinch'];
 			$sss['measurements']['WEIGHTkg']=$josntoadded['WEIGHTkg'];
 			$sss['measurements']['pocket']=$josntoadded['pocket'];
@@ -783,9 +765,9 @@ function savemesurementoncart()
 			$sss['measurements']['bottom']=$josntoadded['bottom'];
 			$sss['measurements']['knee']=$josntoadded['knee'];
 			$sss['measurements']['thigh']=$josntoadded['thigh'];
-    	}
+     }
      else if($this->session->userdata['subcatid']==17 ||$this->session->userdata['selected3dInfo_pant']['subcatid']==17)
-      {
+     {
       //var trouserMeasure={"HEIGHTinch":"","WEIGHTkg":"","pocket":"NO","Monogram":"NO","MonoLocation":"","Monofontstyle":"","Monocolor":"","Monotext":"None","fitype":"NO","standardsize":"NO","length":"NO","waist":"","hip":"","rise":"","bottom":"","knee":"","thigh":""}
       $sss['measurements']['standardsize']=$josntoadded['standardsize'];
       $sss['measurements']['WEIGHTkg']=$josntoadded['WEIGHTkg'];
@@ -806,11 +788,9 @@ function savemesurementoncart()
 	// echo "SSS variable";
 	// print_r($sss);
 	//  exit();
-
-
-      }
-        //end of var
-      else if($this->session->userdata['subcatid']==16 ||$this->session->userdata['selected3dInfo_blazer']['subcatid']==16)
+     }
+      //end of var
+    else if($this->session->userdata['subcatid']==16 ||$this->session->userdata['selected3dInfo_blazer']['subcatid']==16)
       {
         //var trouserMeasure={"HEIGHTinch":"","WEIGHTkg":"","pocket":"NO","Monogram":"NO","MonoLocation":"","Monofontstyle":"","Monocolor":"","Monotext":"None","fitype":"NO","standardsize":"NO","length":"NO","waist":"","hip":"","rise":"","bottom":"","knee":"","thigh":""};
         $sss['measurements']['standardsize']=$josntoadded['standardsize'];
@@ -841,6 +821,7 @@ function savemesurementoncart()
        }
 	else if($this->session->userdata['subcatid']==18 ||$this->session->userdata['selected3dInfo_vest']['subcatid']==18)
       {
+       
         $sss['measurements']['standardsize']=$josntoadded['standardsize'];
         $sss['measurements']['WEIGHTkg']=$josntoadded['WEIGHTkg'];
         //$sss['measurements']['fitype']=$josntoadded['fitype'];
@@ -851,25 +832,42 @@ function savemesurementoncart()
         $sss['measurements']['upperwaist']=$josntoadded['upperwaist'];
         $sss['measurements']['HEIGHTinch']=$josntoadded['HEIGHTinch'];
         $sss['measurements']['pocket']=$josntoadded['pocket'];
+      
        }
+		
+		$updateddetails=json_encode($josn);
+		$josnmy['details']=json_encode($sss);
+		/*var start*/		
+		$count_cart=count($lastitemmycart);
 
-	  $updateddetails=json_encode($josn);
-	  $josnmy['details']=json_encode($sss);
-  	  //echo "<pre>";
-	  //print_r($josnmy['details']);
+		if($count_cart<=0) {
+			$params = array(
+			'subcatid' => $_POST['subcatid'],
+			'options' => $josnmy['details'],
+			'userid' => $_SESSION['user_id'],
+			'added_date' => date("Y/m/d"),
+			);
 
-	$updateddetailsmycart=json_encode($josnmy);
-	$res = $this->Cart_model->updatedetails($lastid,$updateddetails);
-	$resr = $this->Cart_model->updatedetailsmycart($mycartid,$updateddetailsmycart);
-	
+		$standard_measurement_id = $this->standard_measurement_model->add_standard_measurement($params);           	
+
+		$this->session->set_flashdata('msg', 'Measurement Added Successfully');
+
+		//redirect($this->config->item('http_host').'home/mdemo','refresh');
+  	 	exit();
+
+		}
+
+		/*var end*/
+		$updateddetailsmycart=json_encode($josnmy);
+		$res = $this->Cart_model->updatedetails($lastid,$updateddetails);
+		$resr = $this->Cart_model->updatedetailsmycart($mycartid,$updateddetailsmycart);
 		foreach( $this->cart->contents() as $items)
-				{
+			{
 					if( $items['options']['saveid'] == $this->session->userdata('saveid') )
 					{
 						//echo "<pre>";
 						//print_r($items['options']['details']);
 						$items['options']['details']=$josnmy['details'];
-
 						$this->cart->update($items);
 						// echo "item in loop::";
 						// echo "<pre>";

@@ -43,6 +43,15 @@ $https_url_large_img="http://www.stylior.com/upload/products1/";
 </head>
 <body>
 <div class="measurement_tabs_section">
+    
+
+<!-- var added flash message at the top -->
+
+<?php if($this->session->flashdata('msg')): ?>
+    <p><?php echo $this->session->flashdata('msg'); ?></p>
+<?php endif; ?>
+
+<!-- var end here -->
     <div class="tabs-options">
     <ul id="measure_tabs_options" class="nav nav-tabs" role="tablist">
         <li role="presentation" class="active"><a href="#saved_profile" role="tab" data-toggle="tab">saved profile</a></li>
@@ -1422,8 +1431,9 @@ if(selected_size!=undefined){
       });
     */
     $("#quick_save").click(function(){
-       var measureid ="";
-        if("<?= $_GET['update'] ?>"=="shirt"){
+       var measureid ="";      
+
+       if("<?= $_GET['update'] ?>"=="shirt"){
          measureid = '<?php echo $_GET['mid'];?>';
         }
         var height_select=$('#height_select').val();
@@ -1431,22 +1441,20 @@ if(selected_size!=undefined){
         var body_weight=$('#body_weight').val();
         var yourfit=$('input[name="yourfit"]:checked').val();
         var yourlength=$('input[name="yourlength"]:checked').val();
-        console.clear();
-        console.log("height_select:"+height_select+"body_weight:"+body_weight+"yourfit:"+yourfit+"yourlength:"+yourlength);  
+        // console.clear();
+        // console.log("height_select:"+height_select+"body_weight:"+body_weight+"yourfit:"+yourfit+"yourlength:"+yourlength);  
         shritDimension.HEIGHTinch=height_select;
         shritDimension.standardsize=size_select;
         shritDimension.WEIGHTkg=body_weight;
         shritDimension.fitype=yourfit;
         shritDimension.length=yourlength;
-        
         /*added by var for standard measurements*/
         shritDimension.shoulder=$("#lum_input_required1").val();
         shritDimension.neck=$("#lum_input_required2").val();
         shritDimension.sleeve=$("#lum_input_required3").val();
         shritDimension.shirt_length=$("#lum_input_required5").val();
         shritDimension.chest=$("#lum_input_required6").val();
-        shritDimension.waist=$("#lum_input_required8").val();
-        
+        shritDimension.waist=$("#lum_input_required8").val();       
         /*end by var*/
         //ajax call to server420
         var result ="imagedata";
@@ -1454,20 +1462,16 @@ if(selected_size!=undefined){
         base_url = '<?php echo $bas_ul; ?>';
         // var exact_price = $("#prd_price").val();
         // var product_id = $("#prd_id").val();
-        var subcatid='<?php echo $_SESSION['subcatid']; ?>';
+        var subcatid=10;
         var ordertype;
-        //alert("tyoe"+subcatid);
+        //alert("tyoe"+subcatid);    
         if(subcatid=="10")
         {
          ordertype="shirt";
         }
-        else if(subcatid=="11")
-        {
-         ordertype="pant";
-        }
+
         //var fabric_nameshirt = $("#prd_namme").val();
         var loginUser='<?php echo $_SESSION['user_id']; ?>';
-        console.log(base_url);
         if(loginUser)
         {
           $.ajax({
@@ -1475,29 +1479,32 @@ if(selected_size!=undefined){
               type: 'POST',
               data:
               {
-                details_up : JSON.stringify(shritDimension),
-                measureid :  measureid
-                  },
+                  details_up : JSON.stringify(shritDimension),
+                  measureid :  measureid,
+                  subcatid:subcatid,
+              },
               success: function(response) {
                   console.log("AVR"+response);
-                   window.location.href= base_url+"cart/lum_view_cart";
+                 window.location.href= base_url+"home/mdemo";
               }
             });
         }
+
+
       });
 
     /** Add Measurement data collect from here.
     *******
     *****
     ***/
-    base_url = '<?= $bas_ul ?>';
 
+    base_url = '<?= $bas_ul ?>';
     $("#add-mesurement").on("click",function(){
         // var data = $(".mesure-form").serialize();
         var data = $(".mesure-form").serializeArray();
         //console.log("Get the all the data of measure form");
         //console.log(data[1].name);               
-       data.forEach(function(item) {
+        data.forEach(function(item) {
             var nameofid=$('input[name="'+item.name+'"]:eq(0)').attr('id') // First
             $('#'+nameofid).css({"border":"1px solid #666"});
             if(item.value=="" || item.value==undefined) {
@@ -1506,7 +1513,6 @@ if(selected_size!=undefined){
            }
             // do something with `item`
         });
-  
         $.ajax({
             url:base_url+'cart/new_mvalue' ,
             method: "POST",
@@ -1520,8 +1526,8 @@ if(selected_size!=undefined){
               location.href='<? echo $bas_ul?>/cart/lum_view_cart';
             }
         });
+    });
 
-   });
 
     /*change the instruction on body part*/
     /*date 14 sep 2016*/
