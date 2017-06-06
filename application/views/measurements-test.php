@@ -50,27 +50,24 @@ $https_url_large_img="http://www.stylior.com/upload/products1/";
 <?php if($this->session->flashdata('msg')): ?>
     <p><?php echo $this->session->flashdata('msg'); ?></p>
 <?php endif; ?>
-
 <!-- var end here -->
     <div class="tabs-options">
     <ul id="measure_tabs_options" class="nav nav-tabs" role="tablist">
-        <li role="presentation" class="active"><a href="#saved_profile" role="tab" data-toggle="tab">saved profile</a></li>
-        <li role="presentation"><a href="#standard_size" role="tab" data-toggle="tab">standard size</a></li>
+        <li role="presentation"><a href="#saved_profile" role="tab" data-toggle="tab">saved profile</a></li>
+        <li role="presentation" class="active"><a href="#standard_size" role="tab" data-toggle="tab">standard size</a></li>
         <li role="presentation"><a href="#body_measurement" role="tab" data-toggle="tab">measurement</a></li>        
     </ul>
     </div>
     <div class="tab-content measurement-tab-details" data-content="height">
-        <div role="tabpanel" class="tab-pane fade in active" id="saved_profile">
+        <div role="tabpanel" class="tab-pane fade  " id="saved_profile">
             <div class="height">
                 <div class="measurement_container container">
                     <div class="savedmeasure">
-                   <?php
-
-                    
+                  <?php                   
                     $uid=$_SESSION['user_id'];
                      $measureprofile = $this->home_model->allusermeasurements($uid);
-                     ?>
-                     <select name="save_m2" id="save_m2" class="measurement-select" onchange="showExistingMeasure(this.value);">
+                   ?>
+                    <select name="save_m2" id="save_m2" class="measurement-select" onchange="showExistingMeasure(this.value);">
                      <option value="">Choose profile</option>
                         <?php foreach($measureprofile as $mdetail)
                              {
@@ -198,13 +195,10 @@ $https_url_large_img="http://www.stylior.com/upload/products1/";
                             </div>
                             <input type="submit" class="lum_measurement_bottom_inner_top_button cart blue-btn" value="Add to Cart"  >
                         </form>
-                    </div>
-                    
+                    </div>                   
                              <?php } /*end of foreach*/ ?>
                     
-                    
-                    
-                    <?php       }  /*end of session uid check*/?>
+                    <?php  }  /*end of session uid check*/?>
                     
                     <!-- end collect data -->        
                     </div>
@@ -212,7 +206,7 @@ $https_url_large_img="http://www.stylior.com/upload/products1/";
             </div>
         </div>
 
-        <div role="tabpanel" class="tab-pane fade" id="standard_size">
+        <div role="tabpanel" class="tab-pane fade in active" id="standard_size">
             <div class="measurement_wrapper">
                 <div class="row">
                     <div class="content-measurement col-md-9 col-md-push-3 col-xs-12">
@@ -229,7 +223,7 @@ $https_url_large_img="http://www.stylior.com/upload/products1/";
                             </ul>
                         </div>
                         <div id="main" class="">
-                            <section id="std_fit" class="measurement-section">
+                            <section  href="#std_length" id="std_fit" class="measurement-section">
                                 <article>
                                    <div class="row">
                                        <h3>Your Fit</h3>
@@ -282,7 +276,7 @@ $https_url_large_img="http://www.stylior.com/upload/products1/";
                                 </article>           
                             </section>
                             
-                            <section id="std_length" class="measurement-section">
+                            <section href="#std_add_measurement" id="std_length" class="measurement-section">
                            
                             <article>
                                 <div class="row">
@@ -447,25 +441,46 @@ $https_url_large_img="http://www.stylior.com/upload/products1/";
                             <h3>summary</h3>
 
                             <div class="summary_container summary_info">
-                                <div class="summary_fit">
-                                </div>
-                                <div class="summary_length">
-                                </div>
-
-                                <div class="summary_measurement">
-                                    <p><label class="summary_meas_label">Height<span class="option-colon">:</span> </label><label class="summary_heigth"></label></p>
-                                    <p><label class="summary_meas_label">Weight<span class="option-colon">:</span></label><label class="summary_weight"> </label></p>
-                                    <p><label class="summary_meas_label">Size<span class="option-colon">:</span></label><label class="summary_size"> </label></p>
-                                    <p><label class="summary_meas_label">Shoulde<span class="option-colon">:</span></label><label class="summary_shoulder"> </label></p>
-                                    <p><label class="summary_meas_label">Neck<span class="option-colon">:</span></label><label class="summary_neck"> </label></p>
-                                    <p><label class="summary_meas_label">Sleeve<span class="option-colon">:</span></label><label class="summary_sleeve"> </label></p>
-                                    <p><label class="summary_meas_label">Length<span class="option-colon">:</span></label><label class="summary_shirt_length"> </label></p>
-                                    <p><label class="summary_meas_label">Ches<span class="option-colon">:</span></label><label class="summary_chest"> </label></p>
-                                    <p><label class="summary_meas_label">Waist<span class="option-colon">:</span></label><label class="summary_waist"> </label></p>
-                                </div>
-                            </div>
-
-                            <button type="submit" id="standard_reset" class="blue-btn lum_measurement_bottom_inner_top_button cart" onclick="resetStandard();">Reset</button>
+                             <!-- start var -->
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="summary_fit">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="summary_length">
+                                        </div>
+                                        
+                                    </div>
+                               </div>
+                         <!-- end var -->
+                         <div class="summary_measurement">
+                                <table class="table table-responsive summary-table">
+                                        <tbody>
+                                        <tr><td><label class="summary_meas_label">Height<span class="option-colon"></span></label></td>
+                                        <td><label class="summary_heigth"></label></td></tr>
+                                        <tr><td><label class="summary_meas_label">Weight<span class="option-colon"></span></label></td>
+                                        <td><label class="summary_weight"> </label></td></tr>
+                                        <tr><td><label class="summary_meas_label">Size<span class="option-colon"></span></label></td>
+                                        <td><label class="summary_size"> </label></td></tr>
+                                        <tr><td><label class="summary_meas_label">Shoulde<span class="option-colon"></span></label></td>
+                                       <td><label class="summary_shoulder"> </label></td></tr>
+                                        <tr><td><label class="summary_meas_label">Neck<span class="option-colon"></span></label></td>
+                                        <td><label class="summary_neck"> </label></td></tr>
+                                        <tr><td><label class="summary_meas_label">Sleeve<span class="option-colon"></span></label></td>
+                                        <td><label class="summary_sleeve"> </label></td></tr>
+                                        <tr><td><label class="summary_meas_label">Length<span class="option-colon"></span></label></td>
+                                        <td><label class="summary_shirt_length"> </label></td></tr>
+                                        <tr><td><label class="summary_meas_label">Ches<span class="option-colon"></span></label></td>
+                                         <td><label class="summary_chest"> </label></td></tr>
+                                        <tr><td><label class="summary_meas_label">Waist<span class="option-colon"></span></label></td>
+                                        <td><label class="summary_waist"> </label></td></tr>
+                                        </tbody>
+                                </table>         
+                        </div><!-- end of summary_measurement -->  
+                        </div>
+                        
+                        <button type="submit" id="standard_reset" class="blue-btn lum_measurement_bottom_inner_top_button cart" onclick="resetStandard();">Reset</button>
 
 
                     </div>
@@ -494,9 +509,9 @@ $https_url_large_img="http://www.stylior.com/upload/products1/";
                                 <li class="awesome-tooltip" title="Measurement"><a href="#add_measurement"></a></li>
                             </ul>
                         </div>
-                        
+
                         <div id="main" class="">
-                        <section id="fit" class="measurement-section">
+                        <section id="fit" href="#body_posture" class="measurement-section">
                                 <article>
                                    <div class="row">
                                         <h3>Your Fit</h3>
@@ -529,7 +544,7 @@ $https_url_large_img="http://www.stylior.com/upload/products1/";
                             </article>           
                         </section>
             
-                        <section id="body_posture" class="measurement-section">
+                        <section id="body_posture" href="#shoulder_type" class="measurement-section">
                            <article>
                                 <div class="row">
                                    <h3>Body Posture</h3>
@@ -564,7 +579,7 @@ $https_url_large_img="http://www.stylior.com/upload/products1/";
 
                             </section>
                             
-                            <section id="shoulder_type" class="measurement-section">
+                            <section id="shoulder_type"  href="#shoulder_angle" class="measurement-section">
                                 <article>
                                     <div class="row">
                                         <h3>Shoulder Type</h3>
@@ -603,7 +618,7 @@ $https_url_large_img="http://www.stylior.com/upload/products1/";
                                 </article>           
                             </section>
 
-                            <section id="shoulder_angle" class="measurement-section">
+                            <section id="shoulder_angle" href="#add_measurement" class="measurement-section">
                                 <article>
                                     <div class="row">
                                         <h3>Shoulder Angle</h3>
@@ -771,16 +786,31 @@ $https_url_large_img="http://www.stylior.com/upload/products1/";
                             <h3>summary</h3>
                                 <!-- start var  -->
                             <div class="summary_container">
-                                <div class="bm_summary_fit">
+								<div class="row">
+									<div class="col-md-6">
+										<div class="bm_summary_fit pull-right">
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="bm_summary_body_posture pull-left">
+										</div>
+										
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="bm_summary_shoulder_type pull-right">
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="bm_summary_shoulder_angle pull-left">
+										</div>
+									</div>
                                 </div>
-                                <div class="bm_summary_shoulder_type">
-                                </div>
-                                <div class="bm_summary_body_posture">
-                                </div>
-                                <div class="bm_summary_shoulder_angle">
-                                </div>
-
-                                <div class="bm_summary_measurement">
+								
+								<!-- old measurement summary code -->	
+                                <!-- 
+								<div class="bm_summary_measurement">
                                    <p><label class="summary_meas_label">Height<span class="option-colon">:</span> </label><label class="bm_summary_heigth"></label></p>
                                    <p><label class="summary_meas_label">Weight<span class="option-colon">:</span> </label><label class="bm_summary_weight"></label></p>
                                    <p><label class="summary_meas_label">Bicep<span class="option-colon">:</span> </label><label class="bm_summary_bicep"></label></p>
@@ -793,7 +823,62 @@ $https_url_large_img="http://www.stylior.com/upload/products1/";
                                    <p><label class="summary_meas_label">Arm Hole<span class="option-colon">:</span> </label><label class="bm_summary_armhole"></label></p>
                                    <p><label class="summary_meas_label">Hip<span class="option-colon">:</span> </label><label class="bm_summary_hip"></label></p>
                                    <p><label class="summary_meas_label">Waist<span class="option-colon">:</span> </label><label class="bm_summary_waist"></label></p>
-                                </div>
+                                </div> --> <!-- old measurement summary code -->
+								
+								<div class="bm_summary_measurement">
+									<table class="table table-responsive summary-table">
+										<tbody>
+											<tr>
+												<td><label class="summary_meas_label">Height<span class="option-colon"></span> </label></td>
+												<td><label class="bm_summary_heigth"></label></td>
+											</tr>
+											<tr>
+												<td><label class="summary_meas_label">Weight<span class="option-colon"></span> </label></td>
+												<td><label class="bm_summary_weight"></label></td>
+											</tr>
+											<tr>
+												<td><label class="summary_meas_label">Bicep<span class="option-colon"></span> </label></td>
+												<td><label class="bm_summary_bicep"></label></td>
+											</tr>
+											<tr>
+												<td><label class="summary_meas_label">Shoulder<span class="option-colon"></span> </label></td>
+												<td><label class="bm_summary_shoulder"></label></td>
+											</tr>
+											<tr>
+												<td><label class="summary_meas_label">Neck<span class="option-colon"></span> </label></td>
+												<td><label class="bm_summary_neck"></label></td>
+											</tr>
+											<tr>
+												<td><label class="summary_meas_label">Sleeve<span class="option-colon"></span> </label></td>
+												<td><label class="bm_summary_sleeve"></label></td>
+											</tr>
+											<tr>
+												<td><label class="summary_meas_label">Whist<span class="option-colon"></span> </label></td>
+												<td><label class="bm_summary_wrist"></label></td>
+											</tr>
+											<tr>
+												<td><label class="summary_meas_label">Length<span class="option-colon"></span></label></td>
+												<td><label class="bm_summary_shirt_length"></label></td>
+											</tr>
+											<tr>
+												<td><label class="summary_meas_label">Chest<span class="option-colon"></span> </label></td>
+												<td><label class="bm_summary_chest"></label></td>
+											</tr>
+											<tr>
+												<td><label class="summary_meas_label">Arm Hole<span class="option-colon"></span> </label></td>
+												<td><label class="bm_summary_armhole"></label></td>
+											</tr>
+											<tr>
+												<td><label class="summary_meas_label">Hip<span class="option-colon"></span> </label></td>
+												<td><label class="bm_summary_hip"></label></td>
+											</tr>
+											<tr>
+												<td><label class="summary_meas_label">Waist<span class="option-colon"></span> </label></td>
+												<td><label class="bm_summary_waist"></label></td>
+											</tr>
+										</tbody>	
+									</table>
+								</div>
                             
                             </div>
 
@@ -1140,7 +1225,6 @@ $(document).ready(function(){
       $('#bodymeasure-'+measureid).show();
 
     }
-
     /**** VAR : Create Function to reset 
     ***   Reset all selected Measurement from standard Shirt measurements
     **/
@@ -1180,7 +1264,6 @@ $(document).ready(function(){
     <label class="bm_summary_waist"> </label>
     </div>
     </div>*/
-
     function resetStandard(){     
         $(".option_with_bg").hide();
         $(".option_without_bg").show();
@@ -1229,7 +1312,7 @@ jQuery(document).ready(function($){
     tabContentWrapper = $('.cd-tabs-content');
     tabItems.on('click', function(event){
     event.preventDefault();
-    
+
     var selectedItem = $(this);
     
     if( !selectedItem.hasClass('selected') ) {
@@ -1245,6 +1328,7 @@ jQuery(document).ready(function($){
         'height': slectedContentHeight
       }, 200);
     }
+
   });
 
   //hide the .cd-tabs::after element when tabbed navigation has scrolled to the end (mobile version)
@@ -1272,19 +1356,18 @@ jQuery(document).ready(function($){
 
 var shritDimension={"HEIGHTinch":"","WEIGHTkg":"","pocket":"NO","Monogram":"NO","MonoLocation":"","Monofontstyle":"","Monocolor":"","Monotext":"None","fitype":"NO","standardsize":"NO","length":"NO","shoulder":"","neck":"","length":"","chest":"","waist":"","sleeve":""};
 
-var selectionType_summary={"height_select":"bm_summary_heigth","weight":"bm_summary_weight","lum_input_required0":"bm_summary_bicep","lum_input_required1":"bm_summary_shoulder","lum_input_required2":"bm_summary_neck","lum_input_required3":"bm_summary_sleeve","lum_input_required4":"bm_summary_wrist","lum_input_required5":"bm_summary_shirt_length","lum_input_required7":"bm_summary_armhole","lum_input_required9":"bm_summary_hip","lum_input_required8":"bm_summary_waist",};
+var selectionType_summary={"height_select":"bm_summary_heigth","weight":"bm_summary_weight","lum_input_required0":"bm_summary_bicep","lum_input_required1":"bm_summary_shoulder","lum_input_required2":"bm_summary_neck","lum_input_required3":"bm_summary_sleeve","lum_input_required4":"bm_summary_wrist","lum_input_required5":"bm_summary_shirt_length","lum_input_required6":"bm_summary_chest","lum_input_required7":"bm_summary_armhole","lum_input_required9":"bm_summary_hip","lum_input_required8":"bm_summary_waist",};
 
 $(".mesure-form").change(function(){
-    
-    console.log("This is testing for measure form");
-    console.log($(this).val());
-    console.log($(this).attr('id'));
-    var gettheid=$(this).attr('id');
-    console.log("this is selection type by body measurement");
-    console.log("this is id of current id"+selectionType_summary[gettheid]);
-    
-    $("."+selectionType_summary[gettheid]).text($(this).val());
-      
+   
+    // console.log("This is testing for measure form");
+    // console.log($(this).val());
+    // console.log($(this).attr('id'));
+    // var gettheid=$(this).attr('id');
+    // console.log("this is selection type by body measurement");
+    // console.log("this is id of current id"+selectionType_summary[gettheid]);
+
+    $("."+selectionType_summary[gettheid]).text($(this).val());     
             // $.each(selectionType_bm, function(key, value){
             //     console.log(key, value);
             // });
@@ -1380,6 +1463,12 @@ var measurement_server="";
 $('select#size_select').change(function(){
 var selected_size=$("#size_select option:selected").text();
 var     base_url = '<?php echo $bas_ul; ?>';
+
+/*var start*/
+
+$(".summary_size").text(selected_size);
+
+
 if(selected_size!=undefined){
       console.log("var testing."+selected_size+"url"+base_url);
       $.ajax({
@@ -1595,53 +1684,43 @@ if(selected_size!=undefined){
    /*summary work start */
     $(".height_select").on("click",function(){
         var height_selected=$(this).val();
-        $(".summary_heigth").text(height_selected);
+        $(".summary_heigth").text(height_selected);   
     });
 
-    $("#body_weight").on("click",function(){
+    $("#body_weight").on("change",function(){       
         var height_selected=$(this).val();
         $(".summary_weight").text(height_selected);
     });
 
     //shoulder value collection
     $("#lum_input_required1").on("change",function(){
-        
         var valuetext=$(this).val();
         $(".summary_shoulder").text(valuetext);
-   
     });
+
     //neck text value collect
      $("#lum_input_required2").on("change",function(){
-        
-        var valuetext=$(this).val();
+           var valuetext=$(this).val();
         $(".summary_neck").text(valuetext);
-   
-    });
+     });
 
     //sleeve text value collect
      $("#lum_input_required3").on("change",function(){
-        
         var valuetext=$(this).val();
         $(".summary_sleeve").text(valuetext);
-   
-    });
+     });
 
+    //shirt_length text value collect
+     $("#lum_input_required5").on("change",function(){      
+        var valuetext=$(this).val();
+        $(".summary_shirt_length").text(valuetext);
+     });
 
     //shirt_length text value collect
      $("#lum_input_required5").on("change",function(){
-        
         var valuetext=$(this).val();
         $(".summary_shirt_length").text(valuetext);
-   
-    });
-
-    //shirt_length text value collect
-     $("#lum_input_required5").on("change",function(){
-        
-        var valuetext=$(this).val();
-        $(".summary_shirt_length").text(valuetext);
-   
-    });
+      });
 
 
     //shirt_length text value collect
@@ -1649,8 +1728,9 @@ if(selected_size!=undefined){
         var valuetext=$(this).val();
         $(".summary_chest").text(valuetext);
      });
+
     //shirt_length text value collect
-     $("#lum_input_required7").on("change",function(){       
+    $("#lum_input_required7").on("change",function(){       
         var valuetext=$(this).val();
         $(".summary_chest").text(valuetext);
     });
@@ -1666,11 +1746,7 @@ if(selected_size!=undefined){
     });
 // #PC : end
 
-
-
-   
-
-    $(".meas_option_rel").on("click",function(){
+ $(".meas_option_rel").on("click",function(){
 
             var selected_value=$(this).attr("rel");        
             console.log("This is select value"+selected_value);            
@@ -1806,6 +1882,23 @@ if(selected_size!=undefined){
 
             });
 
+           /**
+           *** var start
+           *** scroll onclick
+           **/
+            $('#std_fit,#std_length,#std_add_measurement,#fit,#body_posture,#shoulder_type,#shoulder_angle,#add_measurement').on('click', function(event) {
+              //alert(this.id)    
+                var target = $(this.getAttribute('href'));
+                if( target.length ) {
+                         event.preventDefault();
+                $('html, body').stop().animate({
+                        scrollTop: target.offset().top
+                }, 1000);
+                }
+
+             });
+
+            /*var end*/
 
 });
 

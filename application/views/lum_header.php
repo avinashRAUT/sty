@@ -25,14 +25,13 @@ function getIPAddress($deep_detect){
 //$ip="86.96.201.72";
    if (filter_var($ip, FILTER_VALIDATE_IP) === FALSE) {
         $ip = $_SERVER["REMOTE_ADDR"];
-
         if ($deep_detect) {
             if (filter_var(@$_SERVER['HTTP_X_FORWARDED_FOR'], FILTER_VALIDATE_IP))
                 $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
             if (filter_var(@$_SERVER['HTTP_CLIENT_IP'], FILTER_VALIDATE_IP))
                 $ip = $_SERVER['HTTP_CLIENT_IP'];
-        }
-    }
+          }
+  }
 
 $geopluginURL='http://www.geoplugin.net/php.gp?ip='.$ip;
 $addrDetailsArr = unserialize(file_get_contents($geopluginURL));
@@ -368,7 +367,7 @@ src="https://www.facebook.com/tr?id=1248172288528875&ev=PageView&noscript=1"
                                         </div>
                                     </div>
                                     <div class="col-menu col-md-4 col-xs-12 nav-offerImage offer_image">
-                                    <img src="<?= $https_url ?>site/images/header/nav_studio_2.jpg" class="img-responsive" alt="shop">
+                                    <a href="<?php echo $bas_ul; ?>home/mdemo"><img src="<?= $https_url ?>site/images/header/nav_studio_2.jpg" class="img-responsive" alt="shop">
                                     </div>
                             </div>
                         </li>
@@ -592,11 +591,9 @@ src="https://www.facebook.com/tr?id=1248172288528875&ev=PageView&noscript=1"
         </div>
       </div>
       </div>
+   </div>
 
-
-
-    </div>
-</div>
+   </div>
 <script>
      function changecurrency(val)
   {

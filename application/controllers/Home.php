@@ -5766,23 +5766,13 @@ public function shop_accessories($catid,$subcatid)
 	}
 
 	 public function careers()
-
 	{
 
 		$this->load->helper('url');
-
 		$this->output->enable_profiler(FALSE);
-
-
-
         $this->load->view('lum_header');
-
 		$this->load->view('careers');
-
         $this->load->view('lum_footer');
-
-
-
 	}
 
 	public function contactus()
