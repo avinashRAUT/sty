@@ -791,7 +791,7 @@ function savemesurementoncart()
      }
       //end of var
     else if($this->session->userdata['subcatid']==16 ||$this->session->userdata['selected3dInfo_blazer']['subcatid']==16)
-      {
+     {
         //var trouserMeasure={"HEIGHTinch":"","WEIGHTkg":"","pocket":"NO","Monogram":"NO","MonoLocation":"","Monofontstyle":"","Monocolor":"","Monotext":"None","fitype":"NO","standardsize":"NO","length":"NO","waist":"","hip":"","rise":"","bottom":"","knee":"","thigh":""};
         $sss['measurements']['standardsize']=$josntoadded['standardsize'];
         $sss['measurements']['WEIGHTkg']=$josntoadded['WEIGHTkg'];
@@ -840,22 +840,38 @@ function savemesurementoncart()
 		/*var start*/		
 		$count_cart=count($lastitemmycart);
 
-		if($count_cart<=0) {
-			$params = array(
+		/*var stared : Measurement without the product reference code*/
+		/*** Measurement before user login ..
+		*/
+		if($count_cart<=0) { 
+
+		   $params = array(
 			'subcatid' => $_POST['subcatid'],
 			'options' => $josnmy['details'],
 			'userid' => $_SESSION['user_id'],
 			'added_date' => date("Y/m/d"),
-			);
+			);		
 
-		$standard_measurement_id = $this->standard_measurement_model->add_standard_measurement($params);           	
+			if($_POST['loginUser']=="no" && !isset($_SESSION['user_id'])){
+				$_SESSION['standard_measurement']=$params;     
+	      	exit();
+			}
+			else if(isset($_SESSION['user_id'])){
+		   		$params = $_SESSION['standard_measurement'];
+				$standard_measurement_id = $this->standard_measurement_model->add_standard_measurement($params);  
+		   		exit();
 
-		$this->session->set_flashdata('msg', 'Measurement Added Successfully');
+               unset($_SESSION['standard_measurement']);
+			}
+			else{ 
+				$standard_measurement_id = $this->standard_measurement_model->add_standard_measurement($params);           	
+				$this->session->set_flashdata('msg', 'Measurement Added Successfully');
+				exit();
+		    }
+	    
+	    }
+       /*End of Var Code Measurement wihout Product and Before login*/
 
-		//redirect($this->config->item('http_host').'home/mdemo','refresh');
-  	 	exit();
-
-		}
 
 		/*var end*/
 		$updateddetailsmycart=json_encode($josnmy);

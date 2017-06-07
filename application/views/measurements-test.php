@@ -30,7 +30,7 @@ $https_url_large_img="http://www.stylior.com/upload/products1/";
 .pre-loader{
     display: none;
     position: fixed;
-    top: 0;
+    top: 50%;
     right: 0;
     left: 0;
     right: 0;
@@ -42,11 +42,8 @@ $https_url_large_img="http://www.stylior.com/upload/products1/";
 
 </head>
 <body>
-<div class="measurement_tabs_section">
-    
-
+<div class="measurement_tabs_section">   
 <!-- var added flash message at the top -->
-
 <?php if($this->session->flashdata('msg')): ?>
     <p><?php echo $this->session->flashdata('msg'); ?></p>
 <?php endif; ?>
@@ -134,9 +131,6 @@ $https_url_large_img="http://www.stylior.com/upload/products1/";
                                     $shouldertype_val ='Straight';
                                     }?>
                                     <td><?php echo $shouldertype_val;?></td>
-
-
-
                                     <?php
                                     $shoulderangle = $mdetail->shoulderangle;
                                     if($shoulderangle == '0')
@@ -171,8 +165,8 @@ $https_url_large_img="http://www.stylior.com/upload/products1/";
 
                             $val_body="-";
                             }
-
                             ?>
+
                             <input type="hidden"  name="" value="<?php echo $val_body;?>">
                             <p class="saved_profiles_details">
                             <?php if($uns != '') {
@@ -196,10 +190,8 @@ $https_url_large_img="http://www.stylior.com/upload/products1/";
                             <input type="submit" class="lum_measurement_bottom_inner_top_button cart blue-btn" value="Add to Cart"  >
                         </form>
                     </div>                   
-                             <?php } /*end of foreach*/ ?>
-                    
+                    <?php } /*end of foreach*/ ?>
                     <?php  }  /*end of session uid check*/?>
-                    
                     <!-- end collect data -->        
                     </div>
                 </div>
@@ -1573,12 +1565,31 @@ if(selected_size!=undefined){
                   subcatid:subcatid,
               },
               success: function(response) {
-                  console.log("AVR"+response);
                  window.location.href= base_url+"home/mdemo";
               }
             });
         }
+        else {
+        /*var Start on 6th June 2017*/
+        $.ajax({
+            url: base_url+"cart/updatecart",
+            type: 'POST',
+            data:
+            {
+              details_up : JSON.stringify(shritDimension),
+              measureid :  measureid,
+              subcatid:subcatid,
+              loginUser:'no',
+            },
+            success: function(response) {           
+              console.log("var testing without login"); 
+              console.log(response);
+                window.location.href= base_url+"home/lum_login";
+            }
+         });
 
+        /*var end 6th June 17*/
+        }
 
       });
 

@@ -32,7 +32,6 @@ function getIPAddress($deep_detect){
                 $ip = $_SERVER['HTTP_CLIENT_IP'];
           }
   }
-
 $geopluginURL='http://www.geoplugin.net/php.gp?ip='.$ip;
 $addrDetailsArr = unserialize(file_get_contents($geopluginURL));
 return $addrDetailsArr;
@@ -48,8 +47,6 @@ if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
     $ip = $_SERVER['REMOTE_ADDR'];
 }
 */
-
-
 if(!isset($_SESSION['currencycode']))
 {
 
@@ -345,13 +342,13 @@ src="https://www.facebook.com/tr?id=1248172288528875&ev=PageView&noscript=1"
                         </li>
                     </ul>
                  </li>
-                <li class="dropdown megamenu-fw suvb studioNav">
+
+           <!--      <li class="dropdown megamenu-fw suvb studioNav">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">studio</a>
                     <ul class="dropdown-menu megamenu-content" role="menu">
                       <li>
                             <div class="row">
                                     <div class="col-menu col-md-4 col-xs-12 nav-offerImage offer_image">
-                                    <!--<img src="<?= $https_url ?>site/images/header/nav_studio_1.jpg" class="img-responsive" alt="shop" >-->
                                         <a href="<?php echo $bas_ul;?>trial-shirt"><img src="<?= $https_url ?>site/images/header/first-shirt.jpg" class="img-responsive" alt="shop" ></a>
                                     </div>
                                     <div class="col-menu col-md-4 col-xs-12 studio-customize">
@@ -367,12 +364,17 @@ src="https://www.facebook.com/tr?id=1248172288528875&ev=PageView&noscript=1"
                                         </div>
                                     </div>
                                     <div class="col-menu col-md-4 col-xs-12 nav-offerImage offer_image">
-                                    <a href="<?php echo $bas_ul; ?>home/mdemo"><img src="<?= $https_url ?>site/images/header/nav_studio_2.jpg" class="img-responsive" alt="shop">
+                                    <a href="<?php echo $bas_ul; ?>home/mdemo"><img src="<?= $https_url ?>site/images/header/nav_studio_2.jpg" class="img-responsive" alt="shop"></a>
                                     </div>
                             </div>
                         </li>
                     </ul>
                 </li>
+ -->
+<!-- var : temp change -->
+              <li><a href="<?php echo $bas_ul;?>trial-shirt">TRIAL SHIRT</a></li>
+<!-- end var -->
+
               <li><a href="<?php echo $bas_ul;?>book-a-home-visit">BOOK A HOME VISIT</a></li>
                 <li><a href="<?php echo $bas_ul;?>wedding-suit">WEDDING</a></li>
                 <li><a href="<?php echo $bas_ul;?>store">STORE</a></li>

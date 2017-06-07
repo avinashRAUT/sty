@@ -78,7 +78,6 @@
 			$data[$key]=$this->input->post($key);
 			}
 		   $this->Bilship_model->updateaddress($data);
-
 			$this->session->set_flashdata('L_strErrorMessage','Address Updated Succcessfully!!!!');
 
 			redirect($this->config->item('base_url_temp').'home/lum_my_account');
@@ -5638,7 +5637,6 @@ public function shop_accessories($catid,$subcatid)
 
 	public function auth()
 	{
-
 		$this->load->library('session');
 		$this->load->helper('url');
 		$this->output->enable_profiler(FALSE);
@@ -5649,14 +5647,13 @@ public function shop_accessories($catid,$subcatid)
 		$is_valid_user=$this->User_model->login($_POST['email'],$_POST['password']);
 		if($is_valid_user)
 		{
-
 			$this->session->set_userdata("user_info",$is_valid_user[0]);
 			$_SESSION['user_id']      = (int)$is_valid_user[0]->id;
 			$_SESSION['username']     = (string)$is_valid_user[0]->username;
 			$_SESSION['logged_in']    = (bool)true;
 			$_SESSION['email'] = $is_valid_user[0]->email;
-
-			$newuserdata = array(
+    
+    		$newuserdata = array(
 				'username'  => (int)$is_valid_user[0]->id,
 				'userid'    => (string)$is_valid_user[0]->username,
 				'email'     =>$is_valid_user[0]->email ,
@@ -5691,7 +5688,15 @@ public function shop_accessories($catid,$subcatid)
    				redirect($this->config->item('base_url_temp').'Cart/addToCartShirt', 'location') ;
 			}		
 			else */
-			if(isset($_SESSION['selected3dInfo_pant']) && !empty($_SESSION['selected3dInfo_pant'])&& isset($_SESSION['selected3dInfo_shirt']) && !empty($_SESSION['selected3dInfo_shirt'])){
+			if(isset($_SESSION['standard_measurement']))
+			{		
+
+					//$_SESSION['standard_measurement']['user_id']
+					$_SESSION['standard_measurement']['userid']=$_SESSION['user_id'];
+					redirect($this->config->item('base_url_temp').'Cart/updatecart', 'location');
+
+			}
+			else if(isset($_SESSION['selected3dInfo_pant']) && !empty($_SESSION['selected3dInfo_pant'])&& isset($_SESSION['selected3dInfo_shirt']) && !empty($_SESSION['selected3dInfo_shirt'])){
 				
 				$_SESSION['ordertype']="both";
    				redirect($this->config->item('base_url_temp').'Cart/addToCartTrouser', 'location');
@@ -6730,17 +6735,18 @@ public function getbodypart(){
 
 	/*delete this once u complete the measruement*/
 	function mdemo(){
-	if( !$this->session->userdata('logged_in'))
-		{
+	// if( !$this->session->userdata('logged_in'))
+	// 	{
 		
-		$this->load->view('lum_header.php');
-	    $this->load->view('page_404.php');
-	    $this->load->view('lum_footer.php');
+	// 	$this->load->view('lum_header.php');
+	//     $this->load->view('page_404.php');
+	//     $this->load->view('lum_footer.php');
 
- 		}
- 		else {
+ // 		}
+ // 		else {
+
 	    $this->load->view('measurements-test.php');	
- 	   }
+ 	   //}
 	}
 
 	/*delete this once u complete the measruement*/
