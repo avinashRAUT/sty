@@ -2715,6 +2715,45 @@ public function shop_accessories($catid,$subcatid)
 
 		}
 
+		/*   var started :
+   		***  the working on discount calculation for the offers
+   		***   7th JUne 2017 Remove this function after use.
+   		*/
+
+
+		public function shop_shirts_test($catid,$subcatid)
+		{
+		    $this->load->library('pagination');   	
+	    	$this->load->model('home_model');
+			//$this->data['details'] = $this->home_model->shop_suit(10);; X	
+			$this->data['metadata'] = $this->home_model->getCategoryInfo(10);
+			$metadata['title'] = $this->data['c'][0]->title; 
+			$metadata['metadescription'] = $this->data['c'][0]->description; 
+			$metadata['metakeywords'] = $this->data['c'][0]->keyword;	     	
+			/*start var*/
+			$config = array();
+			//$config['base_url'] = 'https://www.stylior.com/home/shop_shirts_page/';	
+			$config['base_url'] = $this->config->item('base_url_temp').'mens-shirts';
+			$config["total_rows"] = count($this->home_model->shop_suit(10));
+			$config["uri_segment"] = 2;	
+			$page = ($this->uri->segment(2)) ? $this->uri->segment(2) : 0;
+			$config["per_page"] =20;
+		    $choice = $config["total_rows"] / $config["per_page"];
+		    $config["num_links"] = round($choice);    
+		    $data["details"] = $this->home_model->shop_suit_page(10,$page,$config["per_page"]);
+			$this->pagination->initialize($config);          
+	    	$data["links"] = $this->pagination->create_links(); 
+	     	$this->load->helper('url');
+			$this->output->enable_profiler(FALSE);
+			$this->load->view('lum_header',$metadata);
+			$this->load->view('shirts_test',$data);
+			$this->load->view('lum_footer');
+
+		}
+ /*** var END :*/
+
+   
+
 		public function shop_trousers($catid,$subcatid)
 		{
 			//Previous code of trouser before pagination...

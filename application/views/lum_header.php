@@ -387,6 +387,7 @@ src="https://www.facebook.com/tr?id=1248172288528875&ev=PageView&noscript=1"
               <li><a href="https://www.stylior.com/fabric-guide">FABRIC GUIDE</a></li>
               <li><a href="https://www.stylior.com/faq">FAQ</a></li>
               <li><a href="https://www.stylior.com/why-custom">WHY CUSTOM</a></li>
+              <li><a href="https://www.stylior.com/careers">CAREERS</a></li>
                     </ul>
    
                 </li>

@@ -859,9 +859,10 @@ function savemesurementoncart()
 			else if(isset($_SESSION['user_id'])){
 		   		$params = $_SESSION['standard_measurement'];
 				$standard_measurement_id = $this->standard_measurement_model->add_standard_measurement($params);  
-		   		exit();
-
                unset($_SESSION['standard_measurement']);
+				redirect($this->config->item('http_host').'home/mdemo','refresh',$data);
+				exit();
+
 			}
 			else{ 
 				$standard_measurement_id = $this->standard_measurement_model->add_standard_measurement($params);           	
