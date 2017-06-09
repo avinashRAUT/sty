@@ -178,9 +178,9 @@ max-height:500px; overflow-y:scroll}
         <div class="product-title-wishlist"><?php echo $proname;?>
 
 		<span>
-		<?php
-
-			if($this->session->userdata('currencycode')=="" ||$this->session->userdata('currencycode') == 'INR')
+		
+    <?php
+      if($this->session->userdata('currencycode')=="" ||$this->session->userdata('currencycode') == 'INR')
 			{
 				echo "INR ".$cmsf->price;
 			}
@@ -218,8 +218,21 @@ max-height:500px; overflow-y:scroll}
 
 				//echo ceil(( $image['result'][$i]->price / ( $this->session->userdata('currencyvalue') * ($this->session->userdata('multiplier')/100)) )/$this->session->userdata('ceiling'))*$this->session->userdata('ceiling');
 			}
+
 			?>
+
       </span>
+      
+      <?php 
+      /*var : stared for discount offer*/
+          $price_of_product=$cmsf->{$this->session->userdata('currencycode')};
+          $discount_value = round((($price_of_product*25)/100));
+          $price_of_product=$price_of_product-$discount_value;
+          echo "<span class='dis_price' style='display:none'>".$this->session->userdata('currencycode')." ".$price_of_product."</span>";
+        /*var : end*/
+      ?>
+
+
 		</div>
 
     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
@@ -233,11 +246,11 @@ max-height:500px; overflow-y:scroll}
                     </a>
                 </h4>
             </div>
+            
             <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                 <div class="panel-body">
                       <!-- <h3>DETAILS </h3> -->
                       <ul>
-
                       <li><strong>Description :</strong> <?php echo $prodescr;?></li>
                       <li><strong>Fabric :</strong> <?php echo $fabricid;?></li>
                       <li><strong>Pattern :</strong> <?php echo $designid;?></li>
@@ -248,10 +261,11 @@ max-height:500px; overflow-y:scroll}
 
                       <li><strong>Free Shipping :</strong> We provide free shipping globally. </li>
 
-                      <li><strong>Alterations & Returns :</strong> Stylior promises perfect fit guarantee. If it doesn't fit
-we provide free alteration, or remake for the outfits we produce.</li>
+                      <li><strong>Alterations & Returns :</strong> 
+        Stylior promises perfect fit guarantee. If it doesn't fit
+        we provide free alteration, or remake for the outfits we produce.
+  </li>
                           </ul>
-
                 </div>
             </div>
         </div>
@@ -563,9 +577,8 @@ we provide free alteration, or remake for the outfits we produce.</li>
         <div class="col-lg-4 col-md-4 buy_now">
         <a  class="quick-c-btn">buy now</a>
         </div>
-
-
         </div>
+
 				<div class=gap10>
 				</div>
 
@@ -937,7 +950,8 @@ jQuery(document).ready(function($) {
         });
 });
 </script>
-    <script>
+
+<script>
       var shirtDimension={"collar":"Regular","cuff":"Round", "pocket":"Pocket", "Monogram":"No", "MonoLocation":"", "Monofontstyle":"", "Monocolor":"", "Monotext":"None", "fitype":"None", "standardsize":"None", "length":"None","product_details_page":"<?php echo $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']; ?>",};
 
       $(document).ready(function () {
@@ -961,24 +975,24 @@ jQuery(document).ready(function($) {
          $(this).addClass('active');
        });
 
-     /*  $(".fittype_select").on("click",function(){
-        console.log("This is fittype id :"+this.id);
-        shirtDimension.fitype=this.id.replace(/_/g, ' ');
+      /*  $(".fittype_select").on("click",function(){
+      console.log("This is fittype id :"+this.id);
+      shirtDimension.fitype=this.id.replace(/_/g, ' ');
 
-         $('.fittype_select').removeClass('active');
-        $(this).addClass('active');
-        $('#fit_error').removeClass('option_error');
-        $('#fit_error').hide();
+      $('.fittype_select').removeClass('active');
+      $(this).addClass('active');
+      $('#fit_error').removeClass('option_error');
+      $('#fit_error').hide();
       });
 
-       $(".length_select").on("click",function(){
-        console.log("This is fittype id :"+this.id);
-        shirtDimension.length=this.id.replace(/_/g, ' ');
+      $(".length_select").on("click",function(){
+      console.log("This is fittype id :"+this.id);
+      shirtDimension.length=this.id.replace(/_/g, ' ');
 
-         $('.length_select').removeClass('active');
-        $(this).addClass('active');
-        $('#length_error').removeClass('option_error');
-         $('#length_error').hide();
+      $('.length_select').removeClass('active');
+      $(this).addClass('active');
+      $('#length_error').removeClass('option_error');
+      $('#length_error').hide();
       });*/
 
       $(".pocket_select").on("click",function(){
@@ -1161,17 +1175,18 @@ jQuery(document).ready(function($) {
           });
 
           return false;
+
         }
 
       }
-         });
+  });
 
-
-        $(".add_wishlist").on("click",function(){
+  $(".add_wishlist").on("click",function(){
 
         var product_id = $("#prd_id").val();
         var loginUser='<?php echo $_SESSION['user_id']; ?>';
         base_url = '<? echo $bas_ul?>';
+
         if(loginUser)
         {
           //alert("hii");
@@ -1227,23 +1242,17 @@ jQuery(document).ready(function($) {
 
 
          });
-
-
-
-      });
-    </script>
-
-
-<script type="text/javascript">
-
-$(".carousel").swipe({
-swipe: function(event, direction, distance, duration, fingerCount, fingerData) {
-    if (direction == 'left') $(this).carousel('next');
-    if (direction == 'right') $(this).carousel('prev');
-  },
-  allowPageScroll:"vertical"
-});
+   });
 </script>
+<script type="text/javascript">
+  $(".carousel").swipe({
+  swipe: function(event, direction, distance, duration, fingerCount, fingerData) {
+      if (direction == 'left') $(this).carousel('next');
+      if (direction == 'right') $(this).carousel('prev');
+    },
+    allowPageScroll:"vertical"
+  });
+  </script>
 
 <script type="text/javascript">
 

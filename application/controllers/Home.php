@@ -780,6 +780,7 @@ public function subscribe()
    	     $_SESSION['subscribe']="";
 		$emailavail = $this->home_model->checksubscriber($email);
 		$_SESSION['user_subscribe']="";
+
 	    if($emailavail==1||$emailavail==true){
             $_SESSION['sub_message']="Already subscribed, Thank you!";
             $_SESSION['user_subscribe']="registered";
@@ -794,10 +795,11 @@ public function subscribe()
 		$headers .= 'From: stylior.com <newsletter@stylior.com>' . "\r\n" .
 					'Reply-To: newsletter@stylior.com' . "\r\n" .
 					'X-Mailer: PHP/' . phpversion();
+		
 		mail($email, $subject, $message, $headers);
 		mail('newsletter@stylior.com', $subject, $message, $headers);
-		//mail('patelnikul321@gmail.com', $subject, $message, $headers);
-		 if(mail($email, $subject, $message, $headers))
+		
+		if(mail($email, $subject, $message, $headers))
 	      {
 	      //echo "<script>alert('Thank you for subscribe with stylior.com !');</script>";
 	      $_SESSION['sub_message']="Thank you for subscribing with stylior.com !";
@@ -813,6 +815,7 @@ public function subscribe()
 
 	      }
 	}
+
 
  }
 

@@ -28,9 +28,8 @@ function validateForm()
 {
  		var newemail = $("#newemail").val();
 		console.log(newemail.length)
-		var lenEmail=newemail.length;
-		//return false;
-
+    	var lenEmail=newemail.length;
+	   	//return false;
         if(newemail == '' || lenEmail<4)
 		{
 			document.getElementById('error').innerHTML = ('Please Enter Email');
@@ -48,6 +47,8 @@ function validateForm()
         }
 }
 </script>
+
+
 
 <!--<script type='text/javascript'>var _refiral=_refiral||{};_refiral.apiKey='0e7c7d6c41c76b9ee6445ae01cc0181d';(function(){var ref=document.createElement('script');ref.type='text/javascript';ref.async=true;ref.src='https://cdn.refiral.com/libs/refiral.min.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(ref,s);})();</script>-->
 <!-- Google Code for Stylior promotion Conversion Page -->
@@ -84,7 +85,7 @@ fbq('track', "PageView");</script>
 src="https://www.facebook.com/tr?id=1248172288528875&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Facebook Pixel Code -->
-
+This is footer test
 
 <section class="subscribe">
     <div class="container">
@@ -96,51 +97,60 @@ src="https://www.facebook.com/tr?id=1248172288528875&ev=PageView&noscript=1"
                 <label id="error"></label>
                 	<input type="email" class="subscribe_input" id="newemail" name="newemail" placeholder="Enter Your Email">
                 	<button class="btn subscribe_submit " type="submit">Submit</button>
-                </div>
+                    </div>
             </form>
         </div>
     </div>
 </section>
 
-
 <!-- start modal -->
-  <div class="modal fade" id="subscribeModal" role="dialog" style="display:none;">
-  <div class="vertical-alignment-helper">
-    <div class="modal-dialog modal-md vertical-align-center">
-      <div class="modal-content mobi">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <div class="modal-body sub" style="text-align:center;">
+<div class="modal fade" id="subscribeModal" role="dialog" aria-labelledby="subscribeModalLabel" style="display:none;">
+		<div class="vertical-alignment-helper">
+			<div class="modal-dialog modal-md vertical-align-center">
+				<div class="modal-content">
+					<div class="modal-header">
+					<h2 class="modal-title">Subscribe for Newsletter</h2>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span>×</span></button>
+					</div>
 
-        <?php if($_SESSION['user_subscribe']!=="registered") { ?>
-             <form  method="post" name="form" action="<?= $base_url_temp ?>home/subscribe" onsubmit="return validateForm();" enctype="multipart/form-data">
+					<div class="modal-body">
+						<p>Subscribe to our newsletters and receive latest fashion updates and our special offers</p>
+						<?php if($_SESSION['user_subscribe']!=="registered") { ?>
+						<form  method="post" name="form" action="<?= $base_url_temp ?>home/subscribe"  enctype="multipart/form-data">
 
-       <h1>Subscribe for Newsletter</h1>
-        <input type="email" name="newemail" id="newemail" class="form-control" placeholder="Enter your email" required>
-        <button id="singlebutton" name="singlebutton" type="submit" class="btn btn-primary">JOIN NOW</button>
-        <div class="socio-sub">
-        <ul>
-        <li><a href="https://www.facebook.com/styliorfashion/" target="_blank" title="Facebook"><img src="<?php echo $base_url_temp; ?>stylior/images/fb-sub.png" width="32" height="33" alt=""/></a></li>
-        <li><a href="https://www.pinterest.com/styliorfashion/" target="_blank" title="pinterest"><img src="<?php echo $base_url_temp; ?>stylior/images/pin-sub.png" width="32" height="33" alt=""/></a></li>
-        <li><a href="https://www.instagram.com/styliorfashion/" target="_blank" title="instagram"><img src="<?php echo $base_url_temp; ?>stylior/images/sub-insta.png" width="32" height="33" alt=""/></a></li>
-        <li><a href="https://www.linkedin.com/company/stylior-com?trk=biz-companies-cym" target="_blank" title="linkedin"> <img src="<?php echo $base_url_temp; ?>stylior/images/link-sub.png" width="32" height="33" alt=""/></a></li>
-        <li><a href="https://plus.google.com/u/0/+StyliorFashion-custom-clothing" target="_blank" title="google"><img src="<?php echo $base_url_temp; ?>stylior/images/google-sub.png" width="32" height="33" alt=""/></a></li>
-        </ul>
-        </div>
-		</form>
-			<?php }else if($_SESSION['user_subscribe']=="registered"){?>
-				<div class="alert alert-info">
-                     <p><?php echo $_SESSION['sub_message']; ?></p>
+						<input type="email" name="newemail" id="newemail_modal" class="form-control" placeholder="Email" required>
+						<!-- <button id="singlebutton" name="singlebutton" type="submit" class="btn btn-subscribe">subscribe</button> -->
+                        <input type="submit" name="singlebutton"  class="btn btn-subscribe" value="subscribe" />
+
+						
+						</form>
+						
+                        <div class="social-icon-section">
+							<ul class="social-icons">
+								<li class="facebook"><a href="https://www.facebook.com/styliorfashion/"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+								<li class="instagram"><a href="https://www.instagram.com/styliorfashion/"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+								<li class="googleplus"><a href="https://plus.google.com/u/0/100002617149579103996/posts"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+								<li class="pintrest"><a href="https://www.pinterest.com/styliorfashion/"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
+								<li class="linkedin"><a href="https://www.linkedin.com/company/stylior-com?trk=biz-companies-cym"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+								<li class="youtube"><a href="https://www.youtube.com/channel/UCFwHuzx8WXKzjminQXJglWw"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>
+							</ul>
+						</div>
+
+						<?php }else if($_SESSION['user_subscribe']=="registered"){?>
+						<div class="alert alert-info">
+						<p><?php echo $_SESSION['sub_message']; ?></p>
+						</div>
+						<?php
+						$_SESSION['subscribe']="no";
+						}?>
+					</div>
+					<div class="modal-footer">
+						Your Information will never be shared with any third party.
+					</div>
 				</div>
-		   <?php
-			 $_SESSION['subscribe']="no";
-		   }?>
-         </div>
-
-    </div>
-  </div>
-  </div>
-  </div>
-
+			</div>
+		</div>
+</div>
 
 <!-- end of modal -->
 <!-- ================= new footer code ================= -->
@@ -282,23 +292,26 @@ src="https://www.facebook.com/tr?id=1248172288528875&ev=PageView&noscript=1"
 
 <!-- ================= new footer code ================= -->
 
-
 <script>
+
 function hover(element) {
 	str = element.src;
 	str = str.substring(0, str.length - 7);
     element.setAttribute('src', str + '.png');
 }
+
 function unhover(element) {
 	str = element.src;
 	str = str.substring(0, str.length - 4);
     element.setAttribute('src', str + '_bw.png');
 }
+
 function hover_foot(element) {
 	var yourImg = document.getElementById(element);
 	yourImg.style.transitionDuration="0.3s";
 	yourImg.style.width = '18px';
 }
+
 function unhover_foot(element) {
 	var yourImg = document.getElementById(element);
 	yourImg.style.width = '15px'
@@ -306,30 +319,27 @@ function unhover_foot(element) {
 }
 
 $(window).load(function(){
+    <?php
+        $cookie_name = "subscribe";
+        $cookie_value = "done";
 
-<?php
+        // 86400 = 1 day
+        if(!isset($_COOKIE[$cookie_name])) {
+          $actual_link = $_SERVER['HTTP_HOST'];
+          $params=$_SERVER['REQUEST_URI'];
+          $count_p=strlen($params);
+          if($_SESSION['sub_message']!=="done") {
+            setcookie($cookie_name, $cookie_value, time() + (86400 ), "/"); ?>
+        		$('#subscribeModal').modal('show');
+        	<?php }?>
+        <?php } ?>
 
-    $cookie_name = "subscribe";
-    $cookie_value = "done";
-
-    // 86400 = 1 day
-    if(!isset($_COOKIE[$cookie_name])) {
-      $actual_link = $_SERVER['HTTP_HOST'];
-      $params=$_SERVER['REQUEST_URI'];
-      $count_p=strlen($params);
-      if($_SESSION['sub_message']!=="done") {
-        setcookie($cookie_name, $cookie_value, time() + (86400 ), "/"); ?>
-    		$('#subscribeModal').modal('show');
-    	<?php }?>
-    <?php } ?>
-
-});
-
+    });
 </script>
 
 <script type="text/javascript" src="<?=base_url() ?>js/bootstrap.min.js"></script>
 <script type="text/javascript" src="<?=base_url() ?>js/bootsnav.js"></script>
 <script src="<?=base_url() ?>js/owl.carousel.js"></script>
- <script src="<?=base_url() ?>js/jquery.mb.YTPlayer.js"></script>
+<script src="<?=base_url() ?>js/jquery.mb.YTPlayer.js"></script>
 <script type="text/javascript" src="<?=base_url() ?>js/wow.js"></script>
 <script type="text/javascript" src="<?=base_url() ?>js/script.js"></script>
