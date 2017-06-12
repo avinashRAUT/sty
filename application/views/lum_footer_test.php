@@ -291,27 +291,22 @@ This is footer test
 </footer>
 
 <!-- ================= new footer code ================= -->
-
 <script>
-
 function hover(element) {
 	str = element.src;
 	str = str.substring(0, str.length - 7);
     element.setAttribute('src', str + '.png');
 }
-
 function unhover(element) {
 	str = element.src;
 	str = str.substring(0, str.length - 4);
     element.setAttribute('src', str + '_bw.png');
 }
-
 function hover_foot(element) {
 	var yourImg = document.getElementById(element);
 	yourImg.style.transitionDuration="0.3s";
 	yourImg.style.width = '18px';
 }
-
 function unhover_foot(element) {
 	var yourImg = document.getElementById(element);
 	yourImg.style.width = '15px'
@@ -334,9 +329,9 @@ $(window).load(function(){
         	<?php }?>
         <?php } ?>
 
-    });
-</script>
+});
 
+</script>
 <script type="text/javascript" src="<?=base_url() ?>js/bootstrap.min.js"></script>
 <script type="text/javascript" src="<?=base_url() ?>js/bootsnav.js"></script>
 <script src="<?=base_url() ?>js/owl.carousel.js"></script>

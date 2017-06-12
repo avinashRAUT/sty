@@ -763,9 +763,10 @@ function removeproductnot(id,pid)
         <div class="row">
             <div class="col-md-4">
                 <div class="coupen-code-wrapper">
-                    <input id="voucher" type="text" value="JUNE25" placeholder="Enter coupen code" />
+                    <input id="voucher" type="text" value="" placeholder="Enter coupen code" />
                     <button class="but_lum_s btn-Apply" id="applay_coupon" >APPLY</button>
-                    <p>Apply code to get <span class="dis_25">25%</span> off</p>
+                    <p class="apply_coupencode">Apply code JUNE25 to get <span class="dis_25">25% </span> off</p>
+                    
                     <p id="errorcart"></p>
                 </div>
             </div>

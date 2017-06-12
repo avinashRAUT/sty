@@ -175,9 +175,10 @@ max-height:500px; overflow-y:scroll}
       </div>
 
      <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
-        <div class="product-title-wishlist"><?php echo $proname;?>
+        <div class="product-title-wishlist product_discount_offer"><?php echo $proname;?>
 
-		<span>
+		<p class="product_price">
+		<span class="original_price">
 		
     <?php
       if($this->session->userdata('currencycode')=="" ||$this->session->userdata('currencycode') == 'INR')
@@ -228,10 +229,10 @@ max-height:500px; overflow-y:scroll}
           $price_of_product=$cmsf->{$this->session->userdata('currencycode')};
           $discount_value = round((($price_of_product*25)/100));
           $price_of_product=$price_of_product-$discount_value;
-          echo "<span class='dis_price' style='display:none'>".$this->session->userdata('currencycode')." ".$price_of_product."</span>";
+          echo "<span class='dis_price'>".$this->session->userdata('currencycode')." ".$price_of_product."</span>";
         /*var : end*/
       ?>
-
+</p>
 
 		</div>
 

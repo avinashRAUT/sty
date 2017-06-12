@@ -329,14 +329,20 @@ src="https://www.facebook.com/tr?id=1248172288528875&ev=PageView&noscript=1"
                                     </div>
                                 </div>
                                 <div class="col-menu col-md-3 col-xs-12 shop_Accessories">
-                                  <h4 class="title">Accessories</h4>
-                                  <div class="content">
-                                      <ul class="menu-col">
+									<h4 class="title">Accessories</h4>
+									<div class="content">
+										<ul class="menu-col">
                                             <li><a href="<?php echo $bas_ul;?>mens-ties">ties</a></li>
                                             <li><a href="<?php echo $bas_ul;?>mens-cuff-links">cuff links</a></li>
                                             <li class="coming_soon"><a href="javascript:void(0);">Leather<span class="label label-default">coming soon</span></a></li>
-                                      </ul>    
-                                </div>
+										</ul>    
+									</div>
+									<h4 class="title measurement">Measurement</h4>
+									<div class="content">
+										<ul class="menu-col">
+                                            <li><a href="<?php echo $bas_ul;?>home/mdemo">shirt</a></li>
+										</ul>    
+									</div>
                                 </div>
                                 <div class="col-menu col-md-6 col-xs-12 offer_image">
                                 <img src="<?= $https_url ?>site/images/header/offer-image.jpg" class="" alt="shop">

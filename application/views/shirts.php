@@ -43,7 +43,7 @@ a.image_action {
   display:block; text-decoration:none; text-align:center; color:rgba(79,79,79,1.00); border:1px solid #fff}
 a.image_action:hover {border:1px solid #E4E4E4;}
 p.suit-info {
-  background-color:#fff; display:block;font-size: 16px;text-align:center; margin-bottom:0; padding-top:10px;min-height: 85px;}
+  background-color:#fff; display:block;font-size: 16px;text-align:center; margin-bottom:0; padding-top:10px;min-height: 95px;}
 p.suit-info span{
   background-color:#fff; font-size:14px;color:#DD0003; display:block;padding:5px 0;    font-weight: bold;
 }
@@ -96,15 +96,28 @@ p.suit-info h4{
         // print_r($details);
         ?>
         <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
-        <a class="image_action" href="<? echo $base_ul."/mens-shirts/".str_replace(' ','-',$shirt->pname)."-".$shirt->pid; ?>"> <img  class="img-responsive image_on" src="<?php echo $https_url_large_img.$shirt->image;?>"  alt=""/>
-        <img  class="img-responsive image_off" src="<?php echo $https_url_large_img.$shirt->image;?>"   alt=""/>
-        <p class="suit-info">
-  <?php echo $shirt->pname ?>
-<span>
+<a class="image_action" href="<? echo $base_ul."/mens-shirts/".str_replace(' ','-',$shirt->pname)."-".$shirt->pid; ?>"> <img  class="img-responsive image_on" src="<?php echo $https_url_large_img.$shirt->image;?>"  alt="<?= $shirt->pname ?>"/>
+        
+        <div class="disc_per">
+        <?php echo $shirt->discount==0?"25":"No Value"; ?>% off
 
+        </div>
+        
+        <img  class="img-responsive image_off" src="<?php echo $https_url_large_img.$shirt->image;?>"   alt=""/>
+        <p class="suit-info discount_prod">
+  <?php echo $shirt->pname ?></p>
+  <p class="discount_prod">
+<span class="original_price">
+<strike>
 <?php
+
+// print_r($shirt->discount);
+
+
 if($this->session->userdata('currencycode')=="" ||$this->session->userdata('currencycode') == 'INR')
 {
+
+
   echo "INR ".$shirt->price;
 }
 else if($this->session->userdata('currencycode') == 'USD')
@@ -139,11 +152,23 @@ else
 {
   //echo $this->session->userdata('currencycode')."";
   //echo ceil(( $image['result'][$i]->price / ( $this->session->userdata('currencyvalue') * ($this->session->userdata('multiplier')/100)) )/$this->session->userdata('ceiling'))*$this->session->userdata('ceiling');
-}
-?>
+}?>
+</strike>
 </span>
 
+<?php 
+/*var : stared for discount offer*/
+$price_of_product=$shirt->{$this->session->userdata('currencycode')};
+$discount_value = round((($price_of_product*25)/100));
+$price_of_product=$price_of_product-$discount_value;
+	echo "<span class='dis_price'>".$this->session->userdata('currencycode')." ".$price_of_product."</span>";
+	
+
+	/*var : end*/
+?>
+
 </p></a>
+
 
 </div>
        <? } ?>
