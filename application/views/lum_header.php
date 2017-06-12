@@ -120,8 +120,11 @@ else
     <!--  non-retina iPad iOS 7 -->
 <link rel="apple-touch-icon" href="<?= $bas_ul ?>stylior/site/images/favicon.jpg" sizes="76x76" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 
+<script src="<?= $https_url ?>/site/js/jquery.min.js"></script>
+
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>-->
+<!--<script src="<?= $https_url ?>/site/js/jquery.min.js"></script>--->
 <link rel="stylesheet" href="<?= $https_url ?>/site/css/font-awesome.min.css">
 <link rel="stylesheet" href="<?= $https_url ?>/site/css/ionicons.min.css">
 
@@ -147,7 +150,7 @@ if($data[1]=="home" && $data[2]=="new_custom" ||$data[2]=="new_custom_demo"){?>
   <link rel="stylesheet" href="https://www.stylior.com/site/css/remodal.css">
   <link rel="stylesheet" href="https://www.stylior.com/site/css/remodal-default-theme.css">
   <link href="<?=$https_url ?>site/css/details_style.css" rel="stylesheet" />
-  <link rel="stylesheet" type="text/css" href="<?=$https_url ?>site/css/animate.css">
+  <link rel="stylesheet" type="text/css" href="<?=$https_url ?>site/css/animate.min.css">
   <link rel="stylesheet" type="text/css" href="<?=$https_url ?>site/css/owl.carousel.css">
 
   <link href="<?=$https_url ?>site/css/simple-lightbox.min.css" rel="stylesheet" />
@@ -172,7 +175,7 @@ if($data[1]=="home" && $data[2]=="new_custom" ||$data[2]=="new_custom_demo"){?>
 <link rel="stylesheet" href="https://www.stylior.com/site/css/remodal-default-theme.css">
 <link rel="stylesheet" href="<?=$https_url ?>site/css/3d_page_css.css">
 <?php } else { ?>
-  <link rel="stylesheet" type="text/css" href="<?= $https_url ?>site/css/animate.css">
+  <link rel="stylesheet" type="text/css" href="<?= $https_url ?>site/css/animate.min.css">
   <?php if($data[2]!="mdemo") {?>
   <link rel="stylesheet" type="text/css" href="<?= $https_url ?>site/css/owl.carousel.css">
   <?php } ?>

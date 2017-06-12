@@ -49,7 +49,6 @@ function validateForm()
 </script>
 
 <!--<script type='text/javascript'>var _refiral=_refiral||{};_refiral.apiKey='0e7c7d6c41c76b9ee6445ae01cc0181d';(function(){var ref=document.createElement('script');ref.type='text/javascript';ref.async=true;ref.src='https://cdn.refiral.com/libs/refiral.min.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(ref,s);})();</script>-->
-
 <!-- Google Code for Stylior promotion Conversion Page -->
 <script type="text/javascript">
 /* <![CDATA[ */
@@ -72,7 +71,6 @@ var google_remarketing_only = false;
 <!-- Facebook Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-
 n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
 
 n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
@@ -122,6 +120,60 @@ src="https://www.facebook.com/tr?id=627429834110054&ev=PageView&noscript=1"
         </div>
     </div>
 </section>
+<!-- var : start subscriber modal -->
+
+<!-- start modal -->
+<div class="modal fade" id="subscribeModal" role="dialog" aria-labelledby="subscribeModalLabel" style="display:none;">
+        <div class="vertical-alignment-helper">
+            <div class="modal-dialog modal-md vertical-align-center">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h2 class="modal-title">Subscribe for Newsletter</h2>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span>×</span></button>
+                    </div>
+
+                    <div class="modal-body">
+                        <p>Subscribe to our newsletters and receive latest fashion updates and our special offers</p>
+                        <?php if($_SESSION['user_subscribe']!=="registered") { ?>
+                        <form  method="post" name="form" action="<?= $base_url_temp ?>home/subscribe"  enctype="multipart/form-data">
+
+                        <input type="email" name="newemail" id="newemail_modal" class="form-control" placeholder="Email" required>
+                        <!-- <button id="singlebutton" name="singlebutton" type="submit" class="btn btn-subscribe">subscribe</button> -->
+                        <input type="submit" name="singlebutton"  class="btn btn-subscribe" value="subscribe" />
+
+                        
+                        </form>
+                        
+                        <div class="social-icon-section">
+                            <ul class="social-icons">
+                                <li class="facebook"><a href="https://www.facebook.com/styliorfashion/"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                <li class="instagram"><a href="https://www.instagram.com/styliorfashion/"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                                <li class="googleplus"><a href="https://plus.google.com/u/0/100002617149579103996/posts"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+                                <li class="pintrest"><a href="https://www.pinterest.com/styliorfashion/"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
+                                <li class="linkedin"><a href="https://www.linkedin.com/company/stylior-com?trk=biz-companies-cym"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                                <li class="youtube"><a href="https://www.youtube.com/channel/UCFwHuzx8WXKzjminQXJglWw"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>
+                            </ul>
+                        </div>
+
+                        <?php }else if($_SESSION['user_subscribe']=="registered"){?>
+                        <div class="alert alert-info">
+                        <p><?php echo $_SESSION['sub_message']; ?></p>
+                        </div>
+                        <?php
+                        $_SESSION['subscribe']="no";
+                        }?>
+                    </div>
+                    <div class="modal-footer">
+                        Your Information will never be shared with any third party.
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+<!-- end of modal -->
+<!-- var : end subscriber modal -->
+
+
 <!-- start modal -->
 <!--<div class="modal fade" id="subscribeModal" role="dialog" style="display:none;">
   <div class="vertical-alignment-helper">
@@ -333,7 +385,7 @@ if(!isset($_COOKIE[$cookie_name])) {
   $count_p=strlen($params);
 //  echo "url print".$actual_link."Parmas".$params;
 // echo strlen($params);
-  if($_SESSION['sub_message']!=="done" && $count_p==1111) {?>
+  if($_SESSION['sub_message']!=="done") {?>
 		$('#subscribeModal').modal('show');
 	<?php }?>
 
@@ -341,7 +393,6 @@ if(!isset($_COOKIE[$cookie_name])) {
 
 });
 </script>
-
 <script type="text/javascript" src="<?=base_url() ?>js/bootstrap.min.js"></script>
 <script type="text/javascript" src="<?=base_url() ?>js/bootsnav.js"></script>
 

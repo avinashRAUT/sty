@@ -6814,5 +6814,10 @@ public function getbodypart(){
 	    $this->load->view('lum_footer.php');	
 	}  
 
-
+    function addreview()
+    {
+    	$this->load->view('lum_header.php');
+	    $this->load->view('creviewmain.php');
+	    $this->load->view('lum_footer.php');
+    }
 }
