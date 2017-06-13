@@ -89,98 +89,95 @@ p.suit-info h4{
 <h1 class="hide">Custom Made Shirts Online</h1>
 <div class="container">
     <div class="row suit_css">
-      <?php
-      foreach($details as $shirt)
-      {
-        // echo "Teting in view page";
-        // print_r($details);
-        ?>
-        <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+<?php
+foreach($details as $shirt)
+{
+?>
+<div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
 <a class="image_action" href="<? echo $base_ul."/mens-shirts/".str_replace(' ','-',$shirt->pname)."-".$shirt->pid; ?>"> <img  class="img-responsive image_on" src="<?php echo $https_url_large_img.$shirt->image;?>"  alt="<?= $shirt->pname ?>"/>
-        
-        <div class="disc_per">
-        <?php echo $shirt->discount==0?"25":"No Value"; ?>% off
-
-        </div>
-        
+        <?php if($shirt->discount > 0){ ?>
+          <div class="disc_per">
+          <?php echo $shirt->discount>0?$shirt->discount:""; ?>% off
+          </div>
+        <?php } ?>
         <img  class="img-responsive image_off" src="<?php echo $https_url_large_img.$shirt->image;?>"   alt=""/>
         <p class="suit-info discount_prod">
   <?php echo $shirt->pname ?></p>
   <p class="discount_prod">
-<span class="original_price">
-<strike>
-<?php
+  <span class="original_price">
+      <?php 
+      $strike_start=($shirt->discount>0?"<strike>":""); 
+      $strike_end=($shirt->discount>0?"</strike>":""); 
+      echo $strike_start;
+      ?>
+      <?php
+        // print_r($shirt->discount);
+        if($this->session->userdata('currencycode')=="" ||$this->session->userdata('currencycode') == 'INR')
+        {
+          echo "INR ".$shirt->price;
+        }
+        else if($this->session->userdata('currencycode') == 'USD')
+        {
+          echo "USD ".$shirt->USD;
+        }
+        else if($this->session->userdata('currencycode') == 'BHD')
+        {
+          echo "BHD ".$shirt->BHD;
+        }
+        else if($this->session->userdata('currencycode') == 'SAR')
+        {
+          echo "SAR ".$shirt->SAR;
+        }
+        else if($this->session->userdata('currencycode') == 'QAR')
+        {
+          echo "QAR ".$shirt->QAR;
+        }
+        else if($this->session->userdata('currencycode') == 'EUR')
+        {
+          echo "EUR ".$shirt->EUR;
+        }
+        else if($this->session->userdata('currencycode') == 'AED')
+        {
+          echo "AED ".$shirt->AED;
+        }
+        else if($this->session->userdata('currencycode') == 'AUD')
+        {
+          echo "AUD ".$shirt->AUD;
+        }
+        else
+        {
+          //echo $this->session->userdata('currencycode')."";
+          //echo ceil(( $image['result'][$i]->price / ( $this->session->userdata('currencyvalue') * ($this->session->userdata('multiplier')/100)) )/$this->session->userdata('ceiling'))*$this->session->userdata('ceiling');
+        }
+      echo $strike_end;
+  
+  ?>
+  
+  </span>
 
-// print_r($shirt->discount);
+  <?php 
+  /*var : stared for discount offer*/
 
+  if($shirt->discount>0){
+    $price_of_product=$shirt->{$this->session->userdata('currencycode')};
+    $discount_value = $shirt->discount;   
+    $discount_value = round((($price_of_product*$shirt->discount)/100));
+    $price_of_product=$price_of_product-$discount_value;
+    echo "<span class='dis_price'>".$this->session->userdata('currencycode')." ".$price_of_product."</span>";
+   }
 
-if($this->session->userdata('currencycode')=="" ||$this->session->userdata('currencycode') == 'INR')
-{
+  /*var : end*/
+  ?>
 
-
-  echo "INR ".$shirt->price;
-}
-else if($this->session->userdata('currencycode') == 'USD')
-{
-  echo "USD ".$shirt->USD;
-}
-else if($this->session->userdata('currencycode') == 'BHD')
-{
-  echo "BHD ".$shirt->BHD;
-}
-else if($this->session->userdata('currencycode') == 'SAR')
-{
-  echo "SAR ".$shirt->SAR;
-}
-else if($this->session->userdata('currencycode') == 'QAR')
-{
-  echo "QAR ".$shirt->QAR;
-}
-else if($this->session->userdata('currencycode') == 'EUR')
-{
-  echo "EUR ".$shirt->EUR;
-}
-else if($this->session->userdata('currencycode') == 'AED')
-{
-  echo "AED ".$shirt->AED;
-}
-else if($this->session->userdata('currencycode') == 'AUD')
-{
-  echo "AUD ".$shirt->AUD;
-}
-else
-{
-  //echo $this->session->userdata('currencycode')."";
-  //echo ceil(( $image['result'][$i]->price / ( $this->session->userdata('currencyvalue') * ($this->session->userdata('multiplier')/100)) )/$this->session->userdata('ceiling'))*$this->session->userdata('ceiling');
-}?>
-</strike>
-</span>
-
-<?php 
-/*var : stared for discount offer*/
-$price_of_product=$shirt->{$this->session->userdata('currencycode')};
-$discount_value = round((($price_of_product*25)/100));
-$price_of_product=$price_of_product-$discount_value;
-	echo "<span class='dis_price'>".$this->session->userdata('currencycode')." ".$price_of_product."</span>";
-	
-
-	/*var : end*/
-?>
-
-</p></a>
-
-
+  </p></a>
+  </div>
+<? } ?>
 </div>
-       <? } ?>
-    </div>
-
 
 <nav aria-label="Page navigation example " class="stylior-pagination">
-<?php 
-echo $links; 
-?>
+  <?php 
+  echo $links; 
+  ?>
 </nav>
-
-
 
 </div>

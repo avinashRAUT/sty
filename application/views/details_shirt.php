@@ -1,4 +1,5 @@
 <?php
+
 if ($_SERVER['HTTPS'] == "on")
 {
 $https_url="https://www.stylior.com/stylior/";
@@ -9,11 +10,12 @@ else {
 $bas_ul = "http://www.stylior.com/";
 $https_url="http://www.stylior.com/";
 $https_url_large_img="http://www.stylior.com/upload/products1/";
-
 }
+
 ?>
 
-	<?php
+<?php
+
 	if($_SESSION['currencycode'] == '')
 	{
 	$inr = 'INR';
@@ -35,14 +37,11 @@ $https_url_large_img="http://www.stylior.com/upload/products1/";
 		$fabricid = $cmsf->fname;
 		$designid = $cmsf->designname;
     $itemcode = $cmsf->itemcode ;
-
-
-
 		$prodescr = $cmsf->description;
 		$prodimage = $https_url_large_img."".$cmsf->image;;
+  }
 
-}
-	?>
+?>
 
 
   <style>
@@ -178,8 +177,15 @@ max-height:500px; overflow-y:scroll}
         <div class="product-title-wishlist product_discount_offer"><?php echo $proname;?>
 
 		<p class="product_price">
-		<span class="original_price">
 		
+    <span class="original_price">
+    <?php 
+        
+        $strike_start=($cmsf->discount>0?"<strike>":""); 
+        $strike_end=($cmsf->discount>0?"</strike>":""); 
+          echo $strike_start;
+
+     ?>
     <?php
       if($this->session->userdata('currencycode')=="" ||$this->session->userdata('currencycode') == 'INR')
 			{
@@ -219,6 +225,7 @@ max-height:500px; overflow-y:scroll}
 
 				//echo ceil(( $image['result'][$i]->price / ( $this->session->userdata('currencyvalue') * ($this->session->userdata('multiplier')/100)) )/$this->session->userdata('ceiling'))*$this->session->userdata('ceiling');
 			}
+      echo $strike_end;
 
 			?>
 
@@ -226,10 +233,12 @@ max-height:500px; overflow-y:scroll}
       
       <?php 
       /*var : stared for discount offer*/
-          $price_of_product=$cmsf->{$this->session->userdata('currencycode')};
-          $discount_value = round((($price_of_product*25)/100));
-          $price_of_product=$price_of_product-$discount_value;
-          echo "<span class='dis_price'>".$this->session->userdata('currencycode')." ".$price_of_product."</span>";
+          if($cmsf->discount>0){
+            $price_of_product=$cmsf->{$this->session->userdata('currencycode')};
+            $discount_value = round((($price_of_product*$cmsf->discount)/100));
+            $price_of_product=$price_of_product-$discount_value;
+            echo "<span class='dis_price'>".$this->session->userdata('currencycode')." ".$price_of_product."</span>";
+        }
         /*var : end*/
       ?>
 </p>

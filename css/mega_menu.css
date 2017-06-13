@@ -1707,10 +1707,12 @@ span.dis_price{
     font-size: 16px;
 	}
 .product_discount_offer p.product_price{float: right;}
-
 .product_discount_offer span.original_price{
- 	text-decoration:line-through;float: left;    font-weight: 100;    margin-right: 15px;
-	} 
+ 	/*text-decoration:line-through;*/
+    float: left;    
+    font-weight: 100;    
+    margin-right: 15px;
+} 
 .product_discount_offer span.dis_price {
     font-size: 18px;
     margin: 0;

@@ -1904,7 +1904,7 @@ if(selected_size!=undefined){
                          event.preventDefault();
                 $('html, body').stop().animate({
                         scrollTop: target.offset().top
-                }, 1000);
+                }, 500);
                 }
 
              });

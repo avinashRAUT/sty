@@ -1,29 +1,27 @@
 
 <?php
 
-if ($_SERVER['HTTPS'] == "on")
-{
-$https_url="https://www.stylior.com/stylior/";
-$bas_ul = "https://www.stylior.com/";
-$https_url_large_img="https://www.stylior.com/stylior/upload/products1/";
-}
-else {
-$bas_ul = "http://www.stylior.com/";
-$https_url="http://www.stylior.com/";
-$https_url_large_img="http://www.stylior.com/upload/products1/";
+	if ($_SERVER['HTTPS'] == "on")
+	{
+	$https_url="https://www.stylior.com/stylior/";
+	$bas_ul = "https://www.stylior.com/";
+	$https_url_large_img="https://www.stylior.com/stylior/upload/products1/";
+	}
+	else {
+	$bas_ul = "http://www.stylior.com/";
+	$https_url="http://www.stylior.com/";
+	$https_url_large_img="http://www.stylior.com/upload/products1/";
 
-}
-
-
+	}
 	if($_SESSION['currencycode'] == '')
 	{
-	$inr = 'INR';
- 	$_SESSION['currencyvalue'] = '1';
-	$_SESSION['currencycode'] = $inr;
+		$inr = 'INR';
+	 	$_SESSION['currencyvalue'] = '1';
+		$_SESSION['currencycode'] = $inr;
 	}
 	else
 	{
-	$inr = $_SESSION['currencycode'];
+		$inr = $_SESSION['currencycode'];
 	}
 
 	foreach($c as $cmsf)
@@ -42,11 +40,6 @@ $https_url_large_img="http://www.stylior.com/upload/products1/";
 
 	}
 ?>
-
-
-
-
-
 
 <meta property="og:url"           content="<?php echo $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']; ?>" />
 <meta property="og:type"          content="website" />
@@ -174,6 +167,12 @@ ul.hide-bullets li {
 		<p class="product_price">
 		<!-- step3 class added  original_price-->
 		<span class="original_price">
+		<?php 
+		$strike_start=($cmsf->discount>0?"<strike>":""); 
+		$strike_end=($cmsf->discount>0?"</strike>":""); 
+			echo $strike_start;
+		?>
+
 			<?
 			if($this->session->userdata('currencycode')=="" ||$this->session->userdata('currencycode') == 'INR')
 			{
@@ -212,18 +211,27 @@ ul.hide-bullets li {
 				//echo $this->session->userdata('currencycode')."";
 
 				//echo ceil(( $image['result'][$i]->price / ( $this->session->userdata('currencyvalue') * ($this->session->userdata('multiplier')/100)) )/$this->session->userdata('ceiling'))*$this->session->userdata('ceiling');
-			}?>
+			}
+	      echo $strike_end;
+		?>
       </span>
-       <?php 
-      /*var : stared for discount offer step4*/
-          $price_of_product=$cmsf->{$this->session->userdata('currencycode')};
-          $discount_value = round((($price_of_product*25)/100));
-          $price_of_product=$price_of_product-$discount_value;
-          echo "<span class='dis_price'>".$this->session->userdata('currencycode')." ".$price_of_product."</span>";
-        /*var : end*/
+      
+      <?php
+
+      
+       
+       if($cmsf->discount>0){
+				/*var : stared for discount offer step4*/
+				$price_of_product=$cmsf->{$this->session->userdata('currencycode')};
+				$discount_value = round((($price_of_product*$cmsf->discount)/100));
+				$price_of_product=$price_of_product-$discount_value;
+				echo "<span class='dis_price'>".$this->session->userdata('currencycode')." ".$price_of_product."</span>";
+				
+				/*var : end*/	
+		
+		}
       ?>
       </p> <!-- end product_price  -->
-
 		</div>
         <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 
