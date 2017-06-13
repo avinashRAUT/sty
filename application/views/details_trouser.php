@@ -168,9 +168,12 @@ ul.hide-bullets li {
       </div>
 
      <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
-        <div class="product-title-wishlist"><?php echo $proname;?>
-
-		<span>
+		<!-- var : start step1 discount - class added product_discount_offer-->
+        <div class="product-title-wishlist product_discount_offer"><?php echo $proname;?>
+		<!-- step2 p added -->
+		<p class="product_price">
+		<!-- step3 class added  original_price-->
+		<span class="original_price">
 			<?
 			if($this->session->userdata('currencycode')=="" ||$this->session->userdata('currencycode') == 'INR')
 			{
@@ -211,6 +214,16 @@ ul.hide-bullets li {
 				//echo ceil(( $image['result'][$i]->price / ( $this->session->userdata('currencyvalue') * ($this->session->userdata('multiplier')/100)) )/$this->session->userdata('ceiling'))*$this->session->userdata('ceiling');
 			}?>
       </span>
+       <?php 
+      /*var : stared for discount offer step4*/
+          $price_of_product=$cmsf->{$this->session->userdata('currencycode')};
+          $discount_value = round((($price_of_product*25)/100));
+          $price_of_product=$price_of_product-$discount_value;
+          echo "<span class='dis_price'>".$this->session->userdata('currencycode')." ".$price_of_product."</span>";
+        /*var : end*/
+      ?>
+      </p> <!-- end product_price  -->
+
 		</div>
         <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 
