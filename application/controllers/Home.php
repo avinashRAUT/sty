@@ -2708,22 +2708,19 @@ public function shop_accessories($catid,$subcatid)
 		    $choice = $config["total_rows"] / $config["per_page"];
 		    $config["num_links"] = round($choice);    
 		    $data["details"] = $this->home_model->shop_suit_page(10,$page,$config["per_page"]);
-			$this->pagination->initialize($config);          
+			$this->pagination->initialize($config);           
 	    	$data["links"] = $this->pagination->create_links(); 
 	     	$this->load->helper('url');
 			$this->output->enable_profiler(FALSE);
 			$this->load->view('lum_header',$metadata);
 			$this->load->view('shirts',$data);
 			$this->load->view('lum_footer');
-
 		}
 
 		/*   var started :
    		***  the working on discount calculation for the offers
    		***   7th JUne 2017 Remove this function after use.
    		*/
-
-
 		public function shop_shirts_test($catid,$subcatid)
 		{
 		    $this->load->library('pagination');   	
@@ -2753,7 +2750,7 @@ public function shop_accessories($catid,$subcatid)
 			$this->load->view('lum_footer');
 
 		}
- /*** var END :*/
+		/*** var END :*/
 
    
 

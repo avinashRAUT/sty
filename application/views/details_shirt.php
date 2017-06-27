@@ -598,17 +598,19 @@ max-height:500px; overflow-y:scroll}
               <div class="wish_added"></div>
 					</div>
 				</div>
-				<div class="social-btns">
+				<div class="social-btns social-share-buttons">
         <ul>
-        <li >  <a href="<?php echo 'https://www.facebook.com/sharer/sharer.php?u=' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']; ?>" class="social-link js-social-link" target="_blank">
+        <li >  <a href="<?php echo 'https://www.facebook.com/sharer/sharer.php?u=' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']; ?>" class="social-link js-social-link fb-share" target="_blank">
 
-					<i class="fa fa-facebook "></i>
+					<i class="fa fa-facebook "></i> Share
 					</a>
-</li>
-        <li>  <a href="<?php echo 'https://twitter.com/intent/tweet/?text='. $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] .'&amp;via=stylior.com&amp;source=webclient'; ?>" class="social-link js-social-link" target="_blank">
+        </li>
 
-					<i class="fa fa-twitter fa-stack-1"></i>
-					</a></li>
+        <li>  <a href="<?php echo 'https://twitter.com/intent/tweet/?text='. $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] .'&amp;via=stylior.com&amp;source=webclient'; ?>" class="social-link js-social-link tw-share" target="_blank">
+
+					<i class="fa fa-twitter fa-stack-1"></i> Share
+					</a>
+          </li>
         </ul>
 			</div>
     </div>
@@ -1411,7 +1413,7 @@ if(selected_size!=undefined){
 
 $("#quick_save").click(function(){
 
-   var measureid ="";
+    var measureid ="";
     if("<?= $_GET['update'] ?>"=="shirt"){
      measureid = '<?php echo $_GET['mid'];?>';
     }
@@ -1441,7 +1443,7 @@ $("#quick_save").click(function(){
     base_url = '<?php echo $bas_ul; ?>';
     // var exact_price = $("#prd_price").val();
     // var product_id = $("#prd_id").val();
-      var subcatid='<?php echo $_SESSION['subcatid']; ?>';
+    var subcatid='<?php echo $_SESSION['subcatid']; ?>';
     var ordertype;
     //alert("tyoe"+subcatid);
     if(subcatid=="10")

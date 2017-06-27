@@ -1,137 +1,124 @@
 <!DOCTYPE html>
-<?php include_once("analyticstracking.php") 
-
-
-?>
-
+<?php include_once("analyticstracking.php") ?>
 <?php
-if ($_SERVER['HTTPS'] == "on")
-{
-$https_url="https://www.stylior.com/stylior/";
-$bas_ul = "https://www.stylior.com/";
-$https_url_large_img="https://www.stylior.com/stylior/upload/products1/large/";
-}
-else {
-$bas_ul = "http://www.stylior.com/";
-$https_url="http://www.stylior.com/";
-$https_url_large_img="http://www.stylior.com/upload/products1/large/";
-
-}
-
-$this->load->library('session');
-
-//var start
-function getIPAddress($deep_detect){
-//$ip="86.96.201.72";
-   if (filter_var($ip, FILTER_VALIDATE_IP) === FALSE) {
-        $ip = $_SERVER["REMOTE_ADDR"];
-        if ($deep_detect) {
-            if (filter_var(@$_SERVER['HTTP_X_FORWARDED_FOR'], FILTER_VALIDATE_IP))
-                $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-            if (filter_var(@$_SERVER['HTTP_CLIENT_IP'], FILTER_VALIDATE_IP))
-                $ip = $_SERVER['HTTP_CLIENT_IP'];
-          }
+  if ($_SERVER['HTTPS'] == "on")
+  {
+  $https_url="https://www.stylior.com/stylior/";
+  $bas_ul = "https://www.stylior.com/";
+  $https_url_large_img="https://www.stylior.com/stylior/upload/products1/large/";
   }
-$geopluginURL='http://www.geoplugin.net/php.gp?ip='.$ip;
-$addrDetailsArr = unserialize(file_get_contents($geopluginURL));
-return $addrDetailsArr;
+  else {
+  $bas_ul = "http://www.stylior.com/";
+  $https_url="http://www.stylior.com/";
+  $https_url_large_img="http://www.stylior.com/upload/products1/large/";
+  }
+  $this->load->library('session');
+  //var start
+  function getIPAddress($deep_detect){
+  //$ip="86.96.201.72";
+     if (filter_var($ip, FILTER_VALIDATE_IP) === FALSE) {
+          $ip = $_SERVER["REMOTE_ADDR"];
+          if ($deep_detect) {
+              if (filter_var(@$_SERVER['HTTP_X_FORWARDED_FOR'], FILTER_VALIDATE_IP))
+                  $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+              if (filter_var(@$_SERVER['HTTP_CLIENT_IP'], FILTER_VALIDATE_IP))
+                  $ip = $_SERVER['HTTP_CLIENT_IP'];
+            }
+    }
+  $geopluginURL='http://www.geoplugin.net/php.gp?ip='.$ip;
+  $addrDetailsArr = unserialize(file_get_contents($geopluginURL));
+  return $addrDetailsArr;
+  }
+  /*
+  if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+      $ip = $_SERVER['HTTP_CLIENT_IP'];
+  } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+      $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+  } else {
+      $ip = $_SERVER['REMOTE_ADDR'];
+  }
+  */
+  if(!isset($_SESSION['currencycode']))
+  {
 
-}
+    $addrDetailsArr = getIPAddress(false);
+    if($addrDetailsArr['geoplugin_status']==404 || $addrDetailsArr['geoplugin_status']==200){
+    $addrDetailsArr =getIPAddress(true);
+    }
 
-/*
-if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
-    $ip = $_SERVER['HTTP_CLIENT_IP'];
-} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-    $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-} else {
-    $ip = $_SERVER['REMOTE_ADDR'];
-}
-*/
-if(!isset($_SESSION['currencycode']))
-{
-
-  $addrDetailsArr = getIPAddress(false);
-  if($addrDetailsArr['geoplugin_status']==404 || $addrDetailsArr['geoplugin_status']==200){
-  $addrDetailsArr =getIPAddress(true);
+  }
+  //end avr
+  /*Get user ip address details with geoplugin.net*/
+  // $geopluginURL='http://www.geoplugin.net/php.gp?ip='.$ip;
+  // $addrDetailsArr = unserialize(file_get_contents($geopluginURL));
+  //print_r($addrDetailsArr);
+  /*Get City name by return array*/
+  $city = $addrDetailsArr['geoplugin_city'];
+  /*Get Country name by return array*/
+  $country = $addrDetailsArr['geoplugin_countryName'];
+  $currency = $addrDetailsArr['geoplugin_currencyCode'];
+  //geoplugin_currencyCode]
+  /*Comment out these line to see all the posible details*/
+  /*echo '<pre>';
+  print_r($addrDetailsArr);
+  die();*/
+  if(!$country)
+  {
+     $country='Not Define';
   }
 
-}
+  //echo '<strong>IP Address</strong>:- '.$ip.'<br/>';
+  //echo '<strong>Country</strong>:- '.$country.'<br/>';
+  //echo '<strong>currency</strong>:- '.$currency.'<br/>';
+  //$_SESSION['currencycode']=$currency;
+  //echo $ip;
+  //echo '<pre>';
+  //print_r($_SESSION['currencycode']);
+  //die();
 
-//end avr
-/*Get user ip address details with geoplugin.net*/
-// $geopluginURL='http://www.geoplugin.net/php.gp?ip='.$ip;
-// $addrDetailsArr = unserialize(file_get_contents($geopluginURL));
-//print_r($addrDetailsArr);
-/*Get City name by return array*/
-$city = $addrDetailsArr['geoplugin_city'];
-/*Get Country name by return array*/
-$country = $addrDetailsArr['geoplugin_countryName'];
-$currency = $addrDetailsArr['geoplugin_currencyCode'];
-//geoplugin_currencyCode]
-/*Comment out these line to see all the posible details*/
-/*echo '<pre>';
-print_r($addrDetailsArr);
-die();*/
-if(!$country)
-{
-   $country='Not Define';
-}
-
-//echo '<strong>IP Address</strong>:- '.$ip.'<br/>';
-//echo '<strong>Country</strong>:- '.$country.'<br/>';
-//echo '<strong>currency</strong>:- '.$currency.'<br/>';
-//$_SESSION['currencycode']=$currency;
-//echo $ip;
-//echo '<pre>';
-//print_r($_SESSION['currencycode']);
-//die();
-if(!($_SESSION['currencycode']))
-{
-  //echo 'hi';
-  //$currency = $_SESSION['currencycode'];
-  $this->session->set_userdata('currencycode',$currency);
-      //echo "sessionnotset";
-      //echo '<script type="text/javascript">' .'changecurrency("'.$currency.'");' . '</script>';
-}
-else
-{
-  //echo 'hiytryrt';
-   $currency= $_SESSION['currencycode'];
-  //echo '<script type="text/javascript">' .'changecurrency("'.$currency.'");' . '</script>';
+  if(!($_SESSION['currencycode']))
+  {
+        //echo 'hi';
+        //$currency = $_SESSION['currencycode'];
+        $this->session->set_userdata('currencycode',$currency);
+        //echo "sessionnotset";
+        //echo '<script type="text/javascript">' .'changecurrency("'.$currency.'");' . '</script>';
+  }
+  else
+  {
+        //echo 'hiytryrt';
+        $currency= $_SESSION['currencycode'];
+        //echo '<script type="text/javascript">' .'changecurrency("'.$currency.'");' . '</script>';
 
 
-}
+  }
   $c = $this->home_model->changecurrency($currency);
   $cvalue = $c->stylior_roc;
-    $multiplier = $c->multiplier;
+  $multiplier = $c->multiplier;
   $ceiling = $c->ceiling;
-    $this->session->set_userdata('currencyvalue',$cvalue);
+  $this->session->set_userdata('currencyvalue',$cvalue);
   $this->session->set_userdata('multiplier',$multiplier);
   $this->session->set_userdata('ceiling',$ceiling);
 ?>
  <html lang="en"><head>
  <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <link rel="shortcut icon" href="<?= $bas_ul ?>stylior/site/images/favicon.jpg" sizes="32x32" />
-    <!--  non-retina iPhone pre iOS 7 -->
-    <link rel="apple-touch-icon" href="<?= $bas_ul ?>stylior/site/images/favicon.jpg" sizes="57x57" />
+ <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+ <meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="shortcut icon" href="<?= $bas_ul ?>stylior/site/images/favicon.jpg" sizes="32x32" />
+<!--  non-retina iPhone pre iOS 7 -->
+<link rel="apple-touch-icon" href="<?= $bas_ul ?>stylior/site/images/favicon.jpg" sizes="57x57" />
     <!--  non-retina iPad iOS 7 -->
 <link rel="apple-touch-icon" href="<?= $bas_ul ?>stylior/site/images/favicon.jpg" sizes="76x76" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
 <script src="<?= $https_url ?>/site/js/jquery.min.js"></script>
-
 <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>-->
 <!--<script src="<?= $https_url ?>/site/js/jquery.min.js"></script>--->
 <link rel="stylesheet" href="<?= $https_url ?>/site/css/font-awesome.min.css">
 <link rel="stylesheet" href="<?= $https_url ?>/site/css/ionicons.min.css">
-
- <link href="<?=$https_url ?>site/css/bootstrap.min.css" rel="stylesheet" />
- <link href="<?= $https_url ?>/site/css/bootsnav.css" rel="stylesheet">
-
+<link href="<?=$https_url ?>site/css/bootstrap.min.css" rel="stylesheet" />
+<link href="<?= $https_url ?>/site/css/bootsnav.css" rel="stylesheet">
 <!-- 3d page css  -->
+
 <?php
 $data=explode('/', $_SERVER['REQUEST_URI']);
 if($data[1]=="home" && $data[2]=="new_custom" ||$data[2]=="new_custom_demo"){?>
@@ -144,7 +131,7 @@ if($data[1]=="home" && $data[2]=="new_custom" ||$data[2]=="new_custom_demo"){?>
 <link rel="stylesheet" href="<?=$https_url ?>site/css/remodal-default-theme.css">
 <link href="<?=$https_url ?>3D/3dicons/css/style.css" rel="stylesheet">
 <!-- ebd 3d page css -->
-<?php }else if($data[1]=="details" || $data[1]=="shirt-collections" || $data[1]=="mens-shirts" || $data[1]=="mens-suits" || $data[1]=="mens-trousers" || $data[1]=="mens-vests" || $data[1]=="mens-ties" || $data[1]=="mens-blazers" || $data[1]=="mens-cuff-links" ){?>
+<?php }else if($data[1]=="details" || $data[1]=="shirt-collections" || $data[1]=="mens-shirts" || $data[1]=="mens-suits" || $data[1]=="mens-trousers" || $data[1]=="mens-vests" || $data[1]=="mens-ties" || $data[1]=="mens-blazers" || $data[1]=="mens-cuff-links" ){ ?>
   <link rel="stylesheet" href="<?=$https_url ?>site/css/3d_page_css.css">
   <script src=<?= $bas_ul ?>site/js/remodal.js></script>
   <link rel="stylesheet" href="https://www.stylior.com/site/css/remodal.css">
@@ -162,9 +149,8 @@ if($data[1]=="home" && $data[2]=="new_custom" ||$data[2]=="new_custom_demo"){?>
     .top-header .nav-right .dropdown-menu {
         z-index: 10002;
     }
-  </style>
-  
- <?php }else if($data[1]=="trial-shirt"){?>
+  </style> 
+ <?php } else if($data[1]=="trial-shirt"){ ?>
 <script src=<?= $bas_ul ?>site/js/remodal.js></script>
 <link rel="stylesheet" href="https://www.stylior.com/site/css/remodal.css">
 <link rel="stylesheet" href="https://www.stylior.com/site/css/remodal-default-theme.css">
@@ -180,6 +166,7 @@ if($data[1]=="home" && $data[2]=="new_custom" ||$data[2]=="new_custom_demo"){?>
   <link rel="stylesheet" type="text/css" href="<?= $https_url ?>site/css/owl.carousel.css">
   <?php } ?>
 <?php } ?>
+
 <?php if(isset($title)){ ?>
   <title><?php echo $title;?></title>
   <meta property="og:url"           content="<?php echo $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']; ?>" />
@@ -190,8 +177,10 @@ if($data[1]=="home" && $data[2]=="new_custom" ||$data[2]=="new_custom_demo"){?>
   <meta name="keywords" content="<?php echo $metakeywords;?>"/>
   <meta name="description" content="<?php echo $metadescription;?>"/>
 <?php } ?>
+
 <link href="<?=$https_url ?>site/css/style.css" rel="stylesheet" />
 <link href="<?= $https_url ?>/site/css/mega_menu.css" rel="stylesheet">
+
 <script type="text/javascript">
 window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
 d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
@@ -199,8 +188,8 @@ _.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute("charset","utf-8");
 $.src="//v2.zopim.com/?3GEN2SShCeWCch4n28FuaCrneMO1i03e";z.t=+new Date;$.
 type="text/javascript";e.parentNode.insertBefore($,e)})(document,"script");
 </script>
-<!--End of Zopim Live Chat Script-->
 
+<!--End of Zopim Live Chat Script-->
 <!-- Facebook Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?

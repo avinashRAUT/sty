@@ -157,7 +157,6 @@ foreach($details as $shirt)
 
   <?php 
   /*var : stared for discount offer*/
-
   if($shirt->discount>0){
     $price_of_product=$shirt->{$this->session->userdata('currencycode')};
     $discount_value = $shirt->discount;   
@@ -165,7 +164,6 @@ foreach($details as $shirt)
     $price_of_product=$price_of_product-$discount_value;
     echo "<span class='dis_price'>".$this->session->userdata('currencycode')." ".$price_of_product."</span>";
    }
-
   /*var : end*/
   ?>
 

@@ -72,8 +72,7 @@ class Cart extends CI_Controller {
 
  }
 
-
-	function addgifttocart(){
+function addgifttocart(){
 		if($_POST['friendemail'] != '' && count($_POST['friendemail']) > 0) {
 			//for($j='0';$j<count($_POST['friendemail']);$j++) {
 				//print_r($_POST['recipientemail']);die;
@@ -99,7 +98,6 @@ class Cart extends CI_Controller {
 
   		redirect($this->config->item('http_host').'cart/lum_view_cart','refresh',$data);
 	}
-
 
 	///
 	function fitNew($style_id)
@@ -166,7 +164,6 @@ class Cart extends CI_Controller {
 	}
 
 	////////
-
 	/*function mapping($style_id = '') code replaced on 11oct2016
 	{
 		if($style_id == 'saved3d'){
@@ -650,16 +647,13 @@ function savemesurementoncart()
 
   //function to update array object from 3d
   
-  function updatecart()
+function updatecart()
 {
 	
-		
-
 		$mycartid=$_SESSION['latestcartId'];
 		$lastid=$_SESSION['saveid'];
 	    //if a data of subcatid is comming from ajax request....	
 		//var start 31 march 2017..
-
  		if(isset($_POST['subcatid'])){
 			$this->session->userdata['selected3dInfo_shirt']['subcatid']=$_POST['subcatid'];
 			$this->session->userdata['subcatid']=$_POST['subcatid'];
@@ -692,9 +686,11 @@ function savemesurementoncart()
 		//last inserted record in mycart table
 		//echo "mycartid".$mycartid;
 		//print_r($this->session->userdata('order'));
+
 		if($this->session->userdata('order')=="custom"){
 				print_r($lastitem);
 		}	   
+
 	   	$lastitemmycart = $this->Cart_model->getlastinsertitemmycart($mycartid);
 		//decoding json array from the last record : save3d(dbtable)
 		$josn= json_decode($lastitem[0]->details,true);
@@ -735,6 +731,7 @@ function savemesurementoncart()
 		// 	echo "SSS variable";
 		// 			print_r($sss);
 		// 			exit();
+
 		if($this->session->userdata['subcatid']==10||$this->session->userdata['selected3dInfo_shirt']['subcatid']==10){ 
 				$sss['measurements']['standardsize']=$josntoadded['standardsize'];
 				$sss['measurements']['WEIGHTkg']=$josntoadded['WEIGHTkg'];
@@ -1920,22 +1917,26 @@ function addToCartSuit(){
 /*end of addtocartSuit()*/
 
 function addcart3dcombined(){
+
+
 		if(isset($_POST['productid_shirt']) && $_POST['subcatid_shirt']==10){
 			$id=$_POST['productid_shirt'];
 			$id_p = str_replace("STY","",$id);
 			$price_get=$this->Cart_model->getPriceByID($id_p);
-			$session_currency=$this->session->userdata('currencycode');
-			// print_r($session_currency);
-			// print_r($price_get);
+			$session_currency = $this->session->userdata('currencycode');
 			$actual_price=$price_get->INR;
 			//replace value of post->price to avoid javascript price change issue...
 			$_POST['price']=$actual_price;
 		}
+		
+
+
 		//error_reporting(E_ALL);
 		if(!empty($_POST))
 		{
 			if($_POST['ordertype']=="trailshirt")
 			{
+
 			$bag = $this->cart->contents();
 	 	 	$adddate;
 		  	$data['userid'] = $this->session->userdata('user_id');
@@ -1969,7 +1970,7 @@ function addcart3dcombined(){
 				}
 
 			}
-
+		
 		  if($insert_new == TRUE)
 		  {
 			$data      = $_POST['imagedata'];
@@ -1984,7 +1985,7 @@ function addcart3dcombined(){
 			$data11['productid'] = $productid;
 			$data11['pname']    = $pname;
 			$data11['userid']    =  $_SESSION['user_id'];
-			$data11['baseimage'] = $timeimage.".png";
+			$data11['baseimage'] = $timeimage.".png";	
 			/*echo "data11";
 			print_r($data11);
 			die();*/
@@ -1994,7 +1995,7 @@ function addcart3dcombined(){
 				   'qty'     => '1',
 				   'price'   => $price,
 				   'name'    => $pname,
-				   'options' => array('details'=>$details , 'imagename'=>$timeimage.".png", 'is_3d'=>'1' , 'saveid'=> $saveid)
+				   'options' => array('details'=>$details , 'imagename'=>$timeimage.".png", 'dis_3d'=>'1' , 'saveid'=> $saveid)
 			);
 			//print_r($cartprod);die();
 			$this->cart->insert($cartprod);
@@ -2006,9 +2007,7 @@ function addcart3dcombined(){
 			$uri =  substr($data,strpos($data,",")+1);
 			file_put_contents($file, base64_decode($uri));
 			echo "success";
-
 		  }
-
 		}
 
 		if($_POST['ordertype']=="both")
@@ -2149,16 +2148,14 @@ function addcart3dcombined(){
 					$_SESSION['selected3dInfo_shirt']['subcatid']  = $_POST['subcatid_shirt'];
 					$_SESSION['order']=$_POST['order'];
 					$_SESSION['ordertype']='shirt';
+			
 			}
+			
 			/*var end session*/
   			//print_r($data11);die();
 			$saveid=$this->Cart_model->addto3dinsert($data11);
-
 			// var_dump($productid);
 			// var_dump('STY2015277');
-
-
-
 			$cartprod = array(
 				   'id'      => $productid,
 				   'qty'     => '1',
@@ -2166,9 +2163,6 @@ function addcart3dcombined(){
 				   'name'    => $pname,
 				   'options' => array('details'=>$details , 'imagename'=>$data, 'is_3d'=>'1' , 'saveid'=> $saveid)
 			);
-
-
-
 			if($this->cart->insert($cartprod)){
 			echo "data inserted into cartd";
 			}
@@ -2176,16 +2170,13 @@ function addcart3dcombined(){
 			echo "fail to insert data into cart";
 
 			}
-
 			$addTocartId=$this->Cart_model->insertcartindb($cartprod);
 			$this->session->set_userdata('latestcartId',$addTocartId);
 			$this->session->set_userdata('saveid',$saveid);
 			$file =$this->config->item('base_url_temp')."site/upload/saveprofile/".$timeimage.".png";
-
 			$uri =  substr($data,strpos($data,",")+1);
-
-		//	$dssre = base64_decode($uri);
-		//	file_put_contents($file, base64_decode($uri));
+			//	$dssre = base64_decode($uri);
+			//	file_put_contents($file, base64_decode($uri));
 			/*avr added session*/
 			$cartdata = array(
 			'styleid'    => $this->session->userdata('saveid'),
@@ -2289,47 +2280,38 @@ function addcart3dcombined(){
 				}
 				if(!empty($_SESSION['selected3dInfo_shirttrail']))
 					{
-
-							  $bag = $this->cart->contents();
-
-								//echo var_dump($bag);
+   
+						   $bag = $this->cart->contents();
+							//echo var_dump($bag);
 							$adddate;
 							$data['userid'] = $this->session->userdata('user_id');
-
 							foreach ($bag as $item)
 							{
-
 								$data['pid'] = str_replace("STY","",$item['id']);
+								$sql = "SELECT DISTINCT `added_date` FROM `mycart` WHERE `userid` = '".$data['userid']."' AND `pid` != '2015115' AND `pid` = '".$item['id']."' LIMIT 0 , 1";
+								$query = $this->db->query($sql);
+								$result = $query->result();
 
-							$sql = "SELECT DISTINCT `added_date` FROM `mycart` WHERE `userid` = '".$data['userid']."' AND `pid` != '2015115' AND `pid` = '".$item['id']."' LIMIT 0 , 1";
-							$query = $this->db->query($sql);
-							$result = $query->result();
+								$adddate=$result[0]->added_date;
+								$data['style_id'] = 47;
+								$data['added_date'] = $adddate;
+								if(!empty($adddate))
+								{
 
-							$adddate=$result[0]->added_date;
-							$data['style_id'] = 47;
-							$data['added_date'] = $adddate;
-
-
-
-							if(!empty($adddate))
-							{
-
-							$check = $this->account_model->add_wishlist($data);
-
-							//removing cart item in Bag
-							$data1 = array(
-							'rowid'   => $item['rowid'],
-							'qty'     => 0
-							);
-							$this->cart->update($data1);
-							$this->Cart_model->removeproductcart($item['id']);
-							}
-
+									$check = $this->account_model->add_wishlist($data);
+									//removing cart item in Bag
+									$data1 = array(
+									'rowid'   => $item['rowid'],
+									'qty'     => 0
+									);
+									$this->cart->update($data1);
+									$this->Cart_model->removeproductcart($item['id']);
+								}
 
 							}
 
-							    $insert_new = TRUE;
-								foreach ($bag as $item)
+						    $insert_new = TRUE;
+							foreach ($bag as $item)
 								{
 								if ( $item['id'] == '2015115' )
 								{
@@ -2384,9 +2366,6 @@ function addcart3dcombined(){
 
 				}
 
-
-
-
 			}
 
 
@@ -2431,25 +2410,21 @@ function addcart3dcombined(){
 				   'logged_in' => true
 				);
 
-				$check = $this->session->set_userdata($newuserdata);
-
+			$check = $this->session->set_userdata($newuserdata);
 			$data11['details']  = $details;
 			$data11['price']    = $price;
 			$data11['productid'] = $productid;
 			$data11['pname']    = $pname;
 			$data11['userid']    =  $_SESSION['user_id'];
 			$data11['baseimage'] = $timeimage.".png";
-
 			$data12['details']  = $details_p;
 			$data12['price']    = $price_p;
 			$data12['productid'] = $productid_p;
 			$data12['pname']    = $pname_p;
 			$data12['userid']    =  $_SESSION['user_id'];
 			$data12['baseimage'] = $timeimage_p.".png";
-
 			$saveid=$this->Cart_model->addto3dinsert($data11);
-			 $saveid_p=$this->Cart_model->addto3dinsert($data12);
-
+    		$saveid_p=$this->Cart_model->addto3dinsert($data12);
 			$cartprod = array(
 				   'id'      => $productid,
 				   'qty'     => '1',
@@ -2458,14 +2433,14 @@ function addcart3dcombined(){
 				   'options' => array('details'=>$details , 'imagename'=>$timeimage.".png", 'is_3d'=>'1' , 'saveid'=> $saveid)
 			);
 
-
-				$cartprod_p = array(
+			$cartprod_p = array(
 				   'id'      => $productid_p,
 				   'qty'     => '1',
 				   'price'   => $price_p,
 				   'name'    => $pname_p,
 				   'options' => array('details'=>$details_p , 'imagename'=>$timeimage_p.".png", 'is_3d'=>'1' , 'saveid'=> $saveid_p)
 			);
+
 			//print_r($cartprod);die();
 			$this->cart->insert($cartprod);
 			$addTocartId=$this->Cart_model->insertcartindb($cartprod);
@@ -2476,8 +2451,6 @@ function addcart3dcombined(){
 			file_put_contents($file, base64_decode($uri));
 
 			////////
-
-
 			$this->cart->insert($cartprod_p);
 
 				$addTocartId_p=$this->Cart_model->insertcartindb($cartprod_p);
@@ -2699,11 +2672,8 @@ function addcart3dcombined(){
 		}
 		else if($_SESSION['ordertype']=='pant')
 		{
-
-
 			if(isset($_SESSION['selected3dInfo_pant']) && !empty($_SESSION['selected3dInfo_pant']))
 			{
-
 					$data_p      = $_SESSION['selected3dInfo_pant']['data'];
 					$timeimage_p = time();
 					$details_p   = $_SESSION['selected3dInfo_pant']['details'];
@@ -2713,7 +2683,6 @@ function addcart3dcombined(){
 					$subcatid_p  = $_SESSION['selected3dInfo_pant']['subcatid'];
 
 			}
-
 			if(!empty($_SESSION['Guestuser_id'])&& $_SESSION['usertype']=="Guest")
 			{
 					$_SESSION['user_id']=$_SESSION['Guestuser_id'];
@@ -2725,41 +2694,27 @@ function addcart3dcombined(){
 				   'insider'   => $_SESSION['insider'],
 				   'logged_in' => true
 				);
-
-				$check = $this->session->set_userdata($newuserdata);
-
-
+    		$check = $this->session->set_userdata($newuserdata);
 			$data12['details']  = $details_p;
 			$data12['price']    = $price_p;
 			$data12['productid'] = $productid_p;
 			$data12['pname']    = $pname_p;
 			$data12['userid']    =  $_SESSION['user_id'];
 			$data12['baseimage'] = $timeimage_p.".png";
-
-		   $saveid_p=$this->Cart_model->addto3dinsert($data12);
-
-
-				$cartprod_p = array(
+    		$saveid_p=$this->Cart_model->addto3dinsert($data12);
+			$cartprod_p = array(
 				   'id'      => $productid_p,
 				   'qty'     => '1',
 				   'price'   => $price_p,
 				   'name'    => $pname_p,
 				   'options' => array('details'=>$details_p , 'imagename'=>$timeimage_p.".png", 'is_3d'=>'1' , 'saveid'=> $saveid_p)
 			);
-
-
 			$this->cart->insert($cartprod_p);
-
-				$addTocartId_p=$this->Cart_model->insertcartindb($cartprod_p);
-
-				$this->session->set_userdata('latestcartId',$addTocartId_p);
-
+			$addTocartId_p=$this->Cart_model->insertcartindb($cartprod_p);
+			$this->session->set_userdata('latestcartId',$addTocartId_p);
 			$this->session->set_userdata('saveid',$saveid_p);
-
 			$file =$this->config->item('base_url_temp')."site/upload/saveprofile/".$timeimage_p.".png";
-
 			$uri_p =  substr($data_p,strpos($data_p,",")+1);
-
 			file_put_contents($file, base64_decode($uri_p));
 
 			///////
@@ -2789,18 +2744,11 @@ function addcart3dcombined(){
 				else if($_SESSION['order']=="stnadard")
 				{
 				 redirect($this->config->item('http_host').'cart/lum_view_cart','location');
-				}
-
-
+     			}
 			}
-
-
-
-
-
-
 			//////////
 		}
+
 	}
 }//end of function
 
@@ -3322,6 +3270,9 @@ function savedataforvest(){
 	function saveSelectionDatacombined()
 	{
 
+
+	
+	
 		if($_POST['ordertype']=="trailshirt")
 		{
 			$_SESSION['selected3dInfo_shirttrail']['data']      = $_POST['imagedata'];
@@ -3351,8 +3302,6 @@ function savedataforvest(){
 			$_SESSION['order']=$_POST['order'];
 			$_SESSION['ordertype']='shirt';
 			echo "success";
-
-
 		}
 		else if($_POST['ordertype']=="pant")
 		{
@@ -3363,15 +3312,16 @@ function savedataforvest(){
 			$selectedInfo_pant['productid'] =  $_POST['productid_pant'];
 			$selectedInfo_pant['pname']     = $_POST['pname_pant'];
 			$selectedInfo_pant['subcatid']  = $_POST['subcatid_pant'];
+		
+
 			$_SESSION['selected3dInfo_pant']= $selectedInfo_pant;
 			$_SESSION['order']=$_POST['order'];
 			$_SESSION['ordertype']='pant';
 
-
-
 		}
 		else if($_POST['ordertype']=="both")
 		{
+
 		    $selectedInfo_shirt['data']      = $_POST['imagedata_shirt'];
 			$timeimage = time();
 			$selectedInfo_shirt['details']   = $_POST['details'];
@@ -3380,7 +3330,6 @@ function savedataforvest(){
 			$selectedInfo_shirt['pname']     = $_POST['pname_shirt'];
 			$selectedInfo_shirt['subcatid']  = $_POST['subcatid_shirt'];
 			$_SESSION['selected3dInfo_shirt']= $selectedInfo_shirt;
-
            	$selectedInfo_pant['data']      = $_POST['imagedata_pant'];
 			$timeimage = time();
 			$selectedInfo_pant['details']   = $_POST['details'];
@@ -3390,6 +3339,7 @@ function savedataforvest(){
 			$selectedInfo_pant['subcatid']  = $_POST['subcatid_pant'];
 			$_SESSION['selected3dInfo_pant']= $selectedInfo_pant;
 			$_SESSION['ordertype']='both';
+
 
 		}
 

@@ -1664,7 +1664,7 @@ p.subtitle{
     text-transform: uppercase;}
 /* ===================== End Account Page ===================== */
 
-/* ===================== discount offer ===================== */
+/* ===================== discouns and offer ===================== */
 .disc_per{    
     position: absolute;
     display: block;
@@ -1707,12 +1707,12 @@ span.dis_price{
     font-size: 16px;
 	}
 .product_discount_offer p.product_price{float: right;}
+
 .product_discount_offer span.original_price{
- 	/*text-decoration:line-through;*/
-    float: left;    
+ 	float: left;    
     font-weight: 100;    
     margin-right: 15px;
-} 
+	} 
 .product_discount_offer span.dis_price {
     font-size: 18px;
     margin: 0;
@@ -1720,6 +1720,20 @@ span.dis_price{
     color: #374168;    
 	padding: 0;
 }
+
+.participate-btn{    
+    color: #003554 !important;
+    font-size: 32px !important;
+    border: 2px solid #003554 !important;
+    padding: 0px !important;
+    width: 310px;
+    font-weight: 600;
+    border-radius: 0;}
+.participate-button{    
+	width: 500px;
+    top: 100% !important;
+    left: 15% !important;
+	margin-top: -128px !important;height: 65px;}
 /* ===================== End discount offer  ===================== */
 
 /* ===================== career page  ===================== */
@@ -2106,6 +2120,18 @@ span.dis_price{
 	.summary-button a:hover, .summary-button a:focus, .summary-button a.focus{color: #fff !important;}
 	#saved_profile .height {margin: 50% auto;}
 	/*	measurement page*/
+	
+	.participate-button {
+		left: 16% !important;
+		margin-top: -75px !important;
+	}
+	.participate-btn {
+		font-size: 14px !important;
+		border: 2px solid #003554 !important;
+		width: 158px;
+	}
+	
+	
 }
 
 /* ------------- media query for below 1024px -------------*/
@@ -2243,6 +2269,8 @@ span.dis_price{
 	.ba-right {padding: 1% 3%;}
 	.book_appointment h1 {margin-top: 0;font-size: 28px;margin-bottom: 35px;}
 	.ba-contents {min-height: 310px;}
+	.participate-button {left: 11% !important;}
+	.participate-btn {font-size: 28px !important;}
 }
 
 @media (min-width: 1600px) {
@@ -2250,6 +2278,9 @@ span.dis_price{
 }
 
 @media (max-width: 1400px) {
+	.stylior-header .container {
+		width: 1070px;
+	}
 	.design-section2 .text-content p {
 		font-size: 18px;
 		line-height: 30px;
@@ -2285,6 +2316,9 @@ span.dis_price{
 	.home_shop_overlay h1{
 		font-size: 21px;
 	}
+	}
+	.participate-button {left: 17% !important;    margin-top: -95px !important;}
+	.participate-btn {font-size: 23px !important;width: 225px;}
 
 }
 

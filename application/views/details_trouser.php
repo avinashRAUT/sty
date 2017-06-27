@@ -40,15 +40,12 @@
 
 	}
 ?>
-
 <meta property="og:url"           content="<?php echo $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']; ?>" />
 <meta property="og:type"          content="website" />
 <meta property="og:title"         content="" />
 <meta property="og:description"   content="<?php echo $prodescr ?>" />
 <meta property="og:image"         content="<?php echo $prodimage ?>" />
-
-
-  <style>
+<style>
     .wow:first-child {
       visibility: hidden;
     }
@@ -67,6 +64,15 @@ ul.hide-bullets li {
 	}
   </style>
 <input type="hidden" value="<?= $cmsf->pname;?>" id="prd_namme"/>
+<?php 	
+if($cmsf->discount>0){
+			$price_of_product=$cmsf->{$this->session->userdata('currencycode')};
+			$discount_value = round((($price_of_product*$cmsf->discount)/100));
+			$price_of_product=$price_of_product-$discount_value;
+			$cmsf->price=$price_of_product;
+ }
+
+?>
 <input type="hidden" value="<?= $cmsf->price;?>" id="prd_price"/>
 <input type="hidden" value="<?= $cmsf->pid;?>" id="prd_id"/>
 <div id="fb-root"></div>
@@ -506,25 +512,23 @@ we provide free alteration, or remake for the outfits we produce.</li>
         <div class="col-md-4 col-lg-4 col-sm-4">
         <button type="button"  class="quick-c-btn sum" id="summary" data-toggle="modal" data-target="#myModal">Summary</button>
         </div>
+        
         <div class="col-lg-4 col-md-4 buy_now">
         <a  class="quick-c-btn">buy now</a>
         </div>
+
         <div class="gap10"></div>
-				<div class="social-btns">
+				<div class="social-btns social-share-buttons">
 				<ul>
-				<li>  <a href="<?php echo 'https://www.facebook.com/sharer/sharer.php?u=' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']; ?>" class="social-link js-social-link" target="_blank">
-
-					<i class="fa fa-facebook "></i>
+				<li>  <a href="<?php echo 'https://www.facebook.com/sharer/sharer.php?u=' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']; ?>" class="social-link js-social-link fb-share fa fa-facebook" target="_blank">
 					</a>
-</li>
-				<li>  <a href="<?php echo 'https://twitter.com/intent/tweet/?text='.$_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] .'&amp;via=stylior.com&amp;source=webclient'; ?>" class="social-link js-social-link" target="_blank">
-
-					<i class="fa fa-twitter fa-stack-1"></i>
-
-					</a></li>
+				</li>			
+				<li>  <a href="<?php echo 'https://twitter.com/intent/tweet/?text='.$_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] .'&amp;via=stylior.com&amp;source=webclient'; ?>" class="social-link js-social-link tw-share fa fa-twitter" target="_blank">
+				<!-- <i class="fa fa-twitter fa-stack-1"></i> -->
+					</a>
+				</li>
 				</ul>
 				</div>
-
         </div>
     </div>
 
@@ -796,17 +800,18 @@ $('.panel-group').on('shown.bs.collapse', toggleIcon);
           ?>';
 
         html_data1='<h4>Pleat : '+ trouserDimension.pleats +' </h4><h4>Cuffs :'+ trouserDimension.cuffs +' </h4><h4>Back Pocket : '+ trouserDimension.pocket +'<h4>Belt Loop : '+ trouserDimension.beltloop +'<h4>Fit : '+ trouserDimension.fitype +' </h4><h4>Length :'+ trouserDimension.length +' </h4><h4>Size : '+ trouserDimension.standardsize +' </h4>';
-
         $('#summary_options').html(html_data+""+html_data1);
       });
 
       /*shahjaz end here*/
       $(".buy_now").on("click",function(){
-
+     
         var result = "<?= $https_url_large_img."".$cmsf->image;?>";
         base_url = '<? echo $bas_ul?>';
         //alert(base_url);
         var exact_price = $("#prd_price").val();
+
+	
         var product_id = $("#prd_id").val();
         var subcatid='<?php echo $_SESSION['subcatid']; ?>';
         //alert(subcatid);
@@ -819,17 +824,13 @@ $('.panel-group').on('shown.bs.collapse', toggleIcon);
         {
         ordertype="pant";
         }
+     
         var fabric_nameshirt = $("#prd_namme").val();
-
-
         var loginUser='<?php echo $_SESSION['user_id']; ?>';
-
-
         if(loginUser)
         {
           //alert("hii");
           //$('#loadingmessage').show();
-
           $.ajax({
               url: "/cart/addcart3dcombined",
               type: 'POST',
@@ -843,24 +844,26 @@ $('.panel-group').on('shown.bs.collapse', toggleIcon);
                 imagedata_shirt : result,
                 ordertype:"shirt",
                 order:"stnadard"
-               },
+              },
               success: function(response)
               {
-
 	              $('#loadingmessage').hide();
-	              //var url=base_url+'cart/lum_view_cart';
-	              window.location = "#trouser_measurements";
+						//var url=base_url+'cart/lum_view_cart';
+						console.log(response);
+						window.location = "#trouser_measurements";
               }
-            });
+
+             });
         }
         else{
           //alert("hello");
           $('#loadingmessage').show();
           $.ajax({
-             url: "/cart/saveSelectionDatacombined",
+
+            url: "/cart/saveSelectionDatacombined",
             type: 'POST',
             data:
-              {
+            {
                 details :  JSON.stringify(trouserDimension),
                 price_shirt : exact_price,
                 productid_shirt : product_id ,
@@ -869,37 +872,32 @@ $('.panel-group').on('shown.bs.collapse', toggleIcon);
                 imagedata_shirt : result,
                 ordertype:"shirt",
                 order:"stnadard"
-               },
+    
+            },
             success: function(response)
             {
-              //alert(response);
-                $('#loadingmessage').hide();
-              var url=base_url+'home/lum_login';
-              //alert(url);
-              window.location = url;
+				console.log(response);
+				$('#loadingmessage').hide();
+				var url=base_url+'home/lum_login';
+				//alert(url);
+				//  
+				window.location = url;
             }
-          });
+        });
+	    return false;
 
-          return false;
-        }
-
-
-         });
-
-
-        $(".add_wishlist").on("click",function(){
-
-
-        var product_id = $("#prd_id").val();
-
-        var loginUser='<?php echo $_SESSION['user_id']; ?>';
-        base_url = '<? echo $bas_ul?>';
-
-        if(loginUser)
-        {
-          //alert("hii");
-          //$('#loadingmessage').show();
-           console.log("Test2");
+	   }   
+    });
+ 
+    $(".add_wishlist").on("click",function(){
+       var product_id = $("#prd_id").val();
+       var loginUser='<?php echo $_SESSION['user_id']; ?>';
+       base_url = '<? echo $bas_ul?>';
+       if(loginUser)
+       {
+         //alert("hii");
+         //$('#loadingmessage').show();
+          console.log("Test2");
           $.ajax({
               url: "/cart/addwishlist",
               type: 'POST',
@@ -1103,6 +1101,7 @@ jQuery(document).ready(function($){
 
 
 $("#quick_save").click(function(){
+    
     var measureid ="";
     if("<?= $_GET['update'] ?>"=="shirt"){
      measureid = '<?php echo $_GET['mid'];?>';
@@ -1111,8 +1110,8 @@ $("#quick_save").click(function(){
     var height_select=$('#height_select').val();
     var body_weight=$('#body_weight').val();
     var yourfit=trouserDimension.fitype;
-		var standardsize = trouserDimension.standardsize ;
-		var length = trouserDimension.length ;
+	var standardsize = trouserDimension.standardsize ;
+	var length = trouserDimension.length ;
     //console.log("height_select:"+height_select+"body_weight:"+body_weight+"yourfit:"+yourfit+"yourlength:"+yourlength);   //alert($('input[name="yourlength"]:checked').val());
     trouserMeasure.standardsize=standardsize;
     trouserMeasure.WEIGHTkg=body_weight;
@@ -1126,18 +1125,21 @@ $("#quick_save").click(function(){
     trouserMeasure.bottom=$("#lum_input_required4").val();
     trouserMeasure.knee=$("#lum_input_required5").val();
     trouserMeasure.thigh=$("#lum_input_required6").val();
-
-
-
-      //ajax call to server420
-    var result ="imagedata";
-    //var imgData = getBase64Image($('#saveImg').attr('src')));
-    var base_url = '<?php echo $bas_ul; ?>';
-    // var exact_price = $("#prd_price").val();
-    // var product_id = $("#prd_id").val();
-      var subcatid='<?php echo $_SESSION['subcatid']; ?>';
-    var ordertype;
-  //  alert("tyoe"+subcatid);
+	//ajax call to server420
+	var result ="imagedata";
+	
+	//var imgData = getBase64Image($('#saveImg').attr('src')));
+	
+	var base_url = '<?php echo $bas_ul; ?>';
+	
+	// var exact_price = $("#prd_price").val();
+	// var product_id = $("#prd_id").val();
+	
+	var subcatid='<?php echo $_SESSION['subcatid']; ?>';
+	var ordertype;
+  	
+  	//alert("tyoe"+subcatid);
+    
     if(subcatid=="10")
     {
      ordertype="shirt";
@@ -1150,7 +1152,7 @@ $("#quick_save").click(function(){
     var loginUser='<?php echo $_SESSION['user_id']; ?>';
     if(loginUser)
     {
-      $.ajax({
+       $.ajax({
           url: base_url+"cart/updatecart",
           type: 'POST',
           data:
@@ -1158,13 +1160,12 @@ $("#quick_save").click(function(){
             details_up : JSON.stringify(trouserMeasure),
             measureid :  measureid
               },
-          success: function(response) {
-              console.log("AVR"+response);
-              window.location.href=base_url+"cart/lum_view_cart";
-          }
+  	        success: function(response) {
+				console.log("AVR"+response);
+				window.location.href=base_url+"cart/lum_view_cart";
+			  }
         });
-    }
-
+     }
   });
 
 /** Add Measurement data collect from here.
@@ -1187,17 +1188,12 @@ $("#add-mesurement").click(function(){
             data: {'data': $(".mesure-form").serialize()},
             success:function(data){
               console.log("this is data"+data);
-
               location.href='<? echo $bas_ul?>/cart/lum_view_cart';
-
             }
            });
-
 });
-
 /*change the instruction on body part*/
 /*date 14 sep 2016*/
-
 $(".entry,#entry-standard").click(function(){
 var current_id=this.id;
 var base_url='<?= $base_url_temp ?>';
@@ -1206,8 +1202,7 @@ var name = $(i).attr("name");
 var m = name.substring(14, 16);
 $("#guideDescription").html("");
 $("#guideDescription-standard").html("");
-
-console.log("m valuye"+m);
+  console.log("m valuye"+m);
   $.ajax({
   url:base_url+'home/getbodypart' ,
   method: "POST",
@@ -1227,7 +1222,6 @@ console.log("m valuye"+m);
 
   var vidd = document.getElementById("lum_input_required_video1");
     vidd.play();
-
   }
   });
 
