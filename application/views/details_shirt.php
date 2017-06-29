@@ -29,16 +29,16 @@ $https_url_large_img="http://www.stylior.com/upload/products1/";
 
 	foreach($c as $cmsf)
 	{
-		$title = $cmsf->title;
-		$proname = $cmsf->pname;
-		$proid = $cmsf->pid;
-		$threadcount = $cmsf->threadcount;
-		$colour = $cmsf->colourname;
-		$fabricid = $cmsf->fname;
-		$designid = $cmsf->designname;
-    $itemcode = $cmsf->itemcode ;
-		$prodescr = $cmsf->description;
-		$prodimage = $https_url_large_img."".$cmsf->image;;
+  		$title = $cmsf->title;
+  		$proname = $cmsf->pname;
+  		$proid = $cmsf->pid;
+  		$threadcount = $cmsf->threadcount;
+  		$colour = $cmsf->colourname;
+  		$fabricid = $cmsf->fname;
+  		$designid = $cmsf->designname;
+      $itemcode = $cmsf->itemcode ;
+  		$prodescr = $cmsf->description;
+  		$prodimage = $https_url_large_img."".$cmsf->image;;
   }
 
 ?>
@@ -76,6 +76,63 @@ ul.hide-bullets li {
 
 .modal-body {
 max-height:500px; overflow-y:scroll}
+/* Preloader */
+
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5);
+  /* change if the mask should have another color then white */
+  z-index: 99;
+  /* makes sure it stays on top */
+}
+
+#status {
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  left: 50%;
+  /* centers the loading animation horizontally one the screen */
+  top: 50%;
+  /* centers the loading animation vertically one the screen */
+  background-image: url(https://www.stylior.com/stylior/site/images/loading_new.gif);
+  /* path to your loading animation */
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: -100px 0 0 -100px;
+  /* is width and height divided by two */
+}
+
+#preloader1 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5);
+  /* change if the mask should have another color then white */
+  z-index: 99;
+  /* makes sure it stays on top */
+}
+
+#status1 {
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  left: 50%;
+  /* centers the loading animation horizontally one the screen */
+  top: 50%;
+  /* centers the loading animation vertically one the screen */
+  background-image: url(https://www.stylior.com/stylior/site/images/loading_new.gif);
+  /* path to your loading animation */
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: -100px 0 0 -100px;
+  /* is width and height divided by two */
+}
   </style>
 	<script>(function(d, s, id) {
 	  var js, fjs = d.getElementsByTagName(s)[0];
@@ -88,7 +145,18 @@ max-height:500px; overflow-y:scroll}
 <input type="hidden" value="<?= $cmsf->pname;?>" id="prd_namme"/>
 <input type="hidden" value="<?= $cmsf->price;?>" id="prd_price"/>
 <input type="hidden" value="<?= $cmsf->pid;?>" id="prd_id"/>
+<div id="preloader">
+  <div id="status">&nbsp;</div>
+</div>
 
+<script>
+
+$(window).on('load', function() { // makes sure the whole site is loaded 
+  $('#status').fadeOut(); // will first fade out the loading animation 
+  $('#preloader').delay(350).fadeOut('slow'); // will fade out the white DIV that covers the website. 
+  $('body').delay(350).css({'overflow':'visible'});
+})
+</script>
 <div class="container">
 
   <div class="gap10"></div>
@@ -173,7 +241,7 @@ max-height:500px; overflow-y:scroll}
 
       </div>
 
-     <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
+     <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12 product_details_info">
         <div class="product-title-wishlist product_discount_offer"><?php echo $proname;?>
 
 		<p class="product_price">
@@ -260,22 +328,22 @@ max-height:500px; overflow-y:scroll}
             <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                 <div class="panel-body">
                       <!-- <h3>DETAILS </h3> -->
-                      <ul>
-                      <li><strong>Description :</strong> <?php echo $prodescr;?></li>
-                      <li><strong>Fabric :</strong> <?php echo $fabricid;?></li>
-                      <li><strong>Pattern :</strong> <?php echo $designid;?></li>
-                      <li><strong>Colour :</strong> <?php echo $colour;?></li>
-                      <li><strong>Thread Count :</strong> <?php echo $threadcount;?></li>
+					<ul>		
+					<?php if(isset($prodescr) && (strlen($prodescr) > 0)){ 
+					 echo "<li><label>Description : </label><p>".$prodescr."</p></li>"; 
+					} 
+          ?>
+					<li><label>Fabric :</label><p><?php echo $fabricid;?></p></li>
+					<li><label>Pattern :</label><p><?php echo $designid;?></p></li>
+					<li><label>Colour : </label><p><?php echo $colour;?></p></li>
+					<li><label>Thread Count : </label><p><?php echo $threadcount;?></p></li>
 
-                      <li><strong>Item Code :</strong> <?php echo $itemcode;?></li>
+					<li><label>Item Code : </label><p><?php echo $itemcode;?></p></li>
 
-                      <li><strong>Free Shipping :</strong> We provide free shipping globally. </li>
+					<li><label>Free Shipping :</label> <p>We provide free shipping globally.</p> </li>
 
-                      <li><strong>Alterations & Returns :</strong> 
-        Stylior promises perfect fit guarantee. If it doesn't fit
-        we provide free alteration, or remake for the outfits we produce.
-  </li>
-                          </ul>
+					<li><label>Alterations & Returns :</label><p>Stylior promises perfect fit guarantee. If it doesn't fit we provide free alteration, or remake for the outfits we produce.  </p></li>
+					</ul>
                 </div>
             </div>
         </div>
@@ -369,40 +437,39 @@ max-height:500px; overflow-y:scroll}
 	</div>
 </div>
 
-        <div class="panel panel-default">
-            <div class="panel-heading" role="tab" id="headingFour">
-                <h4 class="panel-title">
-                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                        <i class="more-less glyphicon glyphicon-plus"></i>
-                       Pockets
-                    </a>
-                </h4>
-            </div>
-            <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
-                <div class="panel-body">
-               <!-- Multiple Checkboxes (inline) -->
-<div class="form-group">
-  <div class="col-md-12">
-  <div class="pocket-div details">
-                  <div class="pocket_select active" id="Pocket">
+		<div class="panel panel-default">
+			<div class="panel-heading" role="tab" id="headingFour">
+				<h4 class="panel-title">
+				<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+				<i class="more-less glyphicon glyphicon-plus"></i>
+				Pockets
+				</a>
+				</h4>
+			</div>
+			
+			<div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+				<div class="panel-body">
+				<!-- Multiple Checkboxes (inline) -->
+					<div class="form-group">
+						<div class="col-md-12">
+							<div class="pocket-div details">
+							<div class="pocket_select active" id="Pocket">
+								<span>YES</span>
+							</div>
 
-                  <span>YES</span>
-                  </div>
-
-                  <div class="pocket_select" id="Nil">
-                  <span>NO</span>
-                  </div>
-
-    </div>
-  </div>
-</div>
-                 <!--<a href="#" class="info"><img src="<?=base_url() ?>images/quick/info.gif" width="34" height="35" alt=""/></a>-->
-              </div>
-            </div>
-        </div>
+							<div class="pocket_select" id="Nil">
+								<span>NO</span>
+							</div>
+							</div>
+						</div>
+					</div>
+				<!--<a href="#" class="info"><img src="<?=base_url() ?>images/quick/info.gif" width="34" height="35" alt=""/></a>-->
+				</div>
+			</div>
+		</div>
 
 
-        <div class="panel panel-default">
+        <div class="panel panel-default monogram-panel">
             <div class="panel-heading" role="tab" id="headingSix">
                 <h4 class="panel-title">
                     <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseSix" aria-expanded="false" aria-controls="collapseFive">
@@ -442,7 +509,7 @@ max-height:500px; overflow-y:scroll}
                 </div>
               <div class="gap10"></div>
               <hr>
-                  <h4>Font</h4>
+                  <h3>Font</h3>
                 <div class="monogram-div text">
                 <ul class="monogram">
                 <li><div class="monogram_font_select" id="Archibald"><img src="<?=base_url() ?>images/quick/archibald.png" width="36" height="36" alt=""/> </div></li>
@@ -454,26 +521,46 @@ max-height:500px; overflow-y:scroll}
                 </div>
                  <div class="gap10"></div>
               <hr>
-                  <h4>Monogram Location</h4>
+                  <h3>Monogram Location</h3>
                 <div class="monogram-div location">
                     <ul class="monogram">
-                        <li><div class="monogram_location_select" id="Cuff_Name_Horizontal"><img src="<?=base_url() ?>images/quick/cuff-name-horizontal.png" width="75" height="75" alt=""/> </div></li>
-                        <li><div class="monogram_location_select" id="Pocket_Embroidery_Normal"><img src="<?=base_url() ?>images/quick/pocket_embroidery_normal.png" width="75" height="75" alt=""/> </div></li>
-                        <li><div class="monogram_location_select" id="Sleeve_Placket_Top_Embroidery_Normal"><img src="<?=base_url() ?>images/quick/sleeve_placket_top_embroidery_normal.png" width="75" height="75" alt=""/> </a></li>
-                        <li><div class="monogram_location_select" id="Top_Cuff_Embroidery_Normal"><img src="<?=base_url() ?>images/quick/top_cuff_embroidery_normal.png" width="75" height="75" alt=""/> </div></li>
+                        <li>
+							<div class="monogram_location_select" id="Cuff_Name_Horizontal">
+								<img src="<?=base_url() ?>images/quick/cuff-name-horizontal.png" width="60" height="60" alt=""/> 
+							</div>
+						</li>
+                        <li>
+							<div class="monogram_location_select" id="Pocket_Embroidery_Normal">
+								<img src="<?=base_url() ?>images/quick/pocket_embroidery_normal.png" width="60" height="60" alt=""/> 
+							</div>
+						</li>
+                        <li>
+							<div class="monogram_location_select" id="Sleeve_Placket_Top_Embroidery_Normal">
+								<img src="<?=base_url() ?>images/quick/sleeve_placket_top_embroidery_normal.png" width="60" height="60" alt=""/> </a>
+							</div>
+						</li>
+                        <li>
+							<div class="monogram_location_select" id="Top_Cuff_Embroidery_Normal">
+								<img src="<?=base_url() ?>images/quick/top_cuff_embroidery_normal.png" width="60" height="60" alt=""/> 
+							</div>
+						</li>
                     </ul>
                 </div>
                 <div class="gap10"></div>
                 <hr>
-                  <h4>Monogram Text</h4>
+                  <h3>Monogram Text</h3>
                    <input type="text" class="mono-text" id="monogram_text" maxlength="3" placeholder=""></input>
 
                 <!--<a href="#" class="info"><img src="<?=base_url() ?>images/quick/info.gif" width="34" height="35" alt=""/></a>-->
             </div>
         </div>
         </div>
-    </div><!-- panel-group -->
+    </div>
 
+
+	
+	
+	
     <!-- panel-group -->
 <!--
         <div class="panel panel-default">
@@ -531,7 +618,7 @@ max-height:500px; overflow-y:scroll}
         </div> -->
         <!--Collar End -->
 
-<!--         <div class="panel panel-default">
+         <div class="panel panel-default">
             <div class="panel-heading" role="tab" id="headingThree">
                 <h4 class="panel-title">
                     <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
@@ -542,37 +629,45 @@ max-height:500px; overflow-y:scroll}
             </div>
             <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
                 <div class="panel-body details">
-                  <div class="size_select" id="36" >
-                  36
-                  </div>
-                  <div class="size_select" id="38" >
-                  38
-                  </div>
-                  <div class="size_select" id="40" >
-                  40
-                  </div>
-                  <div class="size_select" id="42" >
-                  42
-                  </div>
-                  <div class="size_select" id="44" >
-                  44
-                  </div>
-                  <div class="size_select" id="46" >
-                  46
-                  </div>
-                  <div class="size_select" id="48" >
-                  48
-                  </div>
-                  <div class="size_select" id="50" >
-                  50
-                  </div>
-                  <div class="size_select" id="52" >
-                  52
-                  </div>
+
+                <!--  <div class="size_select" id="36" >
+                36
+                </div>
+                <div class="size_select" id="38" >
+                38
+                </div>
+                <div class="size_select" id="40" >
+                40
+                </div>
+                <div class="size_select" id="42" >
+                42
+                </div>
+                <div class="size_select" id="44" >
+                44
+                </div>
+                <div class="size_select" id="46" >
+                46
+                </div>
+                <div class="size_select" id="48" >
+                48
+                </div>
+                <div class="size_select" id="50" >
+                50
+                </div>
+                <div class="size_select" id="52" >
+                52
+                </div>-->
+
+                <div class="size_select" id="38">38M</div>
+                <div class="size_select" id="40">40L</div>
+                <div class="size_select" id="42">42XL</div>
+                <div class="size_select" id="44">44XXL</div>
+
+
                    <a class="info" id="size" data-toggle="modal" data-target="#myModalSize"><img src="<?=base_url() ?>images/quick/info.gif" width="34" height="35" alt=""/></a>
               </div>
             </div>
-        </div> -->
+        </div> 
         <!-- Size end -->
 
 
@@ -600,15 +695,13 @@ max-height:500px; overflow-y:scroll}
 				</div>
 				<div class="social-btns social-share-buttons">
         <ul>
-        <li >  <a href="<?php echo 'https://www.facebook.com/sharer/sharer.php?u=' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']; ?>" class="social-link js-social-link fb-share" target="_blank">
+        <li >  <a href="<?php echo 'https://www.facebook.com/sharer/sharer.php?u=' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']; ?>" class="social-link js-social-link fb-share fa fa-facebook" target="_blank">
 
-					<i class="fa fa-facebook "></i> Share
+					
 					</a>
         </li>
 
-        <li>  <a href="<?php echo 'https://twitter.com/intent/tweet/?text='. $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] .'&amp;via=stylior.com&amp;source=webclient'; ?>" class="social-link js-social-link tw-share" target="_blank">
-
-					<i class="fa fa-twitter fa-stack-1"></i> Share
+        <li>  <a href="<?php echo 'https://twitter.com/intent/tweet/?text='. $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] .'&amp;via=stylior.com&amp;source=webclient'; ?>" class="social-link js-social-link tw-share fa fa-twitter" target="_blank">
 					</a>
           </li>
         </ul>
@@ -1066,7 +1159,7 @@ jQuery(document).ready(function($) {
         $(this).addClass('active');
       });
 
-   /*   $(".size_select").on("click",function(){
+  $(".size_select").on("click",function(){
         console.log("This is size  :"+this.id);
         shirtDimension.standardsize=this.id.replace(/_/g, ' ');
 
@@ -1074,7 +1167,7 @@ jQuery(document).ready(function($) {
           $(this).addClass('active');
           $('#size_error').removeClass('option_error');
            $('#size_error').hide();
-      });*/
+      });
 
       $("#cust_det_fab_lum").click(function(){
         var product_id = $("#prd_id").val();
